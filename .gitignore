@@ -29,3 +29,6 @@ data/index/*
 
 # Claude Code personal settings
 .claude/settings.local.json
+
+# Project notes for Claude Code: kept local
+CLAUDE.md

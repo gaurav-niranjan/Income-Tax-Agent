@@ -32,6 +32,14 @@ class Settings(BaseSettings):
     gemini_model: str = ""
     gemini_judge_model: str = ""
     embedding_model: str = "BAAI/bge-base-en-v1.5"
+    # Added to queries (not passages). BGE recommends it for query -> passage search.
+    embedding_query_prefix: str = "Represent this sentence for searching relevant passages: "
+    # fastembed's default cache is a temp folder that macOS may wipe. Keep models here.
+    model_cache_dir: Path = PROJECT_ROOT / ".cache/fastembed"
+
+    # --- Index ---
+    chunk_size: int = 1000
+    chunk_overlap: int = 150
 
     # CI sets this to 1: fake embeddings and a fake LLM, so no keys or downloads.
     fake_models: bool = False
