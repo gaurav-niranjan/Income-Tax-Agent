@@ -66,6 +66,26 @@ class Document:
         last = bisect_right(self._section_offsets, max(start, end - 1)) - 1
         return self.sections[first : last + 1] if last >= 0 else []
 
+    def section_chars_between(self, start: int, end: int) -> dict[str, int]:
+        """How many characters of text[start:end] fall in each section.
+
+        Whitespace is not counted, so table padding does not inflate a section's share.
+        The title page before section 1 is counted as part of section 1, like
+        sections_between does.
+        """
+        counts: dict[str, int] = {}
+        first = max(bisect_right(self._section_offsets, start) - 1, 0)
+        for i in range(first, len(self.sections)):
+            sec_start = self.sections[i].offset if i > 0 else 0
+            if sec_start >= end:
+                break
+            sec_end = self.sections[i + 1].offset if i + 1 < len(self.sections) else len(self.text)
+            span = self.text[max(start, sec_start) : min(end, sec_end)]
+            n = sum(not ch.isspace() for ch in span)
+            if n:
+                counts[self.sections[i].number] = n
+        return counts
+
 
 def _looks_like_title(line: str) -> bool:
     """Section titles are plain sentences, not clauses "(a) ..." or numbered rows "3. ..."."""

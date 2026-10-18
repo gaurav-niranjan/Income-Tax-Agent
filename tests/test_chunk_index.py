@@ -40,6 +40,9 @@ def test_chunk_crossing_a_section_boundary_lists_both():
         if "word59\nDefinitions." in c.text:  # This chunk spans the end of 1 and start of 2.
             assert c.sections == ["1", "2"]
             assert c.section_titles == ["Short title.", "Definitions."]
+        # section_chars counts every non-space character of the chunk exactly once.
+        assert list(c.extra["section_chars"]) == c.sections
+        assert sum(c.extra["section_chars"].values()) == sum(not ch.isspace() for ch in c.text)
     assert {tuple(c.sections) for c in chunks} == {("1",), ("1", "2"), ("2",)}
 
 

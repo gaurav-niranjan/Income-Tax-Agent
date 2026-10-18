@@ -40,6 +40,12 @@ class Settings(BaseSettings):
     # --- Index ---
     chunk_size: int = 1000
     chunk_overlap: int = 150
+    # The index the app and eval use by default.
+    index_name: str = "fixed-1000-150__bge-base"
+
+    # --- Retrieval ---
+    rrf_k: int = 60  # Reciprocal Rank Fusion constant
+    hybrid_candidates: int = 50  # how deep each list goes before fusing
 
     # CI sets this to 1: fake embeddings and a fake LLM, so no keys or downloads.
     fake_models: bool = False

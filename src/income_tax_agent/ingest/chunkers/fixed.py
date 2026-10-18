@@ -50,7 +50,10 @@ class FixedSizeChunker:
             end = self._snap_end(text, start)
             body = text[start:end].strip()
             if body:
-                sections = doc.sections_between(start, end)
+                # Non-space characters per section. The eval uses this for a "strict" hit:
+                # a chunk only counts for a section that makes up a real share of it.
+                section_chars = doc.section_chars_between(start, end)
+                sections = [s for s in doc.sections_between(start, end) if s.number in section_chars]
                 chunks.append(
                     Chunk(
                         chunk_id=f"{self.name}:{len(chunks):06d}",
@@ -58,7 +61,7 @@ class FixedSizeChunker:
                         pages=doc.pages_between(start, end),
                         sections=[s.number for s in sections],
                         section_titles=[s.title for s in sections],
-                        extra={"start": start, "end": end},
+                        extra={"start": start, "end": end, "section_chars": section_chars},
                     )
                 )
             if end >= len(text):
