@@ -56,6 +56,11 @@ class Settings(BaseSettings):
     answer_k: int = 5
     answer_neighbours: bool = True
 
+    # --- App ---
+    # Strangers share one free API quota; this cap keeps one visitor from using it all.
+    # (Per browser session: a page reload resets it. Good enough for a demo.)
+    max_questions_per_session: int = 10
+
     # CI sets this to 1: fake embeddings and a fake LLM, so no keys or downloads.
     fake_models: bool = False
 

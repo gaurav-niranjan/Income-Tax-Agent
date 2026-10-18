@@ -27,8 +27,8 @@ data/index/*
 .idea/
 .vscode/
 
-# Claude Code personal settings
-.claude/settings.local.json
+# Claude Code settings: kept local
+.claude/
 
 # Project notes for Claude Code: kept local
 CLAUDE.md
