@@ -43,16 +43,18 @@ class Settings(BaseSettings):
     # --- Index ---
     chunk_size: int = 1000
     chunk_overlap: int = 150
-    # The index the app and eval use by default.
-    index_name: str = "fixed-1000-150__bge-base"
+    # The index the app and eval use by default. Chosen on the retrieval eval
+    # (eval/results, 2026-10-18): header + dense + neighbours had the best strict hit@5
+    # (20/22) and MRR (0.76), and is simpler than hybrid.
+    index_name: str = "fixed-1000-150-header__bge-base"
 
     # --- Retrieval ---
     rrf_k: int = 60  # Reciprocal Rank Fusion constant
     hybrid_candidates: int = 50  # how deep each list goes before fusing
     # What the answer pipeline uses.
-    answer_mode: str = "hybrid"
+    answer_mode: str = "dense"
     answer_k: int = 5
-    answer_neighbours: bool = False
+    answer_neighbours: bool = True
 
     # CI sets this to 1: fake embeddings and a fake LLM, so no keys or downloads.
     fake_models: bool = False
