@@ -12,7 +12,7 @@ Answer eval (Phase 7):
      uv run python eval/run_eval.py --judge [--limit 3] [--sleep 6]
 Runs the full pipeline with the app's settings on all questions, then a second Gemini
 model (GEMINI_JUDGE_MODEL) grades correctness, faithfulness and refusals. Writes
-eval/results/<index>__<mode>[+nb]__answers__<date>.md/.json. LLM calls are cached on disk.
+eval/results/<index>__<mode>[+nb]__answers__<judge>__<date>.md/.json. LLM calls are cached on disk.
 """
 
 import argparse
@@ -98,7 +98,8 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str, out_dir: Pa
     """Phase 7: answer every question (out-of-scope included) and have a second model grade it."""
     answer_llm = GeminiLLM(settings.gemini_model, settings.google_api_key, settings.llm_cache_dir,
                            settings.gemini_temperature)
-    judge_llm = GeminiLLM(settings.gemini_judge_model, settings.google_api_key, settings.llm_cache_dir)
+    judge_llm = GeminiLLM(args.judge_model or settings.gemini_judge_model, settings.google_api_key,
+                          settings.llm_cache_dir)
     if judge_llm.model_name == answer_llm.model_name:
         print("WARNING: the judge is the same model as the answerer; grades may be biased.")
     graph = build_graph(retriever, answer_llm)
@@ -142,7 +143,8 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str, out_dir: Pa
 
     summary = summarize_answers(rows)
     label = f"{mode}+nb" if args.neighbours else mode
-    name = f"{args.index}__{label}__answers__{date.today().isoformat()}"
+    # The judge is part of the name: grades from different judges are not comparable.
+    name = f"{args.index}__{label}__answers__{judge_llm.model_name}__{date.today().isoformat()}"
     config = {
         "index": args.index, "mode": mode, "neighbours": args.neighbours, "k": settings.answer_k,
         "answer_model": answer_llm.model_name, "judge_model": judge_llm.model_name,
@@ -234,6 +236,7 @@ def main() -> None:
         help="add each hit's same-section neighbours (retrieval: default off; --judge: app default)",
     )
     parser.add_argument("--judge", action="store_true", help="answer eval with an LLM judge (Phase 7)")
+    parser.add_argument("--judge-model", help="override GEMINI_JUDGE_MODEL for this run")
     parser.add_argument("--sleep", type=float, default=6.0,
                         help="--judge: seconds to wait after a question that called the API")
     args = parser.parse_args()
