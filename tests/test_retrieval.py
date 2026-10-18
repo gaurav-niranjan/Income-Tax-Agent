@@ -7,7 +7,8 @@ from income_tax_agent.config import Settings
 from income_tax_agent.embeddings import FakeEmbeddings
 from income_tax_agent.index import build_index
 from income_tax_agent.ingest.chunkers.fixed import FixedSizeChunker
-from income_tax_agent.retrieval.bm25 import tokenize
+from income_tax_agent.ingest.chunkers.base import Chunk
+from income_tax_agent.retrieval.bm25 import BM25Retriever, tokenize
 from income_tax_agent.retrieval.fusion import reciprocal_rank_fusion
 from income_tax_agent.retrieval.retriever import Hit, Retriever
 
@@ -50,6 +51,16 @@ def test_every_mode_returns_ranked_chunks(retriever, mode):
     assert 1 <= len(hits) <= 3
     assert [h.rank for h in hits] == list(range(1, len(hits) + 1))
     assert len({h.chunk.chunk_id for h in hits}) == len(hits)
+
+
+def test_bm25_searches_the_prefix_but_returns_plain_text():
+    chunks = [
+        Chunk("a:0", "Upto Rs. 400000 Nil", [1], ["202"], ["New tax regime"], {"search_prefix": "Section 202: New tax regime\n"}),
+        Chunk("a:1", "Some other rule", [2], ["5"], ["Other"], {}),
+    ]
+    hit = BM25Retriever(chunks).search("new regime", k=1)
+    assert hit[0][0] == "a:0"  # found only through the prefix
+    assert chunks[0].text == "Upto Rs. 400000 Nil"
 
 
 def test_expand_neighbours_adds_same_section_chunks_once(retriever):

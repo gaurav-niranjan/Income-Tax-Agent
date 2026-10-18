@@ -10,10 +10,10 @@
     "query_prefix": "Represent this sentence for searching relevant passages: ",
     "questions_file": "questions.jsonl",
     "n_questions": 22,
-    "git_commit": "9ab8a79",
+    "git_commit": "ded466e",
     "index_manifest": {
       "name": "fixed-1000-150-header__bge-base",
-      "created": "2026-10-18T11:15:43+00:00",
+      "created": "2026-10-18T11:55:41+00:00",
       "source": {
         "pdf": "Income-tax-Act-2025_2026_2026-08-25_10-41-45_a1d3cd_en.pdf",
         "pages_sha256": "d040fa5f9591e338",
@@ -26,7 +26,7 @@
         "type": "fixed",
         "size": 1000,
         "overlap": 150,
-        "embed_prefix": "section header"
+        "search_prefix": "section header (dense + bm25)"
       },
       "embeddings": {
         "type": "fastembed",
@@ -52,7 +52,7 @@
           "mean": 217.3,
           "over_512": 0
         },
-        "embed_seconds": 199.4
+        "embed_seconds": 199.5
       }
     }
   },
@@ -1872,34 +1872,8 @@
           "neighbour_of": "fixed-1000-150-header:000598"
         },
         {
-          "chunk_id": "fixed-1000-150-header:001083",
-          "rank": 8,
-          "sections": [
-            "262"
-          ],
-          "neighbour_of": "fixed-1000-150-header:001084"
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:001084",
-          "rank": 8,
-          "sections": [
-            "262",
-            "263"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:001085",
-          "rank": 8,
-          "sections": [
-            "262",
-            "263"
-          ],
-          "neighbour_of": "fixed-1000-150-header:001084"
-        },
-        {
           "chunk_id": "fixed-1000-150-header:000518",
-          "rank": 9,
+          "rank": 8,
           "sections": [
             "99"
           ],
@@ -1907,7 +1881,7 @@
         },
         {
           "chunk_id": "fixed-1000-150-header:000519",
-          "rank": 9,
+          "rank": 8,
           "sections": [
             "99"
           ],
@@ -1915,7 +1889,7 @@
         },
         {
           "chunk_id": "fixed-1000-150-header:000520",
-          "rank": 9,
+          "rank": 8,
           "sections": [
             "99"
           ],
@@ -1923,7 +1897,7 @@
         },
         {
           "chunk_id": "fixed-1000-150-header:001564",
-          "rank": 10,
+          "rank": 9,
           "sections": [
             "395",
             "396",
@@ -1933,7 +1907,7 @@
         },
         {
           "chunk_id": "fixed-1000-150-header:001565",
-          "rank": 10,
+          "rank": 9,
           "sections": [
             "397"
           ],
@@ -1941,11 +1915,35 @@
         },
         {
           "chunk_id": "fixed-1000-150-header:001566",
-          "rank": 10,
+          "rank": 9,
           "sections": [
             "397"
           ],
           "neighbour_of": "fixed-1000-150-header:001565"
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001918",
+          "rank": 10,
+          "sections": [
+            "Schedule III"
+          ],
+          "neighbour_of": "fixed-1000-150-header:001919"
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001919",
+          "rank": 10,
+          "sections": [
+            "Schedule III"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001920",
+          "rank": 10,
+          "sections": [
+            "Schedule III"
+          ],
+          "neighbour_of": "fixed-1000-150-header:001919"
         }
       ]
     },

@@ -20,7 +20,8 @@ class BM25Retriever:
     def __init__(self, chunks: list[Chunk]):
         self.chunk_ids = [c.chunk_id for c in chunks]
         # Built in memory on load: ~2k chunks take well under a second.
-        self.bm25 = BM25Okapi([tokenize(c.text) for c in chunks])
+        # search_text = optional prefix (e.g. "Section 202: <title>") + text.
+        self.bm25 = BM25Okapi([tokenize(c.search_text) for c in chunks])
 
     def search(self, query: str, k: int) -> list[tuple[str, float]]:
         """Top-k (chunk_id, score), best first. Chunks sharing no word are left out."""

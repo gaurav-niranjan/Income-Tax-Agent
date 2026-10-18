@@ -47,7 +47,7 @@ def test_chunk_crossing_a_section_boundary_lists_both():
     assert {tuple(c.sections) for c in chunks} == {("1",), ("1", "2"), ("2",)}
 
 
-def test_header_chunker_keeps_text_and_adds_embed_prefix():
+def test_header_chunker_keeps_text_and_adds_search_prefix():
     doc = build_document([{"page": 7, "text": TEXT}])
     plain = FixedSizeChunker(size=300, overlap=50).chunk(doc)
     headed = HeaderPrefixChunker(FixedSizeChunker(size=300, overlap=50)).chunk(doc)
@@ -55,8 +55,8 @@ def test_header_chunker_keeps_text_and_adds_embed_prefix():
     assert [c.text for c in headed] == [c.text for c in plain]
     assert headed[0].chunk_id == "fixed-300-50-header:000000"
     crossing = next(c for c in headed if c.sections == ["1", "2"])
-    assert crossing.embed_text.startswith("Section 1: Short title.\nSection 2: Definitions.\n")
-    assert plain[0].embed_text == plain[0].text  # no prefix without the wrapper
+    assert crossing.search_text.startswith("Section 1: Short title.\nSection 2: Definitions.\n")
+    assert plain[0].search_text == plain[0].text  # no prefix without the wrapper
     assert section_header(["Schedule XV"], ["DEDUCTION ..."]) == "Schedule XV: DEDUCTION ..."
 
 

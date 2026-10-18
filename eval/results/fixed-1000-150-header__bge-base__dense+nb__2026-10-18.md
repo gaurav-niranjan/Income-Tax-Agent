@@ -12,10 +12,10 @@
   "query_prefix": "Represent this sentence for searching relevant passages: ",
   "questions_file": "questions.jsonl",
   "n_questions": 22,
-  "git_commit": "9ab8a79",
+  "git_commit": "ded466e",
   "index_manifest": {
     "name": "fixed-1000-150-header__bge-base",
-    "created": "2026-10-18T11:15:43+00:00",
+    "created": "2026-10-18T11:55:41+00:00",
     "source": {
       "pdf": "Income-tax-Act-2025_2026_2026-08-25_10-41-45_a1d3cd_en.pdf",
       "pages_sha256": "d040fa5f9591e338",
@@ -28,7 +28,7 @@
       "type": "fixed",
       "size": 1000,
       "overlap": 150,
-      "embed_prefix": "section header"
+      "search_prefix": "section header (dense + bm25)"
     },
     "embeddings": {
       "type": "fastembed",
@@ -54,7 +54,7 @@
         "mean": 217.3,
         "over_512": 0
       },
-      "embed_seconds": 199.4
+      "embed_seconds": 199.5
     }
   }
 }

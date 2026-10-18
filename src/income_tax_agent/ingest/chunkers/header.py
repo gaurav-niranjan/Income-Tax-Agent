@@ -1,9 +1,9 @@
-"""Wrap another chunker: same chunks, plus a "Section N: <title>" line for embedding.
+"""Wrap another chunker: same chunks, plus a "Section N: <title>" line for search.
 
 A chunk from the middle of a section often never names it. The slab-table chunk of
 Section 202, for example, does not contain "new tax regime". The prefix gives the
-embedding that context. Only the embedding sees it: BM25 and the LLM get the plain text,
-so this change measures one thing.
+embedding and BM25 that context. Both search methods see it; the LLM gets the plain
+text (each excerpt it sees already has the section titles in its header line).
 """
 
 from dataclasses import dataclass, replace
@@ -30,7 +30,7 @@ class HeaderPrefixChunker:
         return f"{self.inner.name}-header"
 
     def config(self) -> dict:
-        return {**self.inner.config(), "embed_prefix": "section header"}
+        return {**self.inner.config(), "search_prefix": "section header (dense + bm25)"}
 
     def chunk(self, doc: Document) -> list[Chunk]:
         out = []
@@ -41,7 +41,7 @@ class HeaderPrefixChunker:
                 replace(
                     c,
                     chunk_id=f"{self.name}:{number}",
-                    extra={**c.extra, "embed_prefix": prefix + "\n" if prefix else ""},
+                    extra={**c.extra, "search_prefix": prefix + "\n" if prefix else ""},
                 )
             )
         return out

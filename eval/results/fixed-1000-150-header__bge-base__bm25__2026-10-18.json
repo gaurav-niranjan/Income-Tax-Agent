@@ -10,10 +10,10 @@
     "query_prefix": "Represent this sentence for searching relevant passages: ",
     "questions_file": "questions.jsonl",
     "n_questions": 22,
-    "git_commit": "9ab8a79",
+    "git_commit": "ded466e",
     "index_manifest": {
       "name": "fixed-1000-150-header__bge-base",
-      "created": "2026-10-18T11:15:43+00:00",
+      "created": "2026-10-18T11:55:41+00:00",
       "source": {
         "pdf": "Income-tax-Act-2025_2026_2026-08-25_10-41-45_a1d3cd_en.pdf",
         "pages_sha256": "d040fa5f9591e338",
@@ -26,7 +26,7 @@
         "type": "fixed",
         "size": 1000,
         "overlap": 150,
-        "embed_prefix": "section header"
+        "search_prefix": "section header (dense + bm25)"
       },
       "embeddings": {
         "type": "fastembed",
@@ -52,7 +52,7 @@
           "mean": 217.3,
           "over_512": 0
         },
-        "embed_seconds": 199.4
+        "embed_seconds": 199.5
       }
     }
   },
@@ -61,33 +61,33 @@
       "n": 22,
       "section": {
         "n": 22,
-        "hits@1": 11,
-        "hit@1": 0.5,
-        "hits@3": 15,
-        "hit@3": 0.6818181818181818,
-        "hits@5": 16,
-        "hit@5": 0.7272727272727273,
-        "mrr": 0.6140692640692641
+        "hits@1": 14,
+        "hit@1": 0.6363636363636364,
+        "hits@3": 16,
+        "hit@3": 0.7272727272727273,
+        "hits@5": 17,
+        "hit@5": 0.7727272727272727,
+        "mrr": 0.695508658008658
       },
       "strict": {
         "n": 22,
-        "hits@1": 11,
-        "hit@1": 0.5,
-        "hits@3": 15,
-        "hit@3": 0.6818181818181818,
-        "hits@5": 16,
-        "hit@5": 0.7272727272727273,
-        "mrr": 0.611038961038961
+        "hits@1": 14,
+        "hit@1": 0.6363636363636364,
+        "hits@3": 16,
+        "hit@3": 0.7272727272727273,
+        "hits@5": 17,
+        "hit@5": 0.7727272727272727,
+        "mrr": 0.695508658008658
       },
       "phrase": {
         "n": 22,
         "hits@1": 9,
         "hit@1": 0.4090909090909091,
-        "hits@3": 13,
-        "hit@3": 0.5909090909090909,
+        "hits@3": 12,
+        "hit@3": 0.5454545454545454,
         "hits@5": 15,
         "hit@5": 0.6818181818181818,
-        "mrr": 0.5151515151515151
+        "mrr": 0.5069444444444444
       }
     },
     "table": {
@@ -96,31 +96,31 @@
         "n": 6,
         "hits@1": 4,
         "hit@1": 0.6666666666666666,
-        "hits@3": 6,
-        "hit@3": 1.0,
-        "hits@5": 6,
-        "hit@5": 1.0,
-        "mrr": 0.8055555555555556
+        "hits@3": 5,
+        "hit@3": 0.8333333333333334,
+        "hits@5": 5,
+        "hit@5": 0.8333333333333334,
+        "mrr": 0.7430555555555556
       },
       "strict": {
         "n": 6,
         "hits@1": 4,
         "hit@1": 0.6666666666666666,
-        "hits@3": 6,
-        "hit@3": 1.0,
-        "hits@5": 6,
-        "hit@5": 1.0,
-        "mrr": 0.8055555555555556
+        "hits@3": 5,
+        "hit@3": 0.8333333333333334,
+        "hits@5": 5,
+        "hit@5": 0.8333333333333334,
+        "mrr": 0.7430555555555556
       },
       "phrase": {
         "n": 6,
         "hits@1": 3,
         "hit@1": 0.5,
-        "hits@3": 5,
-        "hit@3": 0.8333333333333334,
-        "hits@5": 5,
-        "hit@5": 0.8333333333333334,
-        "mrr": 0.6388888888888888
+        "hits@3": 4,
+        "hit@3": 0.6666666666666666,
+        "hits@5": 4,
+        "hit@5": 0.6666666666666666,
+        "mrr": 0.5763888888888888
       }
     },
     "definition": {
@@ -160,23 +160,23 @@
       "n": 4,
       "section": {
         "n": 4,
-        "hits@1": 2,
-        "hit@1": 0.5,
-        "hits@3": 3,
-        "hit@3": 0.75,
-        "hits@5": 3,
-        "hit@5": 0.75,
-        "mrr": 0.6666666666666666
+        "hits@1": 3,
+        "hit@1": 0.75,
+        "hits@3": 4,
+        "hit@3": 1.0,
+        "hits@5": 4,
+        "hit@5": 1.0,
+        "mrr": 0.875
       },
       "strict": {
         "n": 4,
-        "hits@1": 2,
-        "hit@1": 0.5,
-        "hits@3": 3,
-        "hit@3": 0.75,
-        "hits@5": 3,
-        "hit@5": 0.75,
-        "mrr": 0.6666666666666666
+        "hits@1": 3,
+        "hit@1": 0.75,
+        "hits@3": 4,
+        "hit@3": 1.0,
+        "hits@5": 4,
+        "hit@5": 1.0,
+        "mrr": 0.875
       },
       "phrase": {
         "n": 4,
@@ -186,73 +186,73 @@
         "hit@3": 0.75,
         "hits@5": 3,
         "hit@5": 0.75,
-        "mrr": 0.625
+        "mrr": 0.6083333333333333
       }
     },
     "numeric": {
       "n": 4,
       "section": {
         "n": 4,
-        "hits@1": 2,
-        "hit@1": 0.5,
+        "hits@1": 3,
+        "hit@1": 0.75,
         "hits@3": 3,
         "hit@3": 0.75,
         "hits@5": 3,
         "hit@5": 0.75,
-        "mrr": 0.6666666666666666
+        "mrr": 0.7857142857142857
       },
       "strict": {
         "n": 4,
-        "hits@1": 2,
-        "hit@1": 0.5,
+        "hits@1": 3,
+        "hit@1": 0.75,
         "hits@3": 3,
         "hit@3": 0.75,
         "hits@5": 3,
         "hit@5": 0.75,
-        "mrr": 0.65
+        "mrr": 0.7857142857142857
       },
       "phrase": {
         "n": 4,
-        "hits@1": 2,
-        "hit@1": 0.5,
+        "hits@1": 3,
+        "hit@1": 0.75,
         "hits@3": 3,
         "hit@3": 0.75,
         "hits@5": 3,
         "hit@5": 0.75,
-        "mrr": 0.65
+        "mrr": 0.7777777777777778
       }
     },
     "lakh": {
       "n": 4,
       "section": {
         "n": 4,
-        "hits@1": 3,
-        "hit@1": 0.75,
-        "hits@3": 3,
-        "hit@3": 0.75,
-        "hits@5": 3,
-        "hit@5": 0.75,
-        "mrr": 0.7857142857142857
+        "hits@1": 4,
+        "hit@1": 1.0,
+        "hits@3": 4,
+        "hit@3": 1.0,
+        "hits@5": 4,
+        "hit@5": 1.0,
+        "mrr": 1.0
       },
       "strict": {
         "n": 4,
-        "hits@1": 3,
-        "hit@1": 0.75,
-        "hits@3": 3,
-        "hit@3": 0.75,
-        "hits@5": 3,
-        "hit@5": 0.75,
-        "mrr": 0.7857142857142857
+        "hits@1": 4,
+        "hit@1": 1.0,
+        "hits@3": 4,
+        "hit@3": 1.0,
+        "hits@5": 4,
+        "hit@5": 1.0,
+        "mrr": 1.0
       },
       "phrase": {
         "n": 4,
-        "hits@1": 2,
-        "hit@1": 0.5,
+        "hits@1": 1,
+        "hit@1": 0.25,
         "hits@3": 2,
         "hit@3": 0.5,
-        "hits@5": 3,
-        "hit@5": 0.75,
-        "mrr": 0.55
+        "hits@5": 4,
+        "hit@5": 1.0,
+        "mrr": 0.4875
       }
     }
   },
@@ -280,8 +280,17 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000843",
+          "chunk_id": "fixed-1000-150-header:000834",
           "rank": 2,
+          "sections": [
+            "201",
+            "202"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000843",
+          "rank": 3,
           "sections": [
             "203",
             "204"
@@ -289,8 +298,42 @@
           "neighbour_of": null
         },
         {
+          "chunk_id": "fixed-1000-150-header:000830",
+          "rank": 4,
+          "sections": [
+            "200",
+            "201"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000839",
+          "rank": 5,
+          "sections": [
+            "202",
+            "203"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000698",
+          "rank": 6,
+          "sections": [
+            "160"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000838",
+          "rank": 7,
+          "sections": [
+            "202"
+          ],
+          "neighbour_of": null
+        },
+        {
           "chunk_id": "fixed-1000-150-header:001194",
-          "rank": 3,
+          "rank": 8,
           "sections": [
             "283",
             "284",
@@ -299,63 +342,19 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000834",
-          "rank": 4,
-          "sections": [
-            "201",
-            "202"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000698",
-          "rank": 5,
-          "sections": [
-            "160"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000830",
-          "rank": 6,
-          "sections": [
-            "200",
-            "201"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000824",
-          "rank": 7,
-          "sections": [
-            "198",
-            "199"
-          ],
-          "neighbour_of": null
-        },
-        {
           "chunk_id": "fixed-1000-150-header:000059",
-          "rank": 8,
+          "rank": 9,
           "sections": [
             "2"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000699",
-          "rank": 9,
-          "sections": [
-            "160"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000081",
+          "chunk_id": "fixed-1000-150-header:000824",
           "rank": 10,
           "sections": [
-            "3",
-            "4",
-            "5"
+            "198",
+            "199"
           ],
           "neighbour_of": null
         }
@@ -369,9 +368,9 @@
         "393"
       ],
       "ranks": {
-        "section": 2,
-        "strict": 2,
-        "phrase": 2
+        "section": 3,
+        "strict": 3,
+        "phrase": 3
       },
       "retrieved": [
         {
@@ -383,18 +382,18 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001494",
+          "chunk_id": "fixed-1000-150-header:000002",
           "rank": 2,
           "sections": [
-            "393"
+            "2"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000002",
+          "chunk_id": "fixed-1000-150-header:001494",
           "rank": 3,
           "sections": [
-            "2"
+            "393"
           ],
           "neighbour_of": null
         },
@@ -496,20 +495,18 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000081",
+          "chunk_id": "fixed-1000-150-header:001679",
           "rank": 4,
           "sections": [
-            "3",
-            "4",
-            "5"
+            "437"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001679",
+          "chunk_id": "fixed-1000-150-header:001504",
           "rank": 5,
           "sections": [
-            "437"
+            "393"
           ],
           "neighbour_of": null
         },
@@ -522,24 +519,8 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001562",
-          "rank": 7,
-          "sections": [
-            "395"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:001567",
-          "rank": 8,
-          "sections": [
-            "397"
-          ],
-          "neighbour_of": null
-        },
-        {
           "chunk_id": "fixed-1000-150-header:001741",
-          "rank": 9,
+          "rank": 7,
           "sections": [
             "476",
             "477"
@@ -547,10 +528,28 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001139",
+          "chunk_id": "fixed-1000-150-header:000081",
+          "rank": 8,
+          "sections": [
+            "3",
+            "4",
+            "5"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001562",
+          "rank": 9,
+          "sections": [
+            "395"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001556",
           "rank": 10,
           "sections": [
-            "270"
+            "394"
           ],
           "neighbour_of": null
         }
@@ -587,56 +586,32 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000474",
+          "chunk_id": "fixed-1000-150-header:001094",
           "rank": 3,
           "sections": [
-            "87"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000461",
-          "rank": 4,
-          "sections": [
-            "84"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000479",
-          "rank": 5,
-          "sections": [
-            "88"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000452",
-          "rank": 6,
-          "sections": [
-            "82"
+            "263"
           ],
           "neighbour_of": null
         },
         {
           "chunk_id": "fixed-1000-150-header:001651",
-          "rank": 7,
+          "rank": 4,
           "sections": [
             "423"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000457",
-          "rank": 8,
+          "chunk_id": "fixed-1000-150-header:000452",
+          "rank": 5,
           "sections": [
-            "83"
+            "82"
           ],
           "neighbour_of": null
         },
         {
           "chunk_id": "fixed-1000-150-header:000848",
-          "rank": 9,
+          "rank": 6,
           "sections": [
             "204",
             "205"
@@ -644,10 +619,34 @@
           "neighbour_of": null
         },
         {
+          "chunk_id": "fixed-1000-150-header:000474",
+          "rank": 7,
+          "sections": [
+            "87"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000461",
+          "rank": 8,
+          "sections": [
+            "84"
+          ],
+          "neighbour_of": null
+        },
+        {
           "chunk_id": "fixed-1000-150-header:001093",
-          "rank": 10,
+          "rank": 9,
           "sections": [
             "263"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000479",
+          "rank": 10,
+          "sections": [
+            "88"
           ],
           "neighbour_of": null
         }
@@ -661,16 +660,17 @@
         "19"
       ],
       "ranks": {
-        "section": 3,
-        "strict": 3,
-        "phrase": 3
+        "section": 8,
+        "strict": 8,
+        "phrase": 8
       },
       "retrieved": [
         {
-          "chunk_id": "fixed-1000-150-header:001489",
+          "chunk_id": "fixed-1000-150-header:000834",
           "rank": 1,
           "sections": [
-            "392"
+            "201",
+            "202"
           ],
           "neighbour_of": null
         },
@@ -684,8 +684,49 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000140",
+          "chunk_id": "fixed-1000-150-header:000839",
           "rank": 3,
+          "sections": [
+            "202",
+            "203"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000838",
+          "rank": 4,
+          "sections": [
+            "202"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001489",
+          "rank": 5,
+          "sections": [
+            "392"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000837",
+          "rank": 6,
+          "sections": [
+            "202"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000655",
+          "rank": 7,
+          "sections": [
+            "146"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000140",
+          "rank": 8,
           "sections": [
             "18",
             "19"
@@ -693,61 +734,18 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000834",
-          "rank": 4,
-          "sections": [
-            "201",
-            "202"
-          ],
-          "neighbour_of": null
-        },
-        {
           "chunk_id": "fixed-1000-150-header:000199",
-          "rank": 5,
+          "rank": 9,
           "sections": [
             "33"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000466",
-          "rank": 6,
-          "sections": [
-            "86"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000824",
-          "rank": 7,
-          "sections": [
-            "198",
-            "199"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000663",
-          "rank": 8,
-          "sections": [
-            "148",
-            "149"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:002066",
-          "rank": 9,
-          "sections": [
-            "Schedule XI"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000655",
+          "chunk_id": "fixed-1000-150-header:000836",
           "rank": 10,
           "sections": [
-            "146"
+            "202"
           ],
           "neighbour_of": null
         }
@@ -817,19 +815,19 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001559",
+          "chunk_id": "fixed-1000-150-header:000136",
           "rank": 7,
           "sections": [
-            "394",
-            "395"
+            "17"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000136",
+          "chunk_id": "fixed-1000-150-header:001559",
           "rank": 8,
           "sections": [
-            "17"
+            "394",
+            "395"
           ],
           "neighbour_of": null
         },
@@ -842,10 +840,11 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:002088",
+          "chunk_id": "fixed-1000-150-header:000603",
           "rank": 10,
           "sections": [
-            "Schedule XV"
+            "128",
+            "129"
           ],
           "neighbour_of": null
         }
@@ -865,8 +864,16 @@
       },
       "retrieved": [
         {
-          "chunk_id": "fixed-1000-150-header:001928",
+          "chunk_id": "fixed-1000-150-header:001883",
           "rank": 1,
+          "sections": [
+            "Schedule III"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001928",
+          "rank": 2,
           "sections": [
             "Schedule III",
             "Schedule IV"
@@ -874,18 +881,10 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001323",
-          "rank": 2,
-          "sections": [
-            "320"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:001883",
+          "chunk_id": "fixed-1000-150-header:001929",
           "rank": 3,
           "sections": [
-            "Schedule III"
+            "Schedule IV"
           ],
           "neighbour_of": null
         },
@@ -899,8 +898,16 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000083",
+          "chunk_id": "fixed-1000-150-header:001323",
           "rank": 5,
+          "sections": [
+            "320"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000083",
+          "rank": 6,
           "sections": [
             "5",
             "6"
@@ -909,7 +916,7 @@
         },
         {
           "chunk_id": "fixed-1000-150-header:000082",
-          "rank": 6,
+          "rank": 7,
           "sections": [
             "4",
             "5"
@@ -917,25 +924,8 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000929",
-          "rank": 7,
-          "sections": [
-            "221"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000084",
-          "rank": 8,
-          "sections": [
-            "5",
-            "6"
-          ],
-          "neighbour_of": null
-        },
-        {
           "chunk_id": "fixed-1000-150-header:000523",
-          "rank": 9,
+          "rank": 8,
           "sections": [
             "100",
             "101",
@@ -944,12 +934,19 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000512",
+          "chunk_id": "fixed-1000-150-header:000084",
+          "rank": 9,
+          "sections": [
+            "5",
+            "6"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001931",
           "rank": 10,
           "sections": [
-            "95",
-            "96",
-            "97"
+            "Schedule IV"
           ],
           "neighbour_of": null
         }
@@ -969,19 +966,19 @@
       },
       "retrieved": [
         {
-          "chunk_id": "fixed-1000-150-header:000680",
+          "chunk_id": "fixed-1000-150-header:001500",
           "rank": 1,
           "sections": [
-            "152",
-            "153"
+            "393"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001500",
+          "chunk_id": "fixed-1000-150-header:000680",
           "rank": 2,
           "sections": [
-            "393"
+            "152",
+            "153"
           ],
           "neighbour_of": null
         },
@@ -995,18 +992,18 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000591",
+          "chunk_id": "fixed-1000-150-header:001602",
           "rank": 4,
           "sections": [
-            "126"
+            "402"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001602",
+          "chunk_id": "fixed-1000-150-header:000591",
           "rank": 5,
           "sections": [
-            "402"
+            "126"
           ],
           "neighbour_of": null
         },
@@ -1019,34 +1016,34 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000085",
+          "chunk_id": "fixed-1000-150-header:001507",
           "rank": 7,
+          "sections": [
+            "393"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000085",
+          "rank": 8,
           "sections": [
             "6"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:002089",
-          "rank": 8,
+          "chunk_id": "fixed-1000-150-header:001099",
+          "rank": 9,
           "sections": [
-            "Schedule XV"
+            "263"
           ],
           "neighbour_of": null
         },
         {
           "chunk_id": "fixed-1000-150-header:000088",
-          "rank": 9,
-          "sections": [
-            "6"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000602",
           "rank": 10,
           "sections": [
-            "128"
+            "6"
           ],
           "neighbour_of": null
         }
@@ -1082,10 +1079,10 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:002119",
+          "chunk_id": "fixed-1000-150-header:001505",
           "rank": 3,
           "sections": [
-            "Schedule XVI"
+            "393"
           ],
           "neighbour_of": null
         },
@@ -1098,8 +1095,16 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001505",
+          "chunk_id": "fixed-1000-150-header:002119",
           "rank": 5,
+          "sections": [
+            "Schedule XVI"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001504",
+          "rank": 6,
           "sections": [
             "393"
           ],
@@ -1107,7 +1112,7 @@
         },
         {
           "chunk_id": "fixed-1000-150-header:001356",
-          "rank": 6,
+          "rank": 7,
           "sections": [
             "336",
             "337"
@@ -1116,14 +1121,6 @@
         },
         {
           "chunk_id": "fixed-1000-150-header:001544",
-          "rank": 7,
-          "sections": [
-            "393"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:001504",
           "rank": 8,
           "sections": [
             "393"
@@ -1131,18 +1128,18 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000319",
+          "chunk_id": "fixed-1000-150-header:000269",
           "rank": 9,
           "sections": [
-            "58"
+            "45"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000269",
+          "chunk_id": "fixed-1000-150-header:000319",
           "rank": 10,
           "sections": [
-            "45"
+            "58"
           ],
           "neighbour_of": null
         }
@@ -1203,8 +1200,16 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001816",
+          "chunk_id": "fixed-1000-150-header:001812",
           "rank": 6,
+          "sections": [
+            "515"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001816",
+          "rank": 7,
           "sections": [
             "515",
             "516"
@@ -1212,35 +1217,26 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001812",
-          "rank": 7,
-          "sections": [
-            "515"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000215",
-          "rank": 8,
-          "sections": [
-            "36"
-          ],
-          "neighbour_of": null
-        },
-        {
           "chunk_id": "fixed-1000-150-header:000783",
-          "rank": 9,
+          "rank": 8,
           "sections": [
             "184"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000163",
+          "chunk_id": "fixed-1000-150-header:000215",
+          "rank": 9,
+          "sections": [
+            "36"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000054",
           "rank": 10,
           "sections": [
-            "24",
-            "25"
+            "2"
           ],
           "neighbour_of": null
         }
@@ -1256,7 +1252,7 @@
       "ranks": {
         "section": 2,
         "strict": 2,
-        "phrase": 2
+        "phrase": 3
       },
       "retrieved": [
         {
@@ -1268,18 +1264,18 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000084",
+          "chunk_id": "fixed-1000-150-header:000086",
           "rank": 2,
           "sections": [
-            "5",
             "6"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000086",
+          "chunk_id": "fixed-1000-150-header:000084",
           "rank": 3,
           "sections": [
+            "5",
             "6"
           ],
           "neighbour_of": null
@@ -1334,11 +1330,10 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:002082",
+          "chunk_id": "fixed-1000-150-header:001929",
           "rank": 10,
           "sections": [
-            "Schedule XIV",
-            "Schedule XV"
+            "Schedule IV"
           ],
           "neighbour_of": null
         }
@@ -1367,32 +1362,24 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000557",
-          "rank": 2,
-          "sections": [
-            "117"
-          ],
-          "neighbour_of": null
-        },
-        {
           "chunk_id": "fixed-1000-150-header:001878",
-          "rank": 3,
+          "rank": 2,
           "sections": [
             "Schedule II"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001424",
-          "rank": 4,
+          "chunk_id": "fixed-1000-150-header:000557",
+          "rank": 3,
           "sections": [
-            "361"
+            "117"
           ],
           "neighbour_of": null
         },
         {
           "chunk_id": "fixed-1000-150-header:001625",
-          "rank": 5,
+          "rank": 4,
           "sections": [
             "411",
             "412"
@@ -1400,8 +1387,36 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001643",
+          "chunk_id": "fixed-1000-150-header:001424",
+          "rank": 5,
+          "sections": [
+            "361"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001617",
           "rank": 6,
+          "sections": [
+            "409",
+            "410",
+            "411"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000921",
+          "rank": 7,
+          "sections": [
+            "217",
+            "218",
+            "219"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001643",
+          "rank": 8,
           "sections": [
             "418",
             "419",
@@ -1410,38 +1425,19 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001831",
-          "rank": 7,
-          "sections": [
-            "529",
-            "530",
-            "531"
-          ],
-          "neighbour_of": null
-        },
-        {
           "chunk_id": "fixed-1000-150-header:001039",
-          "rank": 8,
+          "rank": 9,
           "sections": [
             "248"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001485",
-          "rank": 9,
-          "sections": [
-            "392"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:001617",
+          "chunk_id": "fixed-1000-150-header:001616",
           "rank": 10,
           "sections": [
-            "409",
-            "410",
-            "411"
+            "408",
+            "409"
           ],
           "neighbour_of": null
         }
@@ -1455,55 +1451,14 @@
         "202"
       ],
       "ranks": {
-        "section": 6,
-        "strict": 6,
-        "phrase": null
+        "section": 1,
+        "strict": 1,
+        "phrase": 10
       },
       "retrieved": [
         {
-          "chunk_id": "fixed-1000-150-header:000453",
-          "rank": 1,
-          "sections": [
-            "82"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000824",
-          "rank": 2,
-          "sections": [
-            "198",
-            "199"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000479",
-          "rank": 3,
-          "sections": [
-            "88"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:001364",
-          "rank": 4,
-          "sections": [
-            "341"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000461",
-          "rank": 5,
-          "sections": [
-            "84"
-          ],
-          "neighbour_of": null
-        },
-        {
           "chunk_id": "fixed-1000-150-header:000835",
-          "rank": 6,
+          "rank": 1,
           "sections": [
             "201",
             "202"
@@ -1511,18 +1466,61 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000457",
-          "rank": 7,
+          "chunk_id": "fixed-1000-150-header:000834",
+          "rank": 2,
           "sections": [
-            "83"
+            "201",
+            "202"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000474",
+          "chunk_id": "fixed-1000-150-header:000839",
+          "rank": 3,
+          "sections": [
+            "202",
+            "203"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000453",
+          "rank": 4,
+          "sections": [
+            "82"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001364",
+          "rank": 5,
+          "sections": [
+            "341"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000824",
+          "rank": 6,
+          "sections": [
+            "198",
+            "199"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000461",
+          "rank": 7,
+          "sections": [
+            "84"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000479",
           "rank": 8,
           "sections": [
-            "87"
+            "88"
           ],
           "neighbour_of": null
         },
@@ -1536,10 +1534,10 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000467",
+          "chunk_id": "fixed-1000-150-header:000838",
           "rank": 10,
           "sections": [
-            "86"
+            "202"
           ],
           "neighbour_of": null
         }
@@ -1576,51 +1574,51 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000644",
-          "rank": 3,
-          "sections": [
-            "142"
-          ],
-          "neighbour_of": null
-        },
-        {
           "chunk_id": "fixed-1000-150-header:001239",
-          "rank": 4,
+          "rank": 3,
           "sections": [
             "293"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000631",
-          "rank": 5,
+          "chunk_id": "fixed-1000-150-header:000644",
+          "rank": 4,
           "sections": [
-            "139",
-            "140"
+            "142"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001856",
-          "rank": 6,
+          "chunk_id": "fixed-1000-150-header:000756",
+          "rank": 5,
           "sections": [
-            "536"
+            "175"
           ],
           "neighbour_of": null
         },
         {
           "chunk_id": "fixed-1000-150-header:001365",
-          "rank": 7,
+          "rank": 6,
           "sections": [
             "341"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000756",
+          "chunk_id": "fixed-1000-150-header:001856",
+          "rank": 7,
+          "sections": [
+            "536"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000631",
           "rank": 8,
           "sections": [
-            "175"
+            "139",
+            "140"
           ],
           "neighbour_of": null
         },
@@ -1650,24 +1648,24 @@
         "126"
       ],
       "ranks": {
-        "section": 2,
-        "strict": 2,
-        "phrase": 2
+        "section": 1,
+        "strict": 1,
+        "phrase": 1
       },
       "retrieved": [
         {
-          "chunk_id": "fixed-1000-150-header:000134",
+          "chunk_id": "fixed-1000-150-header:000589",
           "rank": 1,
           "sections": [
-            "17"
+            "126"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000589",
+          "chunk_id": "fixed-1000-150-header:000134",
           "rank": 2,
           "sections": [
-            "126"
+            "17"
           ],
           "neighbour_of": null
         },
@@ -1696,27 +1694,28 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001867",
-          "rank": 6,
-          "sections": [
-            "Schedule II"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:001868",
-          "rank": 7,
-          "sections": [
-            "Schedule II"
-          ],
-          "neighbour_of": null
-        },
-        {
           "chunk_id": "fixed-1000-150-header:000175",
-          "rank": 8,
+          "rank": 6,
           "sections": [
             "29",
             "30"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000176",
+          "rank": 7,
+          "sections": [
+            "30",
+            "31"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001867",
+          "rank": 8,
+          "sections": [
+            "Schedule II"
           ],
           "neighbour_of": null
         },
@@ -1730,7 +1729,7 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001869",
+          "chunk_id": "fixed-1000-150-header:001868",
           "rank": 10,
           "sections": [
             "Schedule II"
@@ -1794,20 +1793,20 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000622",
+          "chunk_id": "fixed-1000-150-header:000593",
           "rank": 6,
           "sections": [
-            "133",
-            "134"
+            "126",
+            "127"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000593",
+          "chunk_id": "fixed-1000-150-header:000622",
           "rank": 7,
           "sections": [
-            "126",
-            "127"
+            "133",
+            "134"
           ],
           "neighbour_of": null
         },
@@ -1845,9 +1844,9 @@
         "22"
       ],
       "ranks": {
-        "section": 6,
-        "strict": 10,
-        "phrase": 10
+        "section": 7,
+        "strict": 7,
+        "phrase": 9
       },
       "retrieved": [
         {
@@ -1870,8 +1869,16 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000643",
+          "chunk_id": "fixed-1000-150-header:000644",
           "rank": 3,
+          "sections": [
+            "142"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000643",
+          "rank": 4,
           "sections": [
             "141",
             "142"
@@ -1879,33 +1886,8 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000644",
-          "rank": 4,
-          "sections": [
-            "142"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000169",
-          "rank": 5,
-          "sections": [
-            "26"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000158",
-          "rank": 6,
-          "sections": [
-            "21",
-            "22"
-          ],
-          "neighbour_of": null
-        },
-        {
           "chunk_id": "fixed-1000-150-header:000609",
-          "rank": 7,
+          "rank": 5,
           "sections": [
             "131",
             "132"
@@ -1914,25 +1896,43 @@
         },
         {
           "chunk_id": "fixed-1000-150-header:000607",
-          "rank": 8,
+          "rank": 6,
           "sections": [
             "130"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000469",
-          "rank": 9,
+          "chunk_id": "fixed-1000-150-header:000161",
+          "rank": 7,
           "sections": [
-            "86"
+            "22",
+            "23"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000158",
+          "rank": 8,
+          "sections": [
+            "21",
+            "22"
           ],
           "neighbour_of": null
         },
         {
           "chunk_id": "fixed-1000-150-header:000159",
-          "rank": 10,
+          "rank": 9,
           "sections": [
             "22"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000169",
+          "rank": 10,
+          "sections": [
+            "26"
           ],
           "neighbour_of": null
         }
@@ -1961,48 +1961,8 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000815",
-          "rank": 2,
-          "sections": [
-            "197"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000820",
-          "rank": 3,
-          "sections": [
-            "198"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000813",
-          "rank": 4,
-          "sections": [
-            "196"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:001086",
-          "rank": 5,
-          "sections": [
-            "263"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000816",
-          "rank": 6,
-          "sections": [
-            "197"
-          ],
-          "neighbour_of": null
-        },
-        {
           "chunk_id": "fixed-1000-150-header:000835",
-          "rank": 7,
+          "rank": 2,
           "sections": [
             "201",
             "202"
@@ -2010,8 +1970,16 @@
           "neighbour_of": null
         },
         {
+          "chunk_id": "fixed-1000-150-header:000815",
+          "rank": 3,
+          "sections": [
+            "197"
+          ],
+          "neighbour_of": null
+        },
+        {
           "chunk_id": "fixed-1000-150-header:000685",
-          "rank": 8,
+          "rank": 4,
           "sections": [
             "154",
             "155",
@@ -2020,18 +1988,52 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000052",
-          "rank": 9,
+          "chunk_id": "fixed-1000-150-header:000820",
+          "rank": 5,
           "sections": [
-            "2"
+            "198"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000323",
+          "chunk_id": "fixed-1000-150-header:000834",
+          "rank": 6,
+          "sections": [
+            "201",
+            "202"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000813",
+          "rank": 7,
+          "sections": [
+            "196"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001086",
+          "rank": 8,
+          "sections": [
+            "263"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000839",
+          "rank": 9,
+          "sections": [
+            "202",
+            "203"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000816",
           "rank": 10,
           "sections": [
-            "58"
+            "197"
           ],
           "neighbour_of": null
         }
@@ -2045,14 +2047,32 @@
         "202"
       ],
       "ranks": {
-        "section": 7,
-        "strict": 7,
-        "phrase": null
+        "section": 1,
+        "strict": 1,
+        "phrase": 5
       },
       "retrieved": [
         {
-          "chunk_id": "fixed-1000-150-header:000687",
+          "chunk_id": "fixed-1000-150-header:000835",
           "rank": 1,
+          "sections": [
+            "201",
+            "202"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000834",
+          "rank": 2,
+          "sections": [
+            "201",
+            "202"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000687",
+          "rank": 3,
           "sections": [
             "156",
             "157"
@@ -2061,7 +2081,7 @@
         },
         {
           "chunk_id": "fixed-1000-150-header:000824",
-          "rank": 2,
+          "rank": 4,
           "sections": [
             "198",
             "199"
@@ -2069,70 +2089,52 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001665",
-          "rank": 3,
+          "chunk_id": "fixed-1000-150-header:000836",
+          "rank": 5,
           "sections": [
-            "425"
+            "202"
           ],
           "neighbour_of": null
         },
         {
           "chunk_id": "fixed-1000-150-header:000815",
-          "rank": 4,
+          "rank": 6,
           "sections": [
             "197"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000686",
-          "rank": 5,
-          "sections": [
-            "155",
-            "156"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:001194",
-          "rank": 6,
-          "sections": [
-            "283",
-            "284",
-            "285"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000835",
+          "chunk_id": "fixed-1000-150-header:000838",
           "rank": 7,
           "sections": [
-            "201",
             "202"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001509",
+          "chunk_id": "fixed-1000-150-header:001665",
           "rank": 8,
           "sections": [
-            "393"
+            "425"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000197",
+          "chunk_id": "fixed-1000-150-header:000844",
           "rank": 9,
           "sections": [
-            "33"
+            "204"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000820",
+          "chunk_id": "fixed-1000-150-header:001194",
           "rank": 10,
           "sections": [
-            "198"
+            "283",
+            "284",
+            "285"
           ],
           "neighbour_of": null
         }
@@ -2171,10 +2173,11 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000344",
+          "chunk_id": "fixed-1000-150-header:000687",
           "rank": 3,
           "sections": [
-            "62"
+            "156",
+            "157"
           ],
           "neighbour_of": null
         },
@@ -2189,25 +2192,16 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000822",
+          "chunk_id": "fixed-1000-150-header:000344",
           "rank": 5,
           "sections": [
-            "198"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000687",
-          "rank": 6,
-          "sections": [
-            "156",
-            "157"
+            "62"
           ],
           "neighbour_of": null
         },
         {
           "chunk_id": "fixed-1000-150-header:001745",
-          "rank": 7,
+          "rank": 6,
           "sections": [
             "478",
             "479"
@@ -2215,8 +2209,25 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000632",
+          "chunk_id": "fixed-1000-150-header:000822",
+          "rank": 7,
+          "sections": [
+            "198"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000082",
           "rank": 8,
+          "sections": [
+            "4",
+            "5"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000632",
+          "rank": 9,
           "sections": [
             "139",
             "140"
@@ -2225,20 +2236,11 @@
         },
         {
           "chunk_id": "fixed-1000-150-header:000795",
-          "rank": 9,
+          "rank": 10,
           "sections": [
             "189",
             "190",
             "191"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000082",
-          "rank": 10,
-          "sections": [
-            "4",
-            "5"
           ],
           "neighbour_of": null
         }
@@ -2254,22 +2256,23 @@
       "ranks": {
         "section": 1,
         "strict": 1,
-        "phrase": 1
+        "phrase": 2
       },
       "retrieved": [
         {
-          "chunk_id": "fixed-1000-150-header:000820",
+          "chunk_id": "fixed-1000-150-header:000818",
           "rank": 1,
           "sections": [
+            "197",
             "198"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000815",
+          "chunk_id": "fixed-1000-150-header:000820",
           "rank": 2,
           "sections": [
-            "197"
+            "198"
           ],
           "neighbour_of": null
         },
@@ -2283,27 +2286,26 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000818",
+          "chunk_id": "fixed-1000-150-header:000815",
           "rank": 4,
           "sections": [
-            "197",
-            "198"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:000906",
-          "rank": 5,
-          "sections": [
-            "210"
+            "197"
           ],
           "neighbour_of": null
         },
         {
           "chunk_id": "fixed-1000-150-header:000390",
-          "rank": 6,
+          "rank": 5,
           "sections": [
             "69"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000816",
+          "rank": 6,
+          "sections": [
+            "197"
           ],
           "neighbour_of": null
         },
@@ -2325,18 +2327,18 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000463",
+          "chunk_id": "fixed-1000-150-header:000821",
           "rank": 9,
           "sections": [
-            "85"
+            "198"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000821",
+          "chunk_id": "fixed-1000-150-header:000906",
           "rank": 10,
           "sections": [
-            "198"
+            "210"
           ],
           "neighbour_of": null
         }
@@ -2353,7 +2355,7 @@
       "ranks": {
         "section": 1,
         "strict": 1,
-        "phrase": 5
+        "phrase": 4
       },
       "retrieved": [
         {
@@ -2366,16 +2368,8 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:002081",
-          "rank": 2,
-          "sections": [
-            "Schedule XIV"
-          ],
-          "neighbour_of": null
-        },
-        {
           "chunk_id": "fixed-1000-150-header:000579",
-          "rank": 3,
+          "rank": 2,
           "sections": [
             "122",
             "123"
@@ -2383,16 +2377,16 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001869",
-          "rank": 4,
+          "chunk_id": "fixed-1000-150-header:002097",
+          "rank": 3,
           "sections": [
-            "Schedule II"
+            "Schedule XV"
           ],
           "neighbour_of": null
         },
         {
           "chunk_id": "fixed-1000-150-header:000580",
-          "rank": 5,
+          "rank": 4,
           "sections": [
             "122",
             "123",
@@ -2401,43 +2395,51 @@
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:001866",
+          "chunk_id": "fixed-1000-150-header:002081",
+          "rank": 5,
+          "sections": [
+            "Schedule XIV"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:002091",
           "rank": 6,
-          "sections": [
-            "Schedule II"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:001994",
-          "rank": 7,
-          "sections": [
-            "Schedule VII"
-          ],
-          "neighbour_of": null
-        },
-        {
-          "chunk_id": "fixed-1000-150-header:002097",
-          "rank": 8,
           "sections": [
             "Schedule XV"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:000175",
-          "rank": 9,
+          "chunk_id": "fixed-1000-150-header:002098",
+          "rank": 7,
           "sections": [
-            "29",
-            "30"
+            "Schedule XV"
           ],
           "neighbour_of": null
         },
         {
-          "chunk_id": "fixed-1000-150-header:002078",
+          "chunk_id": "fixed-1000-150-header:001869",
+          "rank": 8,
+          "sections": [
+            "Schedule II"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:001866",
+          "rank": 9,
+          "sections": [
+            "Schedule II"
+          ],
+          "neighbour_of": null
+        },
+        {
+          "chunk_id": "fixed-1000-150-header:000175",
           "rank": 10,
           "sections": [
-            "Schedule XIV"
+            "29",
+            "30"
           ],
           "neighbour_of": null
         }

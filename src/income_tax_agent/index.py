@@ -90,7 +90,7 @@ def build_index(
     chunks = chunker.chunk(doc)
 
     # Count what the embedding model actually reads (prefix + text).
-    counts = embeddings.count_tokens([c.embed_text for c in chunks])
+    counts = embeddings.count_tokens([c.search_text for c in chunks])
     for chunk, n in zip(chunks, counts):
         chunk.extra["tokens"] = n
     stats = token_stats(counts)
@@ -106,9 +106,9 @@ def build_index(
     for i in range(0, len(chunks), EMBED_BATCH):
         batch = chunks[i : i + EMBED_BATCH]
         # Chroma stores what it embeds. Search results are mapped back to chunks.jsonl by
-        # chunk_id, so BM25 and the LLM always get the plain chunk text.
+        # chunk_id, so the LLM always gets the plain chunk text.
         store.add_texts(
-            [c.embed_text for c in batch], metadatas=[_metadata(c) for c in batch], ids=[c.chunk_id for c in batch]
+            [c.search_text for c in batch], metadatas=[_metadata(c) for c in batch], ids=[c.chunk_id for c in batch]
         )
         print(f"  embedded {min(i + EMBED_BATCH, len(chunks))}/{len(chunks)} chunks")
     embed_seconds = time.perf_counter() - t0

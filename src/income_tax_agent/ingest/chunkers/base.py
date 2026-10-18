@@ -9,16 +9,17 @@ from income_tax_agent.ingest.sections import Document
 @dataclass
 class Chunk:
     chunk_id: str  # stable, e.g. "fixed-1000-150:000123"
-    text: str  # what gets embedded and searched
+    text: str  # the Act's text: what the LLM sees (search may add a prefix, see search_text)
     pages: list[int]  # PDF page numbers covered
     sections: list[str]  # section numbers covered, e.g. ["202"] or ["93", "94"]
     section_titles: list[str]
     extra: dict = field(default_factory=dict)  # chunker-specific details
 
     @property
-    def embed_text(self) -> str:
-        """What the embedding model sees: an optional prefix (e.g. a section header) + text."""
-        return self.extra.get("embed_prefix", "") + self.text
+    def search_text(self) -> str:
+        """What search sees (embedding and BM25): an optional prefix, e.g. a section header,
+        plus the text. The LLM always gets plain `text`."""
+        return self.extra.get("search_prefix", "") + self.text
 
     def to_dict(self) -> dict:
         return asdict(self)
