@@ -15,6 +15,11 @@ class Chunk:
     section_titles: list[str]
     extra: dict = field(default_factory=dict)  # chunker-specific details
 
+    @property
+    def embed_text(self) -> str:
+        """What the embedding model sees: an optional prefix (e.g. a section header) + text."""
+        return self.extra.get("embed_prefix", "") + self.text
+
     def to_dict(self) -> dict:
         return asdict(self)
 

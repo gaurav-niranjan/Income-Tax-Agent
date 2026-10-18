@@ -5,7 +5,7 @@
         chroma/         the vector store
         manifest.json   the full config used to build it, plus stats
 
-Run: uv run python -m income_tax_agent.index [--force]
+Run: uv run python -m income_tax_agent.index [--header] [--force]
 """
 
 import argparse
@@ -25,6 +25,7 @@ from income_tax_agent.config import Settings, get_settings
 from income_tax_agent.embeddings import get_embeddings, short_model_name
 from income_tax_agent.ingest.chunkers.base import Chunk, Chunker
 from income_tax_agent.ingest.chunkers.fixed import FixedSizeChunker
+from income_tax_agent.ingest.chunkers.header import HeaderPrefixChunker
 from income_tax_agent.ingest.clean import clean_pages
 from income_tax_agent.ingest.extract import load_pages
 from income_tax_agent.ingest.sections import build_document
@@ -88,7 +89,8 @@ def build_index(
     doc = build_document(clean_pages(pages, settings.strip_footnotes).pages)
     chunks = chunker.chunk(doc)
 
-    counts = embeddings.count_tokens([c.text for c in chunks])
+    # Count what the embedding model actually reads (prefix + text).
+    counts = embeddings.count_tokens([c.embed_text for c in chunks])
     for chunk, n in zip(chunks, counts):
         chunk.extra["tokens"] = n
     stats = token_stats(counts)
@@ -103,8 +105,10 @@ def build_index(
     t0 = time.perf_counter()
     for i in range(0, len(chunks), EMBED_BATCH):
         batch = chunks[i : i + EMBED_BATCH]
+        # Chroma stores what it embeds. Search results are mapped back to chunks.jsonl by
+        # chunk_id, so BM25 and the LLM always get the plain chunk text.
         store.add_texts(
-            [c.text for c in batch], metadatas=[_metadata(c) for c in batch], ids=[c.chunk_id for c in batch]
+            [c.embed_text for c in batch], metadatas=[_metadata(c) for c in batch], ids=[c.chunk_id for c in batch]
         )
         print(f"  embedded {min(i + EMBED_BATCH, len(chunks))}/{len(chunks)} chunks")
     embed_seconds = time.perf_counter() - t0
@@ -148,12 +152,17 @@ def load_index(name: str, embeddings: Embeddings | None = None, settings: Settin
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Build the baseline index.")
+    parser = argparse.ArgumentParser(description="Build an index.")
     parser.add_argument("--force", action="store_true", help="rebuild if the folder exists")
+    parser.add_argument(
+        "--header", action="store_true", help='prefix "Section N: <title>" to each chunk before embedding'
+    )
     args = parser.parse_args()
 
     settings = get_settings()
     chunker = FixedSizeChunker(settings.chunk_size, settings.chunk_overlap)
+    if args.header:
+        chunker = HeaderPrefixChunker(chunker)
     out = build_index(chunker, get_embeddings(settings), settings, force=args.force)
     stats = json.loads((out / "manifest.json").read_text())["stats"]
     print(f"Built {out}")

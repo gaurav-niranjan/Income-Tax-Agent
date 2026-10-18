@@ -1,0 +1,121 @@
+# Retrieval eval: fixed-1000-150-header__bge-base__bm25__2026-10-18
+
+```json
+{
+  "index": "fixed-1000-150-header__bge-base",
+  "mode": "bm25",
+  "neighbours": false,
+  "depth": 10,
+  "strict_share": 0.3,
+  "rrf_k": 60,
+  "hybrid_candidates": 50,
+  "query_prefix": "Represent this sentence for searching relevant passages: ",
+  "questions_file": "questions.jsonl",
+  "n_questions": 22,
+  "git_commit": "9ab8a79",
+  "index_manifest": {
+    "name": "fixed-1000-150-header__bge-base",
+    "created": "2026-10-18T11:15:43+00:00",
+    "source": {
+      "pdf": "Income-tax-Act-2025_2026_2026-08-25_10-41-45_a1d3cd_en.pdf",
+      "pages_sha256": "d040fa5f9591e338",
+      "n_pages": 674
+    },
+    "cleaning": {
+      "strip_footnotes": true
+    },
+    "chunker": {
+      "type": "fixed",
+      "size": 1000,
+      "overlap": 150,
+      "embed_prefix": "section header"
+    },
+    "embeddings": {
+      "type": "fastembed",
+      "model": "BAAI/bge-base-en-v1.5",
+      "dim": 768,
+      "query_prefix": "Represent this sentence for searching relevant passages: "
+    },
+    "vector_store": {
+      "type": "chroma",
+      "collection": "chunks",
+      "distance": "l2"
+    },
+    "stats": {
+      "n_chunks": 2120,
+      "n_chunks_multi_section": 575,
+      "chars_total": 1678896,
+      "tokens": {
+        "min": 103,
+        "p50": 219,
+        "p90": 249,
+        "p99": 273,
+        "max": 330,
+        "mean": 217.3,
+        "over_512": 0
+      },
+      "embed_seconds": 199.4
+    }
+  }
+}
+```
+
+## section-hit
+
+| type | hit@1 | hit@3 | hit@5 | mrr |
+|---|---|---|---|---|
+| all | 0.50 (11/22) | 0.68 (15/22) | 0.73 (16/22) | 0.61 |
+| table | 0.67 (4/6) | 1.00 (6/6) | 1.00 (6/6) | 0.81 |
+| definition | 0.00 (0/4) | 0.00 (0/4) | 0.25 (1/4) | 0.05 |
+| prose | 0.50 (2/4) | 0.75 (3/4) | 0.75 (3/4) | 0.67 |
+| numeric | 0.50 (2/4) | 0.75 (3/4) | 0.75 (3/4) | 0.67 |
+| lakh | 0.75 (3/4) | 0.75 (3/4) | 0.75 (3/4) | 0.79 |
+
+## strict-hit
+
+| type | hit@1 | hit@3 | hit@5 | mrr |
+|---|---|---|---|---|
+| all | 0.50 (11/22) | 0.68 (15/22) | 0.73 (16/22) | 0.61 |
+| table | 0.67 (4/6) | 1.00 (6/6) | 1.00 (6/6) | 0.81 |
+| definition | 0.00 (0/4) | 0.00 (0/4) | 0.25 (1/4) | 0.05 |
+| prose | 0.50 (2/4) | 0.75 (3/4) | 0.75 (3/4) | 0.67 |
+| numeric | 0.50 (2/4) | 0.75 (3/4) | 0.75 (3/4) | 0.65 |
+| lakh | 0.75 (3/4) | 0.75 (3/4) | 0.75 (3/4) | 0.79 |
+
+## phrase-hit
+
+| type | hit@1 | hit@3 | hit@5 | mrr |
+|---|---|---|---|---|
+| all | 0.41 (9/22) | 0.59 (13/22) | 0.68 (15/22) | 0.52 |
+| table | 0.50 (3/6) | 0.83 (5/6) | 0.83 (5/6) | 0.64 |
+| definition | 0.00 (0/4) | 0.00 (0/4) | 0.25 (1/4) | 0.05 |
+| prose | 0.50 (2/4) | 0.75 (3/4) | 0.75 (3/4) | 0.62 |
+| numeric | 0.50 (2/4) | 0.75 (3/4) | 0.75 (3/4) | 0.65 |
+| lakh | 0.50 (2/4) | 0.50 (2/4) | 0.75 (3/4) | 0.55 |
+
+## Per question (first-hit rank; - = none in top 10)
+
+| id | type | section | strict | phrase | expected | top-3 retrieved sections |
+|---|---|---|---|---|---|---|
+| q01 | table | 1 | 1 | 1 | 202 | 201,202; 203,204; 283,284,285 |
+| q02 | table | 2 | 2 | 2 | 393 | 2; 393; 2 |
+| q03 | table | 1 | 1 | 1 | 394 | 394; 393; 390,391 |
+| q04 | table | 1 | 1 | - | 263 | 262,263; 423; 87 |
+| q05 | table | 3 | 3 | 3 | 19 | 392; 201,202; 18,19 |
+| q06 | table | 1 | 1 | 1 | 394 | 394; 402; 283,284,285 |
+| q07 | definition | - | - | - | 2 | Schedule III,Schedule IV; 320; Schedule III |
+| q08 | definition | - | - | - | 2 | 152,153; 393; 128,129 |
+| q09 | definition | - | - | - | 3 | 60; 82; Schedule XVI |
+| q10 | definition | 5 | 5 | 5 | 2,92 | 515; 184; 162 |
+| q11 | prose | 2 | 2 | 2 | 6 | Schedule IV; 5,6; 6 |
+| q12 | prose | 1 | 1 | 1 | 1 | 1,2; 117; Schedule II |
+| q13 | prose | 6 | 6 | - | 202 | 82; 198,199; 88 |
+| q14 | prose | 1 | 1 | 1 | 536 | 535,536; 144; 142 |
+| q15 | numeric | 2 | 2 | 2 | 126 | 17; 126; 126 |
+| q16 | numeric | 1 | 1 | 1 | 126 | 126; 126; 126 |
+| q17 | numeric | 6 | 10 | 10 | 22 | 23,24,25; 129,130; 141,142 |
+| q18 | numeric | 1 | 1 | 1 | 156 | 155,156; 197; 198 |
+| q19 | lakh | 7 | 7 | - | 202 | 156,157; 198,199; 425 |
+| q20 | lakh | 1 | 1 | 1 | 156 | 155,156; 154,155,156; 62 |
+| q21 | lakh | 1 | 1 | 1 | 198 | 198; 197; 196,197 |
+| q22 | lakh | 1 | 1 | 5 | 123,Schedule XV | Schedule XIV,Schedule XV; Schedule XIV; 122,123 |
