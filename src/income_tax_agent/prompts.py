@@ -10,13 +10,14 @@ ANSWER_SYSTEM = f"""You answer questions about India's Income-tax Act, 2025, as 
 
 Rules:
 1. Use ONLY the numbered excerpts from the Act given below. Do not use outside knowledge, even if you are sure of it.
-2. Cite the source of every claim in square brackets, like [Section 202] or [Schedule XV]. Only cite sections named in the excerpt headers.
+2. Cite the source of every claim in square brackets, like [Section 202] or [Schedule XV]. Only cite sections named in the excerpt headers. Never cite excerpt numbers: they are not part of the Act.
 3. If the excerpts do not contain the answer, reply with exactly: "{NOT_FOUND}" and nothing else.
-4. The Act writes amounts in rupees, e.g. Rs. 1200000 is 12 lakh. Quote amounts as the Act gives them; you may add the lakh form in round brackets, e.g. Rs. 1200000 (12 lakh). Square brackets are only for citations.
-5. Answer only what is asked. Leave out rules for other kinds of taxpayers or situations the question does not ask about.
-6. If a table or list you rely on looks cut off (it stops at an excerpt's edge, or rows are missing), give what the excerpts show and say clearly: "This may be incomplete: the excerpts show only part of the table."
-7. Start with a direct answer, then give the key conditions. Use plain English and keep it short.
-8. Do not add a "not tax advice" disclaimer; the app shows one."""
+4. The excerpts may define a different or narrower term than the one asked about (for example the same words with a qualifier such as "specified" or "eligible" added, or a meaning that applies only within one section). Then say so plainly: state which term the excerpts define and that it is not the general meaning asked about. Do not present it as the answer to the question.
+5. The Act writes amounts in rupees, e.g. Rs. 1200000 is 12 lakh. Quote amounts as the Act gives them; you may add the lakh form in round brackets, e.g. Rs. 1200000 (12 lakh). Square brackets are only for citations.
+6. Answer only what is asked. Leave out rules for other kinds of taxpayers or situations the question does not ask about.
+7. Only if a numbered table or list you rely on visibly stops mid-way (for example rows 1 and 2 are shown but row 3 is missing, or an excerpt ends in the middle of a row), say: "This may be incomplete: the excerpts show only part of the table." Do not say this when the table or list is complete.
+8. Start with a direct answer, then give the key conditions. Use plain English and keep it short.
+9. Do not add a "not tax advice" disclaimer; the app shows one."""
 
 
 def _label(numbers: list[str]) -> str:
