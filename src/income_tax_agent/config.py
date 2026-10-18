@@ -31,6 +31,9 @@ class Settings(BaseSettings):
     google_api_key: str = ""
     gemini_model: str = ""
     gemini_judge_model: str = ""
+    llm_cache_dir: Path = PROJECT_ROOT / ".cache/llm"
+    # None = the model's default. Some models ignore temperature (fixed sampling).
+    gemini_temperature: float | None = None
     embedding_model: str = "BAAI/bge-base-en-v1.5"
     # Added to queries (not passages). BGE recommends it for query -> passage search.
     embedding_query_prefix: str = "Represent this sentence for searching relevant passages: "
@@ -46,6 +49,9 @@ class Settings(BaseSettings):
     # --- Retrieval ---
     rrf_k: int = 60  # Reciprocal Rank Fusion constant
     hybrid_candidates: int = 50  # how deep each list goes before fusing
+    # What the answer pipeline uses.
+    answer_mode: str = "hybrid"
+    answer_k: int = 5
 
     # CI sets this to 1: fake embeddings and a fake LLM, so no keys or downloads.
     fake_models: bool = False

@@ -2,7 +2,6 @@
 
 import re
 
-import numpy as np
 from rank_bm25 import BM25Okapi
 
 from income_tax_agent.ingest.chunkers.base import Chunk
@@ -25,6 +24,10 @@ class BM25Retriever:
 
     def search(self, query: str, k: int) -> list[tuple[str, float]]:
         """Top-k (chunk_id, score), best first. Chunks sharing no word are left out."""
-        scores = self.bm25.get_scores(tokenize(query))
-        top = np.argsort(-scores)[:k]
-        return [(self.chunk_ids[i], float(scores[i])) for i in top if scores[i] > 0]
+        tokens = tokenize(query)
+        scores = self.bm25.get_scores(tokens)
+        # Check shared words directly: a score of 0 does not mean "no match" (in a tiny
+        # corpus, or for very common words, IDF can be 0).
+        matching = [i for i, freqs in enumerate(self.bm25.doc_freqs) if any(t in freqs for t in tokens)]
+        top = sorted(matching, key=lambda i: -scores[i])[:k]
+        return [(self.chunk_ids[i], float(scores[i])) for i in top]
