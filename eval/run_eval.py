@@ -12,7 +12,7 @@ Answer eval (Phase 7):
      uv run python eval/run_eval.py --judge [--limit 3] [--sleep 6]
 Runs the full pipeline with the app's settings on all questions, then a second Gemini
 model (GEMINI_JUDGE_MODEL) grades correctness, faithfulness and refusals. Writes
-eval/results/<index>__<mode>[+nb]__answers__<judge>__<date>.md/.json. LLM calls are cached on disk.
+eval/results/<index>__<mode>[+nb]__answers__<judge>__p<prompt hash>__<date>.md/.json. LLM calls are cached on disk.
 """
 
 import argparse
@@ -143,13 +143,14 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str, out_dir: Pa
 
     summary = summarize_answers(rows)
     label = f"{mode}+nb" if args.neighbours else mode
-    # The judge is part of the name: grades from different judges are not comparable.
-    name = f"{args.index}__{label}__answers__{judge_llm.model_name}__{date.today().isoformat()}"
+    # Prompt version and judge are part of the name: a re-run with a changed prompt, or
+    # graded by another judge, must not overwrite earlier results from the same day.
+    prompts_sha = hashlib.sha256((ANSWER_SYSTEM + JUDGE_SYSTEM + JUDGE_TEMPLATE).encode()).hexdigest()[:8]
+    name = f"{args.index}__{label}__answers__{judge_llm.model_name}__p{prompts_sha}__{date.today().isoformat()}"
     config = {
         "index": args.index, "mode": mode, "neighbours": args.neighbours, "k": settings.answer_k,
         "answer_model": answer_llm.model_name, "judge_model": judge_llm.model_name,
-        # Identifies the prompt versions, so runs with different prompts are never mixed up.
-        "prompts_sha256": hashlib.sha256((ANSWER_SYSTEM + JUDGE_SYSTEM + JUDGE_TEMPLATE).encode()).hexdigest()[:12],
+        "prompts_sha": prompts_sha,  # identifies the prompt versions
         "questions_file": args.questions.name, "n_questions": len(questions), "n_answered": len(rows),
         "git_commit": git_commit(), "index_manifest": retriever.manifest,
     }
