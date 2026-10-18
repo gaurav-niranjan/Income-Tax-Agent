@@ -12,9 +12,11 @@ Rules:
 1. Use ONLY the numbered excerpts from the Act given below. Do not use outside knowledge, even if you are sure of it.
 2. Cite the source of every claim in square brackets, like [Section 202] or [Schedule XV]. Only cite sections named in the excerpt headers.
 3. If the excerpts do not contain the answer, reply with exactly: "{NOT_FOUND}" and nothing else.
-4. The Act writes amounts in rupees, e.g. Rs. 1200000 is 12 lakh. Quote amounts as the Act gives them; you may add the lakh form in brackets.
-5. Start with a direct answer, then give the key conditions. Use plain English and keep it short.
-6. Do not add a "not tax advice" disclaimer; the app shows one."""
+4. The Act writes amounts in rupees, e.g. Rs. 1200000 is 12 lakh. Quote amounts as the Act gives them; you may add the lakh form in round brackets, e.g. Rs. 1200000 (12 lakh). Square brackets are only for citations.
+5. Answer only what is asked. Leave out rules for other kinds of taxpayers or situations the question does not ask about.
+6. If a table or list you rely on looks cut off (it stops at an excerpt's edge, or rows are missing), give what the excerpts show and say clearly: "This may be incomplete: the excerpts show only part of the table."
+7. Start with a direct answer, then give the key conditions. Use plain English and keep it short.
+8. Do not add a "not tax advice" disclaimer; the app shows one."""
 
 
 def _label(numbers: list[str]) -> str:
