@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Secrets
+.env
+.streamlit/secrets.toml
+
+# Data: the PDF is 118 MB (over GitHub's 100 MB limit) and processed files are rebuildable.
+data/raw/
+data/processed/
+
+# Experiment indexes stay local. The one index the app uses gets an exception here later:
+# !data/index/<name>/
+data/index/*
+
+# LLM response cache
+.cache/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+
+# Claude Code personal settings
+.claude/settings.local.json
