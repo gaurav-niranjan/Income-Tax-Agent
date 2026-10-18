@@ -63,6 +63,25 @@ def test_bm25_searches_the_prefix_but_returns_plain_text():
     assert chunks[0].text == "Upto Rs. 400000 Nil"
 
 
+def test_retrieve_multi_with_one_query_equals_retrieve(retriever):
+    for mode in ("dense", "bm25", "hybrid"):
+        one = retriever.retrieve("rent deduct income-tax", mode=mode, k=3)
+        multi = retriever.retrieve_multi(["rent deduct income-tax"], mode=mode, k=3)
+        assert [(h.chunk.chunk_id, h.rank) for h in multi] == [(h.chunk.chunk_id, h.rank) for h in one]
+
+
+def test_retrieve_multi_merges_the_queries(retriever):
+    hits = retriever.retrieve_multi(["health insurance premium", "rent deduct income-tax"], mode="bm25", k=5)
+    sections = {s for h in hits for s in h.chunk.sections}
+    assert {"2", "3"} <= sections  # each query brings its own section
+    assert [h.rank for h in hits] == list(range(1, len(hits) + 1))
+    assert len({h.chunk.chunk_id for h in hits}) == len(hits)
+
+
+def test_retrieve_multi_returns_nothing_when_no_query_matches(retriever):
+    assert retriever.retrieve_multi(["zzz", "qqq"], mode="bm25", k=3) == []
+
+
 def test_expand_neighbours_adds_same_section_chunks_once(retriever):
     order = retriever._order
     # The test text gives chunks covering sections [1], [1, 2], [2, 3], [3].

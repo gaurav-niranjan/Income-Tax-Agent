@@ -99,6 +99,8 @@ class FakeLLM:
     model_name = "fake"
 
     def complete(self, system: str, user: str) -> str:
+        if user.startswith("Question: "):  # query expansion: echo the question (adds nothing)
+            return user.removeprefix("Question: ")
         # Excerpt headers look like "[Excerpt 1 | Section 202 | ...]".
         m = re.search(r"\| Sections? ([^ ,;|\]]+)", user)
         if not m:
@@ -106,10 +108,17 @@ class FakeLLM:
         return f"Fake answer based on the excerpts [Section {m.group(1)}]."
 
 
-def get_llm(settings: Settings | None = None) -> LLM:
+def get_llm(settings: Settings | None = None, model_name: str | None = None) -> LLM:
     settings = settings or get_settings()
     if settings.fake_models:
         return FakeLLM()
     return GeminiLLM(
-        settings.gemini_model, settings.google_api_key, settings.llm_cache_dir, settings.gemini_temperature
+        model_name or settings.gemini_model, settings.google_api_key, settings.llm_cache_dir,
+        settings.gemini_temperature,
     )
+
+
+def get_expand_llm(settings: Settings | None = None) -> LLM:
+    """The model that writes search queries (GEMINI_EXPAND_MODEL, else GEMINI_MODEL)."""
+    settings = settings or get_settings()
+    return get_llm(settings, settings.gemini_expand_model or settings.gemini_model)

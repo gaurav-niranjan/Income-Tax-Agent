@@ -57,3 +57,12 @@ def test_session_question_cap(app):
         app.chat_input[0].set_value(q).run()
     assert app.chat_input[0].disabled
     assert any("questions per session" in c.value for c in app.caption)
+
+
+def test_question_with_query_rewrite_on(app):
+    app.run()
+    app.toggle[1].set_value(True).run()  # "Rewrite my question for search"
+    app.chat_input[0].set_value("health insurance premium deduction").run()
+    assert not app.exception
+    assistant = [m for m in app.chat_message if m.name == "assistant"]
+    assert "Fake answer" in assistant[0].markdown[0].value

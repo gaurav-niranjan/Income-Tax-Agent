@@ -56,6 +56,17 @@ class Settings(BaseSettings):
     answer_k: int = 5
     answer_neighbours: bool = True
 
+    # --- Query expansion ---
+    # An LLM writes extra search queries in the Act's wording (prompts.EXPAND_SYSTEM).
+    # On: dense + expansion + neighbours raised strict hit@1 from 15/22 to 18/22, hit@5 from
+    # 20/22 to 21/22 and MRR from 0.76 to 0.87 (eval/results, 2026-10-18). Hybrid gained less.
+    expand_queries: bool = True
+    # Empty = GEMINI_MODEL. A small task, so Flash-Lite (the largest free quota) is enough.
+    gemini_expand_model: str = ""
+    # How deep each query's list goes before RRF. Deep lists hurt: a chunk ranked ~40th
+    # everywhere beats one ranked 1st by a single list. 20 was best for hybrid (2026-10-18).
+    expand_candidates: int = 20
+
     # --- App ---
     # Strangers share one free API quota; this cap keeps one visitor from using it all.
     # (Per browser session: a page reload resets it. Good enough for a demo.)

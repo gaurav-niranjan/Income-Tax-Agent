@@ -1,7 +1,7 @@
 """Graph nodes. Each takes the state and returns only the keys it changes."""
 
 from income_tax_agent.graph.state import AnswerState
-from income_tax_agent.llm import LLM
+from income_tax_agent.llm import LLM, QuotaExhausted
 from income_tax_agent.prompts import (
     ANSWER_SYSTEM,
     NOT_FOUND,
@@ -9,11 +9,24 @@ from income_tax_agent.prompts import (
     parse_citations,
     strip_excerpt_refs,
 )
+from income_tax_agent.retrieval.expand import expand_query
 from income_tax_agent.retrieval.retriever import Retriever
 
 
+def expand(state: AnswerState, llm: LLM) -> AnswerState:
+    if not state.get("expand"):
+        return {"queries": [state["question"]]}
+    try:
+        return {"queries": expand_query(state["question"], llm)}
+    except QuotaExhausted:
+        raise  # the day's quota is gone; the answer call would fail too, so say so now
+    except Exception as e:  # expansion only helps search: on any other error, search the question alone
+        return {"queries": [state["question"]], "expand_error": str(e)}
+
+
 def retrieve(state: AnswerState, retriever: Retriever) -> AnswerState:
-    hits = retriever.retrieve(state["question"], mode=state["mode"], k=state["k"])
+    queries = state.get("queries") or [state["question"]]
+    hits = retriever.retrieve_multi(queries, mode=state["mode"], k=state["k"])
     if state.get("neighbours"):
         hits = retriever.expand_neighbours(hits)
     return {"hits": hits}

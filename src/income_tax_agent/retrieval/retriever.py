@@ -60,6 +60,18 @@ class Retriever:
             raise ValueError(f"Unknown mode {mode!r}. Use one of {MODES}.")
         return [Hit(self.chunks[cid], score, rank) for rank, (cid, score) in enumerate(ranked, start=1)]
 
+    def retrieve_multi(self, queries: list[str], mode: str = "hybrid", k: int = 5) -> list[Hit]:
+        """Search with several phrasings of one question; merge the lists with RRF.
+
+        One query gives exactly retrieve()'s result, so runs without expansion are unchanged.
+        """
+        if len(queries) == 1:
+            return self.retrieve(queries[0], mode, k)
+        n = max(k, self.settings.expand_candidates)
+        rankings = [[h.chunk.chunk_id for h in self.retrieve(q, mode, n)] for q in queries]
+        fused = reciprocal_rank_fusion(rankings, k=self.settings.rrf_k)[:k]
+        return [Hit(self.chunks[cid], score, rank) for rank, (cid, score) in enumerate(fused, start=1)]
+
     def expand_neighbours(self, hits: list[Hit]) -> list[Hit]:
         """Add the previous and next chunk of each hit, if they share a section with it.
 

@@ -81,6 +81,63 @@ def strip_excerpt_refs(answer: str) -> str:
     return re.sub(r"[ \t]+([.,;:])", r"\1", re.sub(r"[ \t]{2,}", " ", cleaned))
 
 
+# --- Query expansion ---
+# The model writes extra search queries; the answer prompt above never sees them. So the
+# model's outside knowledge can change *which* chunks are found, not what the answer says.
+
+EXPAND_N = 3  # the prompt asks for exactly this many (one per style in rule 5)
+
+# The example is deliberately not about any eval question, so it cannot inflate the numbers.
+EXPAND_SYSTEM = f"""You help search India's Income-tax Act, 2025. You turn a user's question into search queries that use the Act's own wording. You do not answer the question.
+
+Write exactly {EXPAND_N} search queries, one per line. No numbering, bullets, quotes or other text.
+
+Rules:
+1. Use the Act's terms, not everyday words. Examples: "tax year" (the Act has no "assessment year" or "financial year"), "tax deducted at source", "tax collected at source", "total income", "assessee", "resident in India".
+2. Spell out abbreviations: TDS, TCS, HUF (Hindu undivided family), LRS (Liberalised Remittance Scheme), PF (provident fund), HRA (house rent allowance).
+3. Write amounts in rupees as the Act does: digits, no commas. 12 lakh = Rs. 1200000, 1.5 crore = Rs. 15000000.
+4. Do not add section numbers. The Act was renumbered in 2025, so numbers from the old Income-tax Act, 1961 (such as 80C or 115BAC) point to the wrong place. If the question uses an old number, describe what that provision is about instead.
+5. Make the {EXPAND_N} queries different:
+   - line 1: key terms only, like a keyword search;
+   - line 2: a sentence written the way the Act would write it, e.g. a definition ('"X" means ...') or a rule ('... shall be allowed a deduction of ...');
+   - line 3: the question rephrased in plain English with the Act's terms.
+6. Each query must make sense on its own and be under 30 words.
+
+Example
+Question: I made a business loss of 3 lakh this year. Can I use it next year?
+loss profits and gains of business or profession carried forward set off following tax year
+Where the loss under the head "Profits and gains of business or profession" of Rs. 300000 is not wholly set off, it shall be carried forward to the following tax year
+Can a loss of Rs. 300000 from business be carried forward and set off against income of a later tax year"""
+
+
+def expand_user_prompt(question: str) -> str:
+    return f"Question: {question}"
+
+
+# "- ", "* ", "• ", "1. ", "2) ", "Line 1: ". The lookahead keeps "1.25 lakh" intact.
+_LIST_MARK_RE = re.compile(r"^\s*(?:[-*•]|\d+[.)](?=\s)|line \d+:)\s*", re.IGNORECASE)
+
+
+def parse_expansions(raw: str, question: str, n: int = EXPAND_N) -> list[str]:
+    """The model's reply -> up to n extra queries.
+
+    Models add list marks, wrap lines in quotes, or start with "Here are 3 queries:"
+    despite the prompt. Drop those, blank lines and repeats of the question.
+    """
+    seen = {question.strip().casefold()}
+    out: list[str] = []
+    for line in raw.splitlines():
+        q = _LIST_MARK_RE.sub("", line).strip()
+        # Only strip a matching pair: '"senior citizen" means ...' keeps its quotes.
+        if len(q) > 1 and q[0] == q[-1] and q[0] in "\"'`":
+            q = q[1:-1].strip()
+        if not q or q.endswith(":") or q.casefold() in seen:
+            continue
+        seen.add(q.casefold())
+        out.append(q)
+    return out[:n]
+
+
 def parse_citations(answer: str) -> list[str]:
     """Section numbers cited in the answer, in order, without duplicates.
 

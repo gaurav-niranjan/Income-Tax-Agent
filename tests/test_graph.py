@@ -11,7 +11,7 @@ from income_tax_agent.graph.build import build_graph
 from income_tax_agent.index import build_index
 from income_tax_agent.ingest.chunkers.fixed import FixedSizeChunker
 from income_tax_agent.llm import FakeLLM, GeminiLLM, NotRetryable, QuotaExhausted
-from income_tax_agent.prompts import NOT_FOUND, parse_citations, strip_excerpt_refs
+from income_tax_agent.prompts import NOT_FOUND, parse_citations, parse_expansions, strip_excerpt_refs
 from income_tax_agent.retrieval.retriever import Retriever
 
 BODY = """    Short title, extent and commencement.
@@ -75,6 +75,64 @@ def test_graph_skips_llm_when_nothing_is_retrieved(retriever):
     state = graph.invoke({"question": "zzz qqq", "mode": "bm25", "k": 2})  # no shared words
     assert state["hits"] == []
     assert state["answer"] == NOT_FOUND and state["refused"] is True
+
+
+@pytest.mark.parametrize(
+    "raw, expected",
+    [
+        ("a b\nc d\ne f", ["a b", "c d", "e f"]),
+        ("Here are 3 queries:\n1. a b\n2) c d\n- e f", ["a b", "c d", "e f"]),
+        ('"wrapped in quotes"\n"senior citizen" means an individual', ["wrapped in quotes", '"senior citizen" means an individual']),
+        ("1.25 lakh = Rs. 125000\n\n\n", ["1.25 lakh = Rs. 125000"]),  # a number is not a list mark
+        ("The Question\na b\nA B\nc\nd\ne", ["a b", "c", "d"]),  # repeats dropped, at most 3
+    ],
+)
+def test_parse_expansions(raw, expected):
+    assert parse_expansions(raw, "the question") == expected
+
+
+class ExpandingLLM(FakeLLM):
+    """Answers like FakeLLM; for expansion, replies with fixed queries (or raises `error`)."""
+
+    def __init__(self, reply="health insurance premia deduction\nRs. 25000 deduction", error=None):
+        self.reply, self.error, self.expand_calls = reply, error, 0
+
+    def complete(self, system, user):
+        if user.startswith("Question: "):
+            self.expand_calls += 1
+            if self.error:
+                raise self.error
+            return self.reply
+        return super().complete(system, user)
+
+
+def test_graph_without_expand_flag_searches_only_the_question(retriever):
+    llm = ExpandingLLM()
+    state = build_graph(retriever, FakeLLM(), llm).invoke({"question": "zzz qqq", "mode": "bm25", "k": 2})
+    assert state["queries"] == ["zzz qqq"] and llm.expand_calls == 0
+
+
+def test_graph_expansion_finds_what_the_question_alone_misses(retriever):
+    graph = build_graph(retriever, FakeLLM(), ExpandingLLM())
+    # No word of "zzz qqq" is in the Act, so BM25 alone finds nothing; the expansions do.
+    state = graph.invoke({"question": "zzz qqq", "mode": "bm25", "k": 2, "expand": True})
+    assert state["queries"] == ["zzz qqq", "health insurance premia deduction", "Rs. 25000 deduction"]
+    assert state["hits"] and "2" in state["hits"][0].chunk.sections
+    assert state["refused"] is False
+
+
+def test_graph_falls_back_to_the_question_when_expansion_fails(retriever):
+    graph = build_graph(retriever, FakeLLM(), ExpandingLLM(error=NotRetryable("bad request")))
+    state = graph.invoke({"question": "health insurance premium", "mode": "bm25", "k": 2, "expand": True})
+    assert state["queries"] == ["health insurance premium"]
+    assert "bad request" in state["expand_error"]
+    assert state["hits"] and state["answer"]
+
+
+def test_graph_stops_when_expansion_quota_is_gone(retriever):
+    graph = build_graph(retriever, FakeLLM(), ExpandingLLM(error=QuotaExhausted("daily quota")))
+    with pytest.raises(QuotaExhausted):
+        graph.invoke({"question": "health insurance", "mode": "bm25", "k": 2, "expand": True})
 
 
 class _Reply:

@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-10-18_a728fa4a",
+  "kind": "retrieval",
+  "created": "2026-10-18T23:31:13",
+  "config_hash": "a728fa4a",
+  "note": "query expansion",
+  "index": "fixed-1000-150-header__bge-base",
+  "mode": "dense",
+  "neighbours": true,
+  "depth": 10,
+  "strict_share": 0.3,
+  "rrf_k": 60,
+  "hybrid_candidates": 50,
+  "query_prefix": "Represent this sentence for searching relevant passages: ",
+  "questions_file": "questions.jsonl",
+  "questions_sha": "5826d3f4",
+  "n_questions": 22,
+  "git_commit": "4b4452a",
+  "index_manifest": {
+    "name": "fixed-1000-150-header__bge-base",
+    "created": "2026-10-18T11:55:41+00:00",
+    "source": {
+      "pdf": "Income-tax-Act-2025_2026_2026-08-25_10-41-45_a1d3cd_en.pdf",
+      "pages_sha256": "d040fa5f9591e338",
+      "n_pages": 674
+    },
+    "cleaning": {
+      "strip_footnotes": true
+    },
+    "chunker": {
+      "type": "fixed",
+      "size": 1000,
+      "overlap": 150,
+      "search_prefix": "section header (dense + bm25)"
+    },
+    "embeddings": {
+      "type": "fastembed",
+      "model": "BAAI/bge-base-en-v1.5",
+      "dim": 768,
+      "query_prefix": "Represent this sentence for searching relevant passages: "
+    },
+    "vector_store": {
+      "type": "chroma",
+      "collection": "chunks",
+      "distance": "l2"
+    },
+    "stats": {
+      "n_chunks": 2120,
+      "n_chunks_multi_section": 575,
+      "chars_total": 1678896,
+      "tokens": {
+        "min": 103,
+        "p50": 219,
+        "p90": 249,
+        "p99": 273,
+        "max": 330,
+        "mean": 217.3,
+        "over_512": 0
+      },
+      "embed_seconds": 199.5
+    }
+  },
+  "expand": true,
+  "expand_model": "gemini-3.5-flash-lite",
+  "expand_prompt_sha": "de9cc1d3",
+  "expand_candidates": 20
+}

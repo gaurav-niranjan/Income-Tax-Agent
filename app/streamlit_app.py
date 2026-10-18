@@ -27,7 +27,7 @@ _secrets_to_env()
 # Imported after the secrets are in the environment, because settings are read once.
 from income_tax_agent.config import get_settings  # noqa: E402
 from income_tax_agent.graph.build import build_graph  # noqa: E402
-from income_tax_agent.llm import NotRetryable, QuotaExhausted, get_llm  # noqa: E402
+from income_tax_agent.llm import NotRetryable, QuotaExhausted, get_expand_llm, get_llm  # noqa: E402
 from income_tax_agent.retrieval.retriever import Retriever  # noqa: E402
 
 MODE_LABELS = {
@@ -49,16 +49,18 @@ def load_pipeline(index_name: str):
     """Load the index and LLM once per server process, shared by all visitors."""
     retriever = Retriever(index_name, settings=settings)
     llm = get_llm(settings)
-    return build_graph(retriever, llm), llm.model_name
+    return build_graph(retriever, llm, get_expand_llm(settings)), llm.model_name
 
 
 def source_label(numbers: list[str]) -> str:
     return ", ".join(n if n.startswith("Schedule") else f"Section {n}" for n in numbers)
 
 
-def ask(graph, question: str, mode: str, neighbours: bool) -> dict:
+def ask(graph, question: str, mode: str, neighbours: bool, expand: bool) -> dict:
     """Run the pipeline and keep only plain data, so the chat history can be re-drawn."""
-    state = graph.invoke({"question": question, "mode": mode, "k": settings.answer_k, "neighbours": neighbours})
+    state = graph.invoke(
+        {"question": question, "mode": mode, "k": settings.answer_k, "neighbours": neighbours, "expand": expand}
+    )
     cited = set(state["citations"])
     sources = [
         {
@@ -78,6 +80,7 @@ def ask(graph, question: str, mode: str, neighbours: bool) -> dict:
         "unsupported": state["unsupported_citations"],
         "sources": sources,
         "mode": mode,
+        "extra_queries": state.get("queries", [])[1:],  # [0] is the question itself
     }
 
 
@@ -93,6 +96,8 @@ def show_assistant(msg: dict) -> None:
         return
     n_cited = sum(s["cited"] for s in sources)
     with st.expander(f"Sources: {len(sources)} excerpts from the Act ({n_cited} cited)"):
+        if msg.get("extra_queries"):
+            st.markdown("**Also searched for:**\n" + "\n".join(f"- {q}" for q in msg["extra_queries"]))
         for s in sources:
             tags = " · cited" if s["cited"] else ""
             tags += " · added for context" if s["neighbour"] else ""
@@ -116,6 +121,12 @@ with st.sidebar:
         value=settings.answer_neighbours,
         help="Also give the AI the text just before and after each match, from the same section. "
         "Helps with tables that are split across excerpts.",
+    )
+    expand = st.toggle(
+        "Rewrite my question for search",
+        value=settings.expand_queries,
+        help="The AI also searches with versions of your question in the Act's own wording, "
+        "e.g. '12 lakh' becomes 'Rs. 1200000' and 'TDS' becomes 'tax deducted at source'.",
     )
     st.divider()
     st.caption(f"Index: `{settings.index_name}`")
@@ -176,7 +187,7 @@ if question:
     with st.chat_message("assistant"):
         try:
             with st.spinner("Searching the Act and writing an answer..."):
-                reply = ask(graph, question, mode, neighbours)
+                reply = ask(graph, question, mode, neighbours, expand)
         except QuotaExhausted:
             st.session_state.messages.pop()
             st.error("The free daily quota for the AI model is used up. Please try again tomorrow.")

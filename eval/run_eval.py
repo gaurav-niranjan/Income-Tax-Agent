@@ -4,6 +4,7 @@ Run: uv run python eval/run_eval.py --index fixed-1000-150__bge-base --modes den
      add --neighbours to score each hit plus its same-section neighbours (what the LLM sees)
 
      add --note "why this run" to label it in the results table
+     add --expand to search with LLM-written queries too (GEMINI_EXPAND_MODEL; cached on disk)
 
 Each mode is one run, saved to eval/results/retrieval/<date>_<config hash>/ (see runs.py),
 and eval/results/README.md is rebuilt to compare all runs.
@@ -39,7 +40,8 @@ from runs import RESULTS_DIR, file_sha, save_run, stamp
 from income_tax_agent.config import get_settings
 from income_tax_agent.graph.build import build_graph
 from income_tax_agent.llm import GeminiLLM, QuotaExhausted
-from income_tax_agent.prompts import ANSWER_SYSTEM, format_context
+from income_tax_agent.prompts import ANSWER_SYSTEM, EXPAND_SYSTEM, format_context
+from income_tax_agent.retrieval.expand import expand_query
 from income_tax_agent.retrieval.retriever import MODES, Retriever
 
 EVAL_DIR = Path(__file__).parent
@@ -53,10 +55,44 @@ def git_commit() -> str:
         return "unknown"
 
 
-def run_mode(retriever: Retriever, questions, mode: str, neighbours: bool = False) -> list[dict]:
+def expand_llm(settings) -> GeminiLLM:
+    return GeminiLLM(settings.gemini_expand_model or settings.gemini_model, settings.google_api_key,
+                     settings.llm_cache_dir, settings.gemini_temperature)
+
+
+def expand_config(settings, llm: GeminiLLM) -> dict:
+    """Added to a run's config only when expansion is on, so earlier runs keep their hashes."""
+    return {"expand": True, "expand_model": llm.model_name,
+            "expand_prompt_sha": hashlib.sha256(EXPAND_SYSTEM.encode()).hexdigest()[:8],
+            "expand_candidates": settings.expand_candidates}
+
+
+def label(mode: str, expand: bool, neighbours: bool) -> str:
+    return mode + ("+exp" if expand else "") + ("+nb" if neighbours else "")
+
+
+def expand_all(questions, llm: GeminiLLM, sleep: float) -> dict[str, list[str]]:
+    """Expand every question once (reused by all modes). Stops early if the day's quota is gone."""
+    queries = {}
+    for q in questions:
+        calls_before = llm.api_calls
+        try:
+            queries[q.id] = expand_query(q.question, llm)
+        except QuotaExhausted as e:
+            print(f"Stopping before {q.id}: {e}. Re-run later; finished calls are cached.")
+            break
+        if llm.api_calls > calls_before:
+            time.sleep(sleep)  # free-tier rate limits; cached questions skip this
+    print(f"Expanded {len(queries)} questions ({llm.api_calls} API calls, model {llm.model_name})")
+    return queries
+
+
+def run_mode(retriever: Retriever, questions, mode: str, neighbours: bool = False,
+             queries: dict[str, list[str]] | None = None) -> list[dict]:
     rows = []
     for q in questions:
-        hits = retriever.retrieve(q.question, mode=mode, k=DEPTH)
+        searched = queries[q.id] if queries else [q.question]
+        hits = retriever.retrieve_multi(searched, mode=mode, k=DEPTH)
         if neighbours:
             hits = retriever.expand_neighbours(hits)
         rows.append(
@@ -72,6 +108,7 @@ def run_mode(retriever: Retriever, questions, mode: str, neighbours: bool = Fals
                     for h in hits
                 ],
             }
+            | ({"queries": searched} if queries else {})
         )
     return rows
 
@@ -93,6 +130,10 @@ def to_markdown(name: str, config: dict, summary: dict, rows: list[dict]) -> str
         ranks = " | ".join(str(r["ranks"][rule] or "-") for rule in RULES)
         top3 = "; ".join(",".join(x["sections"]) for x in r["retrieved"][:3])
         lines.append(f"| {r['id']} | {r['type']} | {ranks} | {','.join(r['expected_sections'])} | {top3} |")
+    if any("queries" in r for r in rows):
+        lines += ["", "## Expanded queries (the question itself is always searched too)", ""]
+        for r in rows:
+            lines += [f"**{r['id']}** {r['question']}", *(f"- {q}" for q in r["queries"][1:]), ""]
     return "\n".join(lines) + "\n"
 
 
@@ -104,16 +145,17 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str) -> None:
                           settings.llm_cache_dir)
     if judge_llm.model_name == answer_llm.model_name:
         print("WARNING: the judge is the same model as the answerer; grades may be biased.")
-    graph = build_graph(retriever, answer_llm)
+    exp_llm = expand_llm(settings)
+    graph = build_graph(retriever, answer_llm, exp_llm)
     questions = load_questions(args.questions)[: args.limit]
 
     rows = []
     judge_quota_error = None  # once the judge's daily quota is gone, stop calling it
     for q in questions:
-        calls_before = answer_llm.api_calls + judge_llm.api_calls
+        calls_before = answer_llm.api_calls + judge_llm.api_calls + exp_llm.api_calls
         try:
             state = graph.invoke({"question": q.question, "mode": mode, "k": settings.answer_k,
-                                  "neighbours": args.neighbours})
+                                  "neighbours": args.neighbours, "expand": args.expand})
         except QuotaExhausted as e:
             print(f"Stopping before {q.id}: {e}. Re-run later; finished calls are cached.")
             break
@@ -136,15 +178,15 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str) -> None:
                            "neighbour_of": h.neighbour_of} for h in state["hits"]],
             "citations": state["citations"], "unsupported_citations": state["unsupported_citations"],
             "verdict": verdict, "judge_error": error,
-        })
+        } | ({"queries": state["queries"], "expand_error": state.get("expand_error")} if args.expand else {}))
         v = verdict or {}
         print(f"{q.id} {q.type:<12} {v.get('correctness', 'UNJUDGED'):<9} "
               f"faithful={v.get('faithful')} refused={v.get('refused')}")
-        if answer_llm.api_calls + judge_llm.api_calls > calls_before:
+        if answer_llm.api_calls + judge_llm.api_calls + exp_llm.api_calls > calls_before:
             time.sleep(args.sleep)  # free-tier rate limits; cached questions skip this
 
     summary = summarize_answers(rows)
-    label = f"{mode}+nb" if args.neighbours else mode
+    name = label(mode, args.expand, args.neighbours)
     # The prompts are part of the config hash: a re-run with a changed prompt gets its own run.
     prompts_sha = hashlib.sha256((ANSWER_SYSTEM + JUDGE_SYSTEM + JUDGE_TEMPLATE).encode()).hexdigest()[:8]
     config = stamp("answers", {
@@ -154,13 +196,14 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str) -> None:
         "questions_file": args.questions.name, "questions_sha": file_sha(args.questions),
         "n_questions": len(questions), "n_answered": len(rows),
         "git_commit": git_commit(), "index_manifest": retriever.manifest,
-    }, note=args.note)
+    } | (expand_config(settings, exp_llm) if args.expand else {}), note=args.note)
     run_dir = save_run(config, summary, rows, answers_markdown(config["run_id"], config, summary, rows))
     print(f"\nRun {config['run_id']} saved to {run_dir}")
-    print(f"{label}: correct {fmt(summary['correct'])}, correct or partial {fmt(summary['correct_or_partial'])}, "
+    print(f"{name}: correct {fmt(summary['correct'])}, correct or partial {fmt(summary['correct_or_partial'])}, "
           f"faithful {fmt(summary['faithful'])}, out-of-scope refused {fmt(summary['refusal_out_of_scope'])}, "
           f"in-scope wrongly refused {fmt(summary['false_refusal_in_scope'])}, unjudged {summary['unjudged']}")
-    print(f"API calls: answer model {answer_llm.api_calls}, judge {judge_llm.api_calls}")
+    print(f"API calls: answer model {answer_llm.api_calls}, judge {judge_llm.api_calls}, "
+          f"expansion {exp_llm.api_calls}")
 
 
 def answers_markdown(name: str, config: dict, summary: dict, rows: list[dict]) -> str:
@@ -182,6 +225,8 @@ def answers_markdown(name: str, config: dict, summary: dict, rows: list[dict]) -
                   f"faithful={v.get('faithful')}, refused={v.get('refused')}",
                   f"**Q:** {r['question']}", "", f"**Reference:** {r['reference']}", "",
                   "**Answer:**", "", r["answer"], "",
+                  *([f"**Also searched for:** {' | '.join(r['queries'][1:]) or '(nothing added)'}", ""]
+                    if "queries" in r else []),
                   f"**Retrieved sections:** {'; '.join(','.join(x['sections']) for x in r['retrieved'])}", "",
                   f"**Judge:** {v.get('explanation') or r['judge_error']}"]
         if v.get("unsupported_claims"):
@@ -194,10 +239,16 @@ def run_retrieval_eval(args, settings, retriever: Retriever) -> None:
     questions = [q for q in load_questions(args.questions)[: args.limit] if q.in_scope]
     print(f"{len(questions)} in-scope questions, index {args.index}")
     metric_names = [f"hit@{k}" for k in KS] + ["mrr"]
+    queries, extra = None, {}
+    if args.expand:
+        llm = expand_llm(settings)
+        queries = expand_all(questions, llm, args.sleep)
+        questions = [q for q in questions if q.id in queries]
+        extra = expand_config(settings, llm)
     for mode in args.modes:
-        rows = run_mode(retriever, questions, mode, args.neighbours)
+        rows = run_mode(retriever, questions, mode, args.neighbours, queries)
         summary = summarize_by_type(rows)
-        label = f"{mode}+nb" if args.neighbours else mode
+        name = label(mode, args.expand, args.neighbours)
         config = stamp("retrieval", {
             "index": args.index,
             "mode": mode,
@@ -212,13 +263,13 @@ def run_retrieval_eval(args, settings, retriever: Retriever) -> None:
             "n_questions": len(questions),
             "git_commit": git_commit(),
             "index_manifest": retriever.manifest,
-        }, note=args.note)
+        } | extra, note=args.note)
         save_run(config, summary, rows, to_markdown(config["run_id"], config, summary, rows))
         print(f"run {config['run_id']}")
         s = summary["all"]
         for rule in RULES:
             cells = "  ".join(f"{m} {format_metric(s[rule], m):<13}" for m in metric_names)
-            print(f"{label:<9} {rule:<8} {cells}")
+            print(f"{name:<13} {rule:<8} {cells}")
 
 
 def main() -> None:
@@ -233,10 +284,14 @@ def main() -> None:
         "--neighbours", action=argparse.BooleanOptionalAction, default=None,
         help="add each hit's same-section neighbours (retrieval: default off; --judge: app default)",
     )
+    parser.add_argument(
+        "--expand", action=argparse.BooleanOptionalAction, default=None,
+        help="add LLM-written search queries (retrieval: default off; --judge: app default)",
+    )
     parser.add_argument("--judge", action="store_true", help="answer eval with an LLM judge (Phase 7)")
     parser.add_argument("--judge-model", help="override GEMINI_JUDGE_MODEL for this run")
     parser.add_argument("--sleep", type=float, default=6.0,
-                        help="--judge: seconds to wait after a question that called the API")
+                        help="seconds to wait after a question that called the API")
     parser.add_argument("--note", default="", help="short label shown in the results table")
     args = parser.parse_args()
 
@@ -244,11 +299,13 @@ def main() -> None:
     if args.judge:
         args.modes = args.modes or [settings.answer_mode]
         args.neighbours = settings.answer_neighbours if args.neighbours is None else args.neighbours
+        args.expand = settings.expand_queries if args.expand is None else args.expand
         for mode in args.modes:
             run_answer_eval(args, settings, retriever, mode)
     else:
         args.modes = args.modes or list(MODES)
         args.neighbours = bool(args.neighbours)
+        args.expand = bool(args.expand)
         run_retrieval_eval(args, settings, retriever)
     print(f"Comparison table: {RESULTS_DIR / 'README.md'}")
 

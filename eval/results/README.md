@@ -12,6 +12,12 @@ Rates are shown with raw counts, e.g. `0.82 (18/22)`: with ~22 questions one que
 
 | run | index | mode | neighbours | n | strict hit@1 | strict hit@3 | strict hit@5 | strict MRR | section hit@5 | phrase hit@5 | note |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| [2026-10-18_8272ce65](retrieval/2026-10-18_8272ce65/report.md) | fixed-1000-150-header__bge-base | hybrid +exp | yes | 22 | 0.86 (19/22) | 0.86 (19/22) | 0.86 (19/22) | 0.88 | 0.86 (19/22) | 0.91 (20/22) | query expansion |
+| [2026-10-18_5a27aee9](retrieval/2026-10-18_5a27aee9/report.md) | fixed-1000-150-header__bge-base | bm25 +exp | yes | 22 | 0.73 (16/22) | 0.86 (19/22) | 0.95 (21/22) | 0.82 | 0.95 (21/22) | 0.91 (20/22) | query expansion |
+| [2026-10-18_a728fa4a](retrieval/2026-10-18_a728fa4a/report.md) | fixed-1000-150-header__bge-base | dense +exp | yes | 22 | 0.82 (18/22) | 0.86 (19/22) | 0.95 (21/22) | 0.87 | 0.95 (21/22) | 0.95 (21/22) | query expansion |
+| [2026-10-18_0b7c5cb2](retrieval/2026-10-18_0b7c5cb2/report.md) | fixed-1000-150-header__bge-base | hybrid +exp | no | 22 | 0.86 (19/22) | 0.86 (19/22) | 0.86 (19/22) | 0.88 | 0.86 (19/22) | 0.86 (19/22) | query expansion |
+| [2026-10-18_2ac9a897](retrieval/2026-10-18_2ac9a897/report.md) | fixed-1000-150-header__bge-base | dense +exp | no | 22 | 0.82 (18/22) | 0.86 (19/22) | 0.95 (21/22) | 0.87 | 0.95 (21/22) | 0.91 (20/22) | query expansion |
+| [2026-10-18_8387bc1f](retrieval/2026-10-18_8387bc1f/report.md) | fixed-1000-150-header__bge-base | bm25 +exp | no | 22 | 0.68 (15/22) | 0.86 (19/22) | 0.95 (21/22) | 0.79 | 0.95 (21/22) | 0.91 (20/22) | query expansion |
 | [2026-10-18_aee65d5d](retrieval/2026-10-18_aee65d5d/report.md) | fixed-1000-150-header__bge-base | bm25 | yes | 22 | 0.68 (15/22) | 0.77 (17/22) | 0.82 (18/22) | 0.73 | 0.82 (18/22) | 0.73 (16/22) | header index |
 | [2026-10-18_f7af91c7](retrieval/2026-10-18_f7af91c7/report.md) | fixed-1000-150-header__bge-base | hybrid | yes | 22 | 0.64 (14/22) | 0.77 (17/22) | 0.86 (19/22) | 0.73 | 0.86 (19/22) | 0.86 (19/22) | header index |
 | [2026-10-18_64f1b27b](retrieval/2026-10-18_64f1b27b/report.md) | fixed-1000-150-header__bge-base | dense | yes | 22 | 0.68 (15/22) | 0.82 (18/22) | 0.91 (20/22) | 0.76 | 0.91 (20/22) | 0.86 (19/22) | header index |

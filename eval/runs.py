@@ -112,6 +112,11 @@ def _nb(config: dict) -> str:
     return "yes" if config.get("neighbours") else "no"
 
 
+def _mode(config: dict) -> str:
+    """"dense", or "dense +exp" for a run with query expansion."""
+    return config["mode"] + (" +exp" if config.get("expand") else "")
+
+
 def _link(run: dict, results_dir: Path) -> str:
     c = run["config"]
     return f"[{c['run_id']}]({(run['dir'] / 'report.md').relative_to(results_dir).as_posix()})"
@@ -124,7 +129,7 @@ def retrieval_table(runs: list[dict], results_dir: Path) -> list[str]:
     for run in runs:
         c, s = run["config"], run["summary"]["all"]
         strict = " | ".join(format_metric(s["strict"], m) for m in ("hit@1", "hit@3", "hit@5", "mrr"))
-        lines.append(f"| {_link(run, results_dir)} | {c['index']} | {c['mode']} | {_nb(c)} | {s['n']} "
+        lines.append(f"| {_link(run, results_dir)} | {c['index']} | {_mode(c)} | {_nb(c)} | {s['n']} "
                      f"| {strict} | {format_metric(s['section'], 'hit@5')} "
                      f"| {format_metric(s['phrase'], 'hit@5')} | {c.get('note', '')} |")
     return lines
@@ -138,7 +143,7 @@ def answers_table(runs: list[dict], results_dir: Path) -> list[str]:
         c, s = run["config"], run["summary"]
         metrics = " | ".join(fmt(s[m]) if s[m]["n"] else "-" for m in ("correct", "correct_or_partial", "faithful",
                                                   "refusal_out_of_scope", "false_refusal_in_scope"))
-        lines.append(f"| {_link(run, results_dir)} | {c['index']} | {c['mode']} | {_nb(c)} | {c['k']} "
+        lines.append(f"| {_link(run, results_dir)} | {c['index']} | {_mode(c)} | {_nb(c)} | {c['k']} "
                      f"| {c['answer_model']} | {c['judge_model']} | {c['prompts_sha']} "
                      f"| {s['unjudged']}/{c['n_answered']} | {metrics} | {c.get('note', '')} |")
     return lines
