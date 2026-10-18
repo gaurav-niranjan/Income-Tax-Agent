@@ -1,0 +1,98 @@
+{
+  "unjudged": 8,
+  "correct": {
+    "hits": 9,
+    "n": 18,
+    "rate": 0.5
+  },
+  "correct_or_partial": {
+    "hits": 15,
+    "n": 18,
+    "rate": 0.8333333333333334
+  },
+  "faithful": {
+    "hits": 17,
+    "n": 18,
+    "rate": 0.9444444444444444
+  },
+  "refusal_out_of_scope": {
+    "hits": 0,
+    "n": 0,
+    "rate": 0.0
+  },
+  "false_refusal_in_scope": {
+    "hits": 3,
+    "n": 18,
+    "rate": 0.16666666666666666
+  },
+  "by_type": {
+    "table": {
+      "correct": {
+        "hits": 4,
+        "n": 6,
+        "rate": 0.6666666666666666
+      },
+      "partial": {
+        "hits": 0,
+        "n": 6,
+        "rate": 0.0
+      },
+      "incorrect": {
+        "hits": 2,
+        "n": 6,
+        "rate": 0.3333333333333333
+      }
+    },
+    "definition": {
+      "correct": {
+        "hits": 2,
+        "n": 4,
+        "rate": 0.5
+      },
+      "partial": {
+        "hits": 1,
+        "n": 4,
+        "rate": 0.25
+      },
+      "incorrect": {
+        "hits": 1,
+        "n": 4,
+        "rate": 0.25
+      }
+    },
+    "prose": {
+      "correct": {
+        "hits": 1,
+        "n": 4,
+        "rate": 0.25
+      },
+      "partial": {
+        "hits": 3,
+        "n": 4,
+        "rate": 0.75
+      },
+      "incorrect": {
+        "hits": 0,
+        "n": 4,
+        "rate": 0.0
+      }
+    },
+    "numeric": {
+      "correct": {
+        "hits": 2,
+        "n": 4,
+        "rate": 0.5
+      },
+      "partial": {
+        "hits": 2,
+        "n": 4,
+        "rate": 0.5
+      },
+      "incorrect": {
+        "hits": 0,
+        "n": 4,
+        "rate": 0.0
+      }
+    }
+  }
+}

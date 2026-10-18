@@ -1,0 +1,29 @@
+{
+  "unjudged": 26,
+  "correct": {
+    "hits": 0,
+    "n": 0,
+    "rate": 0.0
+  },
+  "correct_or_partial": {
+    "hits": 0,
+    "n": 0,
+    "rate": 0.0
+  },
+  "faithful": {
+    "hits": 0,
+    "n": 0,
+    "rate": 0.0
+  },
+  "refusal_out_of_scope": {
+    "hits": 0,
+    "n": 0,
+    "rate": 0.0
+  },
+  "false_refusal_in_scope": {
+    "hits": 0,
+    "n": 0,
+    "rate": 0.0
+  },
+  "by_type": {}
+}

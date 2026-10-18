@@ -3,23 +3,29 @@ __pycache__/
 *.py[cod]
 .venv/
 .pytest_cache/
+.ruff_cache/
+.mypy_cache/
 *.egg-info/
 dist/
 build/
 
-# Secrets
+# Secrets. Any .env variant (.env.local, ...) except the template.
 .env
+.env.*
+!.env.example
 .streamlit/secrets.toml
 
 # Data: the PDF is 118 MB (over GitHub's 100 MB limit) and processed files are rebuildable.
 data/raw/
 data/processed/
+*.pdf
 
-# Experiment indexes stay local. The one index the app uses gets an exception here later:
-# !data/index/<name>/
+# Experiment indexes stay local. The app's index (settings.index_name) is committed:
+# Streamlit Cloud has no PDF to rebuild it from. ~32 MB, largest file 23 MB.
 data/index/*
+!data/index/fixed-1000-150-header__bge-base/
 
-# LLM response cache
+# LLM response cache and the fastembed model (~210 MB, downloaded on first start)
 .cache/
 
 # OS / editors

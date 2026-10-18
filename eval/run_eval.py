@@ -3,16 +3,18 @@
 Run: uv run python eval/run_eval.py --index fixed-1000-150__bge-base --modes dense bm25 hybrid
      add --neighbours to score each hit plus its same-section neighbours (what the LLM sees)
 
-Each mode writes eval/results/<index>__<mode>[+nb]__<date>.md and .json, with the full config.
-A re-run of the same config on the same day overwrites that day's file.
+     add --note "why this run" to label it in the results table
+
+Each mode is one run, saved to eval/results/retrieval/<date>_<config hash>/ (see runs.py),
+and eval/results/README.md is rebuilt to compare all runs.
 Out-of-scope questions are skipped in the retrieval eval: retrieval always returns
 *something*, so they only make sense for the answer eval.
 
 Answer eval (Phase 7):
      uv run python eval/run_eval.py --judge [--limit 3] [--sleep 6]
 Runs the full pipeline with the app's settings on all questions, then a second Gemini
-model (GEMINI_JUDGE_MODEL) grades correctness, faithfulness and refusals. Writes
-eval/results/<index>__<mode>[+nb]__answers__<judge>__p<prompt hash>__<date>.md/.json. LLM calls are cached on disk.
+model (GEMINI_JUDGE_MODEL) grades correctness, faithfulness and refusals. Saved to
+eval/results/answers/<date>_<config hash>/. LLM calls are cached on disk.
 """
 
 import argparse
@@ -20,7 +22,6 @@ import hashlib
 import json
 import subprocess
 import time
-from datetime import date
 from pathlib import Path
 
 from judge import JUDGE_SYSTEM, JUDGE_TEMPLATE, fmt, judge_prompt, parse_verdict, summarize_answers
@@ -33,6 +34,7 @@ from metrics import (
     load_questions,
     summarize_by_type,
 )
+from runs import RESULTS_DIR, file_sha, save_run, stamp
 
 from income_tax_agent.config import get_settings
 from income_tax_agent.graph.build import build_graph
@@ -94,7 +96,7 @@ def to_markdown(name: str, config: dict, summary: dict, rows: list[dict]) -> str
     return "\n".join(lines) + "\n"
 
 
-def run_answer_eval(args, settings, retriever: Retriever, mode: str, out_dir: Path) -> None:
+def run_answer_eval(args, settings, retriever: Retriever, mode: str) -> None:
     """Phase 7: answer every question (out-of-scope included) and have a second model grade it."""
     answer_llm = GeminiLLM(settings.gemini_model, settings.google_api_key, settings.llm_cache_dir,
                            settings.gemini_temperature)
@@ -143,22 +145,19 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str, out_dir: Pa
 
     summary = summarize_answers(rows)
     label = f"{mode}+nb" if args.neighbours else mode
-    # Prompt version and judge are part of the name: a re-run with a changed prompt, or
-    # graded by another judge, must not overwrite earlier results from the same day.
+    # The prompts are part of the config hash: a re-run with a changed prompt gets its own run.
     prompts_sha = hashlib.sha256((ANSWER_SYSTEM + JUDGE_SYSTEM + JUDGE_TEMPLATE).encode()).hexdigest()[:8]
-    name = f"{args.index}__{label}__answers__{judge_llm.model_name}__p{prompts_sha}__{date.today().isoformat()}"
-    config = {
+    config = stamp("answers", {
         "index": args.index, "mode": mode, "neighbours": args.neighbours, "k": settings.answer_k,
         "answer_model": answer_llm.model_name, "judge_model": judge_llm.model_name,
         "prompts_sha": prompts_sha,  # identifies the prompt versions
-        "questions_file": args.questions.name, "n_questions": len(questions), "n_answered": len(rows),
+        "questions_file": args.questions.name, "questions_sha": file_sha(args.questions),
+        "n_questions": len(questions), "n_answered": len(rows),
         "git_commit": git_commit(), "index_manifest": retriever.manifest,
-    }
-    (out_dir / f"{name}.json").write_text(
-        json.dumps({"config": config, "summary": summary, "rows": rows}, indent=2, ensure_ascii=False) + "\n"
-    )
-    (out_dir / f"{name}.md").write_text(answers_markdown(name, config, summary, rows))
-    print(f"\n{label}: correct {fmt(summary['correct'])}, correct or partial {fmt(summary['correct_or_partial'])}, "
+    }, note=args.note)
+    run_dir = save_run(config, summary, rows, answers_markdown(config["run_id"], config, summary, rows))
+    print(f"\nRun {config['run_id']} saved to {run_dir}")
+    print(f"{label}: correct {fmt(summary['correct'])}, correct or partial {fmt(summary['correct_or_partial'])}, "
           f"faithful {fmt(summary['faithful'])}, out-of-scope refused {fmt(summary['refusal_out_of_scope'])}, "
           f"in-scope wrongly refused {fmt(summary['false_refusal_in_scope'])}, unjudged {summary['unjudged']}")
     print(f"API calls: answer model {answer_llm.api_calls}, judge {judge_llm.api_calls}")
@@ -191,7 +190,7 @@ def answers_markdown(name: str, config: dict, summary: dict, rows: list[dict]) -
     return "\n".join(lines) + "\n"
 
 
-def run_retrieval_eval(args, settings, retriever: Retriever, out_dir: Path) -> None:
+def run_retrieval_eval(args, settings, retriever: Retriever) -> None:
     questions = [q for q in load_questions(args.questions)[: args.limit] if q.in_scope]
     print(f"{len(questions)} in-scope questions, index {args.index}")
     metric_names = [f"hit@{k}" for k in KS] + ["mrr"]
@@ -199,8 +198,7 @@ def run_retrieval_eval(args, settings, retriever: Retriever, out_dir: Path) -> N
         rows = run_mode(retriever, questions, mode, args.neighbours)
         summary = summarize_by_type(rows)
         label = f"{mode}+nb" if args.neighbours else mode
-        name = f"{args.index}__{label}__{date.today().isoformat()}"
-        config = {
+        config = stamp("retrieval", {
             "index": args.index,
             "mode": mode,
             "neighbours": args.neighbours,
@@ -210,14 +208,13 @@ def run_retrieval_eval(args, settings, retriever: Retriever, out_dir: Path) -> N
             "hybrid_candidates": settings.hybrid_candidates,
             "query_prefix": settings.embedding_query_prefix,
             "questions_file": args.questions.name,
+            "questions_sha": file_sha(args.questions),
             "n_questions": len(questions),
             "git_commit": git_commit(),
             "index_manifest": retriever.manifest,
-        }
-        (out_dir / f"{name}.json").write_text(
-            json.dumps({"config": config, "summary": summary, "rows": rows}, indent=2) + "\n"
-        )
-        (out_dir / f"{name}.md").write_text(to_markdown(name, config, summary, rows))
+        }, note=args.note)
+        save_run(config, summary, rows, to_markdown(config["run_id"], config, summary, rows))
+        print(f"run {config['run_id']}")
         s = summary["all"]
         for rule in RULES:
             cells = "  ".join(f"{m} {format_metric(s[rule], m):<13}" for m in metric_names)
@@ -240,21 +237,20 @@ def main() -> None:
     parser.add_argument("--judge-model", help="override GEMINI_JUDGE_MODEL for this run")
     parser.add_argument("--sleep", type=float, default=6.0,
                         help="--judge: seconds to wait after a question that called the API")
+    parser.add_argument("--note", default="", help="short label shown in the results table")
     args = parser.parse_args()
 
     retriever = Retriever(args.index, settings=settings)
-    out_dir = EVAL_DIR / "results"
-    out_dir.mkdir(exist_ok=True)
     if args.judge:
         args.modes = args.modes or [settings.answer_mode]
         args.neighbours = settings.answer_neighbours if args.neighbours is None else args.neighbours
         for mode in args.modes:
-            run_answer_eval(args, settings, retriever, mode, out_dir)
+            run_answer_eval(args, settings, retriever, mode)
     else:
         args.modes = args.modes or list(MODES)
         args.neighbours = bool(args.neighbours)
-        run_retrieval_eval(args, settings, retriever, out_dir)
-    print(f"Results in {out_dir}")
+        run_retrieval_eval(args, settings, retriever)
+    print(f"Comparison table: {RESULTS_DIR / 'README.md'}")
 
 
 if __name__ == "__main__":
