@@ -64,15 +64,19 @@ def is_phrase_hit(chunk: Chunk, phrases: list[str]) -> bool:
     return any(normalize(p) in text for p in phrases)
 
 
-def first_hit_ranks(chunks: list[Chunk], q: Question) -> dict[str, int | None]:
-    """Rank (1-based) of the first hit under each rule, or None if no retrieved chunk hits."""
+def first_hit_ranks(ranked: list[tuple[int, Chunk]], q: Question) -> dict[str, int | None]:
+    """Best rank of a hit under each rule, or None if no retrieved chunk hits.
+
+    `ranked` is [(rank, chunk)]. Usually ranks are 1, 2, 3...; with neighbour expansion a
+    neighbour carries the rank of the hit it was added for, so ranks repeat.
+    """
     checks = {
         "section": lambda c: is_section_hit(c, q.sections),
         "strict": lambda c: is_strict_hit(c, q.sections),
         "phrase": lambda c: is_phrase_hit(c, q.phrases),
     }
     return {
-        rule: next((rank for rank, c in enumerate(chunks, start=1) if check(c)), None)
+        rule: min((rank for rank, c in ranked if check(c)), default=None)
         for rule, check in checks.items()
     }
 

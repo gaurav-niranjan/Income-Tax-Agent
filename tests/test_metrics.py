@@ -25,8 +25,12 @@ def test_first_hit_ranks_per_rule():
         chunk("2", "edge of 202", {"201": 900, "202": 100}),  # section hit, not strict
         chunk("3", "From  Rs. 800001 to\nRs. 1200000  10%", {"202": 950}),  # spacing differs
     ]
-    assert first_hit_ranks(chunks, Q) == {"section": 2, "strict": 3, "phrase": 3}
-    assert first_hit_ranks(chunks[:1], Q) == {"section": None, "strict": None, "phrase": None}
+    ranked = list(enumerate(chunks, start=1))
+    assert first_hit_ranks(ranked, Q) == {"section": 2, "strict": 3, "phrase": 3}
+    assert first_hit_ranks(ranked[:1], Q) == {"section": None, "strict": None, "phrase": None}
+    # Neighbour expansion: the table chunk arrives as a neighbour of the rank-2 hit.
+    expanded = [(1, chunks[0]), (2, chunks[1]), (2, chunks[2])]
+    assert first_hit_ranks(expanded, Q) == {"section": 2, "strict": 2, "phrase": 2}
 
 
 def test_summarize_hit_at_k_and_mrr():

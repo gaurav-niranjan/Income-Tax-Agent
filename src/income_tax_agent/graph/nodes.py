@@ -7,7 +7,10 @@ from income_tax_agent.retrieval.retriever import Retriever
 
 
 def retrieve(state: AnswerState, retriever: Retriever) -> AnswerState:
-    return {"hits": retriever.retrieve(state["question"], mode=state["mode"], k=state["k"])}
+    hits = retriever.retrieve(state["question"], mode=state["mode"], k=state["k"])
+    if state.get("neighbours"):
+        hits = retriever.expand_neighbours(hits)
+    return {"hits": hits}
 
 
 def route_after_retrieve(state: AnswerState) -> str:

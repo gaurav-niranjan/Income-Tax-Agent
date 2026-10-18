@@ -9,7 +9,8 @@ class AnswerState(TypedDict, total=False):
     # Input
     question: str
     mode: str  # retrieval mode: dense, bm25 or hybrid
-    k: int  # number of chunks given to the LLM
+    k: int  # number of chunks retrieved
+    neighbours: bool  # also pass each hit's previous/next chunk from the same section
     # Filled by the nodes
     hits: list[Hit]
     answer: str

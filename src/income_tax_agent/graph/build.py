@@ -33,13 +33,19 @@ def answer_question(
     question: str,
     mode: str | None = None,
     k: int | None = None,
+    neighbours: bool | None = None,
     graph=None,
     settings: Settings | None = None,
 ) -> AnswerState:
-    """Answer one question with the default index, retrieval mode and LLM."""
+    """Answer one question with the default index, retrieval settings and LLM."""
     settings = settings or get_settings()
     if graph is None:
         graph = build_graph(get_retriever(settings.index_name), get_llm(settings))
     return graph.invoke(
-        {"question": question, "mode": mode or settings.answer_mode, "k": k or settings.answer_k}
+        {
+            "question": question,
+            "mode": mode or settings.answer_mode,
+            "k": k or settings.answer_k,
+            "neighbours": settings.answer_neighbours if neighbours is None else neighbours,
+        }
     )

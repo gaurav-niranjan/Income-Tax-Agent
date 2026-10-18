@@ -32,11 +32,12 @@ def _label(numbers: list[str]) -> str:
 
 def format_context(hits: list[Hit]) -> str:
     blocks = []
-    for h in hits:
+    # Numbered by position, not rank: neighbour chunks share their hit's rank.
+    for n, h in enumerate(hits, start=1):
         c = h.chunk
         titles = "; ".join(t for t in c.section_titles if t)
         pages = ", ".join(map(str, c.pages))
-        blocks.append(f"[Excerpt {h.rank} | {_label(c.sections)} | {titles} | page {pages}]\n{c.text}")
+        blocks.append(f"[Excerpt {n} | {_label(c.sections)} | {titles} | page {pages}]\n{c.text}")
     return "\n\n".join(blocks)
 
 

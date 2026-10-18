@@ -23,6 +23,10 @@ def main() -> None:
     parser.add_argument("--ids", nargs="+", default=[], help="eval question ids")
     parser.add_argument("--mode", default=settings.answer_mode, choices=MODES)
     parser.add_argument("--k", type=int, default=settings.answer_k)
+    parser.add_argument("--index", default=settings.index_name)
+    parser.add_argument(
+        "--neighbours", action=argparse.BooleanOptionalAction, default=settings.answer_neighbours
+    )
     args = parser.parse_args()
 
     items = [(None, q) for q in args.questions]
@@ -31,14 +35,18 @@ def main() -> None:
         items += [(i, by_id[i]["question"]) for i in args.ids]
 
     llm = get_llm(settings)
-    graph = build_graph(get_retriever(settings.index_name), llm)
+    graph = build_graph(get_retriever(args.index), llm)
     for qid, question in items:
-        state = graph.invoke({"question": question, "mode": args.mode, "k": args.k})
+        state = graph.invoke(
+            {"question": question, "mode": args.mode, "k": args.k, "neighbours": args.neighbours}
+        )
         print("=" * 80)
         print(f"{qid or ''} Q: {question}")
-        print(f"Retrieved ({args.mode}, k={args.k}):")
+        nb = ", +neighbours" if args.neighbours else ""
+        print(f"Retrieved ({args.index}, {args.mode}, k={args.k}{nb}):")
         for h in state["hits"]:
-            print(f"  {h.rank}. sections {', '.join(h.chunk.sections)}  (pages {h.chunk.pages})")
+            tag = "   (neighbour)" if h.neighbour_of else ""
+            print(f"  {h.rank}. sections {', '.join(h.chunk.sections)}  (pages {h.chunk.pages}){tag}")
         print(f"\nA: {state['answer']}\n")
         print(f"cited: {state['citations']}  unsupported: {state['unsupported_citations']}  "
               f"refused: {state['refused']}")

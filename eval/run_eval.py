@@ -1,8 +1,10 @@
 """Run the retrieval eval and save results.
 
 Run: uv run python eval/run_eval.py --index fixed-1000-150__bge-base --modes dense bm25 hybrid
+     add --neighbours to score each hit plus its same-section neighbours (what the LLM sees)
 
-Each mode writes eval/results/<index>__<mode>__<date>.md and .json, with the full config.
+Each mode writes eval/results/<index>__<mode>[+nb]__<date>.md and .json, with the full config.
+A re-run of the same config on the same day overwrites that day's file.
 Out-of-scope questions are skipped here: retrieval always returns *something*, so they
 are only meaningful for the answer eval (--judge, Phase 7).
 """
@@ -38,19 +40,24 @@ def git_commit() -> str:
         return "unknown"
 
 
-def run_mode(retriever: Retriever, questions, mode: str) -> list[dict]:
+def run_mode(retriever: Retriever, questions, mode: str, neighbours: bool = False) -> list[dict]:
     rows = []
     for q in questions:
         hits = retriever.retrieve(q.question, mode=mode, k=DEPTH)
-        chunks = [h.chunk for h in hits]
+        if neighbours:
+            hits = retriever.expand_neighbours(hits)
         rows.append(
             {
                 "id": q.id,
                 "type": q.type,
                 "question": q.question,
                 "expected_sections": q.sections,
-                "ranks": first_hit_ranks(chunks, q),
-                "retrieved": [{"chunk_id": c.chunk_id, "sections": c.sections} for c in chunks],
+                "ranks": first_hit_ranks([(h.rank, h.chunk) for h in hits], q),
+                "retrieved": [
+                    {"chunk_id": h.chunk.chunk_id, "rank": h.rank, "sections": h.chunk.sections,
+                     "neighbour_of": h.neighbour_of}
+                    for h in hits
+                ],
             }
         )
     return rows
@@ -83,6 +90,10 @@ def main() -> None:
     parser.add_argument("--modes", nargs="+", default=list(MODES), choices=MODES)
     parser.add_argument("--questions", type=Path, default=EVAL_DIR / "questions.jsonl")
     parser.add_argument("--limit", type=int, help="only the first N questions (quick runs)")
+    parser.add_argument(
+        "--neighbours", action="store_true",
+        help="score the context the LLM sees: each hit plus its same-section neighbours",
+    )
     parser.add_argument("--judge", action="store_true", help="answer eval with an LLM judge (Phase 7)")
     args = parser.parse_args()
     if args.judge:
@@ -96,12 +107,14 @@ def main() -> None:
     print(f"{len(questions)} in-scope questions, index {args.index}")
     metric_names = [f"hit@{k}" for k in KS] + ["mrr"]
     for mode in args.modes:
-        rows = run_mode(retriever, questions, mode)
+        rows = run_mode(retriever, questions, mode, args.neighbours)
         summary = summarize_by_type(rows)
-        name = f"{args.index}__{mode}__{date.today().isoformat()}"
+        label = f"{mode}+nb" if args.neighbours else mode
+        name = f"{args.index}__{label}__{date.today().isoformat()}"
         config = {
             "index": args.index,
             "mode": mode,
+            "neighbours": args.neighbours,
             "depth": DEPTH,
             "strict_share": STRICT_SHARE,
             "rrf_k": settings.rrf_k,
@@ -119,7 +132,7 @@ def main() -> None:
         s = summary["all"]
         for rule in RULES:
             cells = "  ".join(f"{m} {format_metric(s[rule], m):<13}" for m in metric_names)
-            print(f"{mode:<7} {rule:<8} {cells}")
+            print(f"{label:<9} {rule:<8} {cells}")
     print(f"Results in {out_dir}")
 
 

@@ -9,7 +9,7 @@ from income_tax_agent.index import build_index
 from income_tax_agent.ingest.chunkers.fixed import FixedSizeChunker
 from income_tax_agent.retrieval.bm25 import tokenize
 from income_tax_agent.retrieval.fusion import reciprocal_rank_fusion
-from income_tax_agent.retrieval.retriever import Retriever
+from income_tax_agent.retrieval.retriever import Hit, Retriever
 
 BODY = """    Short title, extent and commencement.
     1. (1) This Act may be called the Income-tax Act, 2025. It extends to the whole of India.
@@ -50,6 +50,24 @@ def test_every_mode_returns_ranked_chunks(retriever, mode):
     assert 1 <= len(hits) <= 3
     assert [h.rank for h in hits] == list(range(1, len(hits) + 1))
     assert len({h.chunk.chunk_id for h in hits}) == len(hits)
+
+
+def test_expand_neighbours_adds_same_section_chunks_once(retriever):
+    order = retriever._order
+    # The test text gives chunks covering sections [1], [1, 2], [2, 3], [3].
+    assert [c.sections for c in order] == [["1"], ["1", "2"], ["2", "3"], ["3"]]
+    hits = [Hit(order[1], 0.9, 1), Hit(order[2], 0.8, 2)]
+    expanded = retriever.expand_neighbours(hits)
+    # Hit 1 brings its neighbours 0 and 2; hit 2 is then already present, adds only 3.
+    assert [h.chunk.chunk_id for h in expanded] == [c.chunk_id for c in order]
+    assert [h.rank for h in expanded] == [1, 1, 1, 2]
+    assert [h.neighbour_of for h in expanded] == [order[1].chunk_id, None, order[1].chunk_id, order[2].chunk_id]
+
+
+def test_expand_neighbours_skips_other_sections(retriever):
+    order = retriever._order
+    expanded = retriever.expand_neighbours([Hit(order[3], 0.5, 1)])  # section 3 only
+    assert [h.chunk.chunk_id for h in expanded] == [order[2].chunk_id, order[3].chunk_id]
 
 
 def test_unknown_mode_is_an_error(retriever):

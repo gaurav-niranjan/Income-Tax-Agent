@@ -52,6 +52,7 @@ class Settings(BaseSettings):
     # What the answer pipeline uses.
     answer_mode: str = "hybrid"
     answer_k: int = 5
+    answer_neighbours: bool = False
 
     # CI sets this to 1: fake embeddings and a fake LLM, so no keys or downloads.
     fake_models: bool = False
