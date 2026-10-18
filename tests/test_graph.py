@@ -10,7 +10,7 @@ from income_tax_agent.embeddings import FakeEmbeddings
 from income_tax_agent.graph.build import build_graph
 from income_tax_agent.index import build_index
 from income_tax_agent.ingest.chunkers.fixed import FixedSizeChunker
-from income_tax_agent.llm import FakeLLM, GeminiLLM, NotRetryable
+from income_tax_agent.llm import FakeLLM, GeminiLLM, NotRetryable, QuotaExhausted
 from income_tax_agent.prompts import NOT_FOUND, parse_citations
 from income_tax_agent.retrieval.retriever import Retriever
 
@@ -88,6 +88,22 @@ def test_llm_cache_avoids_second_call(tmp_path):
     assert json.loads(next(tmp_path.glob("*.json")).read_text())["text"] == "answer"
     llm.complete("sys", "a different question")
     assert Chat.calls == 2
+
+
+def test_llm_stops_at_once_on_daily_quota(tmp_path):
+    from langchain_google_genai.chat_models import GoogleRateLimitError
+
+    class Chat:
+        calls = 0
+
+        def invoke(self, messages):
+            Chat.calls += 1
+            raise GoogleRateLimitError("429 RESOURCE_EXHAUSTED quotaId: GenerateRequestsPerDayPerProjectPerModel-FreeTier")
+
+    llm = _offline_gemini(tmp_path, Chat())
+    with pytest.raises(QuotaExhausted):
+        llm.complete("sys", "q")
+    assert Chat.calls == 1  # no pointless retries
 
 
 def test_llm_does_not_retry_permanent_errors(tmp_path):

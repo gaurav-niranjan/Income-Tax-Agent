@@ -28,6 +28,10 @@ class NotRetryable(Exception):
     """An API error that will not fix itself (bad key, unknown model, bad request)."""
 
 
+class QuotaExhausted(NotRetryable):
+    """The free tier's *daily* request limit is used up. Retrying within minutes is pointless."""
+
+
 def _cache_key(model: str, temperature: float | None, system: str, user: str) -> str:
     payload = json.dumps([model, temperature, system, user], ensure_ascii=False)
     return hashlib.sha256(payload.encode()).hexdigest()
@@ -78,8 +82,13 @@ class GeminiLLM:
         self.api_calls += 1
         try:
             return self._chat.invoke([("system", system), ("human", user)]).text
-        except (GoogleRateLimitError, GoogleAPIError):
-            raise  # 429 or 5xx: worth retrying
+        except GoogleRateLimitError as e:
+            # Per-minute limits clear quickly; per-day limits (quotaId "...PerDay...") do not.
+            if "PerDay" in str(e):
+                raise QuotaExhausted(f"{self.model_name}: daily free-tier quota used up") from e
+            raise  # per-minute 429: worth retrying
+        except GoogleAPIError:
+            raise  # 5xx: worth retrying
         except Exception as e:
             raise NotRetryable(str(e)) from e
 
