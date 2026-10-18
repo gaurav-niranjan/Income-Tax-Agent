@@ -11,7 +11,7 @@ from income_tax_agent.graph.build import build_graph
 from income_tax_agent.index import build_index
 from income_tax_agent.ingest.chunkers.fixed import FixedSizeChunker
 from income_tax_agent.llm import FakeLLM, GeminiLLM, NotRetryable, QuotaExhausted
-from income_tax_agent.prompts import NOT_FOUND, parse_citations
+from income_tax_agent.prompts import NOT_FOUND, parse_citations, strip_excerpt_refs
 from income_tax_agent.retrieval.retriever import Retriever
 
 BODY = """    Short title, extent and commencement.
@@ -40,6 +40,22 @@ def retriever(tmp_path_factory):
 )
 def test_parse_citations(answer, expected):
     assert parse_citations(answer) == expected
+
+
+@pytest.mark.parametrize(
+    "raw, expected",
+    [
+        # Real outputs from the answer eval (q15, q10, q19).
+        ("is Rs. 25000 in aggregate [Section 126, Excerpt 4].", "is Rs. 25000 in aggregate [Section 126]."),
+        ("means [Excerpt 1, Excerpt 2]:", "means:"),
+        ("1. Spouse of the individual [Excerpt 2];", "1. Spouse of the individual;"),
+        ("**10%** [Section 202, Excerpt 1 & Excerpt 2]", "**10%** [Section 202]"),
+        ("see [Section 92; Excerpts 8 and 9] here", "see [Section 92] here"),
+        ("No excerpt refs [Section 202(1)].", "No excerpt refs [Section 202(1)]."),
+    ],
+)
+def test_strip_excerpt_refs(raw, expected):
+    assert strip_excerpt_refs(raw) == expected
 
 
 def test_graph_answers_with_citations(retriever):

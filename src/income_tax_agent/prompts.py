@@ -15,7 +15,7 @@ Rules:
 4. The excerpts may define a different or narrower term than the one asked about (for example the same words with a qualifier such as "specified" or "eligible" added, or a meaning that applies only within one section). Then say so plainly: state which term the excerpts define and that it is not the general meaning asked about. Do not present it as the answer to the question.
 5. The Act writes amounts in rupees, e.g. Rs. 1200000 is 12 lakh. Quote amounts as the Act gives them; you may add the lakh form in round brackets, e.g. Rs. 1200000 (12 lakh). Square brackets are only for citations.
 6. Answer only what is asked. Leave out rules for other kinds of taxpayers or situations the question does not ask about.
-7. Only if a numbered table or list you rely on visibly stops mid-way (for example rows 1 and 2 are shown but row 3 is missing, or an excerpt ends in the middle of a row), say: "This may be incomplete: the excerpts show only part of the table." Do not say this when the table or list is complete.
+7. Include every condition from the excerpts that changes the answer, such as a limit, an age or date, or who the rule applies to. A short answer that drops such a condition is wrong.
 8. Start with a direct answer, then give the key conditions. Use plain English and keep it short.
 9. Do not add a "not tax advice" disclaimer; the app shows one."""
 
@@ -55,6 +55,30 @@ _NUM = r"\d+(?:\([^)]*\))*"
 # so "Sl. No. 2(ii)" in the same bracket is not read as Section 2.
 SECTION_LIST_RE = re.compile(rf"Sections?\s+({_NUM}(?:\s*(?:,|and|&)\s*{_NUM})*)")
 SCHEDULE_RE = re.compile(r"Schedule ([IVXL]+)\b")
+
+
+# "Excerpt 4", "Excerpts 1 and 2", "Excerpt 1 & Excerpt 2" (with any separator before it).
+_EXCERPT_REF_RE = re.compile(
+    r"\s*(?:[,;&]|\band\b)?\s*Excerpts?\s+\d+(?:\s*(?:,|&|and)\s*(?:Excerpt\s+)?\d+)*", re.IGNORECASE
+)
+
+
+def strip_excerpt_refs(answer: str) -> str:
+    """Remove excerpt numbers from square-bracket citations.
+
+    The prompt forbids them, but the model still writes "[Section 126, Excerpt 4]".
+    Excerpt numbers mean nothing to a reader, so drop them in code:
+    "[Section 126, Excerpt 4]" -> "[Section 126]"; "[Excerpt 2]" -> removed.
+    """
+
+    def clean(m: re.Match) -> str:
+        inner = _EXCERPT_REF_RE.sub("", m.group(1)).strip(" ,;&")
+        inner = re.sub(r"^(?:and)\s+|\s+(?:and)$", "", inner)
+        return f"[{inner}]" if inner else ""
+
+    cleaned = re.sub(r"\[([^\]]*Excerpt[^\]]*)\]", clean, answer, flags=re.IGNORECASE)
+    # A removed bracket can leave "word ." or a double space behind.
+    return re.sub(r"[ \t]+([.,;:])", r"\1", re.sub(r"[ \t]{2,}", " ", cleaned))
 
 
 def parse_citations(answer: str) -> list[str]:

@@ -2,7 +2,13 @@
 
 from income_tax_agent.graph.state import AnswerState
 from income_tax_agent.llm import LLM
-from income_tax_agent.prompts import ANSWER_SYSTEM, NOT_FOUND, answer_user_prompt, parse_citations
+from income_tax_agent.prompts import (
+    ANSWER_SYSTEM,
+    NOT_FOUND,
+    answer_user_prompt,
+    parse_citations,
+    strip_excerpt_refs,
+)
 from income_tax_agent.retrieval.retriever import Retriever
 
 
@@ -19,7 +25,8 @@ def route_after_retrieve(state: AnswerState) -> str:
 
 
 def generate(state: AnswerState, llm: LLM) -> AnswerState:
-    answer = llm.complete(ANSWER_SYSTEM, answer_user_prompt(state["question"], state["hits"])).strip()
+    raw = llm.complete(ANSWER_SYSTEM, answer_user_prompt(state["question"], state["hits"]))
+    answer = strip_excerpt_refs(raw).strip()
     citations = parse_citations(answer)
     retrieved = {s for h in state["hits"] for s in h.chunk.sections}
     return {
