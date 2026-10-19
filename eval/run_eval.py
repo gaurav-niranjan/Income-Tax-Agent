@@ -64,7 +64,7 @@ def expand_config(settings, llm: GeminiLLM) -> dict:
     """Added to a run's config only when expansion is on, so earlier runs keep their hashes."""
     return {"expand": True, "expand_model": llm.model_name,
             "expand_prompt_sha": hashlib.sha256(EXPAND_SYSTEM.encode()).hexdigest()[:8],
-            "expand_candidates": settings.expand_candidates}
+            "expand_candidates": settings.expand_candidates, "expand_fusion": settings.expand_fusion}
 
 
 def label(mode: str, expand: bool, neighbours: bool) -> str:
@@ -191,6 +191,7 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str) -> None:
     prompts_sha = hashlib.sha256((ANSWER_SYSTEM + JUDGE_SYSTEM + JUDGE_TEMPLATE).encode()).hexdigest()[:8]
     config = stamp("answers", {
         "index": args.index, "mode": mode, "neighbours": args.neighbours, "k": settings.answer_k,
+        "rrf_k": settings.rrf_k, "hybrid_candidates": settings.hybrid_candidates,
         "answer_model": answer_llm.model_name, "judge_model": judge_llm.model_name,
         "prompts_sha": prompts_sha,  # identifies the prompt versions
         "questions_file": args.questions.name, "questions_sha": file_sha(args.questions),

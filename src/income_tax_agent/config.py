@@ -49,10 +49,13 @@ class Settings(BaseSettings):
     index_name: str = "fixed-1000-150-header__bge-base"
 
     # --- Retrieval ---
-    rrf_k: int = 60  # Reciprocal Rank Fusion constant
+    # Reciprocal Rank Fusion constant. The paper's 60 makes rank 1 worth barely more than
+    # rank 10, so a strong hit from only dense or only BM25 got outvoted. Sweep on 2026-10-19
+    # (hybrid, no expansion): dev strict MRR 0.73 at k=60, 0.79 at k=2.
+    rrf_k: int = 2
     hybrid_candidates: int = 50  # how deep each list goes before fusing
-    # What the answer pipeline uses.
-    answer_mode: str = "dense"
+    # What the answer pipeline uses. Hybrid with the fusion below (2026-10-19).
+    answer_mode: str = "hybrid"
     answer_k: int = 5
     answer_neighbours: bool = True
 
@@ -63,9 +66,13 @@ class Settings(BaseSettings):
     expand_queries: bool = True
     # Empty = GEMINI_MODEL. A small task, so Flash-Lite (the largest free quota) is enough.
     gemini_expand_model: str = ""
-    # How deep each query's list goes before RRF. Deep lists hurt: a chunk ranked ~40th
-    # everywhere beats one ranked 1st by a single list. 20 was best for hybrid (2026-10-18).
-    expand_candidates: int = 20
+    # How the queries' lists are merged: "max" (best rank in any list; see fusion.py) or "rrf".
+    # With RRF, a section that only one rewrite finds at rank 1 was outvoted by chunks that
+    # were mediocre for every query (held-out h09: lost). Max keeps it: hybrid dev strict
+    # hit@5 19/22 -> 21/22, MRR 0.88 both (sweep, 2026-10-19).
+    expand_fusion: str = "max"
+    # How deep each query's list goes before merging.
+    expand_candidates: int = 10
 
     # --- App ---
     # Strangers share one free API quota; this cap keeps one visitor from using it all.

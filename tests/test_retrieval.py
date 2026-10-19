@@ -9,7 +9,7 @@ from income_tax_agent.index import build_index
 from income_tax_agent.ingest.chunkers.fixed import FixedSizeChunker
 from income_tax_agent.ingest.chunkers.base import Chunk
 from income_tax_agent.retrieval.bm25 import BM25Retriever, tokenize
-from income_tax_agent.retrieval.fusion import reciprocal_rank_fusion
+from income_tax_agent.retrieval.fusion import FUSIONS, best_rank_fusion, reciprocal_rank_fusion
 from income_tax_agent.retrieval.retriever import Hit, Retriever
 
 BODY = """    Short title, extent and commencement.
@@ -37,6 +37,25 @@ def test_rrf_rewards_items_ranked_by_both_lists():
     assert ids[0] == "b"  # rank 2 in both beats rank 1 in one list
     assert set(ids) == {"a", "b", "c", "d", "e"}
     assert fused[0][1] == pytest.approx(2 / 62)
+
+
+# Held-out h09 in miniature: "b" is the only right chunk and only the third query finds it,
+# at rank 1. "a" and "d" are mediocre for every query.
+H09_LISTS = [["c", "a", "d"], ["x2", "a", "d"], ["b", "x5", "x6", "a", "d"], ["x9", "a", "d", "c"]]
+
+
+def test_rrf_lets_agreement_outvote_a_single_top_hit():
+    ids = [i for i, _ in reciprocal_rank_fusion(H09_LISTS, k=60)]
+    assert ids[:3] == ["a", "d", "c"]  # "b" is pushed out of the top 3
+
+
+def test_best_rank_fusion_keeps_every_lists_top_hit():
+    fused = best_rank_fusion(H09_LISTS, k=2)
+    ids = [i for i, _ in fused]
+    assert set(ids[:4]) == {"c", "x2", "b", "x9"}  # the four #1s
+    assert ids[0] == "c"  # tie on rank 1 broken by agreement: "c" is also in list 4
+    assert fused[0][1] == pytest.approx(1 / 3)
+    assert set(ids) == {i for lst in H09_LISTS for i in lst}
 
 
 def test_bm25_finds_exact_amount(retriever):
@@ -80,6 +99,23 @@ def test_retrieve_multi_merges_the_queries(retriever):
 
 def test_retrieve_multi_returns_nothing_when_no_query_matches(retriever):
     assert retriever.retrieve_multi(["zzz", "qqq"], mode="bm25", k=3) == []
+
+
+@pytest.mark.parametrize("fusion", ["max", "rrf"])
+def test_retrieve_multi_uses_the_configured_fusion(retriever, fusion, monkeypatch):
+    monkeypatch.setattr(retriever.settings, "expand_fusion", fusion)
+    queries = ["health insurance premium", "rent deduct income-tax"]
+    n = max(5, retriever.settings.expand_candidates)
+    rankings = [[h.chunk.chunk_id for h in retriever.retrieve(q, "bm25", n)] for q in queries]
+    expected = FUSIONS[fusion](rankings, k=retriever.settings.rrf_k)[:5]
+    hits = retriever.retrieve_multi(queries, mode="bm25", k=5)
+    assert [h.chunk.chunk_id for h in hits] == [cid for cid, _ in expected]
+
+
+def test_retrieve_multi_rejects_unknown_fusion(retriever, monkeypatch):
+    monkeypatch.setattr(retriever.settings, "expand_fusion", "magic")
+    with pytest.raises(ValueError, match="Unknown expand_fusion"):
+        retriever.retrieve_multi(["a", "b"], mode="bm25", k=3)
 
 
 def test_expand_neighbours_adds_same_section_chunks_once(retriever):

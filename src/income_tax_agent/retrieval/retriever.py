@@ -16,7 +16,7 @@ from income_tax_agent.index import load_index
 from income_tax_agent.ingest.chunkers.base import Chunk
 from income_tax_agent.retrieval.bm25 import BM25Retriever
 from income_tax_agent.retrieval.dense import DenseRetriever
-from income_tax_agent.retrieval.fusion import reciprocal_rank_fusion
+from income_tax_agent.retrieval.fusion import FUSIONS, reciprocal_rank_fusion
 
 MODES = ("dense", "bm25", "hybrid")
 
@@ -67,9 +67,11 @@ class Retriever:
         """
         if len(queries) == 1:
             return self.retrieve(queries[0], mode, k)
+        if self.settings.expand_fusion not in FUSIONS:
+            raise ValueError(f"Unknown expand_fusion {self.settings.expand_fusion!r}. Use one of {list(FUSIONS)}.")
         n = max(k, self.settings.expand_candidates)
         rankings = [[h.chunk.chunk_id for h in self.retrieve(q, mode, n)] for q in queries]
-        fused = reciprocal_rank_fusion(rankings, k=self.settings.rrf_k)[:k]
+        fused = FUSIONS[self.settings.expand_fusion](rankings, k=self.settings.rrf_k)[:k]
         return [Hit(self.chunks[cid], score, rank) for rank, (cid, score) in enumerate(fused, start=1)]
 
     def expand_neighbours(self, hits: list[Hit]) -> list[Hit]:

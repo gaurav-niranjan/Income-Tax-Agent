@@ -15,21 +15,30 @@ citations like `[Section 202]`. If the Act doesn't cover the question, it says s
 3. **Expand the query.** Gemini Flash-Lite rewrites the question into 3 extra search queries
    in the Act's own wording: "12 lakh" becomes "Rs. 1200000", "TDS" becomes "tax deducted at
    source", and one query is written like a sentence of the Act. The original question is
-   always searched too, and the lists are merged with Reciprocal Rank Fusion.
-4. **Retrieve.** Search is dense, BM25 or hybrid. Each hit also brings its neighbouring chunks
-   from the same section.
+   always searched too. The lists are merged by each chunk's *best* rank in any list, so a
+   section that only one query finds at the top is not outvoted by chunks every query finds
+   halfway down.
+4. **Retrieve.** Search is hybrid: dense (meaning) and BM25 (exact words), merged with
+   Reciprocal Rank Fusion using a small k, so a strong hit from either one counts. Each hit
+   also brings its neighbouring chunks from the same section.
 5. **Answer.** A LangGraph pipeline sends the retrieved text to Gemini, which answers with citations.
 
 ## Results
 
-Every design choice is measured on 26 questions written from the Act's text. All runs and
+Every design choice is measured on 26 questions written from the Act's text, plus 10
+held-out questions. All runs and
 their configs are in [eval/results](eval/results/README.md).
 
 | Setup | Right section first | Right section in top 5 | MRR |
 |---|---|---|---|
 | Baseline: plain chunks, dense search | 13/22 | 18/22 | 0.69 |
 | Section title added to each chunk, dense + neighbours | 15/22 | 20/22 | 0.76 |
-| + LLM query expansion (used by the app) | 18/22 | 21/22 | 0.87 |
+| + LLM query expansion | 18/22 | 21/22 | 0.87 |
+| Hybrid + expansion, best-rank merge (used by the app) | 18/22 | 21/22 | 0.88 |
+| Same, on 10 held-out questions | 8/10 | 10/10 | 0.88 |
+
+The held-out questions were written after the expansion prompt was frozen, to check it
+was not tuned to the first 22. Without expansion, hybrid scores 0.78 MRR on them.
 
 Answers, graded by a second Gemini model (first 18 questions):
 **15/18** correct or partly correct, and **17/18** faithful to the retrieved text.
