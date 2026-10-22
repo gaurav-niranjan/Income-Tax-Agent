@@ -5,7 +5,7 @@
         chroma/         the vector store
         manifest.json   the full config used to build it, plus stats
 
-Run: uv run python -m income_tax_agent.index [--header] [--force]
+Run: uv run python -m income_tax_agent.index [--chunker fixed|structured] [--header] [--force]
 """
 
 import argparse
@@ -26,6 +26,7 @@ from income_tax_agent.embeddings import get_embeddings, short_model_name
 from income_tax_agent.ingest.chunkers.base import Chunk, Chunker
 from income_tax_agent.ingest.chunkers.fixed import FixedSizeChunker
 from income_tax_agent.ingest.chunkers.header import HeaderPrefixChunker
+from income_tax_agent.ingest.chunkers.structured import StructuredChunker
 from income_tax_agent.ingest.clean import clean_pages
 from income_tax_agent.ingest.extract import load_pages
 from income_tax_agent.ingest.sections import build_document
@@ -154,15 +155,25 @@ def load_index(name: str, embeddings: Embeddings | None = None, settings: Settin
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build an index.")
     parser.add_argument("--force", action="store_true", help="rebuild if the folder exists")
+    parser.add_argument("--chunker", choices=["fixed", "structured"], default="fixed")
     parser.add_argument(
-        "--header", action="store_true", help='prefix "Section N: <title>" to each chunk before embedding'
+        "--header",
+        action="store_true",
+        help='fixed only: prefix "Section N: <title>" to each chunk before embedding '
+        "(the structured chunker always adds its own, more precise prefix)",
     )
     args = parser.parse_args()
 
     settings = get_settings()
-    chunker = FixedSizeChunker(settings.chunk_size, settings.chunk_overlap)
-    if args.header:
-        chunker = HeaderPrefixChunker(chunker)
+    chunker: Chunker
+    if args.chunker == "structured":
+        if args.header:
+            parser.error("--header is for the fixed chunker; structured adds its own prefix")
+        chunker = StructuredChunker(settings.structured_max_chars, settings.structured_min_chars)
+    else:
+        chunker = FixedSizeChunker(settings.chunk_size, settings.chunk_overlap)
+        if args.header:
+            chunker = HeaderPrefixChunker(chunker)
     out = build_index(chunker, get_embeddings(settings), settings, force=args.force)
     stats = json.loads((out / "manifest.json").read_text())["stats"]
     print(f"Built {out}")

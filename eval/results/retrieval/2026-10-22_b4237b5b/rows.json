@@ -1,0 +1,1560 @@
+[
+  {
+    "id": "h01",
+    "type": "table",
+    "question": "What is the tax rate on STCG from selling equity shares on the stock exchange?",
+    "expected_sections": [
+      "196"
+    ],
+    "ranks": {
+      "section": 4,
+      "strict": 4,
+      "phrase": 4
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000709",
+        "rank": 1,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": "structured-1500:000710"
+      },
+      {
+        "chunk_id": "structured-1500:000710",
+        "rank": 1,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000763",
+        "rank": 2,
+        "sections": [
+          "209"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000764",
+        "rank": 2,
+        "sections": [
+          "209"
+        ],
+        "neighbour_of": "structured-1500:000763"
+      },
+      {
+        "chunk_id": "structured-1500:000692",
+        "rank": 3,
+        "sections": [
+          "193"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000693",
+        "rank": 3,
+        "sections": [
+          "193"
+        ],
+        "neighbour_of": "structured-1500:000692"
+      },
+      {
+        "chunk_id": "structured-1500:000703",
+        "rank": 4,
+        "sections": [
+          "196"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000704",
+        "rank": 4,
+        "sections": [
+          "196"
+        ],
+        "neighbour_of": "structured-1500:000703"
+      },
+      {
+        "chunk_id": "structured-1500:000379",
+        "rank": 5,
+        "sections": [
+          "69"
+        ],
+        "neighbour_of": "structured-1500:000380"
+      },
+      {
+        "chunk_id": "structured-1500:000380",
+        "rank": 5,
+        "sections": [
+          "69"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000448",
+        "rank": 6,
+        "sections": [
+          "90"
+        ],
+        "neighbour_of": "structured-1500:000449"
+      },
+      {
+        "chunk_id": "structured-1500:000449",
+        "rank": 6,
+        "sections": [
+          "90"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000450",
+        "rank": 6,
+        "sections": [
+          "90"
+        ],
+        "neighbour_of": "structured-1500:000449"
+      },
+      {
+        "chunk_id": "structured-1500:001678",
+        "rank": 7,
+        "sections": [
+          "Schedule XVI"
+        ],
+        "neighbour_of": "structured-1500:001679"
+      },
+      {
+        "chunk_id": "structured-1500:001679",
+        "rank": 7,
+        "sections": [
+          "Schedule XVI"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001680",
+        "rank": 7,
+        "sections": [
+          "Schedule XVI"
+        ],
+        "neighbour_of": "structured-1500:001679"
+      },
+      {
+        "chunk_id": "structured-1500:000447",
+        "rank": 9,
+        "sections": [
+          "90"
+        ],
+        "neighbour_of": "structured-1500:000448"
+      },
+      {
+        "chunk_id": "structured-1500:000757",
+        "rank": 10,
+        "sections": [
+          "207"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000758",
+        "rank": 10,
+        "sections": [
+          "207"
+        ],
+        "neighbour_of": "structured-1500:000757"
+      }
+    ]
+  },
+  {
+    "id": "h02",
+    "type": "table",
+    "question": "By which dates do I have to pay advance tax, and how much each time?",
+    "expected_sections": [
+      "408"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:001316",
+        "rank": 1,
+        "sections": [
+          "408"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001313",
+        "rank": 2,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001314",
+        "rank": 2,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": "structured-1500:001313"
+      },
+      {
+        "chunk_id": "structured-1500:000003",
+        "rank": 3,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500:000004"
+      },
+      {
+        "chunk_id": "structured-1500:000004",
+        "rank": 3,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000005",
+        "rank": 3,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500:000004"
+      },
+      {
+        "chunk_id": "structured-1500:001315",
+        "rank": 4,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": "structured-1500:001314"
+      },
+      {
+        "chunk_id": "structured-1500:001312",
+        "rank": 6,
+        "sections": [
+          "406"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001350",
+        "rank": 7,
+        "sections": [
+          "424"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001351",
+        "rank": 7,
+        "sections": [
+          "424"
+        ],
+        "neighbour_of": "structured-1500:001350"
+      },
+      {
+        "chunk_id": "structured-1500:001355",
+        "rank": 8,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": "structured-1500:001356"
+      },
+      {
+        "chunk_id": "structured-1500:001356",
+        "rank": 8,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001357",
+        "rank": 8,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": "structured-1500:001356"
+      },
+      {
+        "chunk_id": "structured-1500:001309",
+        "rank": 10,
+        "sections": [
+          "404"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "h03",
+    "type": "definition",
+    "question": "Is free housing given by my employer taxed as a perk?",
+    "expected_sections": [
+      "17"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000171",
+        "rank": 1,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000172",
+        "rank": 1,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": "structured-1500:000171"
+      },
+      {
+        "chunk_id": "structured-1500:000569",
+        "rank": 2,
+        "sections": [
+          "142"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001542",
+        "rank": 3,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": "structured-1500:001543"
+      },
+      {
+        "chunk_id": "structured-1500:001543",
+        "rank": 3,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001544",
+        "rank": 3,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": "structured-1500:001543"
+      },
+      {
+        "chunk_id": "structured-1500:000601",
+        "rank": 4,
+        "sections": [
+          "158"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000201",
+        "rank": 5,
+        "sections": [
+          "29"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000202",
+        "rank": 5,
+        "sections": [
+          "29"
+        ],
+        "neighbour_of": "structured-1500:000201"
+      },
+      {
+        "chunk_id": "structured-1500:000121",
+        "rank": 6,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500:000122"
+      },
+      {
+        "chunk_id": "structured-1500:000122",
+        "rank": 6,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000123",
+        "rank": 6,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500:000122"
+      },
+      {
+        "chunk_id": "structured-1500:000272",
+        "rank": 7,
+        "sections": [
+          "46"
+        ],
+        "neighbour_of": "structured-1500:000273"
+      },
+      {
+        "chunk_id": "structured-1500:000273",
+        "rank": 7,
+        "sections": [
+          "46"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000274",
+        "rank": 7,
+        "sections": [
+          "46"
+        ],
+        "neighbour_of": "structured-1500:000273"
+      },
+      {
+        "chunk_id": "structured-1500:001667",
+        "rank": 8,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500:001668"
+      },
+      {
+        "chunk_id": "structured-1500:001668",
+        "rank": 8,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001669",
+        "rank": 8,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500:001668"
+      },
+      {
+        "chunk_id": "structured-1500:000060",
+        "rank": 9,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500:000061"
+      },
+      {
+        "chunk_id": "structured-1500:000061",
+        "rank": 9,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000062",
+        "rank": 9,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500:000061"
+      },
+      {
+        "chunk_id": "structured-1500:000523",
+        "rank": 10,
+        "sections": [
+          "124"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000524",
+        "rank": 10,
+        "sections": [
+          "124"
+        ],
+        "neighbour_of": "structured-1500:000523"
+      }
+    ]
+  },
+  {
+    "id": "h04",
+    "type": "definition",
+    "question": "What counts as 'higher education' for the education loan interest deduction?",
+    "expected_sections": [
+      "129"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000540",
+        "rank": 1,
+        "sections": [
+          "129"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000541",
+        "rank": 1,
+        "sections": [
+          "129"
+        ],
+        "neighbour_of": "structured-1500:000540"
+      },
+      {
+        "chunk_id": "structured-1500:000542",
+        "rank": 3,
+        "sections": [
+          "130"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000543",
+        "rank": 3,
+        "sections": [
+          "130"
+        ],
+        "neighbour_of": "structured-1500:000542"
+      },
+      {
+        "chunk_id": "structured-1500:000544",
+        "rank": 4,
+        "sections": [
+          "131"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001662",
+        "rank": 5,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500:001663"
+      },
+      {
+        "chunk_id": "structured-1500:001663",
+        "rank": 5,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001664",
+        "rank": 5,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500:001663"
+      },
+      {
+        "chunk_id": "structured-1500:001237",
+        "rank": 6,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": "structured-1500:001238"
+      },
+      {
+        "chunk_id": "structured-1500:001238",
+        "rank": 6,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000190",
+        "rank": 7,
+        "sections": [
+          "22"
+        ],
+        "neighbour_of": "structured-1500:000191"
+      },
+      {
+        "chunk_id": "structured-1500:000191",
+        "rank": 7,
+        "sections": [
+          "22"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000734",
+        "rank": 9,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": "structured-1500:000735"
+      },
+      {
+        "chunk_id": "structured-1500:000735",
+        "rank": 9,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000736",
+        "rank": 9,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": "structured-1500:000735"
+      },
+      {
+        "chunk_id": "structured-1500:000547",
+        "rank": 10,
+        "sections": [
+          "133"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000548",
+        "rank": 10,
+        "sections": [
+          "133"
+        ],
+        "neighbour_of": "structured-1500:000547"
+      }
+    ]
+  },
+  {
+    "id": "h05",
+    "type": "prose",
+    "question": "Like the old section 54, can I avoid capital gains tax on selling my house if I buy another one?",
+    "expected_sections": [
+      "82"
+    ],
+    "ranks": {
+      "section": 3,
+      "strict": 3,
+      "phrase": 4
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000432",
+        "rank": 1,
+        "sections": [
+          "86"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000433",
+        "rank": 1,
+        "sections": [
+          "86"
+        ],
+        "neighbour_of": "structured-1500:000432"
+      },
+      {
+        "chunk_id": "structured-1500:000434",
+        "rank": 2,
+        "sections": [
+          "86"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000435",
+        "rank": 2,
+        "sections": [
+          "86"
+        ],
+        "neighbour_of": "structured-1500:000434"
+      },
+      {
+        "chunk_id": "structured-1500:000424",
+        "rank": 3,
+        "sections": [
+          "82"
+        ],
+        "neighbour_of": "structured-1500:000425"
+      },
+      {
+        "chunk_id": "structured-1500:000425",
+        "rank": 3,
+        "sections": [
+          "82"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000423",
+        "rank": 4,
+        "sections": [
+          "82"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000297",
+        "rank": 7,
+        "sections": [
+          "55"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000428",
+        "rank": 8,
+        "sections": [
+          "84"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000429",
+        "rank": 8,
+        "sections": [
+          "84"
+        ],
+        "neighbour_of": "structured-1500:000428"
+      },
+      {
+        "chunk_id": "structured-1500:000485",
+        "rank": 9,
+        "sections": [
+          "110"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000430",
+        "rank": 10,
+        "sections": [
+          "85"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000431",
+        "rank": 10,
+        "sections": [
+          "85"
+        ],
+        "neighbour_of": "structured-1500:000430"
+      }
+    ]
+  },
+  {
+    "id": "h06",
+    "type": "prose",
+    "question": "How much extra tax do I pay if I file an ITR-U to correct an old return?",
+    "expected_sections": [
+      "267"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000917",
+        "rank": 1,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000918"
+      },
+      {
+        "chunk_id": "structured-1500:000918",
+        "rank": 1,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000919",
+        "rank": 1,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000918"
+      },
+      {
+        "chunk_id": "structured-1500:001360",
+        "rank": 2,
+        "sections": [
+          "428"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000916",
+        "rank": 3,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000917"
+      },
+      {
+        "chunk_id": "structured-1500:000920",
+        "rank": 4,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000921",
+        "rank": 4,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000920"
+      },
+      {
+        "chunk_id": "structured-1500:001399",
+        "rank": 5,
+        "sections": [
+          "456"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001249",
+        "rank": 6,
+        "sections": [
+          "398"
+        ],
+        "neighbour_of": "structured-1500:001250"
+      },
+      {
+        "chunk_id": "structured-1500:001250",
+        "rank": 6,
+        "sections": [
+          "398"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001251",
+        "rank": 6,
+        "sections": [
+          "398"
+        ],
+        "neighbour_of": "structured-1500:001250"
+      },
+      {
+        "chunk_id": "structured-1500:000922",
+        "rank": 8,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000921"
+      },
+      {
+        "chunk_id": "structured-1500:001363",
+        "rank": 9,
+        "sections": [
+          "431"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001252",
+        "rank": 10,
+        "sections": [
+          "398"
+        ],
+        "neighbour_of": "structured-1500:001251"
+      }
+    ]
+  },
+  {
+    "id": "h07",
+    "type": "numeric",
+    "question": "How much deduction can a person with severe disability claim?",
+    "expected_sections": [
+      "154"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000597",
+        "rank": 1,
+        "sections": [
+          "154"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000533",
+        "rank": 2,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000534",
+        "rank": 2,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": "structured-1500:000533"
+      },
+      {
+        "chunk_id": "structured-1500:000536",
+        "rank": 3,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": "structured-1500:000537"
+      },
+      {
+        "chunk_id": "structured-1500:000537",
+        "rank": 3,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000538",
+        "rank": 3,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": "structured-1500:000537"
+      },
+      {
+        "chunk_id": "structured-1500:000535",
+        "rank": 5,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": "structured-1500:000534"
+      },
+      {
+        "chunk_id": "structured-1500:001665",
+        "rank": 7,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500:001666"
+      },
+      {
+        "chunk_id": "structured-1500:001666",
+        "rank": 7,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001667",
+        "rank": 7,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500:001666"
+      },
+      {
+        "chunk_id": "structured-1500:001364",
+        "rank": 8,
+        "sections": [
+          "432"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000539",
+        "rank": 10,
+        "sections": [
+          "128"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "h08",
+    "type": "numeric",
+    "question": "What is the late fee for filing an income tax return after the due date?",
+    "expected_sections": [
+      "428"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:001360",
+        "rank": 1,
+        "sections": [
+          "428"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000933",
+        "rank": 2,
+        "sections": [
+          "270"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000934",
+        "rank": 2,
+        "sections": [
+          "270"
+        ],
+        "neighbour_of": "structured-1500:000933"
+      },
+      {
+        "chunk_id": "structured-1500:001346",
+        "rank": 3,
+        "sections": [
+          "423"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001347",
+        "rank": 3,
+        "sections": [
+          "423"
+        ],
+        "neighbour_of": "structured-1500:001346"
+      },
+      {
+        "chunk_id": "structured-1500:001313",
+        "rank": 4,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": "structured-1500:001314"
+      },
+      {
+        "chunk_id": "structured-1500:001314",
+        "rank": 4,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001315",
+        "rank": 4,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": "structured-1500:001314"
+      },
+      {
+        "chunk_id": "structured-1500:001348",
+        "rank": 5,
+        "sections": [
+          "423"
+        ],
+        "neighbour_of": "structured-1500:001347"
+      },
+      {
+        "chunk_id": "structured-1500:000916",
+        "rank": 6,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000917"
+      },
+      {
+        "chunk_id": "structured-1500:000917",
+        "rank": 6,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000918",
+        "rank": 6,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000917"
+      },
+      {
+        "chunk_id": "structured-1500:001355",
+        "rank": 7,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001356",
+        "rank": 7,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": "structured-1500:001355"
+      },
+      {
+        "chunk_id": "structured-1500:000636",
+        "rank": 8,
+        "sections": [
+          "169"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000637",
+        "rank": 8,
+        "sections": [
+          "169"
+        ],
+        "neighbour_of": "structured-1500:000636"
+      },
+      {
+        "chunk_id": "structured-1500:001431",
+        "rank": 9,
+        "sections": [
+          "480"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000901",
+        "rank": 10,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": "structured-1500:000902"
+      },
+      {
+        "chunk_id": "structured-1500:000902",
+        "rank": 10,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000903",
+        "rank": 10,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": "structured-1500:000902"
+      }
+    ]
+  },
+  {
+    "id": "h09",
+    "type": "lakh",
+    "question": "Can I accept 3 lakh in cash when I sell my car?",
+    "expected_sections": [
+      "186"
+    ],
+    "ranks": {
+      "section": null,
+      "strict": null,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:001217",
+        "rank": 1,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500:001218"
+      },
+      {
+        "chunk_id": "structured-1500:001218",
+        "rank": 1,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001219",
+        "rank": 1,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500:001218"
+      },
+      {
+        "chunk_id": "structured-1500:001063",
+        "rank": 2,
+        "sections": [
+          "319"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001201",
+        "rank": 3,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500:001202"
+      },
+      {
+        "chunk_id": "structured-1500:001202",
+        "rank": 3,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001203",
+        "rank": 3,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500:001202"
+      },
+      {
+        "chunk_id": "structured-1500:001208",
+        "rank": 4,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500:001209"
+      },
+      {
+        "chunk_id": "structured-1500:001209",
+        "rank": 4,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001210",
+        "rank": 4,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500:001209"
+      },
+      {
+        "chunk_id": "structured-1500:000301",
+        "rank": 5,
+        "sections": [
+          "58"
+        ],
+        "neighbour_of": "structured-1500:000302"
+      },
+      {
+        "chunk_id": "structured-1500:000302",
+        "rank": 5,
+        "sections": [
+          "58"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000303",
+        "rank": 5,
+        "sections": [
+          "58"
+        ],
+        "neighbour_of": "structured-1500:000302"
+      },
+      {
+        "chunk_id": "structured-1500:000388",
+        "rank": 6,
+        "sections": [
+          "70"
+        ],
+        "neighbour_of": "structured-1500:000389"
+      },
+      {
+        "chunk_id": "structured-1500:000389",
+        "rank": 6,
+        "sections": [
+          "70"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000390",
+        "rank": 6,
+        "sections": [
+          "70"
+        ],
+        "neighbour_of": "structured-1500:000389"
+      },
+      {
+        "chunk_id": "structured-1500:000682",
+        "rank": 7,
+        "sections": [
+          "185"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000683",
+        "rank": 7,
+        "sections": [
+          "185"
+        ],
+        "neighbour_of": "structured-1500:000682"
+      },
+      {
+        "chunk_id": "structured-1500:000545",
+        "rank": 8,
+        "sections": [
+          "132"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000546",
+        "rank": 8,
+        "sections": [
+          "132"
+        ],
+        "neighbour_of": "structured-1500:000545"
+      },
+      {
+        "chunk_id": "structured-1500:000320",
+        "rank": 9,
+        "sections": [
+          "63"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000321",
+        "rank": 9,
+        "sections": [
+          "63"
+        ],
+        "neighbour_of": "structured-1500:000320"
+      },
+      {
+        "chunk_id": "structured-1500:000430",
+        "rank": 10,
+        "sections": [
+          "85"
+        ],
+        "neighbour_of": "structured-1500:000431"
+      },
+      {
+        "chunk_id": "structured-1500:000431",
+        "rank": 10,
+        "sections": [
+          "85"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "h10",
+    "type": "lakh",
+    "question": "Can my shop with a turnover of 2.5 crore use the presumptive tax scheme?",
+    "expected_sections": [
+      "58"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000300",
+        "rank": 1,
+        "sections": [
+          "58"
+        ],
+        "neighbour_of": "structured-1500:000301"
+      },
+      {
+        "chunk_id": "structured-1500:000301",
+        "rank": 1,
+        "sections": [
+          "58"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000302",
+        "rank": 1,
+        "sections": [
+          "58"
+        ],
+        "neighbour_of": "structured-1500:000301"
+      },
+      {
+        "chunk_id": "structured-1500:000315",
+        "rank": 2,
+        "sections": [
+          "61"
+        ],
+        "neighbour_of": "structured-1500:000316"
+      },
+      {
+        "chunk_id": "structured-1500:000316",
+        "rank": 2,
+        "sections": [
+          "61"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000320",
+        "rank": 3,
+        "sections": [
+          "63"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000321",
+        "rank": 3,
+        "sections": [
+          "63"
+        ],
+        "neighbour_of": "structured-1500:000320"
+      },
+      {
+        "chunk_id": "structured-1500:000814",
+        "rank": 5,
+        "sections": [
+          "232"
+        ],
+        "neighbour_of": "structured-1500:000815"
+      },
+      {
+        "chunk_id": "structured-1500:000815",
+        "rank": 5,
+        "sections": [
+          "232"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000816",
+        "rank": 5,
+        "sections": [
+          "232"
+        ],
+        "neighbour_of": "structured-1500:000815"
+      },
+      {
+        "chunk_id": "structured-1500:000303",
+        "rank": 6,
+        "sections": [
+          "58"
+        ],
+        "neighbour_of": "structured-1500:000302"
+      },
+      {
+        "chunk_id": "structured-1500:001269",
+        "rank": 7,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500:001270"
+      },
+      {
+        "chunk_id": "structured-1500:001270",
+        "rank": 7,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001271",
+        "rank": 7,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500:001270"
+      },
+      {
+        "chunk_id": "structured-1500:000388",
+        "rank": 8,
+        "sections": [
+          "70"
+        ],
+        "neighbour_of": "structured-1500:000389"
+      },
+      {
+        "chunk_id": "structured-1500:000389",
+        "rank": 8,
+        "sections": [
+          "70"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000390",
+        "rank": 8,
+        "sections": [
+          "70"
+        ],
+        "neighbour_of": "structured-1500:000389"
+      },
+      {
+        "chunk_id": "structured-1500:001223",
+        "rank": 10,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500:001224"
+      },
+      {
+        "chunk_id": "structured-1500:001224",
+        "rank": 10,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001225",
+        "rank": 10,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500:001224"
+      }
+    ]
+  }
+]

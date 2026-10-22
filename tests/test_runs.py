@@ -1,5 +1,6 @@
 """Eval run storage: run ids, folders and the comparison table (no models needed)."""
 
+import json
 from datetime import datetime
 
 from runs import config_diff, config_hash, load_runs, save_run, stamp
@@ -37,8 +38,25 @@ def test_same_config_same_day_replaces_the_run(tmp_path):
     runs = load_runs("retrieval", tmp_path)
     assert [r["config"]["mode"] for r in runs] == ["bm25", "dense"]  # newest first
     assert runs[1]["config"]["git_commit"] == "def5678"
-    index = (tmp_path / "README.md").read_text()
-    assert f"retrieval/{other['run_id']}/report.md" in index and "1.00 (1/1)" in index
+    all_runs = (tmp_path / "all_runs.md").read_text()
+    assert f"retrieval/{other['run_id']}/report.md" in all_runs and "1.00 (1/1)" in all_runs
+
+
+def test_readme_shows_only_key_runs(tmp_path):
+    shown = stamp("retrieval", CONFIG, created=datetime(2026, 10, 18, 10, 0))
+    hidden = stamp("retrieval", CONFIG | {"mode": "bm25"}, created=datetime(2026, 10, 18, 11, 0))
+    (tmp_path / "key_runs.json").write_text(json.dumps({"retrieval": [
+        {"run": shown["run_id"], "step": "Baseline"},
+        {"run": "2026-01-01_deadbeef", "step": "Deleted run"},
+    ]}))
+    for config in (shown, hidden):
+        save_run(config, SUMMARY, [], "# report\n", results_dir=tmp_path)
+
+    readme = (tmp_path / "README.md").read_text()
+    assert f"| Baseline | dev | 1.00 (1/1) |" in readme
+    assert shown["run_id"] in readme and hidden["run_id"] not in readme
+    assert "2026-01-01_deadbeef (not found)" in readme
+    assert hidden["run_id"] in (tmp_path / "all_runs.md").read_text()
 
 
 def test_config_diff_compares_nested_keys():

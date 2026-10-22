@@ -43,6 +43,9 @@ class Settings(BaseSettings):
     # --- Index ---
     chunk_size: int = 1000
     chunk_overlap: int = 150
+    # Structured chunker (chunkers/structured.py): sizes without whitespace runs.
+    structured_max_chars: int = 1500
+    structured_min_chars: int = 300
     # The index the app and eval use by default. Chosen on the retrieval eval
     # (eval/results, 2026-10-18): header + dense + neighbours had the best strict hit@5
     # (20/22) and MRR (0.76), and is simpler than hybrid.

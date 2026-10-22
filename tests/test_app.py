@@ -51,6 +51,26 @@ def test_question_gets_answer_with_sources(app):
     assert "Sources:" in assistant[0].expander[0].label
 
 
+def test_no_index_picker_with_one_index(app):
+    app.run()
+    assert not app.selectbox
+    assert any("Index:" in c.value for c in app.sidebar.caption)
+
+
+def test_index_picker_switches_index(app, tmp_path):
+    other = build_index(FixedSizeChunker(300, 30), FakeEmbeddings(), Settings(index_dir=tmp_path, _env_file=None),
+                        pages=[make_page(1, BODY)])
+    app.run()
+    picker = app.sidebar.selectbox[0]
+    assert picker.value == "fixed-200-20__fake"  # the configured default comes first
+    assert set(picker.options) == {"fixed-200-20__fake", other.name}
+    picker.select(other.name).run()
+    app.chat_input[0].set_value("health insurance premium deduction").run()
+    assert not app.exception
+    assistant = [m for m in app.chat_message if m.name == "assistant"]
+    assert any(other.name in c.value for c in assistant[0].expander[0].caption)
+
+
 def test_session_question_cap(app):
     app.run()
     for q in ("health insurance", "short title"):

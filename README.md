@@ -4,6 +4,8 @@ Ask questions about India's **Income-tax Act, 2025** (as amended by Finance Act,
 plain English. The app finds the relevant sections and answers **only** from them, with
 citations like `[Section 202]`. If the Act doesn't cover the question, it says so.
 
+**Live demo:** https://income-tax-agent-wd2i88cfs4nwgtvcglq7cf.streamlit.app/
+
 > Not tax advice. Questions are sent to Google's Gemini API, so don't type personal details.
 
 ## How it works
@@ -26,8 +28,8 @@ citations like `[Section 202]`. If the Act doesn't cover the question, it says s
 ## Results
 
 Every design choice is measured on 26 questions written from the Act's text, plus 10
-held-out questions. All runs and
-their configs are in [eval/results](eval/results/README.md).
+held-out questions. The key runs are in [eval/results](eval/results/README.md), and every
+run with its config is in [all_runs.md](eval/results/all_runs.md).
 
 | Setup | Right section first | Right section in top 5 | MRR |
 |---|---|---|---|
@@ -36,9 +38,18 @@ their configs are in [eval/results](eval/results/README.md).
 | + LLM query expansion | 18/22 | 21/22 | 0.87 |
 | Hybrid + expansion, best-rank merge (used by the app) | 18/22 | 21/22 | 0.88 |
 | Same, on 10 held-out questions | 8/10 | 10/10 | 0.88 |
+| Experiment: structured chunks, app setup | 18/22 | 22/22 | 0.89 |
+| Same, on 10 held-out questions | 8/10 | 10/10 | 0.86 |
 
 The held-out questions were written after the expansion prompt was frozen, to check it
 was not tuned to the first 22. Without expansion, hybrid scores 0.78 MRR on them.
+
+**Structured chunks (experiment).** Instead of cutting every 1,000 characters, this chunker
+cuts where the Act does: never across sections, then at sub-sections, one chunk per
+definition, and table rows with the column headings repeated. Definitions improved a lot
+("senior citizen" went from not found to rank 1 with dense search). But short definition
+chunks sometimes beat the right answer on general questions. Overall, retrieval is about
+the same. The answer eval will decide if it replaces the app's index.
 
 Answers, graded by a second Gemini model (first 18 questions):
 **15/18** correct or partly correct, and **17/18** faithful to the retrieved text.
@@ -61,7 +72,10 @@ Put the Act PDF in `data/raw/`. It is 118 MB, too big for Git. Then:
 ```bash
 uv run python -m income_tax_agent.ingest.extract   # PDF -> pages.jsonl (~3 min, once)
 uv run python -m income_tax_agent.index --header   # chunk, embed, write data/index/<name>/
+uv run python -m income_tax_agent.index --chunker structured   # the structured-chunk index
 ```
+
+When more than one index exists locally, the app's sidebar has an index picker for comparing them.
 
 ## Evaluate
 

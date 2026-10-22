@@ -1,0 +1,21 @@
+{
+  "_about": "Runs shown in eval/results/README.md, in story order. Edit by hand, then run: uv run python eval/compare.py",
+  "retrieval": [
+    {"run": "2026-10-18_16a617d8", "step": "Baseline: fixed 1,000-char chunks, dense"},
+    {"run": "2026-10-18_7caffad9", "step": "Baseline, BM25"},
+    {"run": "2026-10-18_44c7ee3b", "step": "Baseline, hybrid (RRF k=60)"},
+    {"run": "2026-10-18_f5a1c02c", "step": "+ section title prefixed to each chunk, dense"},
+    {"run": "2026-10-18_64f1b27b", "step": "+ neighbour chunks from the same section"},
+    {"run": "2026-10-18_a728fa4a", "step": "+ LLM query expansion"},
+    {"run": "2026-10-19_0800595b", "step": "Hybrid with RRF k=2, no expansion"},
+    {"run": "2026-10-19_7904715b", "step": "Hybrid + expansion, best-rank merge (the app)"},
+    {"run": "2026-10-19_73ee91cf", "step": "Same as the app"},
+    {"run": "2026-10-22_687ac183", "step": "Structured chunker, dense"},
+    {"run": "2026-10-22_28619463", "step": "Structured chunker, app setup"},
+    {"run": "2026-10-22_031da53e", "step": "Structured chunker, app setup"}
+  ],
+  "answers": [
+    {"run": "2026-10-18_d4acdb36", "step": "First answer eval (judge: Flash; quota ran out at 18/26)"},
+    {"run": "2026-10-18_93e03812", "step": "Same answers, Flash-Lite as judge"}
+  ]
+}

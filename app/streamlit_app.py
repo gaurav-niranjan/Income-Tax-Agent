@@ -44,6 +44,12 @@ EXAMPLES = [
 settings = get_settings()
 
 
+def available_indexes() -> list[str]:
+    """Index folders on disk, the configured default first. A folder counts once it has a manifest."""
+    found = sorted(p.parent.name for p in settings.index_dir.glob("*/manifest.json"))
+    return sorted(found, key=lambda name: name != settings.index_name)
+
+
 @st.cache_resource(show_spinner="Loading the Act. The first start downloads the search model (about a minute)...")
 def load_pipeline(index_name: str):
     """Load the index and LLM once per server process, shared by all visitors."""
@@ -56,7 +62,7 @@ def source_label(numbers: list[str]) -> str:
     return ", ".join(n if n.startswith("Schedule") else f"Section {n}" for n in numbers)
 
 
-def ask(graph, question: str, mode: str, neighbours: bool, expand: bool) -> dict:
+def ask(graph, question: str, mode: str, neighbours: bool, expand: bool, index_name: str) -> dict:
     """Run the pipeline and keep only plain data, so the chat history can be re-drawn."""
     state = graph.invoke(
         {"question": question, "mode": mode, "k": settings.answer_k, "neighbours": neighbours, "expand": expand}
@@ -80,6 +86,7 @@ def ask(graph, question: str, mode: str, neighbours: bool, expand: bool) -> dict
         "unsupported": state["unsupported_citations"],
         "sources": sources,
         "mode": mode,
+        "index": index_name,
         "extra_queries": state.get("queries", [])[1:],  # [0] is the question itself
     }
 
@@ -96,6 +103,8 @@ def show_assistant(msg: dict) -> None:
         return
     n_cited = sum(s["cited"] for s in sources)
     with st.expander(f"Sources: {len(sources)} excerpts from the Act ({n_cited} cited)"):
+        if msg.get("index"):  # older messages in a session may lack it
+            st.caption(f"Index: `{msg['index']}`")
         if msg.get("extra_queries"):
             st.markdown("**Also searched for:**\n" + "\n".join(f"- {q}" for q in msg["extra_queries"]))
         for s in sources:
@@ -129,7 +138,17 @@ with st.sidebar:
         "e.g. '12 lakh' becomes 'Rs. 1200000' and 'TDS' becomes 'tax deducted at source'.",
     )
     st.divider()
-    st.caption(f"Index: `{settings.index_name}`")
+    indexes = available_indexes()
+    if len(indexes) > 1:
+        # Only shown where several indexes exist (locally). The deployed app ships one.
+        index_name = st.selectbox(
+            "Index",
+            options=indexes,
+            help="Which chunking of the Act to search. Each index is loaded once, then kept in memory.",
+        )
+    else:
+        index_name = settings.index_name
+        st.caption(f"Index: `{index_name}`")
     st.caption("Source: Income-tax Act, 2025, as amended by the Finance Act, 2026 (incometaxindia.gov.in).")
 
 # ---------------------------------------------------------------- main
@@ -145,7 +164,7 @@ if "messages" not in st.session_state:
     st.session_state.asked = 0
 
 try:
-    graph, model_name = load_pipeline(settings.index_name)
+    graph, model_name = load_pipeline(index_name)
 except Exception as e:  # missing index, bad key, unknown model: show it instead of a stack trace
     st.error(f"The app could not start: {e}")
     st.stop()
@@ -187,7 +206,7 @@ if question:
     with st.chat_message("assistant"):
         try:
             with st.spinner("Searching the Act and writing an answer..."):
-                reply = ask(graph, question, mode, neighbours, expand)
+                reply = ask(graph, question, mode, neighbours, expand, index_name)
         except QuotaExhausted:
             st.session_state.messages.pop()
             st.error("The free daily quota for the AI model is used up. Please try again tomorrow.")

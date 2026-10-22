@@ -1,0 +1,1540 @@
+[
+  {
+    "id": "h01",
+    "type": "table",
+    "question": "What is the tax rate on STCG from selling equity shares on the stock exchange?",
+    "expected_sections": [
+      "196"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000703",
+        "rank": 1,
+        "sections": [
+          "196"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000704",
+        "rank": 1,
+        "sections": [
+          "196"
+        ],
+        "neighbour_of": "structured-1500:000703"
+      },
+      {
+        "chunk_id": "structured-1500:000763",
+        "rank": 2,
+        "sections": [
+          "209"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000764",
+        "rank": 2,
+        "sections": [
+          "209"
+        ],
+        "neighbour_of": "structured-1500:000763"
+      },
+      {
+        "chunk_id": "structured-1500:000379",
+        "rank": 4,
+        "sections": [
+          "69"
+        ],
+        "neighbour_of": "structured-1500:000380"
+      },
+      {
+        "chunk_id": "structured-1500:000380",
+        "rank": 4,
+        "sections": [
+          "69"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000692",
+        "rank": 5,
+        "sections": [
+          "193"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000693",
+        "rank": 5,
+        "sections": [
+          "193"
+        ],
+        "neighbour_of": "structured-1500:000692"
+      },
+      {
+        "chunk_id": "structured-1500:000705",
+        "rank": 6,
+        "sections": [
+          "197"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000706",
+        "rank": 6,
+        "sections": [
+          "197"
+        ],
+        "neighbour_of": "structured-1500:000705"
+      },
+      {
+        "chunk_id": "structured-1500:000774",
+        "rank": 7,
+        "sections": [
+          "215"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000775",
+        "rank": 7,
+        "sections": [
+          "215"
+        ],
+        "neighbour_of": "structured-1500:000774"
+      },
+      {
+        "chunk_id": "structured-1500:000123",
+        "rank": 8,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500:000124"
+      },
+      {
+        "chunk_id": "structured-1500:000124",
+        "rank": 8,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000125",
+        "rank": 8,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500:000124"
+      },
+      {
+        "chunk_id": "structured-1500:000708",
+        "rank": 9,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000709",
+        "rank": 9,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": "structured-1500:000708"
+      },
+      {
+        "chunk_id": "structured-1500:000757",
+        "rank": 10,
+        "sections": [
+          "207"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000758",
+        "rank": 10,
+        "sections": [
+          "207"
+        ],
+        "neighbour_of": "structured-1500:000757"
+      }
+    ],
+    "queries": [
+      "What is the tax rate on STCG from selling equity shares on the stock exchange?",
+      "short term capital gains equity shares recognized stock exchange tax rate",
+      "Where the total income of an assessee includes any short term capital gains arising from the transfer of an equity share in a company where such transaction is chargeable to securities transaction tax",
+      "What is the tax rate on short term capital gains from selling equity shares on a recognized stock exchange"
+    ]
+  },
+  {
+    "id": "h02",
+    "type": "table",
+    "question": "By which dates do I have to pay advance tax, and how much each time?",
+    "expected_sections": [
+      "408"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:001316",
+        "rank": 1,
+        "sections": [
+          "408"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000003",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500:000004"
+      },
+      {
+        "chunk_id": "structured-1500:000004",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000005",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500:000004"
+      },
+      {
+        "chunk_id": "structured-1500:001309",
+        "rank": 3,
+        "sections": [
+          "404"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001313",
+        "rank": 4,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001314",
+        "rank": 4,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": "structured-1500:001313"
+      },
+      {
+        "chunk_id": "structured-1500:001350",
+        "rank": 5,
+        "sections": [
+          "424"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001351",
+        "rank": 5,
+        "sections": [
+          "424"
+        ],
+        "neighbour_of": "structured-1500:001350"
+      },
+      {
+        "chunk_id": "structured-1500:001315",
+        "rank": 6,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001352",
+        "rank": 7,
+        "sections": [
+          "424"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001353",
+        "rank": 7,
+        "sections": [
+          "424"
+        ],
+        "neighbour_of": "structured-1500:001352"
+      },
+      {
+        "chunk_id": "structured-1500:001355",
+        "rank": 8,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001356",
+        "rank": 8,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": "structured-1500:001355"
+      },
+      {
+        "chunk_id": "structured-1500:001312",
+        "rank": 9,
+        "sections": [
+          "406"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001308",
+        "rank": 10,
+        "sections": [
+          "403"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "By which dates do I have to pay advance tax, and how much each time?",
+      "advance tax instalment due dates amount payable",
+      "Where advance tax is payable by an assessee, the instalment and due date shall be calculated as a specified percentage of the total tax liability",
+      "What are the due dates and the required percentage amounts for paying advance tax installments during the tax year"
+    ]
+  },
+  {
+    "id": "h03",
+    "type": "definition",
+    "question": "Is free housing given by my employer taxed as a perk?",
+    "expected_sections": [
+      "17"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000171",
+        "rank": 1,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000172",
+        "rank": 1,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": "structured-1500:000171"
+      },
+      {
+        "chunk_id": "structured-1500:001542",
+        "rank": 2,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": "structured-1500:001543"
+      },
+      {
+        "chunk_id": "structured-1500:001543",
+        "rank": 2,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001544",
+        "rank": 2,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": "structured-1500:001543"
+      },
+      {
+        "chunk_id": "structured-1500:000173",
+        "rank": 3,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": "structured-1500:000172"
+      },
+      {
+        "chunk_id": "structured-1500:000554",
+        "rank": 4,
+        "sections": [
+          "134"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000569",
+        "rank": 5,
+        "sections": [
+          "142"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001667",
+        "rank": 6,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500:001668"
+      },
+      {
+        "chunk_id": "structured-1500:001668",
+        "rank": 6,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001669",
+        "rank": 6,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500:001668"
+      },
+      {
+        "chunk_id": "structured-1500:000201",
+        "rank": 7,
+        "sections": [
+          "29"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000202",
+        "rank": 7,
+        "sections": [
+          "29"
+        ],
+        "neighbour_of": "structured-1500:000201"
+      },
+      {
+        "chunk_id": "structured-1500:001666",
+        "rank": 8,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500:001667"
+      },
+      {
+        "chunk_id": "structured-1500:000174",
+        "rank": 9,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": "structured-1500:000175"
+      },
+      {
+        "chunk_id": "structured-1500:000175",
+        "rank": 9,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000309",
+        "rank": 10,
+        "sections": [
+          "60"
+        ],
+        "neighbour_of": "structured-1500:000310"
+      },
+      {
+        "chunk_id": "structured-1500:000310",
+        "rank": 10,
+        "sections": [
+          "60"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "Is free housing given by my employer taxed as a perk?",
+      "perquisite value of residential accommodation provided by employer",
+      "Where rent-free accommodation is provided to the assessee by the employer, the value of the perquisite shall be computed in the prescribed manner",
+      "How is the value of residential accommodation provided free of cost by an employer determined for taxation as a perquisite in the hands of the employee"
+    ]
+  },
+  {
+    "id": "h04",
+    "type": "definition",
+    "question": "What counts as 'higher education' for the education loan interest deduction?",
+    "expected_sections": [
+      "129"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000540",
+        "rank": 1,
+        "sections": [
+          "129"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000541",
+        "rank": 1,
+        "sections": [
+          "129"
+        ],
+        "neighbour_of": "structured-1500:000540"
+      },
+      {
+        "chunk_id": "structured-1500:000542",
+        "rank": 3,
+        "sections": [
+          "130"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000543",
+        "rank": 3,
+        "sections": [
+          "130"
+        ],
+        "neighbour_of": "structured-1500:000542"
+      },
+      {
+        "chunk_id": "structured-1500:000544",
+        "rank": 4,
+        "sections": [
+          "131"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001662",
+        "rank": 5,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500:001663"
+      },
+      {
+        "chunk_id": "structured-1500:001663",
+        "rank": 5,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001664",
+        "rank": 5,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500:001663"
+      },
+      {
+        "chunk_id": "structured-1500:000595",
+        "rank": 6,
+        "sections": [
+          "153"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000596",
+        "rank": 6,
+        "sections": [
+          "153"
+        ],
+        "neighbour_of": "structured-1500:000595"
+      },
+      {
+        "chunk_id": "structured-1500:000658",
+        "rank": 8,
+        "sections": [
+          "177"
+        ],
+        "neighbour_of": "structured-1500:000659"
+      },
+      {
+        "chunk_id": "structured-1500:000659",
+        "rank": 8,
+        "sections": [
+          "177"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000660",
+        "rank": 8,
+        "sections": [
+          "177"
+        ],
+        "neighbour_of": "structured-1500:000659"
+      },
+      {
+        "chunk_id": "structured-1500:000545",
+        "rank": 9,
+        "sections": [
+          "132"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000546",
+        "rank": 9,
+        "sections": [
+          "132"
+        ],
+        "neighbour_of": "structured-1500:000545"
+      },
+      {
+        "chunk_id": "structured-1500:000190",
+        "rank": 10,
+        "sections": [
+          "22"
+        ],
+        "neighbour_of": "structured-1500:000191"
+      },
+      {
+        "chunk_id": "structured-1500:000191",
+        "rank": 10,
+        "sections": [
+          "22"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "What counts as 'higher education' for the education loan interest deduction?",
+      "interest deduction loan higher education course of study",
+      "where an assessee has taken a loan for higher education the deduction shall be allowed for interest paid on such loan",
+      "what definition or courses qualify as higher education for claiming a deduction for interest paid on a loan"
+    ]
+  },
+  {
+    "id": "h05",
+    "type": "prose",
+    "question": "Like the old section 54, can I avoid capital gains tax on selling my house if I buy another one?",
+    "expected_sections": [
+      "82"
+    ],
+    "ranks": {
+      "section": 4,
+      "strict": 4,
+      "phrase": 5
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000432",
+        "rank": 1,
+        "sections": [
+          "86"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000433",
+        "rank": 1,
+        "sections": [
+          "86"
+        ],
+        "neighbour_of": "structured-1500:000432"
+      },
+      {
+        "chunk_id": "structured-1500:000436",
+        "rank": 2,
+        "sections": [
+          "87"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000437",
+        "rank": 2,
+        "sections": [
+          "87"
+        ],
+        "neighbour_of": "structured-1500:000436"
+      },
+      {
+        "chunk_id": "structured-1500:000434",
+        "rank": 3,
+        "sections": [
+          "86"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000435",
+        "rank": 3,
+        "sections": [
+          "86"
+        ],
+        "neighbour_of": "structured-1500:000434"
+      },
+      {
+        "chunk_id": "structured-1500:000424",
+        "rank": 4,
+        "sections": [
+          "82"
+        ],
+        "neighbour_of": "structured-1500:000425"
+      },
+      {
+        "chunk_id": "structured-1500:000425",
+        "rank": 4,
+        "sections": [
+          "82"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000423",
+        "rank": 5,
+        "sections": [
+          "82"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000439",
+        "rank": 8,
+        "sections": [
+          "88"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000440",
+        "rank": 8,
+        "sections": [
+          "88"
+        ],
+        "neighbour_of": "structured-1500:000439"
+      },
+      {
+        "chunk_id": "structured-1500:000485",
+        "rank": 9,
+        "sections": [
+          "110"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "Like the old section 54, can I avoid capital gains tax on selling my house if I buy another one?",
+      "capital gains on transfer of residential house property investment in another residential house",
+      "Where capital gains arise from the transfer of a residential house property, the assessee shall be exempt from tax to the extent of investment in another residential house",
+      "Can capital gains tax be avoided upon selling a residential house by purchasing another residential house property"
+    ]
+  },
+  {
+    "id": "h06",
+    "type": "prose",
+    "question": "How much extra tax do I pay if I file an ITR-U to correct an old return?",
+    "expected_sections": [
+      "267"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 2
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000916",
+        "rank": 1,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000917"
+      },
+      {
+        "chunk_id": "structured-1500:000917",
+        "rank": 1,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000918",
+        "rank": 1,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000917"
+      },
+      {
+        "chunk_id": "structured-1500:000919",
+        "rank": 2,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000920"
+      },
+      {
+        "chunk_id": "structured-1500:000920",
+        "rank": 2,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000921",
+        "rank": 2,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000920"
+      },
+      {
+        "chunk_id": "structured-1500:000902",
+        "rank": 6,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": "structured-1500:000903"
+      },
+      {
+        "chunk_id": "structured-1500:000903",
+        "rank": 6,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000904",
+        "rank": 6,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": "structured-1500:000903"
+      },
+      {
+        "chunk_id": "structured-1500:001313",
+        "rank": 7,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": "structured-1500:001314"
+      },
+      {
+        "chunk_id": "structured-1500:001314",
+        "rank": 7,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001315",
+        "rank": 7,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": "structured-1500:001314"
+      },
+      {
+        "chunk_id": "structured-1500:001363",
+        "rank": 8,
+        "sections": [
+          "431"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000922",
+        "rank": 9,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000921"
+      },
+      {
+        "chunk_id": "structured-1500:000923",
+        "rank": 10,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "How much extra tax do I pay if I file an ITR-U to correct an old return?",
+      "updated tax return additional tax payable return of income furnished",
+      "Where an updated return of income is furnished by an assessee, an additional tax shall be payable calculated at the rate of twenty percent or fifty percent of the aggregate of tax and interest due",
+      "How is the additional tax calculated when an assessee files an updated return of income to correct a previous return for a tax year"
+    ]
+  },
+  {
+    "id": "h07",
+    "type": "numeric",
+    "question": "How much deduction can a person with severe disability claim?",
+    "expected_sections": [
+      "154"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000597",
+        "rank": 1,
+        "sections": [
+          "154"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000533",
+        "rank": 2,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000534",
+        "rank": 2,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": "structured-1500:000533"
+      },
+      {
+        "chunk_id": "structured-1500:000535",
+        "rank": 3,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000536",
+        "rank": 3,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": "structured-1500:000535"
+      },
+      {
+        "chunk_id": "structured-1500:000599",
+        "rank": 4,
+        "sections": [
+          "156"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000537",
+        "rank": 5,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": "structured-1500:000538"
+      },
+      {
+        "chunk_id": "structured-1500:000538",
+        "rank": 5,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000689",
+        "rank": 6,
+        "sections": [
+          "190"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000554",
+        "rank": 8,
+        "sections": [
+          "134"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000772",
+        "rank": 10,
+        "sections": [
+          "213"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "How much deduction can a person with severe disability claim?",
+      "deduction person with severe disability total income",
+      "Where an assessee, being a resident in India, is a person with severe disability, there shall be allowed a deduction of Rs. 125000 in computing total income",
+      "What is the maximum deduction allowed from total income for an assessee who is a person with severe disability"
+    ]
+  },
+  {
+    "id": "h08",
+    "type": "numeric",
+    "question": "What is the late fee for filing an income tax return after the due date?",
+    "expected_sections": [
+      "428"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:001360",
+        "rank": 1,
+        "sections": [
+          "428"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001313",
+        "rank": 2,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": "structured-1500:001314"
+      },
+      {
+        "chunk_id": "structured-1500:001314",
+        "rank": 2,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001315",
+        "rank": 2,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": "structured-1500:001314"
+      },
+      {
+        "chunk_id": "structured-1500:001430",
+        "rank": 3,
+        "sections": [
+          "479"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001359",
+        "rank": 4,
+        "sections": [
+          "427"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001319",
+        "rank": 5,
+        "sections": [
+          "411"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001320",
+        "rank": 5,
+        "sections": [
+          "411"
+        ],
+        "neighbour_of": "structured-1500:001319"
+      },
+      {
+        "chunk_id": "structured-1500:001431",
+        "rank": 6,
+        "sections": [
+          "480"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000916",
+        "rank": 7,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000917"
+      },
+      {
+        "chunk_id": "structured-1500:000917",
+        "rank": 7,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000918",
+        "rank": 7,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": "structured-1500:000917"
+      },
+      {
+        "chunk_id": "structured-1500:001355",
+        "rank": 8,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001356",
+        "rank": 8,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": "structured-1500:001355"
+      },
+      {
+        "chunk_id": "structured-1500:001346",
+        "rank": 9,
+        "sections": [
+          "423"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001347",
+        "rank": 9,
+        "sections": [
+          "423"
+        ],
+        "neighbour_of": "structured-1500:001346"
+      },
+      {
+        "chunk_id": "structured-1500:001348",
+        "rank": 10,
+        "sections": [
+          "423"
+        ],
+        "neighbour_of": "structured-1500:001347"
+      }
+    ],
+    "queries": [
+      "What is the late fee for filing an income tax return after the due date?",
+      "fee for default in furnishing return of income after due date",
+      "Where a person fails to furnish a return of income within the due date, such person shall pay a fee of Rs. 5000",
+      "What is the late fee payable by an assessee for filing the return of income after the due date specified"
+    ]
+  },
+  {
+    "id": "h09",
+    "type": "lakh",
+    "question": "Can I accept 3 lakh in cash when I sell my car?",
+    "expected_sections": [
+      "186"
+    ],
+    "ranks": {
+      "section": 4,
+      "strict": 4,
+      "phrase": 4
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000545",
+        "rank": 1,
+        "sections": [
+          "132"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000546",
+        "rank": 1,
+        "sections": [
+          "132"
+        ],
+        "neighbour_of": "structured-1500:000545"
+      },
+      {
+        "chunk_id": "structured-1500:000422",
+        "rank": 2,
+        "sections": [
+          "81"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001217",
+        "rank": 3,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500:001218"
+      },
+      {
+        "chunk_id": "structured-1500:001218",
+        "rank": 3,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001219",
+        "rank": 3,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500:001218"
+      },
+      {
+        "chunk_id": "structured-1500:000684",
+        "rank": 4,
+        "sections": [
+          "186"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000682",
+        "rank": 5,
+        "sections": [
+          "185"
+        ],
+        "neighbour_of": "structured-1500:000683"
+      },
+      {
+        "chunk_id": "structured-1500:000683",
+        "rank": 5,
+        "sections": [
+          "185"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001200",
+        "rank": 6,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500:001201"
+      },
+      {
+        "chunk_id": "structured-1500:001201",
+        "rank": 6,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001202",
+        "rank": 6,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500:001201"
+      },
+      {
+        "chunk_id": "structured-1500:001203",
+        "rank": 7,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500:001202"
+      },
+      {
+        "chunk_id": "structured-1500:001486",
+        "rank": 8,
+        "sections": [
+          "515"
+        ],
+        "neighbour_of": "structured-1500:001487"
+      },
+      {
+        "chunk_id": "structured-1500:001487",
+        "rank": 8,
+        "sections": [
+          "515"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001488",
+        "rank": 8,
+        "sections": [
+          "515"
+        ],
+        "neighbour_of": "structured-1500:001487"
+      },
+      {
+        "chunk_id": "structured-1500:000388",
+        "rank": 9,
+        "sections": [
+          "70"
+        ],
+        "neighbour_of": "structured-1500:000389"
+      },
+      {
+        "chunk_id": "structured-1500:000389",
+        "rank": 9,
+        "sections": [
+          "70"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000390",
+        "rank": 9,
+        "sections": [
+          "70"
+        ],
+        "neighbour_of": "structured-1500:000389"
+      },
+      {
+        "chunk_id": "structured-1500:001266",
+        "rank": 10,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500:001267"
+      },
+      {
+        "chunk_id": "structured-1500:001267",
+        "rank": 10,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001268",
+        "rank": 10,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500:001267"
+      }
+    ],
+    "queries": [
+      "Can I accept 3 lakh in cash when I sell my car?",
+      "repayable amount advance sum in cash immovable property transfer limit",
+      "No person shall receive an amount of Rs. 200000 or more in cash in relation to transfer of any asset",
+      "Can an assessee accept cash of Rs. 300000 for the sale of a motor car"
+    ]
+  },
+  {
+    "id": "h10",
+    "type": "lakh",
+    "question": "Can my shop with a turnover of 2.5 crore use the presumptive tax scheme?",
+    "expected_sections": [
+      "58"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000300",
+        "rank": 1,
+        "sections": [
+          "58"
+        ],
+        "neighbour_of": "structured-1500:000301"
+      },
+      {
+        "chunk_id": "structured-1500:000301",
+        "rank": 1,
+        "sections": [
+          "58"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000302",
+        "rank": 1,
+        "sections": [
+          "58"
+        ],
+        "neighbour_of": "structured-1500:000301"
+      },
+      {
+        "chunk_id": "structured-1500:001269",
+        "rank": 2,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500:001270"
+      },
+      {
+        "chunk_id": "structured-1500:001270",
+        "rank": 2,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001271",
+        "rank": 2,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500:001270"
+      },
+      {
+        "chunk_id": "structured-1500:000315",
+        "rank": 4,
+        "sections": [
+          "61"
+        ],
+        "neighbour_of": "structured-1500:000316"
+      },
+      {
+        "chunk_id": "structured-1500:000316",
+        "rank": 4,
+        "sections": [
+          "61"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000311",
+        "rank": 5,
+        "sections": [
+          "61"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000312",
+        "rank": 5,
+        "sections": [
+          "61"
+        ],
+        "neighbour_of": "structured-1500:000311"
+      },
+      {
+        "chunk_id": "structured-1500:000303",
+        "rank": 6,
+        "sections": [
+          "58"
+        ],
+        "neighbour_of": "structured-1500:000302"
+      },
+      {
+        "chunk_id": "structured-1500:000814",
+        "rank": 7,
+        "sections": [
+          "232"
+        ],
+        "neighbour_of": "structured-1500:000815"
+      },
+      {
+        "chunk_id": "structured-1500:000815",
+        "rank": 7,
+        "sections": [
+          "232"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000816",
+        "rank": 7,
+        "sections": [
+          "232"
+        ],
+        "neighbour_of": "structured-1500:000815"
+      },
+      {
+        "chunk_id": "structured-1500:000199",
+        "rank": 8,
+        "sections": [
+          "27"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000196",
+        "rank": 9,
+        "sections": [
+          "26"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000197",
+        "rank": 9,
+        "sections": [
+          "26"
+        ],
+        "neighbour_of": "structured-1500:000196"
+      },
+      {
+        "chunk_id": "structured-1500:000313",
+        "rank": 10,
+        "sections": [
+          "61"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000314",
+        "rank": 10,
+        "sections": [
+          "61"
+        ],
+        "neighbour_of": "structured-1500:000313"
+      }
+    ],
+    "queries": [
+      "Can my shop with a turnover of 2.5 crore use the presumptive tax scheme?",
+      "profits and gains of business or profession presumptive taxation turnover Rs. 25000000",
+      "where the total turnover or gross receipts of an eligible business does not exceed Rs. 25000000, a sum equal to eight percent of the total turnover shall be deemed to be the profits and gains of such business",
+      "can an assessee engaged in business with a total turnover of Rs. 25000000 opt for the presumptive taxation scheme for determining total income"
+    ]
+  }
+]
