@@ -75,7 +75,8 @@ uv run python -m income_tax_agent.index --header   # chunk, embed, write data/in
 uv run python -m income_tax_agent.index --chunker structured   # the structured-chunk index
 ```
 
-When more than one index exists locally, the app's sidebar has an index picker for comparing them.
+The app's sidebar has an index picker, so you can compare the default fixed chunks with the
+structured chunks on the same question. Both indexes are in the repo.
 
 ## Evaluate
 

@@ -20,10 +20,12 @@ data/raw/
 data/processed/
 *.pdf
 
-# Experiment indexes stay local. The app's index (settings.index_name) is committed:
-# Streamlit Cloud has no PDF to rebuild it from. ~32 MB, largest file 23 MB.
+# Experiment indexes stay local. The indexes the app offers are committed: Streamlit
+# Cloud has no PDF to rebuild them from. The default (settings.index_name) is ~32 MB,
+# largest file 23 MB; the structured one (index picker) ~25 MB, largest file 18 MB.
 data/index/*
 !data/index/fixed-1000-150-header__bge-base/
+!data/index/structured-1500__bge-base/
 
 # LLM response cache and the fastembed model (~210 MB, downloaded on first start)
 .cache/

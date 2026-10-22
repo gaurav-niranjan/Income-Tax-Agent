@@ -63,7 +63,8 @@ def test_index_picker_switches_index(app, tmp_path):
     app.run()
     picker = app.sidebar.selectbox[0]
     assert picker.value == "fixed-200-20__fake"  # the configured default comes first
-    assert set(picker.options) == {"fixed-200-20__fake", other.name}
+    # Visitors see plain labels from each manifest, not folder names.
+    assert picker.options == ["Fixed 200-character chunks (default)", "Fixed 300-character chunks (experiment)"]
     picker.select(other.name).run()
     app.chat_input[0].set_value("health insurance premium deduction").run()
     assert not app.exception

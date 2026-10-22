@@ -4,6 +4,7 @@ Run locally:  uv run streamlit run app/streamlit_app.py
 On Streamlit Community Cloud, put GOOGLE_API_KEY and the model names in the app's Secrets.
 """
 
+import json
 import os
 
 import streamlit as st
@@ -48,6 +49,22 @@ def available_indexes() -> list[str]:
     """Index folders on disk, the configured default first. A folder counts once it has a manifest."""
     found = sorted(p.parent.name for p in settings.index_dir.glob("*/manifest.json"))
     return sorted(found, key=lambda name: name != settings.index_name)
+
+
+def index_label(name: str) -> str:
+    """A plain description for visitors, e.g. "Structured chunks (experiment)", from the manifest."""
+    try:
+        chunker = json.loads((settings.index_dir / name / "manifest.json").read_text())["chunker"]
+    except (OSError, ValueError, KeyError):
+        return name
+    if chunker.get("type") == "structured":
+        label = "Structured chunks: sections, sub-sections, table rows"
+    elif chunker.get("type") == "fixed":
+        label = f"Fixed {chunker['size']:,}-character chunks" if "size" in chunker else "Fixed-size chunks"
+        label += " + section titles" if chunker.get("search_prefix") else ""
+    else:
+        label = name
+    return label + (" (default)" if name == settings.index_name else " (experiment)")
 
 
 @st.cache_resource(show_spinner="Loading the Act. The first start downloads the search model (about a minute)...")
@@ -140,12 +157,15 @@ with st.sidebar:
     st.divider()
     indexes = available_indexes()
     if len(indexes) > 1:
-        # Only shown where several indexes exist (locally). The deployed app ships one.
         index_name = st.selectbox(
-            "Index",
+            "How the Act is split for search",
             options=indexes,
-            help="Which chunking of the Act to search. Each index is loaded once, then kept in memory.",
+            format_func=index_label,
+            help="The Act is split into chunks before search. 'Fixed' cuts every 1,000 characters; "
+            "'Structured' cuts where the Act does (sections, sub-sections, table rows). "
+            "The first use of an index takes a few seconds to load.",
         )
+        st.caption(f"Index: `{index_name}`")
     else:
         index_name = settings.index_name
         st.caption(f"Index: `{index_name}`")
