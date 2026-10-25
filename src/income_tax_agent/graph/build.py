@@ -40,6 +40,7 @@ def answer_question(
     k: int | None = None,
     neighbours: bool | None = None,
     expand: bool | None = None,
+    rerank: bool | None = None,
     graph=None,
     settings: Settings | None = None,
 ) -> AnswerState:
@@ -54,5 +55,6 @@ def answer_question(
             "k": k or settings.answer_k,
             "neighbours": settings.answer_neighbours if neighbours is None else neighbours,
             "expand": settings.expand_queries if expand is None else expand,
+            "rerank": settings.rerank if rerank is None else rerank,
         }
     )

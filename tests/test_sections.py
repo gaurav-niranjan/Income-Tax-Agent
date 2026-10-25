@@ -46,6 +46,63 @@ def test_schedule_title_skips_part_heading():
     assert doc.sections[0].title == "RECOGNISED PROVIDENT FUNDS"
 
 
+# Real headings from p.231 and p.254, and the sub-parts of Chapter XVII (p.366).
+CHAPTERS = """Definition of "tax year".
+3 . (1) For the purposes of this Act, "tax year" means the twelve months period.
+CHAPTER XIII
+DETERMINATION OF TAX IN SPECIAL CASES
+A.—Determination of tax in certain special cases
+Determination of tax where total income includes income on which no tax is payable.
+4. (1) In a case where the total income of an assessee includes any income.
+Tax on short-term capital gains in certain cases.
+5. Where the total income of an assessee includes short-term capital gains.
+                    E.—Special provisions relating to non-residents and foreign companies
+Tax on dividends, royalty and fees for technical service in case of foreign companies.
+6. (1) The income-tax payable on the total income of a non-resident.
+CHAPTER XVII
+SPECIAL PROVISIONS RELATING TO CERTAIN PERSONS
+B. —Special provisions for registered non-profit organisation
+1. —Registration
+Application for registration.
+7. (1) An application for registration."""
+
+
+def test_sections_record_chapter_part_and_sub_part():
+    doc = doc_from((1, SECTIONS_1_TO_3), (231, CHAPTERS))
+    paths = {s.number: s.path for s in doc.sections}
+    assert paths["3"] == []
+    assert paths["4"] == paths["5"] == [
+        "Chapter XIII: Determination of tax in special cases",
+        "A. Determination of tax in certain special cases",
+    ]
+    assert paths["6"] == [
+        "Chapter XIII: Determination of tax in special cases",
+        "E. Special provisions relating to non-residents and foreign companies",
+    ]
+    # A new chapter clears the part; "B. —" and "1. —" spacing both work.
+    assert paths["7"] == [
+        "Chapter XVII: Special provisions relating to certain persons",
+        "B. Special provisions for registered non-profit organisation",
+        "1. Registration",
+    ]
+
+
+def test_headings_belong_to_the_section_they_introduce():
+    doc = doc_from((1, SECTIONS_1_TO_3), (231, CHAPTERS))
+    # Part E's heading is not the end of section 5 (its text would match "non-residents").
+    e_heading = doc.text.index("E.—Special")
+    assert doc.section_at(e_heading).number == "6"
+    chapter = doc.text.index("CHAPTER XIII")
+    assert doc.section_at(chapter).number == "4"
+    assert doc.section_at(chapter - 1).number == "3"
+
+
+def test_schedule_parts_are_not_chapter_parts():
+    text = SECTION_3 + "\nSCHEDULE XIV\n[See section 4]\nINSURANCE BUSINESS\nA.—Life insurance business\n1. Profits."
+    doc = doc_from((1, SECTIONS_1_TO_3), (640, text))
+    assert [(s.number, s.path) for s in doc.sections][-2:] == [("3", []), ("Schedule XIV", [])]
+
+
 def test_lookup_by_offset_lists_both_sections_at_a_boundary():
     doc = doc_from((1, SECTIONS_1_TO_3), (12, SECTION_3))
     start_2 = doc.text.index("Definitions.")

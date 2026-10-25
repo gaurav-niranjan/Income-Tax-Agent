@@ -44,17 +44,22 @@ def test_same_config_same_day_replaces_the_run(tmp_path):
 
 def test_readme_shows_only_key_runs(tmp_path):
     shown = stamp("retrieval", CONFIG, created=datetime(2026, 10, 18, 10, 0))
+    held = stamp("retrieval", CONFIG | {"questions_file": "heldout.jsonl"}, created=datetime(2026, 10, 18, 10, 30))
     hidden = stamp("retrieval", CONFIG | {"mode": "bm25"}, created=datetime(2026, 10, 18, 11, 0))
     (tmp_path / "key_runs.json").write_text(json.dumps({"retrieval": [
-        {"run": shown["run_id"], "step": "Baseline"},
-        {"run": "2026-01-01_deadbeef", "step": "Deleted run"},
+        {"step": "Baseline", "dev": shown["run_id"], "heldout": held["run_id"]},
+        {"step": "Dev only", "dev": shown["run_id"]},
+        {"step": "Deleted run", "dev": "2026-01-01_deadbeef"},
     ]}))
-    for config in (shown, hidden):
+    for config in (shown, held, hidden):
         save_run(config, SUMMARY, [], "# report\n", results_dir=tmp_path)
 
     readme = (tmp_path / "README.md").read_text()
-    assert f"| Baseline | dev | 1.00 (1/1) |" in readme
-    assert shown["run_id"] in readme and hidden["run_id"] not in readme
+    # dev and held-out side by side in one row, as raw counts
+    assert "| Baseline | 1/1 | 1/1 | 1.00 | 1/1 | 1/1 | 1.00 |" in readme
+    assert f"[held-out](retrieval/{held['run_id']}/report.md)" in readme
+    assert "| Dev only | 1/1 | 1/1 | 1.00 | - | - | - |" in readme
+    assert hidden["run_id"] not in readme
     assert "2026-01-01_deadbeef (not found)" in readme
     assert hidden["run_id"] in (tmp_path / "all_runs.md").read_text()
 

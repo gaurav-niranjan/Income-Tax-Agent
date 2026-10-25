@@ -127,6 +127,16 @@ def test_small_section_is_one_chunk_and_chunks_never_cross_sections():
     assert total == sum(not ch.isspace() for ch in doc.text)
 
 
+def test_breadcrumb_prefix_keeps_label_and_text():
+    doc = build_document([{"page": 254, "text": "E.—Special provisions relating to non-residents\n" + SUBSECTIONS}])
+    plain = StructuredChunker(max_chars=2000, min_chars=40).chunk(doc)
+    crumb = StructuredChunker(max_chars=2000, min_chars=40, breadcrumb=True).chunk(doc)
+    assert crumb[0].chunk_id.startswith("structured-2000-breadcrumb:")
+    assert crumb[0].search_text.startswith("E. Special provisions relating to non-residents > Section 1")
+    assert [c.text for c in crumb] == [c.text for c in plain]
+    assert [c.extra["label"] for c in crumb] == [c.extra["label"] for c in plain]
+
+
 def test_split_table_repeats_its_header():
     doc = _doc(SUBSECTIONS, DEFINITIONS, SLABS)
     chunks = [c for c in StructuredChunker(max_chars=250, min_chars=40).chunk(doc) if c.sections == ["3"]]

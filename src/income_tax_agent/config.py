@@ -39,6 +39,9 @@ class Settings(BaseSettings):
     embedding_query_prefix: str = "Represent this sentence for searching relevant passages: "
     # fastembed's default cache is a temp folder that macOS may wipe. Keep models here.
     model_cache_dir: Path = PROJECT_ROOT / ".cache/fastembed"
+    # A folder with the model's files (scripts/download_model.py), used instead of the cache.
+    # Set on Vercel: the model ships inside the deployment, so nothing is downloaded at start.
+    embedding_model_dir: Path | None = None
 
     # --- Index ---
     chunk_size: int = 1000
@@ -46,10 +49,10 @@ class Settings(BaseSettings):
     # Structured chunker (chunkers/structured.py): sizes without whitespace runs.
     structured_max_chars: int = 1500
     structured_min_chars: int = 300
-    # The index the app and eval use by default. Chosen on the retrieval eval
-    # (eval/results, 2026-10-18): header + dense + neighbours had the best strict hit@5
-    # (20/22) and MRR (0.76), and is simpler than hybrid.
-    index_name: str = "fixed-1000-150-header__bge-base"
+    # The index the app and eval use by default. Grid of 4 indexes x 3 modes x expansion x
+    # reranker (eval/results, 2026-10-24): structured + dense + expansion + reranker was best,
+    # strict hit@1 dev 23/23, held-out 9/10 (fixed-header, same setup: 19/23, 7/10).
+    index_name: str = "structured-1500__bge-base"
 
     # --- Retrieval ---
     # Reciprocal Rank Fusion constant. The paper's 60 makes rank 1 worth barely more than
@@ -57,8 +60,10 @@ class Settings(BaseSettings):
     # (hybrid, no expansion): dev strict MRR 0.73 at k=60, 0.79 at k=2.
     rrf_k: int = 2
     hybrid_candidates: int = 50  # how deep each list goes before fusing
-    # What the answer pipeline uses. Hybrid with the fusion below (2026-10-19).
-    answer_mode: str = "hybrid"
+    # What the answer pipeline uses. With the reranker the first-stage mode matters little
+    # (it only has to get the right chunk into the pool); dense was best and is simplest
+    # (2026-10-24: hit@1 dev 23/23 vs hybrid 22/23).
+    answer_mode: str = "dense"
     answer_k: int = 5
     answer_neighbours: bool = True
 
@@ -76,6 +81,22 @@ class Settings(BaseSettings):
     expand_fusion: str = "max"
     # How deep each query's list goes before merging.
     expand_candidates: int = 10
+
+    # --- Reranking ---
+    # A cross-encoder (retrieval/rerank.py) reorders the pooled candidates of all queries
+    # (Retriever.rerank). Replaces expand_fusion when on. The biggest single gain in the
+    # 2026-10-24 grid (+4 to +5 questions at hit@1); costs ~2.3 s per question on an M2.
+    rerank: bool = True
+    # Model sweep on structured + hybrid + expansion (2026-10-24): the smallest (80 MB) was
+    # best on dev; MiniLM-L-12, both jina models and bge-reranker-base (1 GB) were not better.
+    rerank_model: str = "Xenova/ms-marco-MiniLM-L-6-v2"
+    # Like embedding_model_dir: a folder with the model's files (scripts/download_model.py).
+    rerank_model_dir: Path | None = None
+    # Candidates taken from each query's list (question + rewrites), then pooled.
+    # 10 scored the same as 20 with dense (2026-10-24) at half the reranker time.
+    rerank_candidates: int = 10
+    # Weight of the best rewrite's score next to the question's (only 0.5 was tried).
+    rerank_rewrite_weight: float = 0.5
 
     # --- App ---
     # Strangers share one free API quota; this cap keeps one visitor from using it all.

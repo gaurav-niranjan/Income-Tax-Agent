@@ -17,6 +17,7 @@ from income_tax_agent.ingest.chunkers.base import Chunk
 from income_tax_agent.retrieval.bm25 import BM25Retriever
 from income_tax_agent.retrieval.dense import DenseRetriever
 from income_tax_agent.retrieval.fusion import FUSIONS, reciprocal_rank_fusion
+from income_tax_agent.retrieval.rerank import Reranker, get_reranker
 
 MODES = ("dense", "bm25", "hybrid")
 
@@ -35,6 +36,7 @@ class Retriever:
         index_name: str,
         embeddings: Embeddings | None = None,
         settings: Settings | None = None,
+        reranker: Reranker | None = None,
     ):
         self.settings = settings or get_settings()
         chunks, store, self.manifest = load_index(index_name, embeddings, self.settings)
@@ -43,6 +45,10 @@ class Retriever:
         self._position = {c.chunk_id: i for i, c in enumerate(chunks)}
         self.dense = DenseRetriever(store)
         self.bm25 = BM25Retriever(chunks)
+        # None = settings.rerank decides. Pass one to share a loaded model between indexes.
+        if reranker is None and self.settings.rerank:
+            reranker = get_reranker(self.settings)
+        self.reranker = reranker
 
     def retrieve(self, query: str, mode: str = "hybrid", k: int = 5) -> list[Hit]:
         if mode == "dense":
@@ -60,11 +66,19 @@ class Retriever:
             raise ValueError(f"Unknown mode {mode!r}. Use one of {MODES}.")
         return [Hit(self.chunks[cid], score, rank) for rank, (cid, score) in enumerate(ranked, start=1)]
 
-    def retrieve_multi(self, queries: list[str], mode: str = "hybrid", k: int = 5) -> list[Hit]:
+    def retrieve_multi(
+        self, queries: list[str], mode: str = "hybrid", k: int = 5, rerank: bool | None = None
+    ) -> list[Hit]:
         """Search with several phrasings of one question; merge the lists with RRF.
 
         One query gives exactly retrieve()'s result, so runs without expansion are unchanged.
+        With reranking, the lists are pooled and reordered by the reranker instead (see
+        rerank()). `rerank`: None = use it if this retriever has one (settings.rerank).
         """
+        if rerank is None:
+            rerank = self.reranker is not None
+        if rerank:
+            return self.rerank(queries, mode, k)
         if len(queries) == 1:
             return self.retrieve(queries[0], mode, k)
         if self.settings.expand_fusion not in FUSIONS:
@@ -73,6 +87,36 @@ class Retriever:
         rankings = [[h.chunk.chunk_id for h in self.retrieve(q, mode, n)] for q in queries]
         fused = FUSIONS[self.settings.expand_fusion](rankings, k=self.settings.rrf_k)[:k]
         return [Hit(self.chunks[cid], score, rank) for rank, (cid, score) in enumerate(fused, start=1)]
+
+    def rerank(self, queries: list[str], mode: str, k: int) -> list[Hit]:
+        """Pool the top candidates of every query, then order them by the reranker's score.
+
+        Score = score against the user's question + w * best score against any rewrite.
+        The question keeps the user's key words: the rewrites of "tax laws for non-resident
+        Indians" all dropped "Indian", and ranked by them alone Section 6 beat 212-217.
+        The rewrites bring the Act's wording: "Can I accept 3 lakh in cash?" shares no words
+        with "two lakh rupees or more ... otherwise than by an account payee cheque".
+        Either one alone lost one of those two questions (eval/results, 2026-10-24).
+        The reranker reads search_text, so it also sees the section title in the prefix.
+        """
+        pool: dict[str, Chunk] = {}
+        for q in queries:
+            for h in self.retrieve(q, mode, self.settings.rerank_candidates):
+                pool.setdefault(h.chunk.chunk_id, h.chunk)
+        if not pool:
+            return []
+        if self.reranker is None:  # switched on per request (app toggle) with settings.rerank off
+            self.reranker = get_reranker(self.settings)
+        chunks = list(pool.values())
+        texts = [c.search_text for c in chunks]
+        scores = self.reranker.score(queries[0], texts)
+        if len(queries) > 1:
+            per_rewrite = [self.reranker.score(q, texts) for q in queries[1:]]
+            w = self.settings.rerank_rewrite_weight
+            scores = [s + w * max(col) for s, col in zip(scores, zip(*per_rewrite))]
+        # Stable sort: equal scores keep search order.
+        ranked = sorted(zip(chunks, scores), key=lambda cs: cs[1], reverse=True)[:k]
+        return [Hit(c, s, rank) for rank, (c, s) in enumerate(ranked, start=1)]
 
     def expand_neighbours(self, hits: list[Hit]) -> list[Hit]:
         """Add the previous and next chunk of each hit, if they share a section with it.

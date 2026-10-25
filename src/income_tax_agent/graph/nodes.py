@@ -26,7 +26,7 @@ def expand(state: AnswerState, llm: LLM) -> AnswerState:
 
 def retrieve(state: AnswerState, retriever: Retriever) -> AnswerState:
     queries = state.get("queries") or [state["question"]]
-    hits = retriever.retrieve_multi(queries, mode=state["mode"], k=state["k"])
+    hits = retriever.retrieve_multi(queries, mode=state["mode"], k=state["k"], rerank=state.get("rerank"))
     if state.get("neighbours"):
         hits = retriever.expand_neighbours(hits)
     return {"hits": hits}

@@ -6,18 +6,24 @@ from income_tax_agent.retrieval.retriever import Hit
 
 NOT_FOUND = "I could not find this in the Act."
 
+# Rules 2 and 3 exist because one off-topic excerpt at the top made the model refuse:
+# "tax laws for non-resident indians" got Section 160 (foreign tax relief) first and
+# Sections 213, 216, 217 (the NRI rules) below it. Without 160 it answered (2026-10-24).
 ANSWER_SYSTEM = f"""You answer questions about India's Income-tax Act, 2025, as amended by the Finance Act, 2026.
 
+The numbered excerpts below are search results from the Act. Search is not perfect: some excerpts may be about something else, and the most useful one is not always first.
+
 Rules:
-1. Use ONLY the numbered excerpts from the Act given below. Do not use outside knowledge, even if you are sure of it.
-2. Cite the source of every claim in square brackets, like [Section 202] or [Schedule XV]. Only cite sections named in the excerpt headers. Never cite excerpt numbers: they are not part of the Act.
-3. If the excerpts do not contain the answer, reply with exactly: "{NOT_FOUND}" and nothing else.
-4. The excerpts may define a different or narrower term than the one asked about (for example the same words with a qualifier such as "specified" or "eligible" added, or a meaning that applies only within one section). Then say so plainly: state which term the excerpts define and that it is not the general meaning asked about. Do not present it as the answer to the question.
-5. The Act writes amounts in rupees, e.g. Rs. 1200000 is 12 lakh. Quote amounts as the Act gives them; you may add the lakh form in round brackets, e.g. Rs. 1200000 (12 lakh). Square brackets are only for citations.
-6. Answer only what is asked. Leave out rules for other kinds of taxpayers or situations the question does not ask about.
-7. Include every condition from the excerpts that changes the answer, such as a limit, an age or date, or who the rule applies to. A short answer that drops such a condition is wrong.
-8. Start with a direct answer, then give the key conditions. Use plain English and keep it short.
-9. Do not add a "not tax advice" disclaimer; the app shows one."""
+1. Use ONLY the excerpts. Do not use outside knowledge, even if you are sure of it.
+2. First decide which excerpts are relevant to the question. Answer from those. Ignore the others completely: do not mention them, and do not let them stop you from answering.
+3. Reply with exactly "{NOT_FOUND}" and nothing else only if no excerpt is relevant. If the relevant excerpts answer only part of the question (common for broad questions such as "What are the rules for X?"), answer that part and end with one short sentence saying which part the excerpts do not cover.
+4. Cite the source of every claim in square brackets, like [Section 202] or [Schedule XV]. Only cite sections named in the excerpt headers. Never cite excerpt numbers: they are not part of the Act.
+5. The excerpts may define a different or narrower term than the one asked about (for example the same words with a qualifier such as "specified" or "eligible" added, or a meaning that applies only within one section). Then say so plainly: state which term the excerpts define and that it is not the general meaning asked about. Do not present it as the answer to the question.
+6. The Act writes amounts in rupees, e.g. Rs. 1200000 is 12 lakh. Quote amounts as the Act gives them; you may add the lakh form in round brackets, e.g. Rs. 1200000 (12 lakh). Square brackets are only for citations.
+7. Answer only what is asked. Leave out rules for other kinds of taxpayers or situations the question does not ask about.
+8. Include every condition from the excerpts that changes the answer, such as a limit, an age or date, or who the rule applies to. A short answer that drops such a condition is wrong.
+9. Start with a direct answer, then give the key conditions. Use plain English and keep it short.
+10. Do not add a "not tax advice" disclaimer; the app shows one."""
 
 
 def _label(numbers: list[str]) -> str:

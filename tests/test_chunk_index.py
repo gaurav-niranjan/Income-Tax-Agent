@@ -60,6 +60,16 @@ def test_header_chunker_keeps_text_and_adds_search_prefix():
     assert section_header(["Schedule XV"], ["DEDUCTION ..."]) == "Schedule XV: DEDUCTION ..."
 
 
+def test_breadcrumb_header_starts_with_chapter_and_part():
+    text = "CHAPTER II\nBASIS OF CHARGE\nA.—General\n" + TEXT
+    doc = build_document([{"page": 7, "text": text}])
+    chunks = HeaderPrefixChunker(FixedSizeChunker(size=300, overlap=50), breadcrumb=True).chunk(doc)
+
+    assert chunks[0].chunk_id == "fixed-300-50-breadcrumb:000000"
+    assert chunks[0].search_text.startswith("Chapter II: Basis of charge > A. General > Section 1: Short title.\n")
+    assert section_header(["2"], ["Definitions."], [[]]) == "Section 2: Definitions."  # no headings: as before
+
+
 def test_short_model_name():
     assert short_model_name("BAAI/bge-base-en-v1.5") == "bge-base"
     assert short_model_name("BAAI/bge-small-en-v1.5") == "bge-small"

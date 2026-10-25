@@ -160,18 +160,20 @@ def _table_row(line: str, style: str | None, last: tuple[int, str]) -> tuple[str
 class StructuredChunker:
     max_chars: int = 1500
     min_chars: int = 300
+    breadcrumb: bool = False  # start the search prefix with the chapter and part (see header.py)
 
     @property
     def name(self) -> str:
-        return f"structured-{self.max_chars}"
+        return f"structured-{self.max_chars}" + ("-breadcrumb" if self.breadcrumb else "")
 
     def config(self) -> dict:
+        label = "section + sub-section/table-row label + title"
         return {
             "type": "structured",
             "max_chars": self.max_chars,
             "min_chars": self.min_chars,
             "size_measure": "characters, whitespace runs collapsed",
-            "search_prefix": "section + sub-section/table-row label + title (dense + bm25)",
+            "search_prefix": f"{'chapter > part > ' if self.breadcrumb else ''}{label} (dense + bm25)",
         }
 
     # --- splitting -------------------------------------------------------------------
@@ -296,6 +298,7 @@ class StructuredChunker:
                     continue
                 header = self._header_text(doc, items, group)
                 label = self._label(section, group)
+                path = " > ".join([*section.path, ""]) if self.breadcrumb else ""
                 title = f": {section.title}" if section.title else ""
                 chunks.append(
                     Chunk(
@@ -311,7 +314,7 @@ class StructuredChunker:
                             "kinds": sorted({p.kind for p in group}),
                             "repeated_header": bool(header),
                             "section_chars": doc.section_chars_between(g_start, g_end),
-                            "search_prefix": f"{label}{title}\n",
+                            "search_prefix": f"{path}{label}{title}\n",
                         },
                     )
                 )

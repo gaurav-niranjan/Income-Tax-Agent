@@ -80,6 +80,18 @@ def test_session_question_cap(app):
     assert any("questions per session" in c.value for c in app.caption)
 
 
+@pytest.mark.parametrize("on", [True, False])
+def test_rerank_toggle(app, on):
+    app.run()
+    toggle = next(t for t in app.sidebar.toggle if t.label == "Rerank results")
+    toggle.set_value(on).run()
+    app.chat_input[0].set_value("health insurance premium deduction").run()
+    assert not app.exception
+    assistant = [m for m in app.chat_message if m.name == "assistant"]
+    assert "Fake answer" in assistant[0].markdown[0].value
+    assert any("reranked" in c.value for c in assistant[0].expander[0].caption) == on
+
+
 def test_question_with_query_rewrite_on(app):
     app.run()
     app.toggle[1].set_value(True).run()  # "Rewrite my question for search"

@@ -12,6 +12,7 @@ class AnswerState(TypedDict, total=False):
     k: int  # number of chunks retrieved
     neighbours: bool  # also pass each hit's previous/next chunk from the same section
     expand: bool  # let an LLM add search queries in the Act's wording
+    rerank: bool  # reorder candidates with the cross-encoder; unset = settings.rerank
     # Filled by the nodes
     queries: list[str]  # what was searched: the question first, then any expansions
     expand_error: str  # set when expansion failed and only the question was searched

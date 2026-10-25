@@ -22,7 +22,8 @@ BODY = """    Short title, extent and commencement.
 
 @pytest.fixture(scope="module")
 def retriever(tmp_path_factory):
-    settings = Settings(index_dir=tmp_path_factory.mktemp("index"), _env_file=None)
+    # No reranker: these tests check search and fusion; reranker tests set one themselves.
+    settings = Settings(index_dir=tmp_path_factory.mktemp("index"), rerank=False, _env_file=None)
     out = build_index(FixedSizeChunker(120, 20), FakeEmbeddings(), settings, pages=[make_page(1, BODY)])
     return Retriever(out.name, FakeEmbeddings(), settings)
 
@@ -134,6 +135,86 @@ def test_expand_neighbours_skips_other_sections(retriever):
     order = retriever._order
     expanded = retriever.expand_neighbours([Hit(order[3], 0.5, 1)])  # section 3 only
     assert [h.chunk.chunk_id for h in expanded] == [order[2].chunk_id, order[3].chunk_id]
+
+
+class ScriptedReranker:
+    """Scores by a word chosen per test, and records what it was asked."""
+
+    model_name = "scripted"
+
+    def __init__(self, favourite: str):
+        self.favourite = favourite
+        self.calls: list[tuple[str, int]] = []
+
+    def score(self, query, texts):
+        self.calls.append((query, len(texts)))
+        return [float(self.favourite in t) for t in texts]
+
+
+def test_rerank_pools_all_queries_and_scores_against_the_question(retriever, monkeypatch):
+    reranker = ScriptedReranker("rent")
+    monkeypatch.setattr(retriever, "reranker", reranker)
+    # BM25: the question alone finds only health insurance; the rewrite brings the rent chunk.
+    hits = retriever.retrieve_multi(["health insurance premium", "rent deduct"], mode="bm25", k=2)
+    assert "rent" in hits[0].chunk.text  # pooled from the rewrite, put first by the reranker
+    assert [h.rank for h in hits] == [1, 2]
+    assert [q for q, _ in reranker.calls] == ["health insurance premium", "rent deduct"]
+
+
+class ByQuery:
+    """Scores from a table: {query: {word in chunk: score}}."""
+
+    model_name = "table"
+
+    def __init__(self, table):
+        self.table = table
+
+    def score(self, query, texts):
+        return [sum(v for w, v in self.table[query].items() if w in t) for t in texts]
+
+
+def test_rerank_adds_half_the_best_rewrite_score(retriever, monkeypatch):
+    # Question alone prefers health (1.0 vs 0.8); rent's rewrite score lifts it: 0.8 + 0.5 * 1.0 > 1.0.
+    table = {"health insurance premium": {"health": 1.0, "rent": 0.8},
+             "rent deduct": {"rent": 1.0}, "deduct income-tax": {"rent": 0.2}}
+    monkeypatch.setattr(retriever, "reranker", ByQuery(table))
+    hits = retriever.retrieve_multi(list(table), mode="bm25", k=2)
+    assert "rent" in hits[0].chunk.text
+    assert hits[0].score == pytest.approx(0.8 + 0.5 * 1.0)
+
+
+def test_rerank_also_applies_to_a_single_query(retriever, monkeypatch):
+    monkeypatch.setattr(retriever, "reranker", ScriptedReranker("2025"))
+    hits = retriever.retrieve_multi(["Act income-tax"], mode="bm25", k=1)
+    assert "2025" in hits[0].chunk.text
+
+
+def test_rerank_returns_nothing_when_no_query_matches(retriever, monkeypatch):
+    monkeypatch.setattr(retriever, "reranker", ScriptedReranker("rent"))
+    assert retriever.retrieve_multi(["zzz"], mode="bm25", k=3) == []
+
+
+def test_rerank_can_be_switched_per_request(retriever, monkeypatch):
+    queries = ["health insurance premium", "rent deduct"]
+    plain = retriever.retrieve_multi(queries, mode="bm25", k=2)
+    monkeypatch.setattr(retriever, "reranker", ScriptedReranker("rent"))
+    off = retriever.retrieve_multi(queries, mode="bm25", k=2, rerank=False)
+    assert [h.chunk.chunk_id for h in off] == [h.chunk.chunk_id for h in plain]
+
+
+def test_rerank_on_request_loads_a_reranker_when_settings_have_none(retriever, monkeypatch):
+    assert retriever.reranker is None  # the fixture's settings have rerank=False
+    monkeypatch.setattr(retriever.settings, "fake_models", True)  # FakeReranker: no download
+    hits = retriever.retrieve_multi(["health insurance premium"], mode="bm25", k=1, rerank=True)
+    assert retriever.reranker is not None and hits
+    monkeypatch.setattr(retriever, "reranker", None)  # leave the shared fixture as it was
+
+
+def test_fake_reranker_prefers_shared_words():
+    from income_tax_agent.retrieval.rerank import FakeReranker
+
+    a, b = FakeReranker().score("health insurance premium", ["premium for health insurance", "rent of land"])
+    assert a > b
 
 
 def test_unknown_mode_is_an_error(retriever):

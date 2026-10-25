@@ -1,0 +1,3988 @@
+[
+  {
+    "id": "q01",
+    "type": "table",
+    "question": "What are the income tax rates under the new regime?",
+    "expected_sections": [
+      "202"
+    ],
+    "ranks": {
+      "section": 10,
+      "strict": 10,
+      "phrase": 10
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000084",
+        "rank": 1,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000085"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000085",
+        "rank": 1,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000086",
+        "rank": 1,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000085"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000599",
+        "rank": 2,
+        "sections": [
+          "156"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000715",
+        "rank": 3,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000716",
+        "rank": 3,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000715"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000105",
+        "rank": 4,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000106"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000106",
+        "rank": 4,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000107",
+        "rank": 4,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000106"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000104",
+        "rank": 5,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000105"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000016",
+        "rank": 6,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000017"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000017",
+        "rank": 6,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000018",
+        "rank": 6,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000017"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000717",
+        "rank": 7,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000716"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000711",
+        "rank": 8,
+        "sections": [
+          "199"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000712",
+        "rank": 8,
+        "sections": [
+          "199"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000711"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000724",
+        "rank": 9,
+        "sections": [
+          "204"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000725",
+        "rank": 9,
+        "sections": [
+          "204"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000724"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000719",
+        "rank": 10,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000720",
+        "rank": 10,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000719"
+      }
+    ],
+    "queries": [
+      "What are the income tax rates under the new regime?",
+      "income tax rates total income slab rates individual",
+      "The rates of income tax for the total income of an individual shall be specified in the relevant Finance Act",
+      "What are the income tax rates applicable to the total income of an individual under the default tax regime"
+    ]
+  },
+  {
+    "id": "q02",
+    "type": "table",
+    "question": "What is the TDS rate when a specified person pays rent for land or a building?",
+    "expected_sections": [
+      "393"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:001199",
+        "rank": 1,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001200"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001200",
+        "rank": 1,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001201",
+        "rank": 1,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001200"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001219",
+        "rank": 3,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001220"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001220",
+        "rank": 3,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001221",
+        "rank": 3,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001220"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001560",
+        "rank": 4,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001561"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001561",
+        "rank": 4,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001288",
+        "rank": 5,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001289"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001289",
+        "rank": 5,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001290",
+        "rank": 5,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001289"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000200",
+        "rank": 6,
+        "sections": [
+          "28"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001211",
+        "rank": 7,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001212"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001212",
+        "rank": 7,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001213",
+        "rank": 7,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001212"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001206",
+        "rank": 8,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001207"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001207",
+        "rank": 8,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001208",
+        "rank": 8,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001207"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001215",
+        "rank": 9,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001216"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001216",
+        "rank": 9,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001217",
+        "rank": 9,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001216"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001202",
+        "rank": 10,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001201"
+      }
+    ],
+    "queries": [
+      "What is the TDS rate when a specified person pays rent for land or a building?",
+      "tax deducted at source rent land building specified person rate",
+      "Where any specified person responsible for paying to a resident any income by way of rent shall deduct tax deducted at source at the rate of",
+      "What is the tax deducted at source rate applicable when a specified person pays rent for land or a building"
+    ]
+  },
+  {
+    "id": "q03",
+    "type": "table",
+    "question": "At what rate is tax collected at source on the sale of scrap?",
+    "expected_sections": [
+      "394"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:001236",
+        "rank": 1,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001237",
+        "rank": 1,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001236"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001290",
+        "rank": 2,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001291"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001291",
+        "rank": 2,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001292",
+        "rank": 2,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001291"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001206",
+        "rank": 3,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001207"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001207",
+        "rank": 3,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001208",
+        "rank": 3,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001207"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001243",
+        "rank": 4,
+        "sections": [
+          "397"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001244"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001244",
+        "rank": 4,
+        "sections": [
+          "397"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001245",
+        "rank": 4,
+        "sections": [
+          "397"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001244"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001238",
+        "rank": 5,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001237"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001427",
+        "rank": 6,
+        "sections": [
+          "477"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000216",
+        "rank": 7,
+        "sections": [
+          "33"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000217"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000217",
+        "rank": 7,
+        "sections": [
+          "33"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000218",
+        "rank": 7,
+        "sections": [
+          "33"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000217"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001240",
+        "rank": 9,
+        "sections": [
+          "395"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001241"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001241",
+        "rank": 9,
+        "sections": [
+          "395"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001215",
+        "rank": 10,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001216"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001216",
+        "rank": 10,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001217",
+        "rank": 10,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001216"
+      }
+    ],
+    "queries": [
+      "At what rate is tax collected at source on the sale of scrap?",
+      "tax collected at source sale of scrap rate",
+      "tax collected at source on the sale of scrap shall be at the rate of",
+      "What is the rate of tax collected at source for the sale of scrap"
+    ]
+  },
+  {
+    "id": "q04",
+    "type": "table",
+    "question": "What is the due date for filing the income tax return of a salaried person with no business income?",
+    "expected_sections": [
+      "263"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000896",
+        "rank": 1,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000897"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000897",
+        "rank": 1,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000898",
+        "rank": 1,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000897"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000320",
+        "rank": 2,
+        "sections": [
+          "63"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000321"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000321",
+        "rank": 2,
+        "sections": [
+          "63"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001346",
+        "rank": 3,
+        "sections": [
+          "423"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001347",
+        "rank": 3,
+        "sections": [
+          "423"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001346"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000900",
+        "rank": 5,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000901"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000901",
+        "rank": 5,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000902",
+        "rank": 5,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000901"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001348",
+        "rank": 6,
+        "sections": [
+          "423"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001347"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000230",
+        "rank": 7,
+        "sections": [
+          "36"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000231"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000231",
+        "rank": 7,
+        "sections": [
+          "36"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000232",
+        "rank": 7,
+        "sections": [
+          "36"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000231"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000903",
+        "rank": 8,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000902"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000141",
+        "rank": 9,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000142"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000142",
+        "rank": 9,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000899",
+        "rank": 10,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000900"
+      }
+    ],
+    "queries": [
+      "What is the due date for filing the income tax return of a salaried person with no business income?",
+      "return of income due date assessee total income without profits and gains of business or profession",
+      "Every person being a resident in India whose total income does not include any profits and gains of business or profession shall furnish a return of income on or before the due date",
+      "What is the due date for furnishing the return of income for an assessee with salary income and no business income"
+    ]
+  },
+  {
+    "id": "q05",
+    "type": "table",
+    "question": "How much standard deduction can a salaried employee claim under the new tax regime?",
+    "expected_sections": [
+      "19"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000177",
+        "rank": 1,
+        "sections": [
+          "19"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000178",
+        "rank": 1,
+        "sections": [
+          "19"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000177"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000711",
+        "rank": 2,
+        "sections": [
+          "199"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000712",
+        "rank": 2,
+        "sections": [
+          "199"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000711"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000518",
+        "rank": 3,
+        "sections": [
+          "122"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000519",
+        "rank": 3,
+        "sections": [
+          "122"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000518"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000720",
+        "rank": 4,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000721"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000721",
+        "rank": 4,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000719",
+        "rank": 5,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000169",
+        "rank": 6,
+        "sections": [
+          "15"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000576",
+        "rank": 7,
+        "sections": [
+          "146"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000577"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000577",
+        "rank": 7,
+        "sections": [
+          "146"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000578",
+        "rank": 7,
+        "sections": [
+          "146"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000577"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000223",
+        "rank": 8,
+        "sections": [
+          "35"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000224"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000224",
+        "rank": 8,
+        "sections": [
+          "35"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000225",
+        "rank": 8,
+        "sections": [
+          "35"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000224"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000726",
+        "rank": 9,
+        "sections": [
+          "204"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000727"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000727",
+        "rank": 9,
+        "sections": [
+          "204"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000201",
+        "rank": 10,
+        "sections": [
+          "29"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000202",
+        "rank": 10,
+        "sections": [
+          "29"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000201"
+      }
+    ],
+    "queries": [
+      "How much standard deduction can a salaried employee claim under the new tax regime?",
+      "standard deduction salary income under the new tax regime",
+      "Where the total income of an assessee includes income chargeable under the head \"Salaries\", a deduction of Rs. 75000 shall be allowed",
+      "What is the amount of standard deduction available to a salaried employee for computing total income under the new tax regime"
+    ]
+  },
+  {
+    "id": "q06",
+    "type": "table",
+    "question": "What is the TCS rate on money sent abroad under the Liberalised Remittance Scheme for education?",
+    "expected_sections": [
+      "394"
+    ],
+    "ranks": {
+      "section": 2,
+      "strict": 2,
+      "phrase": 2
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:001263",
+        "rank": 1,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001264"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001264",
+        "rank": 1,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001265",
+        "rank": 1,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001264"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001236",
+        "rank": 2,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001237",
+        "rank": 2,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001236"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001238",
+        "rank": 3,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001206",
+        "rank": 4,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001207"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001207",
+        "rank": 4,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001208",
+        "rank": 4,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001207"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000350",
+        "rank": 5,
+        "sections": [
+          "66"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000351"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000351",
+        "rank": 5,
+        "sections": [
+          "66"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000352",
+        "rank": 5,
+        "sections": [
+          "66"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000351"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001200",
+        "rank": 6,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001201"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001201",
+        "rank": 6,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001202",
+        "rank": 6,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001201"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000762",
+        "rank": 7,
+        "sections": [
+          "209"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000763",
+        "rank": 7,
+        "sections": [
+          "209"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000762"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001427",
+        "rank": 8,
+        "sections": [
+          "477"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001209",
+        "rank": 10,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001208"
+      }
+    ],
+    "queries": [
+      "What is the TCS rate on money sent abroad under the Liberalised Remittance Scheme for education?",
+      "tax collected at source Liberalised Remittance Scheme education",
+      "Where amount is remitted out of India under the Liberalised Remittance Scheme for education, tax collected at source shall be levied at the specified rate",
+      "What is the tax collected at source percentage for amounts remitted abroad under the Liberalised Remittance Scheme for the purpose of education"
+    ]
+  },
+  {
+    "id": "q07",
+    "type": "definition",
+    "question": "Who is included in the definition of a 'person' in the Act?",
+    "expected_sections": [
+      "2"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000091",
+        "rank": 1,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000092"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000092",
+        "rank": 1,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000093",
+        "rank": 1,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000092"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000474",
+        "rank": 2,
+        "sections": [
+          "100"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001062",
+        "rank": 3,
+        "sections": [
+          "318"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000672",
+        "rank": 4,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000673"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000673",
+        "rank": 4,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000674",
+        "rank": 4,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000673"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000137",
+        "rank": 5,
+        "sections": [
+          "3"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001041",
+        "rank": 6,
+        "sections": [
+          "309"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001042",
+        "rank": 6,
+        "sections": [
+          "309"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001041"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001035",
+        "rank": 7,
+        "sections": [
+          "306"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001030",
+        "rank": 8,
+        "sections": [
+          "303"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001031",
+        "rank": 8,
+        "sections": [
+          "303"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001030"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000675",
+        "rank": 9,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000674"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001562",
+        "rank": 10,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001563",
+        "rank": 10,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001562"
+      }
+    ],
+    "queries": [
+      "Who is included in the definition of a 'person' in the Act?",
+      "person includes individual Hindu undivided family company firm association of persons or body of individuals",
+      "person includes an individual, Hindu undivided family, company, firm, association of persons or body of individuals, local authority, and every other artificial juridical person",
+      "Who falls under the definition of a person for the purposes of the Act"
+    ]
+  },
+  {
+    "id": "q08",
+    "type": "definition",
+    "question": "Who counts as a senior citizen for income tax?",
+    "expected_sections": [
+      "2"
+    ],
+    "ranks": {
+      "section": 2,
+      "strict": 2,
+      "phrase": 2
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:001298",
+        "rank": 1,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001299"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001299",
+        "rank": 1,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001300",
+        "rank": 1,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001299"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000115",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000116"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000116",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000117",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000116"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000141",
+        "rank": 3,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000142"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000142",
+        "rank": 3,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000140",
+        "rank": 4,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001203",
+        "rank": 5,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001204"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001204",
+        "rank": 5,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001205",
+        "rank": 5,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001204"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000904",
+        "rank": 6,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000905"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000905",
+        "rank": 6,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000906",
+        "rank": 6,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000905"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001207",
+        "rank": 7,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001208"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001208",
+        "rank": 7,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001209",
+        "rank": 7,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001208"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001308",
+        "rank": 8,
+        "sections": [
+          "403"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000086",
+        "rank": 9,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000087"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000087",
+        "rank": 9,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000088",
+        "rank": 9,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000087"
+      }
+    ],
+    "queries": [
+      "Who counts as a senior citizen for income tax?",
+      "resident individual of the age of sixty years or more senior citizen",
+      "senior citizen means a resident individual who is of the age of sixty years or more at any time during the tax year",
+      "What is the age limit for a resident individual to be considered a senior citizen for tax purposes"
+    ]
+  },
+  {
+    "id": "q09",
+    "type": "definition",
+    "question": "What does 'tax year' mean?",
+    "expected_sections": [
+      "3"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000137",
+        "rank": 1,
+        "sections": [
+          "3"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000157",
+        "rank": 2,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000158"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000158",
+        "rank": 2,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000159",
+        "rank": 2,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000158"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000424",
+        "rank": 3,
+        "sections": [
+          "82"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000425"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000425",
+        "rank": 3,
+        "sections": [
+          "82"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001007",
+        "rank": 4,
+        "sections": [
+          "293"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001008"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001008",
+        "rank": 4,
+        "sections": [
+          "293"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000604",
+        "rank": 5,
+        "sections": [
+          "159"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000605"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000605",
+        "rank": 5,
+        "sections": [
+          "159"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000606",
+        "rank": 5,
+        "sections": [
+          "159"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000605"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001003",
+        "rank": 6,
+        "sections": [
+          "293"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001004"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001004",
+        "rank": 6,
+        "sections": [
+          "293"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001005",
+        "rank": 6,
+        "sections": [
+          "293"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001004"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000127",
+        "rank": 7,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000128"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000128",
+        "rank": 7,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000129",
+        "rank": 7,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000128"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001026",
+        "rank": 8,
+        "sections": [
+          "301"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001027",
+        "rank": 8,
+        "sections": [
+          "301"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001026"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000857",
+        "rank": 9,
+        "sections": [
+          "247"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000858"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000858",
+        "rank": 9,
+        "sections": [
+          "247"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000308",
+        "rank": 10,
+        "sections": [
+          "60"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000309"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000309",
+        "rank": 10,
+        "sections": [
+          "60"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000310",
+        "rank": 10,
+        "sections": [
+          "60"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000309"
+      }
+    ],
+    "queries": [
+      "What does 'tax year' mean?",
+      "tax year definition period",
+      "tax year means the period beginning on the first day of April and ending on the thirty-first day of March",
+      "What is the definition and meaning of the term tax year"
+    ]
+  },
+  {
+    "id": "q10",
+    "type": "definition",
+    "question": "Who is a 'relative' of an individual under the Act?",
+    "expected_sections": [
+      "2",
+      "92"
+    ],
+    "ranks": {
+      "section": 2,
+      "strict": 2,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:001489",
+        "rank": 1,
+        "sections": [
+          "515"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001490"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001490",
+        "rank": 1,
+        "sections": [
+          "515"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000109",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000110"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000110",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000111",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000110"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001485",
+        "rank": 3,
+        "sections": [
+          "515"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001486"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001486",
+        "rank": 3,
+        "sections": [
+          "515"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001487",
+        "rank": 3,
+        "sections": [
+          "515"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001486"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000672",
+        "rank": 4,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000673"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000673",
+        "rank": 4,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000674",
+        "rank": 4,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000673"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001130",
+        "rank": 5,
+        "sections": [
+          "355"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001131"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001131",
+        "rank": 5,
+        "sections": [
+          "355"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001132",
+        "rank": 5,
+        "sections": [
+          "355"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001131"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000028",
+        "rank": 6,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000029"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000029",
+        "rank": 6,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000030",
+        "rank": 6,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000029"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001035",
+        "rank": 7,
+        "sections": [
+          "306"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000471",
+        "rank": 8,
+        "sections": [
+          "99"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000472"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000472",
+        "rank": 8,
+        "sections": [
+          "99"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000473",
+        "rank": 8,
+        "sections": [
+          "99"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000472"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001133",
+        "rank": 9,
+        "sections": [
+          "355"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001132"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000091",
+        "rank": 10,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000092"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000092",
+        "rank": 10,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000093",
+        "rank": 10,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000092"
+      }
+    ],
+    "queries": [
+      "Who is a 'relative' of an individual under the Act?",
+      "relative individual definition spouse child brother sister",
+      "\"relative\" in relation to an individual means the spouse, brother or sister, or any lineal ascendant or descendant of that individual",
+      "Who is included in the definition of a relative of an individual under the Act"
+    ]
+  },
+  {
+    "id": "q11",
+    "type": "prose",
+    "question": "How many days must an individual stay in India to be treated as a resident?",
+    "expected_sections": [
+      "6"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 2
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000141",
+        "rank": 1,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000142"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000142",
+        "rank": 1,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000140",
+        "rank": 2,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001563",
+        "rank": 4,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001564"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001564",
+        "rank": 4,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001565",
+        "rank": 4,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001564"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001060",
+        "rank": 5,
+        "sections": [
+          "317"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001061",
+        "rank": 5,
+        "sections": [
+          "317"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001060"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001562",
+        "rank": 7,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001563"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001568",
+        "rank": 8,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001569"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001569",
+        "rank": 8,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001570",
+        "rank": 8,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001569"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001340",
+        "rank": 9,
+        "sections": [
+          "420"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001341"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001341",
+        "rank": 9,
+        "sections": [
+          "420"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001342",
+        "rank": 9,
+        "sections": [
+          "420"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001341"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000111",
+        "rank": 10,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000112"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000112",
+        "rank": 10,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000113",
+        "rank": 10,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000112"
+      }
+    ],
+    "queries": [
+      "How many days must an individual stay in India to be treated as a resident?",
+      "resident in India individual stay period days tax year",
+      "An individual shall be resident in India in any tax year if the individual stays in India for a period amounting in all to one hundred and eighty-two days or more",
+      "How many days must an individual stay in India during a tax year to be considered resident in India"
+    ]
+  },
+  {
+    "id": "q12",
+    "type": "prose",
+    "question": "When does the Income-tax Act, 2025 come into force?",
+    "expected_sections": [
+      "1"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000000",
+        "rank": 1,
+        "sections": [
+          "1"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000087",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000088"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000088",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000089",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000088"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001524",
+        "rank": 3,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001525"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001525",
+        "rank": 3,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001526",
+        "rank": 3,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001525"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001144",
+        "rank": 4,
+        "sections": [
+          "361"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001507",
+        "rank": 6,
+        "sections": [
+          "530"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001323",
+        "rank": 7,
+        "sections": [
+          "411"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001324"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001324",
+        "rank": 7,
+        "sections": [
+          "411"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001517",
+        "rank": 8,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001518"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001518",
+        "rank": 8,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001519",
+        "rank": 8,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001518"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001505",
+        "rank": 9,
+        "sections": [
+          "528"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001516",
+        "rank": 10,
+        "sections": [
+          "535"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "When does the Income-tax Act, 2025 come into force?",
+      "date of commencement of the Income-tax Act 2025",
+      "This Act shall come into force on such date as the Central Government may appoint by notification in the Official Gazette",
+      "When does the Income-tax Act 2025 come into force and apply to the assessee"
+    ]
+  },
+  {
+    "id": "q13",
+    "type": "prose",
+    "question": "Can someone with business income opt out of the new tax regime and later switch back?",
+    "expected_sections": [
+      "202"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000720",
+        "rank": 1,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000721"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000721",
+        "rank": 1,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000230",
+        "rank": 2,
+        "sections": [
+          "36"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000231"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000231",
+        "rank": 2,
+        "sections": [
+          "36"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000232",
+        "rank": 2,
+        "sections": [
+          "36"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000231"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000711",
+        "rank": 3,
+        "sections": [
+          "199"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000712",
+        "rank": 3,
+        "sections": [
+          "199"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000711"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000811",
+        "rank": 4,
+        "sections": [
+          "231"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000812"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000812",
+        "rank": 4,
+        "sections": [
+          "231"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000752",
+        "rank": 5,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000753"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000753",
+        "rank": 5,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000754",
+        "rank": 5,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000753"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000716",
+        "rank": 6,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000717"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000717",
+        "rank": 6,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000718",
+        "rank": 6,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000717"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000842",
+        "rank": 8,
+        "sections": [
+          "244"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000724",
+        "rank": 9,
+        "sections": [
+          "204"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000725",
+        "rank": 9,
+        "sections": [
+          "204"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000724"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000196",
+        "rank": 10,
+        "sections": [
+          "26"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000197",
+        "rank": 10,
+        "sections": [
+          "26"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000196"
+      }
+    ],
+    "queries": [
+      "Can someone with business income opt out of the new tax regime and later switch back?",
+      "opting out of concessional tax regime business income subsequent tax year",
+      "Where an assessee having income under the head \"Profits and gains of business or profession\" has exercised the option to pay tax under the concessional rate, such option shall be available for subsequent tax years",
+      "Can an assessee with business income who opted out of the concessional tax regime switch back to it in a later tax year"
+    ]
+  },
+  {
+    "id": "q14",
+    "type": "prose",
+    "question": "What happens to the old Income-tax Act, 1961?",
+    "expected_sections": [
+      "536"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:001517",
+        "rank": 1,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001518",
+        "rank": 1,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001517"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001523",
+        "rank": 2,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001524"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001524",
+        "rank": 2,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001525",
+        "rank": 2,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001524"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001526",
+        "rank": 3,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001519",
+        "rank": 4,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001520"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001520",
+        "rank": 4,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001521",
+        "rank": 4,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001520"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001508",
+        "rank": 5,
+        "sections": [
+          "531"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001522",
+        "rank": 7,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000568",
+        "rank": 9,
+        "sections": [
+          "141"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001168",
+        "rank": 10,
+        "sections": [
+          "376"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001169",
+        "rank": 10,
+        "sections": [
+          "376"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001168"
+      }
+    ],
+    "queries": [
+      "What happens to the old Income-tax Act, 1961?",
+      "Income-tax Act 1961 repeal savings provisions",
+      "The Income-tax Act 1961 shall stand repealed and replaced by the Income-tax Act 2025 subject to savings and transitional provisions",
+      "What is the legal effect and repeal status of the former Income-tax Act 1961 under the new tax law"
+    ]
+  },
+  {
+    "id": "q15",
+    "type": "numeric",
+    "question": "What is the maximum deduction for health insurance premium paid for parents?",
+    "expected_sections": [
+      "126"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000529",
+        "rank": 1,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000530",
+        "rank": 1,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000529"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000531",
+        "rank": 2,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000530"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000532",
+        "rank": 3,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000531"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000203",
+        "rank": 4,
+        "sections": [
+          "30"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000172",
+        "rank": 5,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000173"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000173",
+        "rank": 5,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000174",
+        "rank": 5,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000173"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000539",
+        "rank": 6,
+        "sections": [
+          "128"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001657",
+        "rank": 7,
+        "sections": [
+          "Schedule XIV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001658"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001658",
+        "rank": 7,
+        "sections": [
+          "Schedule XIV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001659",
+        "rank": 7,
+        "sections": [
+          "Schedule XIV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001658"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001665",
+        "rank": 9,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001666"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001666",
+        "rank": 9,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001667",
+        "rank": 9,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001666"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001530",
+        "rank": 10,
+        "sections": [
+          "Schedule II"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001531"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001531",
+        "rank": 10,
+        "sections": [
+          "Schedule II"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001532",
+        "rank": 10,
+        "sections": [
+          "Schedule II"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001531"
+      }
+    ],
+    "queries": [
+      "What is the maximum deduction for health insurance premium paid for parents?",
+      "deduction health insurance premium parents total income",
+      "Where an assessee pays health insurance premium for parents, the deduction allowed from total income shall not exceed Rs. 50000",
+      "What is the maximum deduction allowed under the Act for health insurance premium paid for parents"
+    ]
+  },
+  {
+    "id": "q16",
+    "type": "numeric",
+    "question": "How much can be deducted for a preventive health check-up?",
+    "expected_sections": [
+      "126"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000529",
+        "rank": 1,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000530",
+        "rank": 1,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000529"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000531",
+        "rank": 2,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000532",
+        "rank": 2,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000531"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000595",
+        "rank": 5,
+        "sections": [
+          "153"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000596",
+        "rank": 5,
+        "sections": [
+          "153"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000595"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000276",
+        "rank": 6,
+        "sections": [
+          "47"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000533",
+        "rank": 7,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000534",
+        "rank": 7,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000533"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001665",
+        "rank": 8,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001666"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001666",
+        "rank": 8,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001667",
+        "rank": 8,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001666"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000539",
+        "rank": 9,
+        "sections": [
+          "128"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000203",
+        "rank": 10,
+        "sections": [
+          "30"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "How much can be deducted for a preventive health check-up?",
+      "deduction preventive health check-up total income",
+      "Where an assessee incurs expenditure on preventive health check-up, a deduction of up to Rs. 5000 shall be allowed in computing total income",
+      "How much deduction from total income is allowed for expenditure incurred on a preventive health check-up"
+    ]
+  },
+  {
+    "id": "q17",
+    "type": "numeric",
+    "question": "What standard deduction is allowed from rental income from a house property?",
+    "expected_sections": [
+      "22"
+    ],
+    "ranks": {
+      "section": 3,
+      "strict": 3,
+      "phrase": 3
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000187",
+        "rank": 1,
+        "sections": [
+          "20"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000569",
+        "rank": 2,
+        "sections": [
+          "142"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000190",
+        "rank": 3,
+        "sections": [
+          "22"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000191",
+        "rank": 3,
+        "sections": [
+          "22"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000190"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000192",
+        "rank": 4,
+        "sections": [
+          "23"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000188",
+        "rank": 5,
+        "sections": [
+          "21"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000189"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000189",
+        "rank": 5,
+        "sections": [
+          "21"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000542",
+        "rank": 6,
+        "sections": [
+          "130"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000543",
+        "rank": 6,
+        "sections": [
+          "130"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000542"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000222",
+        "rank": 8,
+        "sections": [
+          "35"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000223",
+        "rank": 8,
+        "sections": [
+          "35"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000222"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000544",
+        "rank": 9,
+        "sections": [
+          "131"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "What standard deduction is allowed from rental income from a house property?",
+      "income from house property deduction from annual value",
+      "where the income is chargeable under the head \"Income from house property\", a deduction of a sum equal to thirty percent of the annual value shall be allowed",
+      "what standard deduction is available from the annual value of house property under income from house property"
+    ]
+  },
+  {
+    "id": "q18",
+    "type": "numeric",
+    "question": "What is the maximum rebate a resident individual can get under the new tax regime?",
+    "expected_sections": [
+      "156"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000599",
+        "rank": 1,
+        "sections": [
+          "156"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000719",
+        "rank": 2,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000720",
+        "rank": 2,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000719"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000598",
+        "rank": 3,
+        "sections": [
+          "155"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000708",
+        "rank": 4,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000709"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000709",
+        "rank": 4,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000710",
+        "rank": 4,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000709"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000721",
+        "rank": 5,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001207",
+        "rank": 6,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001208"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001208",
+        "rank": 6,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001209",
+        "rank": 6,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001208"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000542",
+        "rank": 7,
+        "sections": [
+          "130"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000543",
+        "rank": 7,
+        "sections": [
+          "130"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000542"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000711",
+        "rank": 8,
+        "sections": [
+          "199"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000712",
+        "rank": 8,
+        "sections": [
+          "199"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000711"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000597",
+        "rank": 9,
+        "sections": [
+          "154"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000724",
+        "rank": 10,
+        "sections": [
+          "204"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000725",
+        "rank": 10,
+        "sections": [
+          "204"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000724"
+      }
+    ],
+    "queries": [
+      "What is the maximum rebate a resident individual can get under the new tax regime?",
+      "rebate of tax resident individual maximum amount new tax regime",
+      "Where the total income of a resident individual does not exceed Rs. 700000, there shall be allowed a rebate of income-tax of an amount equal to the tax payable on such total income",
+      "What is the maximum tax rebate available to a resident individual under the new tax regime for total income up to Rs. 700000"
+    ]
+  },
+  {
+    "id": "q19",
+    "type": "lakh",
+    "question": "What is the tax rate on income between 8 and 12 lakh under the new regime?",
+    "expected_sections": [
+      "202"
+    ],
+    "ranks": {
+      "section": 5,
+      "strict": 5,
+      "phrase": 5
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:001207",
+        "rank": 1,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001208"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001208",
+        "rank": 1,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001209",
+        "rank": 1,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001208"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000138",
+        "rank": 2,
+        "sections": [
+          "4"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000715",
+        "rank": 3,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000716"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000716",
+        "rank": 3,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000717",
+        "rank": 3,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000716"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000104",
+        "rank": 4,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000105"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000105",
+        "rank": 4,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000106",
+        "rank": 4,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000105"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000719",
+        "rank": 5,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000720",
+        "rank": 5,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000719"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000599",
+        "rank": 6,
+        "sections": [
+          "156"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000016",
+        "rank": 7,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000017"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000017",
+        "rank": 7,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000018",
+        "rank": 7,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000017"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000724",
+        "rank": 8,
+        "sections": [
+          "204"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000725"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000725",
+        "rank": 8,
+        "sections": [
+          "204"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000726",
+        "rank": 8,
+        "sections": [
+          "204"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000725"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000084",
+        "rank": 9,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000085"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000085",
+        "rank": 9,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000086",
+        "rank": 9,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000085"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001203",
+        "rank": 10,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001204"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001204",
+        "rank": 10,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001205",
+        "rank": 10,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001204"
+      }
+    ],
+    "queries": [
+      "What is the tax rate on income between 8 and 12 lakh under the new regime?",
+      "total income rates of tax slab rates",
+      "The rates of income-tax for the total income of a person shall be charged at the specified rates for income exceeding Rs. 800000 up to Rs. 1200000",
+      "What is the tax rate applicable to total income between Rs. 800000 and Rs. 1200000 under the default tax regime"
+    ]
+  },
+  {
+    "id": "q20",
+    "type": "lakh",
+    "question": "Is there a tax rebate if my total income is up to 5 lakh?",
+    "expected_sections": [
+      "156"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000599",
+        "rank": 1,
+        "sections": [
+          "156"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000598",
+        "rank": 2,
+        "sections": [
+          "155"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000139",
+        "rank": 3,
+        "sections": [
+          "5"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001207",
+        "rank": 4,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001208"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001208",
+        "rank": 4,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001209",
+        "rank": 4,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001208"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000891",
+        "rank": 5,
+        "sections": [
+          "262"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000892",
+        "rank": 5,
+        "sections": [
+          "262"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000891"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000222",
+        "rank": 6,
+        "sections": [
+          "35"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000223"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000223",
+        "rank": 6,
+        "sections": [
+          "35"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000224",
+        "rank": 6,
+        "sections": [
+          "35"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000223"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001360",
+        "rank": 7,
+        "sections": [
+          "428"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001431",
+        "rank": 8,
+        "sections": [
+          "480"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000597",
+        "rank": 9,
+        "sections": [
+          "154"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001544",
+        "rank": 10,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001545"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001545",
+        "rank": 10,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001546",
+        "rank": 10,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001545"
+      }
+    ],
+    "queries": [
+      "Is there a tax rebate if my total income is up to 5 lakh?",
+      "rebate of tax total income Rs. 500000",
+      "Where the total income of an assessee does not exceed Rs. 500000, there shall be allowed a rebate of income-tax",
+      "Is a tax rebate available under the Act if the total income of the resident individual is up to Rs. 500000"
+    ]
+  },
+  {
+    "id": "q21",
+    "type": "lakh",
+    "question": "At what rate are long-term capital gains on listed shares above 1.25 lakh taxed?",
+    "expected_sections": [
+      "198"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000708",
+        "rank": 1,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000709",
+        "rank": 1,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000708"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000706",
+        "rank": 2,
+        "sections": [
+          "197"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000707"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000707",
+        "rank": 2,
+        "sections": [
+          "197"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000379",
+        "rank": 3,
+        "sections": [
+          "69"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000380"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000380",
+        "rank": 3,
+        "sections": [
+          "69"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000705",
+        "rank": 4,
+        "sections": [
+          "197"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000765",
+        "rank": 6,
+        "sections": [
+          "210"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000766",
+        "rank": 6,
+        "sections": [
+          "210"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000765"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000430",
+        "rank": 7,
+        "sections": [
+          "85"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000431",
+        "rank": 7,
+        "sections": [
+          "85"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000430"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000772",
+        "rank": 8,
+        "sections": [
+          "214"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000710",
+        "rank": 9,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000709"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000703",
+        "rank": 10,
+        "sections": [
+          "196"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000704",
+        "rank": 10,
+        "sections": [
+          "196"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000703"
+      }
+    ],
+    "queries": [
+      "At what rate are long-term capital gains on listed shares above 1.25 lakh taxed?",
+      "long-term capital gains listed shares securities transaction tax income tax rate",
+      "Where the total income includes long-term capital gains exceeding Rs. 125000 arising from the transfer of equity shares, the tax payable shall be calculated at the specified rate",
+      "What is the tax rate on long-term capital gains exceeding Rs. 125000 from the transfer of listed shares"
+    ]
+  },
+  {
+    "id": "q22",
+    "type": "lakh",
+    "question": "Is the total deduction for life insurance premium and provident fund contributions capped at 1.5 lakh?",
+    "expected_sections": [
+      "123",
+      "Schedule XV"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 2
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:001660",
+        "rank": 1,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001661",
+        "rank": 1,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001660"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000522",
+        "rank": 2,
+        "sections": [
+          "123"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001668",
+        "rank": 3,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001669"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001669",
+        "rank": 3,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001670",
+        "rank": 3,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001669"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001531",
+        "rank": 4,
+        "sections": [
+          "Schedule II"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001532"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001532",
+        "rank": 4,
+        "sections": [
+          "Schedule II"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001533",
+        "rank": 4,
+        "sections": [
+          "Schedule II"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001532"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001663",
+        "rank": 5,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001664"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001664",
+        "rank": 5,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001665",
+        "rank": 5,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001664"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001666",
+        "rank": 6,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001667",
+        "rank": 6,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001666"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000171",
+        "rank": 7,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000172"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000172",
+        "rank": 7,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000173",
+        "rank": 7,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000172"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000201",
+        "rank": 9,
+        "sections": [
+          "29"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000202",
+        "rank": 9,
+        "sections": [
+          "29"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000201"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001671",
+        "rank": 10,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001672"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001672",
+        "rank": 10,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001673",
+        "rank": 10,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001672"
+      }
+    ],
+    "queries": [
+      "Is the total deduction for life insurance premium and provident fund contributions capped at 1.5 lakh?",
+      "deduction life insurance premium provident fund contribution limit total amount",
+      "Where the gross total income of an assessee includes sums paid towards life insurance premium and provident fund contribution, the aggregate deduction shall not exceed Rs. 150000",
+      "Is the total deduction for life insurance premium and provident fund contributions subject to an upper limit of Rs. 150000"
+    ]
+  },
+  {
+    "id": "q27",
+    "type": "prose",
+    "question": "What are the tax laws for non-resident Indians?",
+    "expected_sections": [
+      "212",
+      "213",
+      "214",
+      "215",
+      "216",
+      "217"
+    ],
+    "ranks": {
+      "section": null,
+      "strict": null,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500-breadcrumb:000141",
+        "rank": 1,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000142"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000142",
+        "rank": 1,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000139",
+        "rank": 2,
+        "sections": [
+          "5"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000780",
+        "rank": 3,
+        "sections": [
+          "220"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000781",
+        "rank": 3,
+        "sections": [
+          "220"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000780"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000153",
+        "rank": 4,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000154"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000154",
+        "rank": 4,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000155",
+        "rank": 4,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000154"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000152",
+        "rank": 5,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000153"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001562",
+        "rank": 6,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:001563",
+        "rank": 6,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:001562"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000768",
+        "rank": 7,
+        "sections": [
+          "211"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000769",
+        "rank": 7,
+        "sections": [
+          "211"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000768"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000646",
+        "rank": 8,
+        "sections": [
+          "174"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000647"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000647",
+        "rank": 8,
+        "sections": [
+          "174"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000648",
+        "rank": 8,
+        "sections": [
+          "174"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000647"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000151",
+        "rank": 9,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000152"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000160",
+        "rank": 10,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000161"
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000161",
+        "rank": 10,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500-breadcrumb:000162",
+        "rank": 10,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": "structured-1500-breadcrumb:000161"
+      }
+    ],
+    "queries": [
+      "What are the tax laws for non-resident Indians?",
+      "non-resident in India total income tax rates scope of total income",
+      "Total income of a person who is not resident in India shall include all income from whatever source derived which is received or is deemed to be received in India",
+      "What are the provisions governing the taxation of income for a person who is a non-resident in India"
+    ]
+  }
+]

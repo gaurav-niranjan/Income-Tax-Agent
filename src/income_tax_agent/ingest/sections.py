@@ -12,17 +12,33 @@ right after a title line. The Act has sections 1 to 536 with no gaps.
 
 After the sections come the Schedules. They number their items 1, 2, 3 again, so once the
 first "SCHEDULE I" heading appears we stop looking for sections and label text by schedule.
+
+Sections are grouped under headings that sit above a section's title line:
+
+    CHAPTER XIII                                                  <- chapter
+    DETERMINATION OF TAX IN SPECIAL CASES                         <- its title
+    E.—Special provisions relating to non-residents and foreign companies   <- part (optional)
+    1.—Legal representatives                                      <- sub-part (Chapters XVII, XVIII)
+
+Many section titles only make sense under their heading: Section 214 is "Tax on investment
+income and long-term capital gains."; only Part E says it is about non-residents. So each
+section records its heading path, and the headings belong to the section they introduce
+(not to the end of the one before).
 """
 
 import re
 from bisect import bisect_right
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from functools import cached_property
 
 SECTION_RE = re.compile(r"^\s*(\d+)\s*\.(?!\d)")
 SCHEDULE_RE = re.compile(r"^\s*SCHEDULE ([IVXL]+)\s*$")
 # Lines under a "SCHEDULE XI" heading that are not its title.
 NOT_TITLE_RE = re.compile(r"^\s*(\[See section|PART [A-Z]+\s*$)")
+CHAPTER_RE = re.compile(r"^\s*CHAPTER ([IVXL]+)\s*$")
+# The em dash tells headings from table rows: "E.—Special ...", "B. —Special ...", "1. —Registration".
+PART_RE = re.compile(r"^\s*([A-Z])\.\s*—\s*(\S.*?)\s*$")
+SUBPART_RE = re.compile(r"^\s*(\d+)\.\s*—\s*(\S.*?)\.?\s*$")
 
 
 @dataclass
@@ -30,7 +46,10 @@ class SectionStart:
     number: str  # "202", or "Schedule II" for schedules
     title: str
     page: int
-    offset: int  # character offset in Document.text where the section begins (its title)
+    offset: int  # character offset in Document.text where the section begins (its headings, else title)
+    # Headings above the section, outermost first, e.g. ["Chapter XIII: Determination of tax
+    # in special cases", "E. Special provisions relating to non-residents and foreign companies"].
+    path: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -93,11 +112,33 @@ def _looks_like_title(line: str) -> bool:
     return len(s) > 3 and not s.startswith("(") and not SECTION_RE.match(s)
 
 
+def _chapter_title(lines: list[str], i: int) -> str:
+    """The first non-empty line after "CHAPTER XIII", in sentence case."""
+    title = next((l.strip() for l in lines[i + 1 : i + 4] if l.strip()), "")
+    return title.capitalize()
+
+
 def find_section_starts(lines: list[str], line_offsets: list[int], line_pages: list[int]) -> list[SectionStart]:
     starts: list[SectionStart] = []
     expected = 1
     in_schedules = False
+    chapter, part, subpart = "", "", ""
+    heading_offset: int | None = None  # first heading line since the last section start
     for i, line in enumerate(lines):
+        if not in_schedules:
+            # Schedules have their own "A.—" parts; those are not the Act's chapters.
+            heading = True
+            if m := CHAPTER_RE.match(line):
+                chapter, part, subpart = f"Chapter {m.group(1)}: {_chapter_title(lines, i)}", "", ""
+            elif m := PART_RE.match(line):
+                part, subpart = f"{m.group(1)}. {m.group(2)}", ""
+            elif m := SUBPART_RE.match(line):
+                subpart = f"{m.group(1)}. {m.group(2)}"
+            else:
+                heading = False
+            if heading and heading_offset is None:
+                heading_offset = line_offsets[i]
+
         sched = SCHEDULE_RE.match(line)
         if sched:
             in_schedules = True
@@ -114,10 +155,11 @@ def find_section_starts(lines: list[str], line_offsets: list[int], line_pages: l
             continue
         m = SECTION_RE.match(line)
         if m and int(m.group(1)) == expected and _looks_like_title(lines[i - 1]):
-            starts.append(
-                SectionStart(m.group(1), lines[i - 1].strip(), line_pages[i], line_offsets[i - 1])
-            )
+            offset = line_offsets[i - 1] if heading_offset is None else min(heading_offset, line_offsets[i - 1])
+            path = [p for p in (chapter, part, subpart) if p]
+            starts.append(SectionStart(m.group(1), lines[i - 1].strip(), line_pages[i], offset, path))
             expected += 1
+            heading_offset = None
     return starts
 
 

@@ -115,8 +115,8 @@ def _nb(config: dict) -> str:
 
 
 def _mode(config: dict) -> str:
-    """"dense", or "dense +exp" for a run with query expansion."""
-    return config["mode"] + (" +exp" if config.get("expand") else "")
+    """"dense", or "dense +exp +rr" for a run with query expansion and a reranker."""
+    return config["mode"] + (" +exp" if config.get("expand") else "") + (" +rr" if config.get("rerank") else "")
 
 
 def _fusion(config: dict) -> str:
@@ -127,7 +127,9 @@ def _fusion(config: dict) -> str:
     parts = []
     if config["mode"] == "hybrid":
         parts.append(f"k={config.get('rrf_k', 60)}")
-    if config.get("expand"):
+    if config.get("rerank"):  # the reranker replaces the queries' fusion
+        parts.append(f"rerank: {config['rerank_model'].split('/')[-1]}/{config['rerank_candidates']}")
+    elif config.get("expand"):
         parts.append(f"queries: {config.get('expand_fusion', 'rrf')}/{config.get('expand_candidates', '?')}")
     return "; ".join(parts) or "-"
 
@@ -164,22 +166,33 @@ def answers_table(runs: list[dict], results_dir: Path) -> list[str]:
     return lines
 
 
-def _questions(config: dict) -> str:
-    """Which question set: "dev" (questions.jsonl), "held-out" (heldout.jsonl)."""
-    stem = Path(config.get("questions_file", "questions.jsonl")).stem
-    return {"questions": "dev", "heldout": "held-out"}.get(stem, stem)
+def _short_metrics(run: dict | None) -> list[str]:
+    """Strict hit@1, hit@5 as raw counts ("18/23") and MRR; "-" for each when there is no run."""
+    if run is None:
+        return ["-"] * 3
+    s = run["summary"]["all"]["strict"]
+    return [f"{s['hits@1']}/{s['n']}", f"{s['hits@5']}/{s['n']}", f"{s['mrr']:.2f}"]
 
 
 def key_retrieval_table(keys: list[dict], runs: dict[str, dict], results_dir: Path) -> list[str]:
-    lines = ["| step | questions | strict hit@1 | strict hit@5 | strict MRR | run |", "|---|---|---|---|---|---|"]
+    """One row per step: its dev run and (optional) held-out run side by side.
+
+    key_runs.json entries look like {"step": "...", "dev": "<run id>", "heldout": "<run id>"}.
+    """
+    lines = ["| step | dev hit@1 | dev hit@5 | dev MRR | held-out hit@1 | held-out hit@5 | held-out MRR | runs |",
+             "|---|---|---|---|---|---|---|---|"]
     for key in keys:
-        run = runs.get(key["run"])
-        if run is None:  # listed in key_runs.json but deleted or mistyped
-            lines.append(f"| {key['step']} | - | - | - | - | {key['run']} (not found) |")
-            continue
-        c, s = run["config"], run["summary"]["all"]["strict"]
-        metrics = " | ".join(format_metric(s, m) for m in ("hit@1", "hit@5", "mrr"))
-        lines.append(f"| {key['step']} | {_questions(c)} | {metrics} | {_link(run, results_dir)} |")
+        links = []
+        cells = []
+        for split, label in (("dev", "dev"), ("heldout", "held-out")):
+            run_id = key.get(split)
+            run = runs.get(run_id) if run_id else None
+            cells += _short_metrics(run)
+            if run is not None:
+                links.append(f"[{label}](retrieval/{run_id}/report.md)")
+            elif run_id:  # listed in key_runs.json but deleted or mistyped
+                links.append(f"{run_id} (not found)")
+        lines.append(f"| {key['step']} | {' | '.join(cells)} | {' · '.join(links)} |")
     return lines
 
 
@@ -228,13 +241,16 @@ def write_index(results_dir: Path = RESULTS_DIR) -> Path:
     by_id = {r["config"]["run_id"]: r for r in retrieval + answers}
     lines = [
         "# Eval results", "",
-        f"The runs that explain each design choice. All {len(retrieval)} retrieval and {len(answers)} answer runs "
-        "are in [all_runs.md](all_runs.md). The list of key runs is `key_runs.json`.", "",
-        *how_to, "",
-        "## Retrieval", "",
-        strict_note.split(";")[0] + ". Steps marked `+` add to the row above. All runs since the "
-        "neighbour step use neighbours.", "",
+        "The steps that shaped the app. **hit@1** = the right section is the first result; "
+        "**hit@5** = it is in the top 5. A hit is *strict*: the section makes up at least 30% of the chunk. "
+        "Dev = questions.jsonl, held-out = heldout.jsonl (written later, not used for tuning). "
+        "With ~23 questions, one question is ~4 points.", "",
+        f"Generated from `key_runs.json` by `eval/runs.py` (`uv run python eval/compare.py`). "
+        f"Every run ({len(retrieval)} retrieval, {len(answers)} answer) is in [all_runs.md](all_runs.md).", "",
+        "## Retrieval: the steps that made it into the app", "",
         *key_retrieval_table(keys.get("retrieval", []), by_id, results_dir), "",
+        "## Retrieval: also tried", "",
+        *key_retrieval_table(keys.get("also_tried", []), by_id, results_dir), "",
         "## Answers (LLM judge)", "",
         "Correct and false refusals are over judged in-scope questions; faithful over all judged ones.", "",
         *key_answers_table(keys.get("answers", []), by_id, results_dir), "",

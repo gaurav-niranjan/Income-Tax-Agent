@@ -5,6 +5,7 @@ Run: uv run python eval/run_eval.py --index fixed-1000-150__bge-base --modes den
 
      add --note "why this run" to label it in the results table
      add --expand to search with LLM-written queries too (GEMINI_EXPAND_MODEL; cached on disk)
+     add --rerank to reorder the candidates with a cross-encoder (RERANK_MODEL; local)
 
 Each mode is one run, saved to eval/results/retrieval/<date>_<config hash>/ (see runs.py),
 and eval/results/README.md is rebuilt to compare all runs.
@@ -67,8 +68,16 @@ def expand_config(settings, llm: GeminiLLM) -> dict:
             "expand_candidates": settings.expand_candidates, "expand_fusion": settings.expand_fusion}
 
 
-def label(mode: str, expand: bool, neighbours: bool) -> str:
-    return mode + ("+exp" if expand else "") + ("+nb" if neighbours else "")
+def rerank_config(settings) -> dict:
+    """Added to a run's config only when reranking is on, so earlier runs keep their hashes."""
+    if not settings.rerank:
+        return {}
+    return {"rerank": True, "rerank_model": settings.rerank_model, "rerank_candidates": settings.rerank_candidates,
+            "rerank_rewrite_weight": settings.rerank_rewrite_weight}
+
+
+def label(mode: str, expand: bool, neighbours: bool, rerank: bool = False) -> str:
+    return mode + ("+exp" if expand else "") + ("+rr" if rerank else "") + ("+nb" if neighbours else "")
 
 
 def expand_all(questions, llm: GeminiLLM, sleep: float) -> dict[str, list[str]]:
@@ -186,7 +195,7 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str) -> None:
             time.sleep(args.sleep)  # free-tier rate limits; cached questions skip this
 
     summary = summarize_answers(rows)
-    name = label(mode, args.expand, args.neighbours)
+    name = label(mode, args.expand, args.neighbours, settings.rerank)
     # The prompts are part of the config hash: a re-run with a changed prompt gets its own run.
     prompts_sha = hashlib.sha256((ANSWER_SYSTEM + JUDGE_SYSTEM + JUDGE_TEMPLATE).encode()).hexdigest()[:8]
     config = stamp("answers", {
@@ -197,7 +206,7 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str) -> None:
         "questions_file": args.questions.name, "questions_sha": file_sha(args.questions),
         "n_questions": len(questions), "n_answered": len(rows),
         "git_commit": git_commit(), "index_manifest": retriever.manifest,
-    } | (expand_config(settings, exp_llm) if args.expand else {}), note=args.note)
+    } | (expand_config(settings, exp_llm) if args.expand else {}) | rerank_config(settings), note=args.note)
     run_dir = save_run(config, summary, rows, answers_markdown(config["run_id"], config, summary, rows))
     print(f"\nRun {config['run_id']} saved to {run_dir}")
     print(f"{name}: correct {fmt(summary['correct'])}, correct or partial {fmt(summary['correct_or_partial'])}, "
@@ -249,7 +258,7 @@ def run_retrieval_eval(args, settings, retriever: Retriever) -> None:
     for mode in args.modes:
         rows = run_mode(retriever, questions, mode, args.neighbours, queries)
         summary = summarize_by_type(rows)
-        name = label(mode, args.expand, args.neighbours)
+        name = label(mode, args.expand, args.neighbours, settings.rerank)
         config = stamp("retrieval", {
             "index": args.index,
             "mode": mode,
@@ -264,7 +273,7 @@ def run_retrieval_eval(args, settings, retriever: Retriever) -> None:
             "n_questions": len(questions),
             "git_commit": git_commit(),
             "index_manifest": retriever.manifest,
-        } | extra, note=args.note)
+        } | extra | rerank_config(settings), note=args.note)
         save_run(config, summary, rows, to_markdown(config["run_id"], config, summary, rows))
         print(f"run {config['run_id']}")
         s = summary["all"]
@@ -294,8 +303,19 @@ def main() -> None:
     parser.add_argument("--sleep", type=float, default=6.0,
                         help="seconds to wait after a question that called the API")
     parser.add_argument("--note", default="", help="short label shown in the results table")
+    parser.add_argument(
+        "--rerank", action=argparse.BooleanOptionalAction, default=None,
+        help="reorder candidates with a cross-encoder (retrieval: default off; --judge: app default)",
+    )
+    parser.add_argument("--rerank-model", help="override RERANK_MODEL for this run")
+    parser.add_argument("--rerank-candidates", type=int, help="override RERANK_CANDIDATES for this run")
     args = parser.parse_args()
 
+    if args.rerank is None:
+        args.rerank = settings.rerank if args.judge else False
+    overrides = {"rerank": args.rerank, "rerank_model": args.rerank_model,
+                 "rerank_candidates": args.rerank_candidates}
+    settings = settings.model_copy(update={k: v for k, v in overrides.items() if v is not None})
     retriever = Retriever(args.index, settings=settings)
     if args.judge:
         args.modes = args.modes or [settings.answer_mode]

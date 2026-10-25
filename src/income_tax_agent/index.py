@@ -5,7 +5,7 @@
         chroma/         the vector store
         manifest.json   the full config used to build it, plus stats
 
-Run: uv run python -m income_tax_agent.index [--chunker fixed|structured] [--header] [--force]
+Run: uv run python -m income_tax_agent.index [--chunker fixed|structured] [--header] [--breadcrumb] [--force]
 """
 
 import argparse
@@ -162,6 +162,12 @@ def main() -> None:
         help='fixed only: prefix "Section N: <title>" to each chunk before embedding '
         "(the structured chunker always adds its own, more precise prefix)",
     )
+    parser.add_argument(
+        "--breadcrumb",
+        action="store_true",
+        help="start the search prefix with the chapter and part, e.g. "
+        '"Chapter XIII: ... > E. Special provisions ... > Section 214: ..." (fixed: implies --header)',
+    )
     args = parser.parse_args()
 
     settings = get_settings()
@@ -169,11 +175,11 @@ def main() -> None:
     if args.chunker == "structured":
         if args.header:
             parser.error("--header is for the fixed chunker; structured adds its own prefix")
-        chunker = StructuredChunker(settings.structured_max_chars, settings.structured_min_chars)
+        chunker = StructuredChunker(settings.structured_max_chars, settings.structured_min_chars, args.breadcrumb)
     else:
         chunker = FixedSizeChunker(settings.chunk_size, settings.chunk_overlap)
-        if args.header:
-            chunker = HeaderPrefixChunker(chunker)
+        if args.header or args.breadcrumb:
+            chunker = HeaderPrefixChunker(chunker, breadcrumb=args.breadcrumb)
     out = build_index(chunker, get_embeddings(settings), settings, force=args.force)
     stats = json.loads((out / "manifest.json").read_text())["stats"]
     print(f"Built {out}")

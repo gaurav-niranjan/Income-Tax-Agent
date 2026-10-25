@@ -30,13 +30,16 @@ class FastEmbedEmbeddings(Embeddings):
         cache_dir: Path | None = None,
         query_prefix: str = BGE_QUERY_PREFIX,
         batch_size: int = 16,  # Fastest on an M2 Pro (scripts/benchmark_embed.py).
+        model_dir: Path | None = None,
     ):
         from fastembed import TextEmbedding  # Imported here so FAKE_MODELS runs never load it.
 
         self.model_name = model_name
         self.query_prefix = query_prefix
         self.batch_size = batch_size
-        self._model = TextEmbedding(model_name, cache_dir=str(cache_dir) if cache_dir else None)
+        # model_dir: load from that folder as-is. No download, and nothing is written to it.
+        options = {"specific_model_path": str(model_dir)} if model_dir else {}
+        self._model = TextEmbedding(model_name, cache_dir=str(cache_dir) if cache_dir else None, **options)
         self._counter = None
 
     @property
@@ -113,4 +116,5 @@ def get_embeddings(settings: Settings | None = None) -> FastEmbedEmbeddings | Fa
         settings.embedding_model,
         cache_dir=settings.model_cache_dir,
         query_prefix=settings.embedding_query_prefix,
+        model_dir=settings.embedding_model_dir,
     )
