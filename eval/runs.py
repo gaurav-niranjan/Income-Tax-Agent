@@ -174,25 +174,64 @@ def _short_metrics(run: dict | None) -> list[str]:
     return [f"{s['hits@1']}/{s['n']}", f"{s['hits@5']}/{s['n']}", f"{s['mrr']:.2f}"]
 
 
-def key_retrieval_table(keys: list[dict], runs: dict[str, dict], results_dir: Path) -> list[str]:
-    """One row per step: its dev run and (optional) held-out run side by side.
+# What the setup columns of the key runs tables mean (README.md).
+SETUP_NOTES = [
+    "- **search**: dense = embedding similarity; hybrid = dense + BM25 keyword search, merged with RRF.",
+    "- **query expansion**: Gemini writes 3 extra search queries in the Act's wording; the question is searched "
+    "too. Without a reranker, their result lists are merged (RRF in the earliest runs, best rank later).",
+    "- **reranker**: a cross-encoder reads the question next to each pooled chunk and orders them. "
+    "*question + half of best rewrite* = its score against the question plus half its best score against a rewrite.",
+    "- **neighbours**: the chunks before and after each hit, if in the same section. On structured chunks that is "
+    "always so, so they can't change these metrics; they give the answer model the rest of a sub-section or table.",
+]
 
-    key_runs.json entries look like {"step": "...", "dev": "<run id>", "heldout": "<run id>"}.
+
+def _setup(config: dict) -> list[str]:
+    """Search, query expansion, reranker and neighbours columns for one run."""
+    reranker = "–"
+    if config.get("rerank"):
+        # Runs from before rerank_rewrite_weight existed scored against the question only.
+        w = config.get("rerank_rewrite_weight", 0)
+        reranker = f"question + {'half' if w == 0.5 else w} of best rewrite" if w else "question"
+    return [config["mode"], "✓" if config.get("expand") else "–", reranker, "✓" if config.get("neighbours") else "–"]
+
+
+def key_retrieval_table(keys: list[dict], runs: dict[str, dict], results_dir: Path) -> list[str]:
+    """One row per step: what was switched on, then its dev and (optional) held-out run side by side.
+
+    Steps look like {"id": "B1", "step": "...", "dev": "<run id>", "heldout": "<run id>"}; "id" is
+    optional. The setup columns come from the dev run's config, else the held-out run's.
     """
-    lines = ["| step | dev hit@1 | dev hit@5 | dev MRR | held-out hit@1 | held-out hit@5 | held-out MRR | runs |",
-             "|---|---|---|---|---|---|---|---|"]
+    numbered = any("id" in key for key in keys)
+    header = ["#"] * numbered + ["step", "search", "query expansion", "reranker", "neighbours", "dev hit@1",
+                                 "dev hit@5", "dev MRR", "held-out hit@1", "held-out hit@5", "held-out MRR", "runs"]
+    lines = ["| " + " | ".join(header) + " |", "|" + "---|" * len(header)]
     for key in keys:
-        links = []
-        cells = []
+        links, cells, configs = [], [], []
         for split, label in (("dev", "dev"), ("heldout", "held-out")):
             run_id = key.get(split)
             run = runs.get(run_id) if run_id else None
             cells += _short_metrics(run)
             if run is not None:
                 links.append(f"[{label}](retrieval/{run_id}/report.md)")
+                configs.append(run["config"])
             elif run_id:  # listed in key_runs.json but deleted or mistyped
                 links.append(f"{run_id} (not found)")
-        lines.append(f"| {key['step']} | {' | '.join(cells)} | {' · '.join(links)} |")
+        setup = _setup(configs[0]) if configs else ["-"] * 4
+        row = [key.get("id", "")] * numbered + [key["step"], *setup, *cells, " · ".join(links)]
+        lines.append("| " + " | ".join(row) + " |")
+    return lines
+
+
+def key_retrieval_groups(groups: list[dict], runs: dict[str, dict], results_dir: Path) -> list[str]:
+    """Each group in key_runs.json: an optional "### heading" and note, then its table of steps."""
+    lines = []
+    for group in groups:
+        if group.get("heading"):
+            lines += [f"### {group['heading']}", ""]
+        if group.get("note"):
+            lines += [group["note"], ""]
+        lines += [*key_retrieval_table(group["steps"], runs, results_dir), ""]
     return lines
 
 
@@ -220,7 +259,8 @@ def write_index(results_dir: Path = RESULTS_DIR) -> Path:
         "Each run folder has `config.json` (full config), `summary.json`, `rows.json` and `report.md`.",
         "Run id = `<date>_<config hash>`. Compare two configs: `uv run python eval/compare.py diff <id> <id>`.",
         "",
-        "Rates are shown with raw counts, e.g. `0.82 (18/22)`: with ~22 questions one question is ~5 points.",
+        "Rates are shown with raw counts, e.g. `0.92 (24/26)`: with this few questions, one question moves a rate "
+        "by several points.",
     ]
     strict_note = ("**strict** = an expected section makes up at least 30% of the chunk; **section** = the chunk "
                    "touches an expected section; **phrase** = the chunk contains an expected phrase.")
@@ -242,15 +282,17 @@ def write_index(results_dir: Path = RESULTS_DIR) -> Path:
     lines = [
         "# Eval results", "",
         "The steps that shaped the app. **hit@1** = the right section is the first result; "
-        "**hit@5** = it is in the top 5. A hit is *strict*: the section makes up at least 30% of the chunk. "
+        "**hit@5** = it is in the top 5; **MRR** = the mean of 1/rank of the first right result (1.00 = always "
+        "first). A hit is *strict*: the section makes up at least 30% of the chunk. "
         "Dev = questions.jsonl, held-out = heldout.jsonl (written later, not used for tuning). "
-        "With ~23 questions, one question is ~4 points.", "",
+        "Counts are questions: with this few, one question moves a rate by several points.", "",
         f"Generated from `key_runs.json` by `eval/runs.py` (`uv run python eval/compare.py`). "
         f"Every run ({len(retrieval)} retrieval, {len(answers)} answer) is in [all_runs.md](all_runs.md).", "",
-        "## Retrieval: the steps that made it into the app", "",
-        *key_retrieval_table(keys.get("retrieval", []), by_id, results_dir), "",
+        "## Retrieval: how the app was built", "",
+        *SETUP_NOTES, "",
+        *key_retrieval_groups(keys.get("retrieval", []), by_id, results_dir),
         "## Retrieval: also tried", "",
-        *key_retrieval_table(keys.get("also_tried", []), by_id, results_dir), "",
+        *key_retrieval_groups(keys.get("also_tried", []), by_id, results_dir),
         "## Answers (LLM judge)", "",
         "Correct and false refusals are over judged in-scope questions; faithful over all judged ones.", "",
         *key_answers_table(keys.get("answers", []), by_id, results_dir), "",

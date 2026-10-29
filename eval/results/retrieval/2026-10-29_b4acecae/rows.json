@@ -1,0 +1,2636 @@
+[
+  {
+    "id": "q01",
+    "type": "table",
+    "question": "What are the income tax rates under the new regime?",
+    "expected_sections": [
+      "202"
+    ],
+    "ranks": {
+      "section": 5,
+      "strict": 5,
+      "phrase": 5
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000017",
+        "rank": 1,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000085",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000106",
+        "rank": 3,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000105",
+        "rank": 4,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000719",
+        "rank": 5,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001044",
+        "rank": 6,
+        "sections": [
+          "310"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000139",
+        "rank": 7,
+        "sections": [
+          "5"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000721",
+        "rank": 8,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000758",
+        "rank": 9,
+        "sections": [
+          "207"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000716",
+        "rank": 10,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "What are the income tax rates under the new regime?",
+      "income tax rates total income slab rates individual",
+      "The rates of income tax for the total income of an individual shall be specified in the relevant Finance Act",
+      "What are the income tax rates applicable to the total income of an individual under the default tax regime"
+    ]
+  },
+  {
+    "id": "q02",
+    "type": "table",
+    "question": "What is the TDS rate when a specified person pays rent for land or a building?",
+    "expected_sections": [
+      "393"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:001200",
+        "rank": 1,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001220",
+        "rank": 2,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001199",
+        "rank": 3,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001289",
+        "rank": 4,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001561",
+        "rank": 5,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001232",
+        "rank": 6,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000554",
+        "rank": 7,
+        "sections": [
+          "134"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001216",
+        "rank": 8,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001207",
+        "rank": 9,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001206",
+        "rank": 10,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "What is the TDS rate when a specified person pays rent for land or a building?",
+      "tax deducted at source rent land building specified person rate",
+      "Where any specified person responsible for paying to a resident any income by way of rent shall deduct tax deducted at source at the rate of",
+      "What is the tax deducted at source rate applicable when a specified person pays rent for land or a building"
+    ]
+  },
+  {
+    "id": "q03",
+    "type": "table",
+    "question": "At what rate is tax collected at source on the sale of scrap?",
+    "expected_sections": [
+      "394"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:001236",
+        "rank": 1,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000217",
+        "rank": 2,
+        "sections": [
+          "33"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001237",
+        "rank": 3,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001238",
+        "rank": 4,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001207",
+        "rank": 5,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001392",
+        "rank": 6,
+        "sections": [
+          "449"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000575",
+        "rank": 7,
+        "sections": [
+          "145"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001199",
+        "rank": 8,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001216",
+        "rank": 9,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000716",
+        "rank": 10,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "At what rate is tax collected at source on the sale of scrap?",
+      "tax collected at source sale of scrap rate",
+      "tax collected at source on the sale of scrap shall be at the rate of",
+      "What is the rate of tax collected at source for the sale of scrap"
+    ]
+  },
+  {
+    "id": "q04",
+    "type": "table",
+    "question": "What is the due date for filing the income tax return of a salaried person with no business income?",
+    "expected_sections": [
+      "263"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 5
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000898",
+        "rank": 1,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000475",
+        "rank": 2,
+        "sections": [
+          "101"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001346",
+        "rank": 3,
+        "sections": [
+          "423"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001118",
+        "rank": 4,
+        "sections": [
+          "352"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000899",
+        "rank": 5,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001347",
+        "rank": 6,
+        "sections": [
+          "423"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000142",
+        "rank": 7,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001356",
+        "rank": 8,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001119",
+        "rank": 9,
+        "sections": [
+          "352"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000776",
+        "rank": 10,
+        "sections": [
+          "216"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "What is the due date for filing the income tax return of a salaried person with no business income?",
+      "return of income due date assessee total income without profits and gains of business or profession",
+      "Every person being a resident in India whose total income does not include any profits and gains of business or profession shall furnish a return of income on or before the due date",
+      "What is the due date for furnishing the return of income for an assessee with salary income and no business income"
+    ]
+  },
+  {
+    "id": "q05",
+    "type": "table",
+    "question": "How much standard deduction can a salaried employee claim under the new tax regime?",
+    "expected_sections": [
+      "19"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000177",
+        "rank": 1,
+        "sections": [
+          "19"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000201",
+        "rank": 2,
+        "sections": [
+          "29"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000689",
+        "rank": 3,
+        "sections": [
+          "190"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000518",
+        "rank": 4,
+        "sections": [
+          "122"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000461",
+        "rank": 5,
+        "sections": [
+          "93"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000184",
+        "rank": 6,
+        "sections": [
+          "19"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000465",
+        "rank": 7,
+        "sections": [
+          "95"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001196",
+        "rank": 8,
+        "sections": [
+          "392"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000719",
+        "rank": 9,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000598",
+        "rank": 10,
+        "sections": [
+          "155"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "How much standard deduction can a salaried employee claim under the new tax regime?",
+      "standard deduction salary income under the new tax regime",
+      "Where the total income of an assessee includes income chargeable under the head \"Salaries\", a deduction of Rs. 75000 shall be allowed",
+      "What is the amount of standard deduction available to a salaried employee for computing total income under the new tax regime"
+    ]
+  },
+  {
+    "id": "q06",
+    "type": "table",
+    "question": "What is the TCS rate on money sent abroad under the Liberalised Remittance Scheme for education?",
+    "expected_sections": [
+      "394"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:001236",
+        "rank": 1,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001264",
+        "rank": 2,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000692",
+        "rank": 3,
+        "sections": [
+          "193"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001237",
+        "rank": 4,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001201",
+        "rank": 5,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000763",
+        "rank": 6,
+        "sections": [
+          "209"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001238",
+        "rank": 7,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001212",
+        "rank": 8,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000761",
+        "rank": 9,
+        "sections": [
+          "208"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000695",
+        "rank": 10,
+        "sections": [
+          "193"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "What is the TCS rate on money sent abroad under the Liberalised Remittance Scheme for education?",
+      "tax collected at source Liberalised Remittance Scheme education",
+      "Where amount is remitted out of India under the Liberalised Remittance Scheme for education, tax collected at source shall be levied at the specified rate",
+      "What is the tax collected at source percentage for amounts remitted abroad under the Liberalised Remittance Scheme for the purpose of education"
+    ]
+  },
+  {
+    "id": "q07",
+    "type": "definition",
+    "question": "Who is included in the definition of a 'person' in the Act?",
+    "expected_sections": [
+      "2"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000092",
+        "rank": 1,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001062",
+        "rank": 2,
+        "sections": [
+          "318"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000673",
+        "rank": 3,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001297",
+        "rank": 4,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001262",
+        "rank": 5,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000230",
+        "rank": 6,
+        "sections": [
+          "36"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000537",
+        "rank": 7,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000012",
+        "rank": 8,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000719",
+        "rank": 9,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000674",
+        "rank": 10,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "Who is included in the definition of a 'person' in the Act?",
+      "person includes individual Hindu undivided family company firm association of persons or body of individuals",
+      "person includes an individual, Hindu undivided family, company, firm, association of persons or body of individuals, local authority, and every other artificial juridical person",
+      "Who falls under the definition of a person for the purposes of the Act"
+    ]
+  },
+  {
+    "id": "q08",
+    "type": "definition",
+    "question": "Who counts as a senior citizen for income tax?",
+    "expected_sections": [
+      "2"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000116",
+        "rank": 1,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001299",
+        "rank": 2,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000906",
+        "rank": 3,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000087",
+        "rank": 4,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000112",
+        "rank": 5,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001208",
+        "rank": 6,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001599",
+        "rank": 7,
+        "sections": [
+          "Schedule VII"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000140",
+        "rank": 8,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000531",
+        "rank": 9,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000142",
+        "rank": 10,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "Who counts as a senior citizen for income tax?",
+      "resident individual of the age of sixty years or more senior citizen",
+      "senior citizen means a resident individual who is of the age of sixty years or more at any time during the tax year",
+      "What is the age limit for a resident individual to be considered a senior citizen for tax purposes"
+    ]
+  },
+  {
+    "id": "q09",
+    "type": "definition",
+    "question": "What does 'tax year' mean?",
+    "expected_sections": [
+      "3"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000137",
+        "rank": 1,
+        "sections": [
+          "3"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001005",
+        "rank": 2,
+        "sections": [
+          "293"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000128",
+        "rank": 3,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001027",
+        "rank": 4,
+        "sections": [
+          "301"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000681",
+        "rank": 5,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000158",
+        "rank": 6,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000573",
+        "rank": 7,
+        "sections": [
+          "143"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001009",
+        "rank": 8,
+        "sections": [
+          "293"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000859",
+        "rank": 9,
+        "sections": [
+          "247"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000081",
+        "rank": 10,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "What does 'tax year' mean?",
+      "tax year definition period",
+      "tax year means the period beginning on the first day of April and ending on the thirty-first day of March",
+      "What is the definition and meaning of the term tax year"
+    ]
+  },
+  {
+    "id": "q10",
+    "type": "definition",
+    "question": "Who is a 'relative' of an individual under the Act?",
+    "expected_sections": [
+      "2",
+      "92"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000110",
+        "rank": 1,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001490",
+        "rank": 2,
+        "sections": [
+          "515"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000677",
+        "rank": 3,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000092",
+        "rank": 4,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000029",
+        "rank": 5,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000673",
+        "rank": 6,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000474",
+        "rank": 7,
+        "sections": [
+          "100"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001388",
+        "rank": 8,
+        "sections": [
+          "445"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001131",
+        "rank": 9,
+        "sections": [
+          "355"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000674",
+        "rank": 10,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "Who is a 'relative' of an individual under the Act?",
+      "relative individual definition spouse child brother sister",
+      "\"relative\" in relation to an individual means the spouse, brother or sister, or any lineal ascendant or descendant of that individual",
+      "Who is included in the definition of a relative of an individual under the Act"
+    ]
+  },
+  {
+    "id": "q11",
+    "type": "prose",
+    "question": "How many days must an individual stay in India to be treated as a resident?",
+    "expected_sections": [
+      "6"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 2
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000142",
+        "rank": 1,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000140",
+        "rank": 2,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000141",
+        "rank": 3,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000112",
+        "rank": 4,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000158",
+        "rank": 5,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001061",
+        "rank": 6,
+        "sections": [
+          "317"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001060",
+        "rank": 7,
+        "sections": [
+          "317"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000087",
+        "rank": 8,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001564",
+        "rank": 9,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000898",
+        "rank": 10,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "How many days must an individual stay in India to be treated as a resident?",
+      "resident in India individual stay period days tax year",
+      "An individual shall be resident in India in any tax year if the individual stays in India for a period amounting in all to one hundred and eighty-two days or more",
+      "How many days must an individual stay in India during a tax year to be considered resident in India"
+    ]
+  },
+  {
+    "id": "q12",
+    "type": "prose",
+    "question": "When does the Income-tax Act, 2025 come into force?",
+    "expected_sections": [
+      "1"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000000",
+        "rank": 1,
+        "sections": [
+          "1"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001255",
+        "rank": 2,
+        "sections": [
+          "400"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001516",
+        "rank": 3,
+        "sections": [
+          "535"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001524",
+        "rank": 4,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000088",
+        "rank": 5,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001507",
+        "rank": 6,
+        "sections": [
+          "530"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001505",
+        "rank": 7,
+        "sections": [
+          "528"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001525",
+        "rank": 8,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001254",
+        "rank": 9,
+        "sections": [
+          "400"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000754",
+        "rank": 10,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "When does the Income-tax Act, 2025 come into force?",
+      "date of commencement of the Income-tax Act 2025",
+      "This Act shall come into force on such date as the Central Government may appoint by notification in the Official Gazette",
+      "When does the Income-tax Act 2025 come into force and apply to the assessee"
+    ]
+  },
+  {
+    "id": "q13",
+    "type": "prose",
+    "question": "Can someone with business income opt out of the new tax regime and later switch back?",
+    "expected_sections": [
+      "202"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000721",
+        "rank": 1,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000196",
+        "rank": 2,
+        "sections": [
+          "26"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000754",
+        "rank": 3,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001088",
+        "rank": 4,
+        "sections": [
+          "333"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000566",
+        "rank": 5,
+        "sections": [
+          "140"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000712",
+        "rank": 6,
+        "sections": [
+          "199"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000813",
+        "rank": 7,
+        "sections": [
+          "231"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000561",
+        "rank": 8,
+        "sections": [
+          "140"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000843",
+        "rank": 9,
+        "sections": [
+          "244"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001064",
+        "rank": 10,
+        "sections": [
+          "320"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "Can someone with business income opt out of the new tax regime and later switch back?",
+      "opting out of concessional tax regime business income subsequent tax year",
+      "Where an assessee having income under the head \"Profits and gains of business or profession\" has exercised the option to pay tax under the concessional rate, such option shall be available for subsequent tax years",
+      "Can an assessee with business income who opted out of the concessional tax regime switch back to it in a later tax year"
+    ]
+  },
+  {
+    "id": "q14",
+    "type": "prose",
+    "question": "What happens to the old Income-tax Act, 1961?",
+    "expected_sections": [
+      "536"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:001517",
+        "rank": 1,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001524",
+        "rank": 2,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001526",
+        "rank": 3,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001520",
+        "rank": 4,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001522",
+        "rank": 5,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001525",
+        "rank": 6,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001523",
+        "rank": 7,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001518",
+        "rank": 8,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001516",
+        "rank": 9,
+        "sections": [
+          "535"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000000",
+        "rank": 10,
+        "sections": [
+          "1"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "What happens to the old Income-tax Act, 1961?",
+      "Income-tax Act 1961 repeal savings provisions",
+      "The Income-tax Act 1961 shall stand repealed and replaced by the Income-tax Act 2025 subject to savings and transitional provisions",
+      "What is the legal effect and repeal status of the former Income-tax Act 1961 under the new tax law"
+    ]
+  },
+  {
+    "id": "q15",
+    "type": "numeric",
+    "question": "What is the maximum deduction for health insurance premium paid for parents?",
+    "expected_sections": [
+      "126"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000529",
+        "rank": 1,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000530",
+        "rank": 2,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000531",
+        "rank": 3,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000522",
+        "rank": 4,
+        "sections": [
+          "123"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000203",
+        "rank": 5,
+        "sections": [
+          "30"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000539",
+        "rank": 6,
+        "sections": [
+          "128"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001666",
+        "rank": 7,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000533",
+        "rank": 8,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001660",
+        "rank": 9,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001658",
+        "rank": 10,
+        "sections": [
+          "Schedule XIV"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "What is the maximum deduction for health insurance premium paid for parents?",
+      "deduction health insurance premium parents total income",
+      "Where an assessee pays health insurance premium for parents, the deduction allowed from total income shall not exceed Rs. 50000",
+      "What is the maximum deduction allowed under the Act for health insurance premium paid for parents"
+    ]
+  },
+  {
+    "id": "q16",
+    "type": "numeric",
+    "question": "How much can be deducted for a preventive health check-up?",
+    "expected_sections": [
+      "126"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000529",
+        "rank": 1,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000530",
+        "rank": 2,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000531",
+        "rank": 3,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000533",
+        "rank": 4,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000539",
+        "rank": 5,
+        "sections": [
+          "128"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000532",
+        "rank": 6,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000689",
+        "rank": 7,
+        "sections": [
+          "190"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000518",
+        "rank": 8,
+        "sections": [
+          "122"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000221",
+        "rank": 9,
+        "sections": [
+          "34"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000203",
+        "rank": 10,
+        "sections": [
+          "30"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "How much can be deducted for a preventive health check-up?",
+      "deduction preventive health check-up total income",
+      "Where an assessee incurs expenditure on preventive health check-up, a deduction of up to Rs. 5000 shall be allowed in computing total income",
+      "How much deduction from total income is allowed for expenditure incurred on a preventive health check-up"
+    ]
+  },
+  {
+    "id": "q17",
+    "type": "numeric",
+    "question": "What standard deduction is allowed from rental income from a house property?",
+    "expected_sections": [
+      "22"
+    ],
+    "ranks": {
+      "section": 2,
+      "strict": 2,
+      "phrase": 2
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000187",
+        "rank": 1,
+        "sections": [
+          "20"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000190",
+        "rank": 2,
+        "sections": [
+          "22"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000554",
+        "rank": 3,
+        "sections": [
+          "134"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000222",
+        "rank": 4,
+        "sections": [
+          "35"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000569",
+        "rank": 5,
+        "sections": [
+          "142"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000189",
+        "rank": 6,
+        "sections": [
+          "21"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000191",
+        "rank": 7,
+        "sections": [
+          "22"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000200",
+        "rank": 8,
+        "sections": [
+          "28"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000198",
+        "rank": 9,
+        "sections": [
+          "26"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000542",
+        "rank": 10,
+        "sections": [
+          "130"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "What standard deduction is allowed from rental income from a house property?",
+      "income from house property deduction from annual value",
+      "where the income is chargeable under the head \"Income from house property\", a deduction of a sum equal to thirty percent of the annual value shall be allowed",
+      "what standard deduction is available from the annual value of house property under income from house property"
+    ]
+  },
+  {
+    "id": "q18",
+    "type": "numeric",
+    "question": "What is the maximum rebate a resident individual can get under the new tax regime?",
+    "expected_sections": [
+      "156"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000599",
+        "rank": 1,
+        "sections": [
+          "156"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000598",
+        "rank": 2,
+        "sections": [
+          "155"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000721",
+        "rank": 3,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001208",
+        "rank": 4,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000772",
+        "rank": 5,
+        "sections": [
+          "213"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000719",
+        "rank": 6,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000597",
+        "rank": 7,
+        "sections": [
+          "154"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000709",
+        "rank": 8,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000918",
+        "rank": 9,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001364",
+        "rank": 10,
+        "sections": [
+          "432"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "What is the maximum rebate a resident individual can get under the new tax regime?",
+      "rebate of tax resident individual maximum amount new tax regime",
+      "Where the total income of a resident individual does not exceed Rs. 700000, there shall be allowed a rebate of income-tax of an amount equal to the tax payable on such total income",
+      "What is the maximum tax rebate available to a resident individual under the new tax regime for total income up to Rs. 700000"
+    ]
+  },
+  {
+    "id": "q19",
+    "type": "lakh",
+    "question": "What is the tax rate on income between 8 and 12 lakh under the new regime?",
+    "expected_sections": [
+      "202"
+    ],
+    "ranks": {
+      "section": 3,
+      "strict": 3,
+      "phrase": 3
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000758",
+        "rank": 1,
+        "sections": [
+          "207"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000017",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000719",
+        "rank": 3,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000138",
+        "rank": 4,
+        "sections": [
+          "4"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001208",
+        "rank": 5,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000599",
+        "rank": 6,
+        "sections": [
+          "156"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001206",
+        "rank": 7,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000716",
+        "rank": 8,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000139",
+        "rank": 9,
+        "sections": [
+          "5"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000721",
+        "rank": 10,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "What is the tax rate on income between 8 and 12 lakh under the new regime?",
+      "total income rates of tax slab rates",
+      "The rates of income-tax for the total income of a person shall be charged at the specified rates for income exceeding Rs. 800000 up to Rs. 1200000",
+      "What is the tax rate applicable to total income between Rs. 800000 and Rs. 1200000 under the default tax regime"
+    ]
+  },
+  {
+    "id": "q20",
+    "type": "lakh",
+    "question": "Is there a tax rebate if my total income is up to 5 lakh?",
+    "expected_sections": [
+      "156"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000599",
+        "rank": 1,
+        "sections": [
+          "156"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000598",
+        "rank": 2,
+        "sections": [
+          "155"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000139",
+        "rank": 3,
+        "sections": [
+          "5"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000772",
+        "rank": 4,
+        "sections": [
+          "213"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000475",
+        "rank": 5,
+        "sections": [
+          "101"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001204",
+        "rank": 6,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000689",
+        "rank": 7,
+        "sections": [
+          "190"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001208",
+        "rank": 8,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000751",
+        "rank": 9,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000554",
+        "rank": 10,
+        "sections": [
+          "134"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "Is there a tax rebate if my total income is up to 5 lakh?",
+      "rebate of tax total income Rs. 500000",
+      "Where the total income of an assessee does not exceed Rs. 500000, there shall be allowed a rebate of income-tax",
+      "Is a tax rebate available under the Act if the total income of the resident individual is up to Rs. 500000"
+    ]
+  },
+  {
+    "id": "q21",
+    "type": "lakh",
+    "question": "At what rate are long-term capital gains on listed shares above 1.25 lakh taxed?",
+    "expected_sections": [
+      "198"
+    ],
+    "ranks": {
+      "section": 3,
+      "strict": 3,
+      "phrase": 3
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000706",
+        "rank": 1,
+        "sections": [
+          "197"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000705",
+        "rank": 2,
+        "sections": [
+          "197"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000708",
+        "rank": 3,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000707",
+        "rank": 4,
+        "sections": [
+          "197"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000709",
+        "rank": 5,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000773",
+        "rank": 6,
+        "sections": [
+          "214"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000380",
+        "rank": 7,
+        "sections": [
+          "69"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000430",
+        "rank": 8,
+        "sections": [
+          "85"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000703",
+        "rank": 9,
+        "sections": [
+          "196"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000766",
+        "rank": 10,
+        "sections": [
+          "210"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "At what rate are long-term capital gains on listed shares above 1.25 lakh taxed?",
+      "long-term capital gains listed shares securities transaction tax income tax rate",
+      "Where the total income includes long-term capital gains exceeding Rs. 125000 arising from the transfer of equity shares, the tax payable shall be calculated at the specified rate",
+      "What is the tax rate on long-term capital gains exceeding Rs. 125000 from the transfer of listed shares"
+    ]
+  },
+  {
+    "id": "q22",
+    "type": "lakh",
+    "question": "Is the total deduction for life insurance premium and provident fund contributions capped at 1.5 lakh?",
+    "expected_sections": [
+      "123",
+      "Schedule XV"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 2
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:001660",
+        "rank": 1,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000522",
+        "rank": 2,
+        "sections": [
+          "123"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001532",
+        "rank": 3,
+        "sections": [
+          "Schedule II"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001664",
+        "rank": 4,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001666",
+        "rank": 5,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001662",
+        "rank": 6,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001665",
+        "rank": 7,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000595",
+        "rank": 8,
+        "sections": [
+          "153"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001667",
+        "rank": 9,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001674",
+        "rank": 10,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "Is the total deduction for life insurance premium and provident fund contributions capped at 1.5 lakh?",
+      "deduction life insurance premium provident fund contribution limit total amount",
+      "Where the gross total income of an assessee includes sums paid towards life insurance premium and provident fund contribution, the aggregate deduction shall not exceed Rs. 150000",
+      "Is the total deduction for life insurance premium and provident fund contributions subject to an upper limit of Rs. 150000"
+    ]
+  },
+  {
+    "id": "q27",
+    "type": "prose",
+    "question": "What are the tax laws for non-resident Indians?",
+    "expected_sections": [
+      "212",
+      "213",
+      "214",
+      "215",
+      "216",
+      "217"
+    ],
+    "ranks": {
+      "section": 6,
+      "strict": 6,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000139",
+        "rank": 1,
+        "sections": [
+          "5"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000142",
+        "rank": 2,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000769",
+        "rank": 3,
+        "sections": [
+          "211"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000161",
+        "rank": 4,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001562",
+        "rank": 5,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000772",
+        "rank": 6,
+        "sections": [
+          "213"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001596",
+        "rank": 7,
+        "sections": [
+          "Schedule VI"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000154",
+        "rank": 8,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000155",
+        "rank": 9,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000647",
+        "rank": 10,
+        "sections": [
+          "174"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "What are the tax laws for non-resident Indians?",
+      "non-resident in India total income tax rates scope of total income",
+      "Total income of a person who is not resident in India shall include all income from whatever source derived which is received or is deemed to be received in India",
+      "What are the provisions governing the taxation of income for a person who is a non-resident in India"
+    ]
+  },
+  {
+    "id": "q28",
+    "type": "table",
+    "question": "How is profit from selling cryptocurrency taxed?",
+    "expected_sections": [
+      "194"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 3
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000701",
+        "rank": 1,
+        "sections": [
+          "194"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001389",
+        "rank": 2,
+        "sections": [
+          "446"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000698",
+        "rank": 3,
+        "sections": [
+          "194"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001469",
+        "rank": 4,
+        "sections": [
+          "509"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000135",
+        "rank": 5,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000401",
+        "rank": 6,
+        "sections": [
+          "72"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001028",
+        "rank": 7,
+        "sections": [
+          "301"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001470",
+        "rank": 8,
+        "sections": [
+          "509"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001228",
+        "rank": 9,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000399",
+        "rank": 10,
+        "sections": [
+          "71"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "How is profit from selling cryptocurrency taxed?",
+      "virtual digital asset transfer income tax rate",
+      "capital gains arising from the transfer of any virtual digital asset shall be charged to tax at the rate of thirty per cent",
+      "How is income from the transfer of virtual digital assets taxed under the Act"
+    ]
+  },
+  {
+    "id": "q29",
+    "type": "lakh",
+    "question": "Can I set off a loss of 3 lakh from house property against my salary?",
+    "expected_sections": [
+      "109",
+      "202"
+    ],
+    "ranks": {
+      "section": 2,
+      "strict": 2,
+      "phrase": 2
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000483",
+        "rank": 1,
+        "sections": [
+          "108"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000484",
+        "rank": 2,
+        "sections": [
+          "109"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000485",
+        "rank": 3,
+        "sections": [
+          "110"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001626",
+        "rank": 4,
+        "sections": [
+          "Schedule X"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000491",
+        "rank": 5,
+        "sections": [
+          "115"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000198",
+        "rank": 6,
+        "sections": [
+          "26"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000489",
+        "rank": 7,
+        "sections": [
+          "113"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001196",
+        "rank": 8,
+        "sections": [
+          "392"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001628",
+        "rank": 9,
+        "sections": [
+          "Schedule X"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:001541",
+        "rank": 10,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "Can I set off a loss of 3 lakh from house property against my salary?",
+      "loss under the head income from house property set off against salary",
+      "Where the net result of computation under the head \"Income from house property\" is a loss of Rs. 300000, it shall be set off against income under any other head including salary",
+      "Can an assessee set off a house property loss of Rs. 300000 against income from salary in the same tax year"
+    ]
+  },
+  {
+    "id": "q30",
+    "type": "definition",
+    "question": "How long do I need to hold listed shares for the gain to count as long-term?",
+    "expected_sections": [
+      "2"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 2
+    },
+    "retrieved": [
+      {
+        "chunk_id": "structured-1500:000083",
+        "rank": 1,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000117",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000707",
+        "rank": 3,
+        "sections": [
+          "197"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000989",
+        "rank": 4,
+        "sections": [
+          "288"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000082",
+        "rank": 5,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000118",
+        "rank": 6,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000380",
+        "rank": 7,
+        "sections": [
+          "69"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000708",
+        "rank": 8,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000431",
+        "rank": 9,
+        "sections": [
+          "85"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "structured-1500:000706",
+        "rank": 10,
+        "sections": [
+          "197"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "queries": [
+      "How long do I need to hold listed shares for the gain to count as long-term?",
+      "capital gains listed shares period of holding long-term capital asset",
+      "Where a capital asset being listed shares is held by the assessee for a period of more than twelve months it shall be considered a long-term capital asset",
+      "What is the minimum holding period for listed shares to be treated as a long-term capital asset for capital gains purposes"
+    ]
+  }
+]

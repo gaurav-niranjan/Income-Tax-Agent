@@ -3,7 +3,7 @@
 import json
 from datetime import datetime
 
-from runs import config_diff, config_hash, load_runs, save_run, stamp
+from runs import _setup, config_diff, config_hash, load_runs, save_run, stamp
 
 MANIFEST = {"name": "idx", "created": "2026-10-18T09:00:00", "chunker": {"size": 1000},
             "stats": {"embed_seconds": 185.5}}
@@ -46,22 +46,29 @@ def test_readme_shows_only_key_runs(tmp_path):
     shown = stamp("retrieval", CONFIG, created=datetime(2026, 10, 18, 10, 0))
     held = stamp("retrieval", CONFIG | {"questions_file": "heldout.jsonl"}, created=datetime(2026, 10, 18, 10, 30))
     hidden = stamp("retrieval", CONFIG | {"mode": "bm25"}, created=datetime(2026, 10, 18, 11, 0))
-    (tmp_path / "key_runs.json").write_text(json.dumps({"retrieval": [
-        {"step": "Baseline", "dev": shown["run_id"], "heldout": held["run_id"]},
+    (tmp_path / "key_runs.json").write_text(json.dumps({"retrieval": [{"heading": "A. Fixed chunks", "steps": [
+        {"id": "A1", "step": "Baseline", "dev": shown["run_id"], "heldout": held["run_id"]},
         {"step": "Dev only", "dev": shown["run_id"]},
         {"step": "Deleted run", "dev": "2026-01-01_deadbeef"},
-    ]}))
+    ]}]}))
     for config in (shown, held, hidden):
         save_run(config, SUMMARY, [], "# report\n", results_dir=tmp_path)
 
     readme = (tmp_path / "README.md").read_text()
-    # dev and held-out side by side in one row, as raw counts
-    assert "| Baseline | 1/1 | 1/1 | 1.00 | 1/1 | 1/1 | 1.00 |" in readme
+    assert "### A. Fixed chunks" in readme
+    # setup read from the run's config, then dev and held-out side by side, as raw counts
+    assert "| A1 | Baseline | dense | – | – | ✓ | 1/1 | 1/1 | 1.00 | 1/1 | 1/1 | 1.00 |" in readme
     assert f"[held-out](retrieval/{held['run_id']}/report.md)" in readme
-    assert "| Dev only | 1/1 | 1/1 | 1.00 | - | - | - |" in readme
+    assert "|  | Dev only | dense | – | – | ✓ | 1/1 | 1/1 | 1.00 | - | - | - |" in readme
     assert hidden["run_id"] not in readme
     assert "2026-01-01_deadbeef (not found)" in readme
     assert hidden["run_id"] in (tmp_path / "all_runs.md").read_text()
+
+
+def test_setup_columns_name_the_reranker_rule():
+    rerank = CONFIG | {"expand": True, "rerank": True}
+    assert _setup(rerank) == ["dense", "✓", "question", "✓"]  # from before rerank_rewrite_weight existed
+    assert _setup(rerank | {"rerank_rewrite_weight": 0.5})[2] == "question + half of best rewrite"
 
 
 def test_config_diff_compares_nested_keys():

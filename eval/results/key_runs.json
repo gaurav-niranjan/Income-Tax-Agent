@@ -1,25 +1,41 @@
 {
-  "_about": "Runs shown in eval/results/README.md, in story order. Edit by hand, then run: uv run python eval/compare.py",
+  "_about": "Runs shown in eval/results/README.md. Retrieval: groups of {heading, note, steps}, each step {id?, step, dev, heldout?}. Edit by hand, then run: uv run python eval/compare.py",
   "retrieval": [
-    {"step": "Baseline: fixed 1,000-char chunks, dense search", "dev": "2026-10-18_16a617d8"},
-    {"step": "+ section title in each chunk's search text", "dev": "2026-10-18_f5a1c02c"},
-    {"step": "+ neighbour chunks + LLM query expansion", "dev": "2026-10-18_a728fa4a"},
-    {"step": "Hybrid search, best-rank merge of the queries (app until 2026-10-24)", "dev": "2026-10-19_7904715b", "heldout": "2026-10-19_73ee91cf"},
-    {"step": "Structured chunks, same setup", "dev": "2026-10-22_28619463", "heldout": "2026-10-22_031da53e"},
-    {"step": "Same, NRI question added (23 dev questions from here): NRI missed", "dev": "2026-10-24_83fc945a", "heldout": "2026-10-24_031da53e"},
-    {"step": "Rejected: chapter and part headings in the search text", "dev": "2026-10-24_4720f604", "heldout": "2026-10-24_ed8d463b"},
-    {"step": "+ reranker (MiniLM-L-6), scored against the question", "dev": "2026-10-24_9625e7ac", "heldout": "2026-10-24_70cf942b"},
-    {"step": "+ half the best rewrite's score added", "dev": "2026-10-24_95ee347c", "heldout": "2026-10-24_bbf61ac4"},
-    {"step": "**Dense first stage, 10 candidates per query (the app)**", "dev": "2026-10-24_6e9351f7", "heldout": "2026-10-24_63c7a818"}
+    {"heading": "A. Fixed 1,000-character chunks (how the app started)",
+     "note": "The original steps, each run with the settings it had then. A3 added two things at once; A4 also changed how the queries' lists are merged (RRF with k=60, 20 candidates each -> best rank, 10 candidates each).",
+     "steps": [
+      {"id": "A1", "step": "Baseline", "dev": "2026-10-29_4b919220", "heldout": "2026-10-29_cb3ad3c8"},
+      {"id": "A2", "step": "+ section title in each chunk", "dev": "2026-10-29_049d1a76", "heldout": "2026-10-29_bfc98597"},
+      {"id": "A3", "step": "+ query expansion, + neighbours", "dev": "2026-10-29_e5d30f8b", "heldout": "2026-10-29_338afafa"},
+      {"id": "A4", "step": "+ hybrid search (dense + BM25)", "dev": "2026-10-29_e4036857", "heldout": "2026-10-29_73ee91cf"}
+    ]},
+    {"heading": "B. Structured chunks, one technique at a time (the app)",
+     "note": "Today's settings, one technique added per row in the order the pipeline runs them. B5 is the app. The ↳ row changes only the search.",
+     "steps": [
+      {"id": "B1", "step": "Structured chunks, dense search only", "dev": "2026-10-29_9c6155e2", "heldout": "2026-10-29_db9be160"},
+      {"id": "B2", "step": "+ query expansion", "dev": "2026-10-29_b4acecae", "heldout": "2026-10-29_ec10321c"},
+      {"id": "B3", "step": "+ reranker, scored against the question", "dev": "2026-10-29_7242b726", "heldout": "2026-10-29_ca9c0749"},
+      {"id": "B4", "step": "+ reranker also scores the rewrites", "dev": "2026-10-29_0fbbbfcc", "heldout": "2026-10-29_ba35c7bd"},
+      {"id": "**B5**", "step": "**+ neighbour chunks (the app)**", "dev": "2026-10-29_a16278a2", "heldout": "2026-10-29_63c7a818"},
+      {"id": "↳", "step": "B5 with hybrid search, for comparison", "dev": "2026-10-29_5b0f44ff", "heldout": "2026-10-29_63a97a31"}
+    ]}
   ],
   "also_tried": [
-    {"step": "BM25 (keywords) only, baseline chunks", "dev": "2026-10-18_7caffad9"},
-    {"step": "Hybrid with the standard RRF k=60, baseline chunks", "dev": "2026-10-18_44c7ee3b"},
-    {"step": "Bigger reranker: MiniLM-L-12 (120 MB), scored against the question", "dev": "2026-10-24_403189e8", "heldout": "2026-10-24_78f3198a"},
-    {"step": "Bigger reranker: jina-reranker-v1-turbo (150 MB), same", "dev": "2026-10-24_43b7cbb8", "heldout": "2026-10-24_b9fd4f9b"},
-    {"step": "Bigger reranker: bge-reranker-base (1 GB, 8x slower), same", "dev": "2026-10-24_7adda55f", "heldout": "2026-10-24_0a3c6fb9"},
-    {"step": "App setup on fixed chunks instead of structured (20 candidates)", "dev": "2026-10-24_d0349a98", "heldout": "2026-10-24_6fee4b4e"},
-    {"step": "App setup without query expansion (20 candidates)", "dev": "2026-10-24_3ef3dcd7", "heldout": "2026-10-24_cf10af4d"}
+    {"note": "Not re-run: these used the dev set of their time (22 or 23 questions), so compare each one only with the *reference* row above it, which is what it was measured against. The last two used 20 reranker candidates; the app uses 10, which scored the same with dense search.",
+     "steps": [
+      {"step": "*Reference:* baseline (fixed chunks, dense)", "dev": "2026-10-18_16a617d8"},
+      {"step": "BM25 (keywords) only, baseline chunks", "dev": "2026-10-18_7caffad9"},
+      {"step": "Hybrid with the standard RRF k=60, baseline chunks", "dev": "2026-10-18_44c7ee3b"},
+      {"step": "*Reference:* structured chunks, hybrid + query expansion + neighbours", "dev": "2026-10-24_83fc945a", "heldout": "2026-10-24_031da53e"},
+      {"step": "Rejected: chapter and part headings in the search text", "dev": "2026-10-24_4720f604", "heldout": "2026-10-24_ed8d463b"},
+      {"step": "*Reference:* same + reranker (MiniLM-L-6, 80 MB), scored against the question", "dev": "2026-10-24_9625e7ac", "heldout": "2026-10-24_70cf942b"},
+      {"step": "Bigger reranker: MiniLM-L-12 (120 MB)", "dev": "2026-10-24_403189e8", "heldout": "2026-10-24_78f3198a"},
+      {"step": "Bigger reranker: jina-reranker-v1-turbo (150 MB)", "dev": "2026-10-24_43b7cbb8", "heldout": "2026-10-24_b9fd4f9b"},
+      {"step": "Bigger reranker: bge-reranker-base (1 GB, 8x slower)", "dev": "2026-10-24_7adda55f", "heldout": "2026-10-24_0a3c6fb9"},
+      {"step": "*Reference:* the app at the time", "dev": "2026-10-24_6e9351f7", "heldout": "2026-10-24_63c7a818"},
+      {"step": "App setup on fixed chunks instead of structured", "dev": "2026-10-24_d0349a98", "heldout": "2026-10-24_6fee4b4e"},
+      {"step": "App setup without query expansion", "dev": "2026-10-24_3ef3dcd7", "heldout": "2026-10-24_cf10af4d"}
+    ]}
   ],
   "answers": [
     {"run": "2026-10-18_d4acdb36", "step": "First answer eval, old app setup (judge quota ran out at 18/26)"}
