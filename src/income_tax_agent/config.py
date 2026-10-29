@@ -34,6 +34,10 @@ class Settings(BaseSettings):
     llm_cache_dir: Path = PROJECT_ROOT / ".cache/llm"
     # None = the model's default. Some models ignore temperature (fixed sampling).
     gemini_temperature: float | None = None
+    # Answer model only (Gemini 3+): "minimal", "low", "medium", "high". Empty = model default.
+    # Flash-Lite without thinking refused 2 of 4 tries at "tax on a 50 lakh salary" although
+    # the rate table was retrieved (2026-10-29).
+    gemini_thinking_level: str | None = None
     embedding_model: str = "BAAI/bge-base-en-v1.5"
     # Added to queries (not passages). BGE recommends it for query -> passage search.
     embedding_query_prefix: str = "Represent this sentence for searching relevant passages: "
@@ -99,9 +103,18 @@ class Settings(BaseSettings):
     rerank_rewrite_weight: float = 0.5
 
     # --- App ---
-    # Strangers share one free API quota; this cap keeps one visitor from using it all.
-    # (Per browser session: a page reload resets it. Good enough for a demo.)
-    max_questions_per_session: int = 10
+    # Strangers share one free API quota. Per visitor (IP address) and for all visitors
+    # together, over a sliding window kept in server memory, so a page reload doesn't reset
+    # it (limits.py). Off in dev mode. The total is not shown in the app; the server log
+    # prints it after every answer.
+    max_questions_per_visitor: int = 20
+    max_questions_total: int = 150
+    question_window_hours: float = 24
+    # Earlier turns used to rewrite a follow-up question (prompts.REWRITE_SYSTEM).
+    history_turns: int = 3
+    # Shows timings, token counts, cache hits, prompts and memory under each answer.
+    # For local testing only: set DEV_MODE=1 in .env, never in Streamlit Cloud's Secrets.
+    dev_mode: bool = False
 
     # CI sets this to 1: fake embeddings and a fake LLM, so no keys or downloads.
     fake_models: bool = False

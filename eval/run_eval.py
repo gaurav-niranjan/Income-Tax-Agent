@@ -149,7 +149,7 @@ def to_markdown(name: str, config: dict, summary: dict, rows: list[dict]) -> str
 def run_answer_eval(args, settings, retriever: Retriever, mode: str) -> None:
     """Phase 7: answer every question (out-of-scope included) and have a second model grade it."""
     answer_llm = GeminiLLM(settings.gemini_model, settings.google_api_key, settings.llm_cache_dir,
-                           settings.gemini_temperature)
+                           settings.gemini_temperature, settings.gemini_thinking_level)
     judge_llm = GeminiLLM(args.judge_model or settings.gemini_judge_model, settings.google_api_key,
                           settings.llm_cache_dir)
     if judge_llm.model_name == answer_llm.model_name:
@@ -206,7 +206,10 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str) -> None:
         "questions_file": args.questions.name, "questions_sha": file_sha(args.questions),
         "n_questions": len(questions), "n_answered": len(rows),
         "git_commit": git_commit(), "index_manifest": retriever.manifest,
-    } | (expand_config(settings, exp_llm) if args.expand else {}) | rerank_config(settings), note=args.note)
+    } | (expand_config(settings, exp_llm) if args.expand else {}) | rerank_config(settings)
+      # Only when set, so earlier runs' config hashes stay comparable.
+      | ({"answer_thinking_level": answer_llm.thinking_level} if answer_llm.thinking_level else {}),
+      note=args.note)
     run_dir = save_run(config, summary, rows, answers_markdown(config["run_id"], config, summary, rows))
     print(f"\nRun {config['run_id']} saved to {run_dir}")
     print(f"{name}: correct {fmt(summary['correct'])}, correct or partial {fmt(summary['correct_or_partial'])}, "

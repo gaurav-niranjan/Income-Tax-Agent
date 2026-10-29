@@ -2,10 +2,15 @@
 
 Run locally:  uv run streamlit run app/streamlit_app.py
 On Streamlit Community Cloud, put GOOGLE_API_KEY and the model names in the app's Secrets.
+With DEV_MODE=1 in .env, each answer also shows timings, tokens, prompts and chat memory.
 """
 
+import hashlib
 import json
+import math
 import os
+import time
+import uuid
 
 import streamlit as st
 from streamlit.errors import StreamlitSecretNotFoundError
@@ -27,8 +32,11 @@ _secrets_to_env()
 
 # Imported after the secrets are in the environment, because settings are read once.
 from income_tax_agent.config import get_settings  # noqa: E402
-from income_tax_agent.graph.build import build_graph  # noqa: E402
-from income_tax_agent.llm import NotRetryable, QuotaExhausted, get_expand_llm, get_llm  # noqa: E402
+from income_tax_agent.graph.build import build_graph, memory_checkpointer  # noqa: E402
+from income_tax_agent.limits import QuestionLimits  # noqa: E402
+from income_tax_agent.llm import (  # noqa: E402
+    NotRetryable, QuotaExhausted, get_expand_llm, get_llm, record_llm_calls,
+)
 from income_tax_agent.retrieval.retriever import Retriever  # noqa: E402
 
 MODE_LABELS = {
@@ -67,24 +75,81 @@ def index_label(name: str) -> str:
     return label + (" (default)" if name == settings.index_name else " (experiment)")
 
 
+@st.cache_resource
+def chat_memory():
+    """One store for all chats, each under its visitor's thread id. Lives in RAM, so a server
+    restart forgets everything. Shared by every index, so switching index keeps the chat."""
+    return memory_checkpointer()
+
+
+@st.cache_resource
+def question_limits() -> QuestionLimits:
+    """One counter for all browser sessions, so reloading the page doesn't reset it."""
+    return QuestionLimits(settings.max_questions_per_visitor, settings.max_questions_total,
+                          settings.question_window_hours * 3600)
+
+
+def visitor_id() -> str:
+    """The visitor's IP address. Behind a proxy (Streamlit Cloud) the connection comes from the
+    proxy, which puts the visitor's IP first in X-Forwarded-For. A custom client could fake that
+    header; the cap for all visitors still holds."""
+    forwarded = st.context.headers.get("X-Forwarded-For", "")
+    ip = st.context.ip_address  # None on localhost; a mock object in AppTest
+    return forwarded.split(",")[0].strip() or (ip if isinstance(ip, str) else "local")
+
+
+def wait_text(seconds: float) -> str:
+    hours, minutes = divmod(math.ceil(seconds / 60), 60)
+    return f"{hours} h {minutes} min" if hours else f"{minutes} min"
+
+
 @st.cache_resource(show_spinner="Loading the Act. The first start downloads the search model (about a minute)...")
 def load_pipeline(index_name: str):
     """Load the index and LLM once per server process, shared by all visitors."""
     retriever = Retriever(index_name, settings=settings)
-    llm = get_llm(settings)
-    return build_graph(retriever, llm, get_expand_llm(settings)), llm.model_name
+    llm = get_llm(settings, cache=False)  # answers vary; a cached bad one would stick for everyone
+    return build_graph(retriever, llm, get_expand_llm(settings), checkpointer=chat_memory()), llm.model_name
 
 
 def source_label(numbers: list[str]) -> str:
     return ", ".join(n if n.startswith("Schedule") else f"Section {n}" for n in numbers)
 
 
+def debug_info(state: dict, steps: list[dict], calls: list[dict]) -> dict:
+    """Everything the dev panel shows, as plain data (it is kept with the message)."""
+    return {
+        "total_ms": sum(s["ms"] for s in steps),
+        "steps": steps,
+        "llm_calls": calls,
+        "standalone_question": state["standalone_question"],
+        "errors": {k: state[k] for k in ("rewrite_error", "expand_error") if state.get(k)},
+        "queries": state["queries"],
+        "hits": [
+            {"rank": h.rank, "score": round(h.score, 4), "sections": ", ".join(h.chunk.sections),
+             "pages": ", ".join(map(str, h.chunk.pages)), "chunk_id": h.chunk.chunk_id,
+             "neighbour of": h.neighbour_of or ""}
+            for h in state["hits"]
+        ],
+        "history": state["history"],
+    }
+
+
 def ask(graph, question: str, mode: str, neighbours: bool, expand: bool, rerank: bool, index_name: str) -> dict:
     """Run the pipeline and keep only plain data, so the chat history can be re-drawn."""
-    state = graph.invoke(
-        {"question": question, "mode": mode, "k": settings.answer_k, "neighbours": neighbours, "expand": expand,
-         "rerank": rerank}
-    )
+    inputs = {"question": question, "mode": mode, "k": settings.answer_k, "neighbours": neighbours,
+              "expand": expand, "rerank": rerank}
+    # The graph's memory keeps this visitor's earlier turns under their thread id.
+    config = {"configurable": {"thread_id": st.session_state.thread_id}}
+    steps, last = [], time.perf_counter()
+    with record_llm_calls() as calls:
+        # "updates" yields once per finished node, so the time between yields is that node's time.
+        for update in graph.stream(inputs, config, stream_mode="updates"):
+            node, now = next(iter(update)), time.perf_counter()
+            steps.append({"step": node, "ms": round((now - last) * 1000)})
+            last = now
+            for call in calls:
+                call.setdefault("step", node)  # calls made since the previous node
+    state = graph.get_state(config).values
     cited = set(state["citations"])
     sources = [
         {
@@ -107,7 +172,53 @@ def ask(graph, question: str, mode: str, neighbours: bool, expand: bool, rerank:
         "index": index_name,
         "reranked": rerank,
         "extra_queries": state.get("queries", [])[1:],  # [0] is the question itself
+        # Shown when a follow-up was rewritten, so the reader sees what was actually searched.
+        "standalone": state["standalone_question"] if state["standalone_question"] != question else None,
+        "debug": debug_info(state, steps, calls) if settings.dev_mode else None,
     }
+
+
+def _tokens(calls: list[dict], key: str) -> int:
+    return sum((c["usage"] or {}).get(key, 0) for c in calls)
+
+
+def show_debug(d: dict) -> None:
+    """Dev mode only. Cache hits used no quota; their token counts are from the first call."""
+    calls = d["llm_calls"]
+    api = [c for c in calls if not c["cached"]]
+    with st.expander("🛠 Dev metrics"):
+        st.caption(
+            f"{d['total_ms']:,} ms · {len(api)} API call(s), {len(calls) - len(api)} cache hit(s) · "
+            f"API tokens: {_tokens(api, 'input'):,} in, {_tokens(api, 'output'):,} out "
+            f"(of which {_tokens(api, 'thinking'):,} thinking)"
+        )
+        timing, retrieval, prompts, memory = st.tabs(["Time & tokens", "Retrieval", "Prompts", "Memory"])
+        with timing:
+            st.dataframe(d["steps"], hide_index=True)
+            if calls:
+                st.dataframe(
+                    [{"step": c["step"], "model": c["model"], "cached": c["cached"], "ms": c["ms"],
+                      **{k: (c["usage"] or {}).get(k) for k in ("input", "output", "thinking", "total")}}
+                     for c in calls],
+                    hide_index=True,
+                )
+        with retrieval:
+            st.markdown(f"**Searched and answered as:** {d['standalone_question']}")
+            for name, error in d["errors"].items():
+                st.warning(f"{name}: {error}")
+            st.markdown("**Queries:**\n" + "\n".join(f"{i}. {q}" for i, q in enumerate(d["queries"], 1)))
+            st.dataframe(d["hits"], hide_index=True)
+        with prompts:
+            if not calls:
+                st.caption("No LLM calls.")
+            for c in calls:
+                st.markdown(f"**{c['step']}** · `{c['model']}`" + (" · cached" if c["cached"] else ""))
+                st.code(f"[system]\n{c['system']}\n\n[user]\n{c['user']}\n\n[reply]\n{c['reply']}",
+                        language=None, wrap_lines=True)
+        with memory:
+            st.caption(f"Thread `{st.session_state.thread_id}` · {len(d['history'])} turn(s) stored, "
+                       f"the last {settings.history_turns} used to rewrite follow-ups")
+            st.json(d["history"], expanded=False)
 
 
 def show_assistant(msg: dict) -> None:
@@ -117,6 +228,12 @@ def show_assistant(msg: dict) -> None:
             f"The answer cites {', '.join(msg['unsupported'])}, which was not among the retrieved text. "
             "Treat that part with care."
         )
+    show_sources(msg)
+    if msg.get("debug"):
+        show_debug(msg["debug"])
+
+
+def show_sources(msg: dict) -> None:
     sources = msg.get("sources") or []
     if not sources:
         return
@@ -125,6 +242,8 @@ def show_assistant(msg: dict) -> None:
         if msg.get("index"):  # older messages in a session may lack it
             reranked = " · reranked" if msg.get("reranked") else ""
             st.caption(f"Index: `{msg['index']}`{reranked}")
+        if msg.get("standalone"):
+            st.markdown(f"**Your question, read with the chat so far:** {msg['standalone']}")
         if msg.get("extra_queries"):
             st.markdown("**Also searched for:**\n" + "\n".join(f"- {q}" for q in msg["extra_queries"]))
         for s in sources:
@@ -181,6 +300,29 @@ with st.sidebar:
         st.caption(f"Index: `{index_name}`")
     st.caption("Source: Income-tax Act, 2025, as amended by the Finance Act, 2026 (incometaxindia.gov.in).")
 
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+    # A random id per browser session: the graph's memory key. A page reload starts a new one.
+    st.session_state.thread_id = uuid.uuid4().hex
+
+if settings.dev_mode:
+    with st.sidebar:
+        st.divider()
+        st.subheader("🛠 Dev mode")
+        debug = [m["debug"] for m in st.session_state.messages if m.get("debug")]
+        calls = [c for d in debug for c in d["llm_calls"]]
+        api = [c for c in calls if not c["cached"]]
+        st.caption(
+            f"Thread `{st.session_state.thread_id}`  \n"
+            f"This session: {len(debug)} answer(s), {len(api)} API call(s), {len(calls) - len(api)} cache hit(s)  \n"
+            f"API tokens: {_tokens(api, 'input'):,} in, {_tokens(api, 'output'):,} out "
+            f"({_tokens(api, 'thinking'):,} thinking)"
+        )
+        if st.button("New chat", help="Clear the messages and start a new memory thread."):
+            st.session_state.messages = []
+            st.session_state.thread_id = uuid.uuid4().hex
+            st.rerun()
+
 # ---------------------------------------------------------------- main
 st.title("📘 Income-tax Act, 2025: Q&A")
 st.info(
@@ -188,10 +330,6 @@ st.info(
     "or incomplete. Check the cited sections, or ask a tax professional."
 )
 st.caption("🔒 Don't type personal details. Your questions are sent to Google's Gemini API.")
-
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-    st.session_state.asked = 0
 
 try:
     graph, model_name = load_pipeline(index_name)
@@ -206,28 +344,40 @@ for msg in st.session_state.messages:
         else:
             st.markdown(msg["content"])
 
-left = settings.max_questions_per_session - st.session_state.asked
+limits, visitor = question_limits(), visitor_id()
+window = f"{settings.question_window_hours:g} hours"
+if settings.dev_mode:  # local testing: no limit
+    blocked, status = None, f"Dev mode: no question limit · model: {model_name}"
+else:
+    mine, everyone = limits.left(visitor)
+    blocked = None
+    if everyone <= 0:
+        blocked = ("The demo has reached its question limit for now, to stay within the free API quota. "
+                   "Please try again later.")
+    elif mine <= 0:
+        blocked = (f"This demo allows {settings.max_questions_per_visitor} questions per {window}, "
+                   f"to stay within the free API quota. You can ask again in "
+                   f"{wait_text(limits.free_again_in(visitor))}.")
+    status = f"{mine} question{'s' if mine != 1 else ''} left (per {window}) · model: {model_name}"
+
 question = None
 if not st.session_state.messages:
     st.write("Try one of these:")
     for i, example in enumerate(EXAMPLES):
-        if st.button(example, key=f"example-{i}", disabled=left <= 0):
+        if st.button(example, key=f"example-{i}", disabled=bool(blocked)):
             question = example
 
 typed = st.chat_input(
-    "Ask about the Income-tax Act, 2025" if left > 0 else "Question limit reached for this session",
+    "Question limit reached" if blocked else "Ask about the Income-tax Act, 2025",
     max_chars=500,
-    disabled=left <= 0,
+    disabled=bool(blocked),
 )
 question = typed or question
 
-if left <= 0:
-    st.caption(
-        f"This demo allows {settings.max_questions_per_session} questions per session, "
-        "to stay within the free API quota."
-    )
+if blocked:
+    st.caption(blocked)
 elif st.session_state.messages:
-    st.caption(f"{left} question{'s' if left != 1 else ''} left in this session · model: {model_name}")
+    st.caption(status)
 
 if question:
     st.session_state.messages.append({"role": "user", "content": question})
@@ -252,5 +402,10 @@ if question:
             st.stop()
         show_assistant(reply)
     st.session_state.messages.append(reply)
-    st.session_state.asked += 1
+    if not settings.dev_mode:
+        used = limits.record(visitor)
+        # For the owner (Streamlit Cloud: Manage app > Logs). A hash, not the IP: enough to see
+        # whether visitors are told apart (if every visitor shows the same hash, the IP is the proxy's).
+        print(f"[usage] {used}/{settings.max_questions_total} questions in the last {window} (all visitors) "
+              f"· visitor {hashlib.sha256(visitor.encode()).hexdigest()[:8]}", flush=True)
     st.rerun()  # Redraw so the question counter and example buttons update.

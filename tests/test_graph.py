@@ -7,10 +7,10 @@ from helpers import make_page
 
 from income_tax_agent.config import Settings
 from income_tax_agent.embeddings import FakeEmbeddings
-from income_tax_agent.graph.build import build_graph
+from income_tax_agent.graph.build import build_graph, memory_checkpointer
 from income_tax_agent.index import build_index
 from income_tax_agent.ingest.chunkers.fixed import FixedSizeChunker
-from income_tax_agent.llm import FakeLLM, GeminiLLM, NotRetryable, QuotaExhausted
+from income_tax_agent.llm import FakeLLM, GeminiLLM, NotRetryable, QuotaExhausted, record_llm_calls
 from income_tax_agent.prompts import NOT_FOUND, parse_citations, parse_expansions, strip_excerpt_refs
 from income_tax_agent.retrieval.retriever import Retriever
 
@@ -135,14 +135,74 @@ def test_graph_stops_when_expansion_quota_is_gone(retriever):
         graph.invoke({"question": "health insurance", "mode": "bm25", "k": 2, "expand": True})
 
 
+def _chat(graph, question, thread="t1", **inputs):
+    return graph.invoke({"question": question, "mode": "bm25", "k": 2, **inputs},
+                        config={"configurable": {"thread_id": thread}})
+
+
+def test_follow_up_is_rewritten_with_the_chat_history(retriever):
+    llm = FakeLLM()
+    graph = build_graph(retriever, llm, checkpointer=memory_checkpointer(), history_turns=3)
+    with record_llm_calls() as calls:
+        first = _chat(graph, "health insurance premium deduction")
+    assert first["standalone_question"] == "health insurance premium deduction"
+    assert len(calls) == 1  # only the answer: no history, so no rewrite call
+
+    # FakeLLM's rewrite puts the previous question in front of the follow-up.
+    second = _chat(graph, "and the limit?")
+    assert second["standalone_question"] == "health insurance premium deduction and the limit?"
+    assert second["queries"][0] == second["standalone_question"]
+    assert [t["question"] for t in second["history"]] == ["health insurance premium deduction", "and the limit?"]
+
+    other = _chat(graph, "and the limit?", thread="t2")  # another visitor: no shared memory
+    assert other["standalone_question"] == "and the limit?" and len(other["history"]) == 1
+
+
+def test_errors_are_not_left_over_from_the_previous_question(retriever):
+    graph = build_graph(retriever, FakeLLM(), ExpandingLLM(error=NotRetryable("bad request")),
+                        checkpointer=memory_checkpointer(), history_turns=0)
+    first = _chat(graph, "health insurance premium", expand=True)
+    assert first["expand_error"]
+    second = _chat(graph, "short title", expand=False)
+    assert second["expand_error"] is None
+
+
+def test_chat_continues_after_a_failed_question(retriever):
+    llm = ExpandingLLM(error=QuotaExhausted("daily quota"))
+    graph = build_graph(retriever, FakeLLM(), llm, checkpointer=memory_checkpointer())
+    with pytest.raises(QuotaExhausted):
+        _chat(graph, "health insurance", expand=True)
+    llm.error = None
+    state = _chat(graph, "health insurance premium", expand=False)
+    assert state["answer"] and [t["question"] for t in state["history"]] == ["health insurance premium"]
+
+
 class _Reply:
-    def __init__(self, text):
-        self.text = text
+    def __init__(self, text, usage_metadata=None):
+        self.text, self.usage_metadata = text, usage_metadata
+
+
+def test_llm_calls_are_logged_with_tokens_and_cache_hits(tmp_path):
+    usage = {"input_tokens": 100, "output_tokens": 30, "total_tokens": 130, "output_token_details": {"reasoning": 20}}
+
+    class Chat:
+        def invoke(self, messages):
+            return _Reply("answer", usage)
+
+    llm = _offline_gemini(tmp_path, Chat())
+    with record_llm_calls() as calls:
+        llm.complete("sys", "q")
+        llm.complete("sys", "q")
+    llm.complete("sys", "q")  # outside the block: not logged
+    assert [c["cached"] for c in calls] == [False, True]
+    # A cache hit shows what the call cost the first time.
+    assert calls[0]["usage"] == calls[1]["usage"] == {"input": 100, "output": 30, "thinking": 20, "total": 130}
+    assert calls[0]["user"] == "q" and calls[0]["reply"] == "answer"
 
 
 def _offline_gemini(tmp_path, chat):
     llm = GeminiLLM.__new__(GeminiLLM)  # skip __init__: no key or network needed
-    llm.model_name, llm.temperature, llm.cache_dir, llm.api_calls = "m", None, tmp_path, 0
+    llm.model_name, llm.temperature, llm.thinking_level, llm.cache_dir, llm.api_calls = "m", None, None, tmp_path, 0
     llm._chat = chat
     return llm
 
@@ -162,6 +222,21 @@ def test_llm_cache_avoids_second_call(tmp_path):
     assert json.loads(next(tmp_path.glob("*.json")).read_text())["text"] == "answer"
     llm.complete("sys", "a different question")
     assert Chat.calls == 2
+
+
+def test_llm_without_cache_calls_every_time(tmp_path):
+    class Chat:
+        calls = 0
+
+        def invoke(self, messages):
+            Chat.calls += 1
+            return _Reply("answer")
+
+    llm = _offline_gemini(tmp_path, Chat())
+    llm.cache_dir = None
+    llm.complete("sys", "q")
+    llm.complete("sys", "q")
+    assert Chat.calls == 2 and not list(tmp_path.iterdir())
 
 
 def test_llm_stops_at_once_on_daily_quota(tmp_path):

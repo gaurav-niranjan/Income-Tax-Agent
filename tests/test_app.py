@@ -26,7 +26,8 @@ def app(tmp_path, monkeypatch):
     monkeypatch.setenv("FAKE_MODELS", "1")
     monkeypatch.setenv("INDEX_DIR", str(tmp_path))
     monkeypatch.setenv("INDEX_NAME", out.name)
-    monkeypatch.setenv("MAX_QUESTIONS_PER_SESSION", "2")
+    monkeypatch.setenv("MAX_QUESTIONS_PER_VISITOR", "2")
+    monkeypatch.setenv("DEV_MODE", "0")  # the local .env may turn it on, which lifts the cap
     get_settings.cache_clear()
     st.cache_resource.clear()
     yield AppTest.from_file(APP, default_timeout=30)
@@ -72,12 +73,33 @@ def test_index_picker_switches_index(app, tmp_path):
     assert any(other.name in c.value for c in assistant[0].expander[0].caption)
 
 
-def test_session_question_cap(app):
+def test_visitor_cap_survives_a_page_reload(app):
     app.run()
     for q in ("health insurance", "short title"):
         app.chat_input[0].set_value(q).run()
     assert app.chat_input[0].disabled
-    assert any("questions per session" in c.value for c in app.caption)
+    assert any("questions per 24 hours" in c.value for c in app.caption)
+    reloaded = AppTest.from_file(APP, default_timeout=30).run()  # a new browser session
+    assert reloaded.chat_input[0].disabled
+    assert all(b.disabled for b in reloaded.button)  # the example questions too
+
+
+def test_cap_for_all_visitors(app, monkeypatch):
+    monkeypatch.setenv("MAX_QUESTIONS_TOTAL", "1")
+    app.run()
+    app.chat_input[0].set_value("health insurance").run()
+    assert app.chat_input[0].disabled
+    assert any("Please try again later" in c.value for c in app.caption)
+
+
+def test_no_cap_in_dev_mode(app, monkeypatch):
+    monkeypatch.setenv("DEV_MODE", "1")
+    app.run()
+    for q in ("health insurance", "short title", "and the limit?"):
+        app.chat_input[0].set_value(q).run()
+    assert not app.exception
+    assert not app.chat_input[0].disabled
+    assert len([m for m in app.chat_message if m.name == "assistant"]) == 3
 
 
 @pytest.mark.parametrize("on", [True, False])
@@ -90,6 +112,31 @@ def test_rerank_toggle(app, on):
     assistant = [m for m in app.chat_message if m.name == "assistant"]
     assert "Fake answer" in assistant[0].markdown[0].value
     assert any("reranked" in c.value for c in assistant[0].expander[0].caption) == on
+
+
+def test_follow_up_uses_the_chat_so_far(app):
+    app.run()
+    app.chat_input[0].set_value("health insurance premium deduction").run()
+    app.chat_input[0].set_value("and the limit?").run()
+    assert not app.exception
+    second = [m for m in app.chat_message if m.name == "assistant"][1]
+    # FakeLLM's rewrite puts the previous question in front of the follow-up.
+    assert any("health insurance premium deduction and the limit?" in md.value for md in second.expander[0].markdown)
+
+
+@pytest.mark.parametrize("on", [True, False])
+def test_dev_panel_only_in_dev_mode(app, monkeypatch, on):
+    monkeypatch.setenv("DEV_MODE", "1" if on else "0")
+    app.run()
+    app.chat_input[0].set_value("health insurance premium deduction").run()
+    assert not app.exception
+    assistant = [m for m in app.chat_message if m.name == "assistant"][0]
+    assert any("Dev metrics" in e.label for e in assistant.expander) == on
+    assert any(s.value == "🛠 Dev mode" for s in app.sidebar.subheader) == on
+    if on:  # one row per node that ran, timed from the graph's stream
+        debug = app.session_state.messages[-1]["debug"]
+        assert [s["step"] for s in debug["steps"]] == ["rewrite", "expand", "retrieve", "generate"]
+        assert [c["step"] for c in debug["llm_calls"]] == ["expand", "generate"]
 
 
 def test_question_with_query_rewrite_on(app):

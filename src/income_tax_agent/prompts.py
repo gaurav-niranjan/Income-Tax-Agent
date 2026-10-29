@@ -9,6 +9,8 @@ NOT_FOUND = "I could not find this in the Act."
 # Rules 2 and 3 exist because one off-topic excerpt at the top made the model refuse:
 # "tax laws for non-resident indians" got Section 160 (foreign tax relief) first and
 # Sections 213, 216, 217 (the NRI rules) below it. Without 160 it answered (2026-10-24).
+# Rule 11: "tax on a salary of 50 lakh?" was refused although Section 202's rate table was
+# retrieved. The Act has rates, not totals, and nothing allowed a calculation (2026-10-29).
 ANSWER_SYSTEM = f"""You answer questions about India's Income-tax Act, 2025, as amended by the Finance Act, 2026.
 
 The numbered excerpts below are search results from the Act. Search is not perfect: some excerpts may be about something else, and the most useful one is not always first.
@@ -23,7 +25,10 @@ Rules:
 7. Answer only what is asked. Leave out rules for other kinds of taxpayers or situations the question does not ask about.
 8. Include every condition from the excerpts that changes the answer, such as a limit, an age or date, or who the rule applies to. A short answer that drops such a condition is wrong.
 9. Start with a direct answer, then give the key conditions. Use plain English and keep it short.
-10. Do not add a "not tax advice" disclaimer; the app shows one."""
+10. Do not add a "not tax advice" disclaimer; the app shows one.
+11. If the question asks for an amount you can work out from the excerpts (for example the tax on a given income, using a rate table), calculate it. Show each step with the rate and amount used, then the total. Then say briefly what the total leaves out because the excerpts do not cover it (for example surcharge, cess, or deductions that depend on the person's situation).
+
+Answer in plain, simple English. The Act uses complicated legal language, so explain it simply."""
 
 
 def _label(numbers: list[str]) -> str:
@@ -32,7 +37,9 @@ def _label(numbers: list[str]) -> str:
     schedules = [n for n in numbers if n.startswith("Schedule")]
     parts = []
     if sections:
-        parts.append(("Section " if len(sections) == 1 else "Sections ") + ", ".join(sections))
+        parts.append(
+            ("Section " if len(sections) == 1 else "Sections ") + ", ".join(sections)
+        )
     parts += schedules
     return "; ".join(parts) or "unknown section"
 
@@ -44,7 +51,9 @@ def format_context(hits: list[Hit]) -> str:
         c = h.chunk
         titles = "; ".join(t for t in c.section_titles if t)
         pages = ", ".join(map(str, c.pages))
-        blocks.append(f"[Excerpt {n} | {_label(c.sections)} | {titles} | page {pages}]\n{c.text}")
+        blocks.append(
+            f"[Excerpt {n} | {_label(c.sections)} | {titles} | page {pages}]\n{c.text}"
+        )
     return "\n\n".join(blocks)
 
 
@@ -65,7 +74,8 @@ SCHEDULE_RE = re.compile(r"Schedule ([IVXL]+)\b")
 
 # "Excerpt 4", "Excerpts 1 and 2", "Excerpt 1 & Excerpt 2" (with any separator before it).
 _EXCERPT_REF_RE = re.compile(
-    r"\s*(?:[,;&]|\band\b)?\s*Excerpts?\s+\d+(?:\s*(?:,|&|and)\s*(?:Excerpt\s+)?\d+)*", re.IGNORECASE
+    r"\s*(?:[,;&]|\band\b)?\s*Excerpts?\s+\d+(?:\s*(?:,|&|and)\s*(?:Excerpt\s+)?\d+)*",
+    re.IGNORECASE,
 )
 
 
@@ -142,6 +152,44 @@ def parse_expansions(raw: str, question: str, n: int = EXPAND_N) -> list[str]:
         seen.add(q.casefold())
         out.append(q)
     return out[:n]
+
+
+# --- Follow-up questions (chat memory) ---
+# Search needs a question that makes sense on its own: "And for senior citizens?" finds
+# nothing useful. So a follow-up is rewritten using the earlier turns, and the rewrite is
+# searched and answered like a first question. The answer prompt never sees the history,
+# so a single-turn question gets exactly the same prompts (and cache hits) as before.
+
+HISTORY_ANSWER_CHARS = 600  # earlier answers are cut to this: enough to resolve "that", "it"
+
+REWRITE_SYSTEM = """You help with a chat about India's Income-tax Act, 2025. You rewrite the user's latest question so that it makes sense without the conversation. You do not answer it.
+
+Rules:
+1. Replace words that point back to the conversation ("it", "that", "this deduction", "what about ...", "and for ...") with what they refer to.
+2. If the question already makes sense on its own, return it unchanged.
+3. Keep the user's own words and amounts. Do not add section numbers or facts that are not in the conversation.
+4. Reply with only the rewritten question, on one line."""
+
+
+def rewrite_user_prompt(question: str, history: list[dict]) -> str:
+    turns = []
+    for turn in history:
+        answer = turn["answer"]
+        if len(answer) > HISTORY_ANSWER_CHARS:
+            answer = answer[:HISTORY_ANSWER_CHARS] + "..."
+        turns.append(f"User: {turn['question']}\nAssistant: {answer}")
+    return "Earlier in the conversation:\n\n" + "\n\n".join(turns) + f"\n\nFollow-up question: {question}"
+
+
+def parse_rewrite(raw: str, question: str) -> str:
+    """The first non-empty line, without wrapping quotes; the question itself if there is none."""
+    for line in raw.splitlines():
+        q = line.strip()
+        if len(q) > 1 and q[0] == q[-1] and q[0] in "\"'`":
+            q = q[1:-1].strip()
+        if q:
+            return q
+    return question
 
 
 def parse_citations(answer: str) -> list[str]:

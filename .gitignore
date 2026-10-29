@@ -27,6 +27,9 @@ data/index/*
 !data/index/fixed-1000-150-header__bge-base/
 !data/index/structured-1500__bge-base/
 
+# Generated pictures (e.g. scripts/draw_graph.py)
+outputs/
+
 # LLM response cache and the fastembed model (~210 MB, downloaded on first start)
 .cache/
 
