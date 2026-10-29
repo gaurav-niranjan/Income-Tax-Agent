@@ -35,10 +35,19 @@ def app(tmp_path, monkeypatch):
     st.cache_resource.clear()
 
 
+def panel(app, key: str):
+    """A keyed part of the page: "left", "flow" (the turns), "right" or "status"."""
+    return app.get_by_key(key)
+
+
+def status(app) -> str:
+    return panel(app, "status").caption[0].value
+
+
 def test_app_shows_disclaimer_and_privacy_note(app):
     app.run()
     assert not app.exception
-    assert "Not tax advice" in app.info[0].value
+    assert any("Not tax advice" in m.value for m in app.markdown)
     assert any("Gemini API" in c.value for c in app.caption)
 
 
@@ -46,31 +55,67 @@ def test_question_gets_answer_with_sources(app):
     app.run()
     app.chat_input[0].set_value("health insurance premium deduction").run()
     assert not app.exception
-    assistant = [m for m in app.chat_message if m.name == "assistant"]
-    assert len(assistant) == 1
-    assert "Fake answer" in assistant[0].markdown[0].value
-    assert "Sources:" in assistant[0].expander[0].label
+    flow = panel(app, "flow")
+    assert [s.value for s in flow.subheader] == ["health insurance premium deduction"]
+    assert any("Fake answer" in m.value for m in flow.markdown)
+    assert [b.label for b in flow.button] == ["Sources"]
+    assert [t.label for t in panel(app, "right").tabs] == ["Cited · 1", "Also read · 1"]
+    assert any('href="#q1"' in m.value for m in panel(app, "left").markdown)  # table of contents
+
+
+def test_citations_show_as_tags_but_are_stored_unchanged(app):
+    app.run()
+    app.chat_input[0].set_value("health insurance premium deduction").run()
+    assert any("`§1`" in m.value for m in panel(app, "flow").markdown)
+    assert "[Section 1]" in app.session_state.messages[-1]["content"]
+
+
+def test_sources_button_focuses_an_answer_but_not_the_follow_up(app, monkeypatch):
+    monkeypatch.setenv("DEV_MODE", "1")  # no question cap
+    app.run()
+    app.chat_input[0].set_value("health insurance premium deduction").run()
+    app.chat_input[0].set_value("short title").run()
+    assert status(app).startswith("answer **2**")  # the latest answer is focused
+    panel(app, "flow").button[0].click().run()  # "Sources" under answer 1
+    assert status(app).startswith("answer **1**")
+    assert panel(app, "right").get_by_key("source_pick").value == 1  # the picker follows (message index)
+    # A follow-up still builds on the latest turn, not on the focused one.
+    app.chat_input[0].set_value("and the limit?").run()
+    assert any("short title and the limit?" in c.value for c in panel(app, "flow").caption)
+    assert status(app).startswith("answer **3**")  # a new answer becomes the focused one
+
+
+def test_source_picker_shows_an_earlier_answer(app, monkeypatch):
+    monkeypatch.setenv("DEV_MODE", "1")  # no question cap
+    app.run()
+    app.chat_input[0].set_value("health insurance premium deduction").run()
+    assert not panel(app, "right").selectbox  # one answer: nothing to pick
+    app.chat_input[0].set_value("short title").run()
+    picker = panel(app, "right").get_by_key("source_pick")
+    assert picker.options == ["1. health insurance premium deduction", "2. short title"]
+    picker.set_value(1).run()  # values are message indexes: answer 1 is messages[1]
+    assert status(app).startswith("answer **1**")
+    assert panel(app, "flow").button[0].proto.type == "primary"  # its "Sources" button shows the focus
 
 
 def test_no_index_picker_with_one_index(app):
     app.run()
     assert not app.selectbox
-    assert any("Index:" in c.value for c in app.sidebar.caption)
+    assert any("Index:" in c.value for c in panel(app, "right").caption)
 
 
 def test_index_picker_switches_index(app, tmp_path):
     other = build_index(FixedSizeChunker(300, 30), FakeEmbeddings(), Settings(index_dir=tmp_path, _env_file=None),
                         pages=[make_page(1, BODY)])
     app.run()
-    picker = app.sidebar.selectbox[0]
+    picker = panel(app, "right").selectbox[0]
     assert picker.value == "fixed-200-20__fake"  # the configured default comes first
     # Visitors see plain labels from each manifest, not folder names.
     assert picker.options == ["Fixed 200-character chunks (default)", "Fixed 300-character chunks (experiment)"]
     picker.select(other.name).run()
     app.chat_input[0].set_value("health insurance premium deduction").run()
     assert not app.exception
-    assistant = [m for m in app.chat_message if m.name == "assistant"]
-    assert any(other.name in c.value for c in assistant[0].expander[0].caption)
+    assert f"index **{other.name}**" in status(app)
 
 
 def test_visitor_cap_survives_a_page_reload(app):
@@ -99,19 +144,18 @@ def test_no_cap_in_dev_mode(app, monkeypatch):
         app.chat_input[0].set_value(q).run()
     assert not app.exception
     assert not app.chat_input[0].disabled
-    assert len([m for m in app.chat_message if m.name == "assistant"]) == 3
+    assert len(panel(app, "flow").subheader) == 3
 
 
 @pytest.mark.parametrize("on", [True, False])
 def test_rerank_toggle(app, on):
     app.run()
-    toggle = next(t for t in app.sidebar.toggle if t.label == "Rerank results")
+    toggle = next(t for t in panel(app, "right").toggle if t.label == "Rerank results")
     toggle.set_value(on).run()
     app.chat_input[0].set_value("health insurance premium deduction").run()
     assert not app.exception
-    assistant = [m for m in app.chat_message if m.name == "assistant"]
-    assert "Fake answer" in assistant[0].markdown[0].value
-    assert any("reranked" in c.value for c in assistant[0].expander[0].caption) == on
+    assert any("Fake answer" in m.value for m in panel(app, "flow").markdown)
+    assert f"rerank **{'on' if on else 'off'}**" in status(app)
 
 
 def test_follow_up_uses_the_chat_so_far(app):
@@ -119,9 +163,9 @@ def test_follow_up_uses_the_chat_so_far(app):
     app.chat_input[0].set_value("health insurance premium deduction").run()
     app.chat_input[0].set_value("and the limit?").run()
     assert not app.exception
-    second = [m for m in app.chat_message if m.name == "assistant"][1]
     # FakeLLM's rewrite puts the previous question in front of the follow-up.
-    assert any("health insurance premium deduction and the limit?" in md.value for md in second.expander[0].markdown)
+    assert any(c.value == "Searched as: *health insurance premium deduction and the limit?*"
+               for c in panel(app, "flow").caption)
 
 
 @pytest.mark.parametrize("on", [True, False])
@@ -130,9 +174,8 @@ def test_dev_panel_only_in_dev_mode(app, monkeypatch, on):
     app.run()
     app.chat_input[0].set_value("health insurance premium deduction").run()
     assert not app.exception
-    assistant = [m for m in app.chat_message if m.name == "assistant"][0]
-    assert any("Dev metrics" in e.label for e in assistant.expander) == on
-    assert any(s.value == "🛠 Dev mode" for s in app.sidebar.subheader) == on
+    assert any("Dev metrics" in e.label for e in panel(app, "flow").expander) == on
+    assert any("Dev mode" in m.value for m in panel(app, "right").markdown) == on
     if on:  # one row per node that ran, timed from the graph's stream
         debug = app.session_state.messages[-1]["debug"]
         assert [s["step"] for s in debug["steps"]] == ["rewrite", "expand", "retrieve", "generate"]
@@ -144,5 +187,4 @@ def test_question_with_query_rewrite_on(app):
     app.toggle[1].set_value(True).run()  # "Rewrite my question for search"
     app.chat_input[0].set_value("health insurance premium deduction").run()
     assert not app.exception
-    assistant = [m for m in app.chat_message if m.name == "assistant"]
-    assert "Fake answer" in assistant[0].markdown[0].value
+    assert any("Fake answer" in m.value for m in panel(app, "flow").markdown)

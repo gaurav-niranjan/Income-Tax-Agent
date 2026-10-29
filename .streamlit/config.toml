@@ -1,0 +1,26 @@
+# Colours and fonts from the "Workbench" design mock. What the theme can't set (panel
+# background, table of contents, source cards, status bar) is the CSS block in app/streamlit_app.py.
+[theme]
+base = "light"
+primaryColor = "#16191c"              # ink: toggles, selected search mode, focused "Sources" button
+backgroundColor = "#e9ebe7"           # page behind the panels
+secondaryBackgroundColor = "#ffffff"  # inputs
+textColor = "#16191c"
+borderColor = "#d9dcd6"
+showWidgetBorder = true
+linkColor = "#16191c"
+linkUnderline = false
+codeTextColor = "#16191c"             # citation tags are inline code
+codeBackgroundColor = "#ffffff"
+greenTextColor = "#2e6b4f"            # citation check passed
+orangeTextColor = "#a8680a"           # unsupported citation
+baseRadius = "small"
+baseFontSize = 14
+headingFontSizes = ["28px", "22px", "19px"]
+headingFontWeights = [600, 600, 600]
+paddingTop = "0.25rem"
+paddingBottom = "2.5rem"
+# One family per URL (Streamlit's rule). The CSS block loads the condensed labels and the serif.
+font = "IBM Plex Sans:https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+headingFont = "IBM Plex Sans"
+codeFont = "IBM Plex Mono:https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
