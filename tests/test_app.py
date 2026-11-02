@@ -1,10 +1,13 @@
 """Run the Streamlit app headless with fake models and a tiny index (no keys, no downloads)."""
 
+from contextlib import contextmanager
 from pathlib import Path
 
 import pytest
 import streamlit as st
 from helpers import make_page
+from streamlit.runtime.scriptrunner_utils.exceptions import RerunException
+from streamlit.runtime.scriptrunner_utils.script_requests import RerunData
 from streamlit.testing.v1 import AppTest
 
 from income_tax_agent.config import Settings, get_settings
@@ -61,41 +64,54 @@ def test_question_gets_answer_with_sources(app):
     assert [b.label for b in flow.button] == ["Sources"]
     assert [t.label for t in panel(app, "right").tabs] == ["Cited · 1", "Also read · 1"]
     assert any('href="#q1"' in m.value for m in panel(app, "left").markdown)  # table of contents
-
-
-def test_citations_show_as_tags_but_are_stored_unchanged(app):
-    app.run()
-    app.chat_input[0].set_value("health insurance premium deduction").run()
-    assert any("`§1`" in m.value for m in panel(app, "flow").markdown)
+    # Citations show as tags, but the stored answer keeps them unchanged.
+    assert any("`§1`" in m.value for m in flow.markdown)
     assert "[Section 1]" in app.session_state.messages[-1]["content"]
 
 
-def test_sources_button_focuses_an_answer_but_not_the_follow_up(app, monkeypatch):
-    monkeypatch.setenv("DEV_MODE", "1")  # no question cap
-    app.run()
-    app.chat_input[0].set_value("health insurance premium deduction").run()
-    app.chat_input[0].set_value("short title").run()
-    assert status(app).startswith("answer **2**")  # the latest answer is focused
-    panel(app, "flow").button[0].click().run()  # "Sources" under answer 1
-    assert status(app).startswith("answer **1**")
-    assert panel(app, "right").get_by_key("source_pick").value == 1  # the picker follows (message index)
-    # A follow-up still builds on the latest turn, not on the focused one.
-    app.chat_input[0].set_value("and the limit?").run()
-    assert any("short title and the limit?" in c.value for c in panel(app, "flow").caption)
-    assert status(app).startswith("answer **3**")  # a new answer becomes the focused one
-
-
-def test_source_picker_shows_an_earlier_answer(app, monkeypatch):
+def test_focus_an_earlier_answer_but_follow_up_on_the_latest(app, monkeypatch):
     monkeypatch.setenv("DEV_MODE", "1")  # no question cap
     app.run()
     app.chat_input[0].set_value("health insurance premium deduction").run()
     assert not panel(app, "right").selectbox  # one answer: nothing to pick
     app.chat_input[0].set_value("short title").run()
+    assert status(app).startswith("answer **2**")  # the latest answer is focused
+    # The picker focuses an earlier answer. Values are message indexes: answer 1 is messages[1].
     picker = panel(app, "right").get_by_key("source_pick")
     assert picker.options == ["1. health insurance premium deduction", "2. short title"]
-    picker.set_value(1).run()  # values are message indexes: answer 1 is messages[1]
+    picker.set_value(1).run()
     assert status(app).startswith("answer **1**")
     assert panel(app, "flow").button[0].proto.type == "primary"  # its "Sources" button shows the focus
+    # The "Sources" button focuses an answer too, and the picker follows.
+    panel(app, "flow").button[1].click().run()  # under answer 2
+    assert status(app).startswith("answer **2**")
+    assert panel(app, "right").get_by_key("source_pick").value == 3
+    # A follow-up builds on the latest turn, not on the focused one.
+    panel(app, "flow").button[0].click().run()
+    app.chat_input[0].set_value("and the limit?").run()
+    assert any("short title and the limit?" in c.value for c in panel(app, "flow").caption)
+    assert status(app).startswith("answer **3**")  # a new answer becomes the focused one
+
+
+def test_answer_survives_a_click_while_it_loads(app, monkeypatch):
+    """A click while an answer loads (e.g. "Sources" under an earlier answer) makes Streamlit stop
+    the run at its next element and start a new one. The finished answer must not vanish."""
+    real_spinner = st.spinner
+
+    @contextmanager
+    def clicked_while_loading(*args, **kwargs):
+        with real_spinner(*args, **kwargs):
+            yield
+        monkeypatch.setattr(st, "spinner", real_spinner)  # only the first answer
+        raise RerunException(RerunData())  # what Streamlit raises when the spinner closes
+
+    app.run()
+    monkeypatch.setattr(st, "spinner", clicked_while_loading)
+    app.chat_input[0].set_value("health insurance premium deduction").run()
+    assert not app.exception
+    assert [s.value for s in panel(app, "flow").subheader] == ["health insurance premium deduction"]
+    assert status(app).startswith("answer **1**")
+    assert "1 of 2" in " ".join(c.value for c in panel(app, "left").caption)  # the question was counted
 
 
 def test_no_index_picker_with_one_index(app):
@@ -147,15 +163,20 @@ def test_no_cap_in_dev_mode(app, monkeypatch):
     assert len(panel(app, "flow").subheader) == 3
 
 
-@pytest.mark.parametrize("on", [True, False])
-def test_rerank_toggle(app, on):
+def test_search_toggles_work(app):
     app.run()
-    toggle = next(t for t in panel(app, "right").toggle if t.label == "Rerank results")
-    toggle.set_value(on).run()
-    app.chat_input[0].set_value("health insurance premium deduction").run()
-    assert not app.exception
-    assert any("Fake answer" in m.value for m in panel(app, "flow").markdown)
-    assert f"rerank **{'on' if on else 'off'}**" in status(app)
+
+    def toggle(label):
+        return next(t for t in panel(app, "right").toggle if t.label == label)
+
+    # Two questions (the visitor cap): rerank off with the question rewrite on, then rerank on.
+    for rerank, rewrite in ((False, True), (True, False)):
+        toggle("Rerank results").set_value(rerank).run()
+        toggle("Rewrite my question for search").set_value(rewrite).run()
+        app.chat_input[0].set_value("health insurance premium deduction").run()
+        assert not app.exception
+        assert any("Fake answer" in m.value for m in panel(app, "flow").markdown)
+        assert f"rerank **{'on' if rerank else 'off'}**" in status(app)
 
 
 def test_follow_up_uses_the_chat_so_far(app):
@@ -180,11 +201,3 @@ def test_dev_panel_only_in_dev_mode(app, monkeypatch, on):
         debug = app.session_state.messages[-1]["debug"]
         assert [s["step"] for s in debug["steps"]] == ["rewrite", "expand", "retrieve", "generate"]
         assert [c["step"] for c in debug["llm_calls"]] == ["expand", "generate"]
-
-
-def test_question_with_query_rewrite_on(app):
-    app.run()
-    app.toggle[1].set_value(True).run()  # "Rewrite my question for search"
-    app.chat_input[0].set_value("health insurance premium deduction").run()
-    assert not app.exception
-    assert any("Fake answer" in m.value for m in panel(app, "flow").markdown)

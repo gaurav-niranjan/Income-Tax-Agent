@@ -549,29 +549,29 @@ if question:
     with flow, st.container(key="turn-new"):
         st.markdown(f'<span class="n">{len(answers) + 1}</span>', unsafe_allow_html=True)
         st.subheader(question, anchor=False)
-        messages.append({"role": "user", "content": question})
         try:
             with st.spinner("Searching the Act and writing an answer..."):
                 reply = ask(graph, question, mode, neighbours, expand, rerank, index_name)
+                # Save the turn before drawing anything else. A click while the answer loads
+                # (e.g. "Sources") makes Streamlit stop this run at its next element, here the
+                # spinner closing, and the answer would be lost though the graph's memory has it.
+                # Plain Python and session_state writes are never interrupted.
+                messages += [{"role": "user", "content": question}, reply]
+                st.session_state.focus = len(messages) - 1  # a new answer becomes the focused one
+                if not settings.dev_mode:
+                    used = limits.record(visitor)
+                    # For the owner (Streamlit Cloud: Manage app > Logs). A hash, not the IP: enough to see
+                    # whether visitors are told apart (if every visitor shows the same hash, the IP is the proxy's).
+                    print(f"[usage] {used}/{settings.max_questions_total} questions in the last {window} "
+                          f"(all visitors) · visitor {hashlib.sha256(visitor.encode()).hexdigest()[:8]}", flush=True)
         except QuotaExhausted:
-            messages.pop()
             st.error("The free daily quota for the AI model is used up. Please try again tomorrow.")
             st.stop()
         except NotRetryable as e:
-            messages.pop()
             st.error(f"The AI model rejected the request: {e}")
             st.stop()
         except Exception:
             # Rate limits are retried with backoff first; if we still fail, the API is busy.
-            messages.pop()
             st.error("The AI service is busy right now. Please try again in a minute.")
             st.stop()
-    messages.append(reply)
-    st.session_state.focus = len(messages) - 1  # a new answer becomes the focused one
-    if not settings.dev_mode:
-        used = limits.record(visitor)
-        # For the owner (Streamlit Cloud: Manage app > Logs). A hash, not the IP: enough to see
-        # whether visitors are told apart (if every visitor shows the same hash, the IP is the proxy's).
-        print(f"[usage] {used}/{settings.max_questions_total} questions in the last {window} (all visitors) "
-              f"· visitor {hashlib.sha256(visitor.encode()).hexdigest()[:8]}", flush=True)
     st.rerun()  # Redraw: the new turn, its sources on the right, the question counter.

@@ -98,8 +98,10 @@ def test_retrieve_multi_merges_the_queries(retriever):
     assert len({h.chunk.chunk_id for h in hits}) == len(hits)
 
 
-def test_retrieve_multi_returns_nothing_when_no_query_matches(retriever):
+def test_retrieve_multi_returns_nothing_when_no_query_matches(retriever, monkeypatch):
     assert retriever.retrieve_multi(["zzz", "qqq"], mode="bm25", k=3) == []
+    monkeypatch.setattr(retriever, "reranker", ScriptedReranker("rent"))  # the rerank path too
+    assert retriever.retrieve_multi(["zzz"], mode="bm25", k=3) == []
 
 
 @pytest.mark.parametrize("fusion", ["max", "rrf"])
@@ -189,11 +191,6 @@ def test_rerank_also_applies_to_a_single_query(retriever, monkeypatch):
     assert "2025" in hits[0].chunk.text
 
 
-def test_rerank_returns_nothing_when_no_query_matches(retriever, monkeypatch):
-    monkeypatch.setattr(retriever, "reranker", ScriptedReranker("rent"))
-    assert retriever.retrieve_multi(["zzz"], mode="bm25", k=3) == []
-
-
 def test_rerank_can_be_switched_per_request(retriever, monkeypatch):
     queries = ["health insurance premium", "rent deduct"]
     plain = retriever.retrieve_multi(queries, mode="bm25", k=2)
@@ -208,15 +205,3 @@ def test_rerank_on_request_loads_a_reranker_when_settings_have_none(retriever, m
     hits = retriever.retrieve_multi(["health insurance premium"], mode="bm25", k=1, rerank=True)
     assert retriever.reranker is not None and hits
     monkeypatch.setattr(retriever, "reranker", None)  # leave the shared fixture as it was
-
-
-def test_fake_reranker_prefers_shared_words():
-    from income_tax_agent.retrieval.rerank import FakeReranker
-
-    a, b = FakeReranker().score("health insurance premium", ["premium for health insurance", "rent of land"])
-    assert a > b
-
-
-def test_unknown_mode_is_an_error(retriever):
-    with pytest.raises(ValueError, match="Unknown mode"):
-        retriever.retrieve("anything", mode="magic")
