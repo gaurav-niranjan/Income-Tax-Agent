@@ -1,0 +1,389 @@
+[
+  {
+    "id": "t01",
+    "type": "trap",
+    "in_scope": true,
+    "question": "What is the rate of tax collected at source when I buy an overseas tour package for Rs 12 lakh?",
+    "reference": "2% of the amount, with no threshold (Section 394(1) Table, Sl. No. 8).",
+    "answer": "The rate of tax collected at source on the sale of an \"overseas tour programme package\" is 2% [Section 295]. \n\nThe key condition is that this applies to the sale of an overseas tour programme package that includes expenses for travel, hotel stay, boarding, lodging, or any related expenditure [Section 295].",
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001592",
+        "rank": 1,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001591",
+        "rank": 2,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000915",
+        "rank": 3,
+        "sections": [
+          "207",
+          "208"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000710",
+        "rank": 4,
+        "sections": [
+          "160",
+          "161"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000918",
+        "rank": 5,
+        "sections": [
+          "208",
+          "209"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "citations": [
+      "295"
+    ],
+    "unsupported_citations": [],
+    "verdict": {
+      "correctness": "correct",
+      "faithful": true,
+      "refused": false,
+      "unsupported_claims": [],
+      "explanation": "The app correctly identifies the 2% tax collection rate for an overseas tour package and accurately reflects the conditions and section number from the excerpts."
+    },
+    "judge_error": null,
+    "old_law": false
+  },
+  {
+    "id": "t02",
+    "type": "trap",
+    "in_scope": true,
+    "question": "Can I deduct the interest on a loan I took to buy shares from my dividend income?",
+    "reference": "No. No deduction at all is allowed against dividend income or income from the listed mutual fund units (Section 93(2)).",
+    "answer": "No, you cannot deduct the interest on a loan taken to buy shares from your dividend income, because no deductions are allowed for certain dividend incomes, or deductions are limited to interest expense for other dividend incomes, and personal expenses are never deductible [Section 93, Section 94]. \n\nKey conditions:\n- For dividend income referred to in section 2(40)(f), no deduction is allowed [Section 93].\n- For any other dividend income, the only deduction allowed is for interest expense, which is limited to 20% of that dividend income included in your total income for the year [Section 93].",
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000514",
+        "rank": 1,
+        "sections": [
+          "93",
+          "94"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000425",
+        "rank": 2,
+        "sections": [
+          "72"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000033",
+        "rank": 3,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000614",
+        "rank": 4,
+        "sections": [
+          "130",
+          "131"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000513",
+        "rank": 5,
+        "sections": [
+          "93"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "citations": [
+      "93",
+      "94"
+    ],
+    "unsupported_citations": [],
+    "verdict": {
+      "correctness": "partial",
+      "faithful": true,
+      "refused": false,
+      "unsupported_claims": [],
+      "explanation": "The app correctly cites the 20% interest expense deduction rule from Section 93(2)(b), but its opening 'No' contradicts the fact that interest can indeed be deducted up to that limit."
+    },
+    "judge_error": null,
+    "old_law": true
+  },
+  {
+    "id": "t03",
+    "type": "trap",
+    "in_scope": true,
+    "question": "What happens if a business does not get its accounts audited when the Act requires it?",
+    "reference": "A fee under Section 428(c): Rs 75,000 for a delay of up to one month, and Rs 1,50,000 after that.",
+    "answer": "If a person fails to get their accounts audited or furnish the audit report as required under section 63, the Assessing Officer may impose a penalty [Section 295]. \n\nThe penalty is the lesser of the following two amounts:\n1. 0.5% of the total sales, turnover, or gross receipts in business, or gross receipts in profession for the relevant tax year or years [Section 295].\n2. Rs. 150000 (1.5 lakh) [Section 295].",
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001109",
+        "rank": 1,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001124",
+        "rank": 2,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001752",
+        "rank": 3,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000351",
+        "rank": 4,
+        "sections": [
+          "63"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002101",
+        "rank": 5,
+        "sections": [
+          "Schedule X"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "citations": [
+      "295"
+    ],
+    "unsupported_citations": [],
+    "verdict": {
+      "correctness": "incorrect",
+      "faithful": false,
+      "refused": false,
+      "unsupported_claims": [
+        "The penalty provisions are under Section 295"
+      ],
+      "explanation": "The app misattributed the text of a historical footnote for section 446 to Section 295, and its answer conflicts with the reference answer."
+    },
+    "judge_error": null,
+    "old_law": true
+  },
+  {
+    "id": "t04",
+    "type": "trap",
+    "in_scope": true,
+    "question": "What is the fee for filing a statement of financial transaction late?",
+    "reference": "Rs 200 for every day the failure continues, up to Rs 1,00,000 (Section 427(3)). If it is still not filed after a notice, a penalty of Rs 1,000 a day, up to Rs 1,00,000 (Section 454).",
+    "answer": "I could not find this in the Act.",
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001714",
+        "rank": 1,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001757",
+        "rank": 2,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001760",
+        "rank": 3,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001756",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001764",
+        "rank": 5,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "citations": [],
+    "unsupported_citations": [],
+    "verdict": {
+      "correctness": "incorrect",
+      "faithful": true,
+      "refused": true,
+      "unsupported_claims": [],
+      "explanation": "The app declined to answer, but the excerpts contain provisions regarding penalties for failing to furnish a statement of financial transaction under section 508."
+    },
+    "judge_error": null,
+    "old_law": false
+  },
+  {
+    "id": "t05",
+    "type": "trap",
+    "in_scope": true,
+    "question": "What is the punishment for wilfully trying to evade more than Rs 60 lakh of tax?",
+    "reference": "Simple imprisonment of up to two years, or a fine, or both, because the amount is above Rs 50 lakh (Section 478(1)(a)).",
+    "answer": "If a person wilfully attempts in any manner to evade any tax, penalty or interest, or under-reports their income, and the amount sought to be evaded or the tax on the under-reported income exceeds fifty lakh rupees (such as Rs. 60 lakh), the punishment is simple imprisonment for a term up to two years, or with fine, or with both [Section 478]. \n\nIf a person wilfully attempts in any manner to evade the *payment* of any tax, penalty or interest and the amount sought to be evaded exceeds fifty lakh rupees, the punishment is also simple imprisonment for a term up to two years, or with fine, or with both [Section 295].",
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001795",
+        "rank": 1,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001793",
+        "rank": 2,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001806",
+        "rank": 3,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001792",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001796",
+        "rank": 5,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "citations": [
+      "478",
+      "295"
+    ],
+    "unsupported_citations": [
+      "478"
+    ],
+    "verdict": {
+      "correctness": "correct",
+      "faithful": true,
+      "refused": false,
+      "unsupported_claims": [],
+      "explanation": "The app accurately states the punishment for evading tax amounts exceeding 50 lakh rupees and correctly cites the relevant sections from the excerpts."
+    },
+    "judge_error": null,
+    "old_law": false
+  },
+  {
+    "id": "t06",
+    "type": "trap",
+    "in_scope": true,
+    "question": "Is TDS deducted on interest paid on a Motor Accidents Claims Tribunal compensation to an individual?",
+    "reference": "No. For an individual, no TDS is deducted on this interest, whatever the amount (Section 393(4) Table, Sl. No. 7, item (iv)(A)). The amount limit applies only to persons other than individuals.",
+    "answer": "No, TDS is not deducted on interest on compensation awarded by a Motor Accidents Claims Tribunal when it is paid to an individual [Section 295]. \n\nThe key conditions are:\n- The rule applies specifically to interest on compensation amounts awarded by a Motor Accidents Claims Tribunal to an individual [Section 295].",
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001573",
+        "rank": 1,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001983",
+        "rank": 2,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001982",
+        "rank": 3,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001572",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000616",
+        "rank": 5,
+        "sections": [
+          "132"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "citations": [
+      "295"
+    ],
+    "unsupported_citations": [],
+    "verdict": {
+      "correctness": "correct",
+      "faithful": true,
+      "refused": false,
+      "unsupported_claims": [],
+      "explanation": "The app correctly answers that no TDS is deducted on Motor Accidents Claims Tribunal compensation interest paid to an individual, relying on the provided excerpts (Section 295)."
+    },
+    "judge_error": null,
+    "old_law": false
+  }
+]

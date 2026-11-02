@@ -1,0 +1,994 @@
+[
+  {
+    "id": "h01",
+    "type": "table",
+    "question": "What is the tax rate on STCG from selling equity shares on the stock exchange?",
+    "expected_sections": [
+      "196"
+    ],
+    "ranks": {
+      "section": null,
+      "strict": null,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001982",
+        "rank": 1,
+        "sections": [
+          "Schedule VI"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000901",
+        "rank": 2,
+        "sections": [
+          "208",
+          "209"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000898",
+        "rank": 3,
+        "sections": [
+          "207",
+          "208"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000389",
+        "rank": 4,
+        "sections": [
+          "69"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000488",
+        "rank": 5,
+        "sections": [
+          "90"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000390",
+        "rank": 6,
+        "sections": [
+          "69"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000916",
+        "rank": 7,
+        "sections": [
+          "214",
+          "215"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000092",
+        "rank": 8,
+        "sections": [
+          "8"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000071",
+        "rank": 9,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000821",
+        "rank": 10,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "h02",
+    "type": "table",
+    "question": "By which dates do I have to pay advance tax, and how much each time?",
+    "expected_sections": [
+      "408"
+    ],
+    "ranks": {
+      "section": 2,
+      "strict": 2,
+      "phrase": 3
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001609",
+        "rank": 1,
+        "sections": [
+          "406",
+          "407"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001614",
+        "rank": 2,
+        "sections": [
+          "407",
+          "408"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001615",
+        "rank": 3,
+        "sections": [
+          "408"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001610",
+        "rank": 4,
+        "sections": [
+          "406",
+          "407"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001616",
+        "rank": 5,
+        "sections": [
+          "408",
+          "409"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001664",
+        "rank": 6,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001613",
+        "rank": 7,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001612",
+        "rank": 8,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001617",
+        "rank": 9,
+        "sections": [
+          "409",
+          "410",
+          "411"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000732",
+        "rank": 10,
+        "sections": [
+          "168"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "h03",
+    "type": "definition",
+    "question": "Is free housing given by my employer taxed as a perk?",
+    "expected_sections": [
+      "17"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000130",
+        "rank": 1,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001889",
+        "rank": 2,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000498",
+        "rank": 3,
+        "sections": [
+          "92"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000497",
+        "rank": 4,
+        "sections": [
+          "92"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000129",
+        "rank": 5,
+        "sections": [
+          "16",
+          "17"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000172",
+        "rank": 6,
+        "sections": [
+          "28",
+          "29"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000643",
+        "rank": 7,
+        "sections": [
+          "141",
+          "142"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000131",
+        "rank": 8,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002095",
+        "rank": 9,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000644",
+        "rank": 10,
+        "sections": [
+          "142"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "h04",
+    "type": "definition",
+    "question": "What counts as 'higher education' for the education loan interest deduction?",
+    "expected_sections": [
+      "129"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 2
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000603",
+        "rank": 1,
+        "sections": [
+          "128",
+          "129"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000605",
+        "rank": 2,
+        "sections": [
+          "129",
+          "130"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000604",
+        "rank": 3,
+        "sections": [
+          "129"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001999",
+        "rank": 4,
+        "sections": [
+          "Schedule VII"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000606",
+        "rank": 5,
+        "sections": [
+          "129",
+          "130"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002088",
+        "rank": 6,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000608",
+        "rank": 7,
+        "sections": [
+          "130",
+          "131"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000610",
+        "rank": 8,
+        "sections": [
+          "132"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001875",
+        "rank": 9,
+        "sections": [
+          "Schedule II"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000180",
+        "rank": 10,
+        "sections": [
+          "31"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "h05",
+    "type": "prose",
+    "question": "Like the old section 54, can I avoid capital gains tax on selling my house if I buy another one?",
+    "expected_sections": [
+      "82"
+    ],
+    "ranks": {
+      "section": 4,
+      "strict": 4,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000533",
+        "rank": 1,
+        "sections": [
+          "110",
+          "111"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000468",
+        "rank": 2,
+        "sections": [
+          "86"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000465",
+        "rank": 3,
+        "sections": [
+          "85",
+          "86"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000452",
+        "rank": 4,
+        "sections": [
+          "82"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000454",
+        "rank": 5,
+        "sections": [
+          "82"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000470",
+        "rank": 6,
+        "sections": [
+          "86"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000816",
+        "rank": 7,
+        "sections": [
+          "197"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000821",
+        "rank": 8,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000450",
+        "rank": 9,
+        "sections": [
+          "81",
+          "82"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000484",
+        "rank": 10,
+        "sections": [
+          "90"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "h06",
+    "type": "prose",
+    "question": "How much extra tax do I pay if I file an ITR-U to correct an old return?",
+    "expected_sections": [
+      "267"
+    ],
+    "ranks": {
+      "section": 9,
+      "strict": 9,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001663",
+        "rank": 1,
+        "sections": [
+          "424",
+          "425"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001681",
+        "rank": 2,
+        "sections": [
+          "437"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001578",
+        "rank": 3,
+        "sections": [
+          "398"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001627",
+        "rank": 4,
+        "sections": [
+          "412",
+          "413"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001579",
+        "rank": 5,
+        "sections": [
+          "398",
+          "399"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001703",
+        "rank": 6,
+        "sections": [
+          "442",
+          "443",
+          "444"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001674",
+        "rank": 7,
+        "sections": [
+          "429",
+          "430",
+          "431",
+          "432"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001675",
+        "rank": 8,
+        "sections": [
+          "431",
+          "432",
+          "433",
+          "434"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001118",
+        "rank": 9,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001665",
+        "rank": 10,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "h07",
+    "type": "numeric",
+    "question": "How much deduction can a person with severe disability claim?",
+    "expected_sections": [
+      "154"
+    ],
+    "ranks": {
+      "section": 2,
+      "strict": 4,
+      "phrase": 6
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000596",
+        "rank": 1,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000685",
+        "rank": 2,
+        "sections": [
+          "154",
+          "155",
+          "156"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000594",
+        "rank": 3,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000684",
+        "rank": 4,
+        "sections": [
+          "154"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000597",
+        "rank": 5,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000683",
+        "rank": 6,
+        "sections": [
+          "153",
+          "154"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000218",
+        "rank": 7,
+        "sections": [
+          "36"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000601",
+        "rank": 8,
+        "sections": [
+          "127",
+          "128"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000602",
+        "rank": 9,
+        "sections": [
+          "128"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000595",
+        "rank": 10,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "h08",
+    "type": "numeric",
+    "question": "What is the late fee for filing an income tax return after the due date?",
+    "expected_sections": [
+      "428"
+    ],
+    "ranks": {
+      "section": null,
+      "strict": null,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001665",
+        "rank": 1,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001664",
+        "rank": 2,
+        "sections": [
+          "425"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001384",
+        "rank": 3,
+        "sections": [
+          "352"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001652",
+        "rank": 4,
+        "sections": [
+          "423"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001612",
+        "rank": 5,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001095",
+        "rank": 6,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001613",
+        "rank": 7,
+        "sections": [
+          "407"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001847",
+        "rank": 8,
+        "sections": [
+          "536"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001709",
+        "rank": 9,
+        "sections": [
+          "453",
+          "454"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001120",
+        "rank": 10,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "h09",
+    "type": "lakh",
+    "question": "Can I accept 3 lakh in cash when I sell my car?",
+    "expected_sections": [
+      "186"
+    ],
+    "ranks": {
+      "section": null,
+      "strict": null,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001587",
+        "rank": 1,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001497",
+        "rank": 2,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001740",
+        "rank": 3,
+        "sections": [
+          "476"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001916",
+        "rank": 4,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000464",
+        "rank": 5,
+        "sections": [
+          "85"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000610",
+        "rank": 6,
+        "sections": [
+          "132"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001498",
+        "rank": 7,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001496",
+        "rank": 8,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000918",
+        "rank": 9,
+        "sections": [
+          "215",
+          "216"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001584",
+        "rank": 10,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "h10",
+    "type": "lakh",
+    "question": "Can my shop with a turnover of 2.5 crore use the presumptive tax scheme?",
+    "expected_sections": [
+      "58"
+    ],
+    "ranks": {
+      "section": 2,
+      "strict": 2,
+      "phrase": 2
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000347",
+        "rank": 1,
+        "sections": [
+          "63"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000319",
+        "rank": 2,
+        "sections": [
+          "58"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000333",
+        "rank": 3,
+        "sections": [
+          "60",
+          "61"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001544",
+        "rank": 4,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000318",
+        "rank": 5,
+        "sections": [
+          "57",
+          "58"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002019",
+        "rank": 6,
+        "sections": [
+          "Schedule IX"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000642",
+        "rank": 7,
+        "sections": [
+          "140",
+          "141"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000969",
+        "rank": 8,
+        "sections": [
+          "230",
+          "231"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001710",
+        "rank": 9,
+        "sections": [
+          "454",
+          "455"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000203",
+        "rank": 10,
+        "sections": [
+          "34",
+          "35"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  }
+]

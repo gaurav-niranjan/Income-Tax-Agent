@@ -12,6 +12,8 @@ citations like `[Section 202]`. If the Act doesn't cover the question, it says s
 
 1. **Ingest.** The 674-page PDF is turned into clean text. Page headers, footers and
    amendment footnotes are removed, because the footnotes often quote old, repealed law.
+   With them kept, 2 of 6 test answers stated the repealed law as current (see
+   "Removing amendment footnotes" under Results).
 2. **Index.** The text is split where the Act is split: never across sections, then at
    sub-sections, one chunk per definition, and table rows with the column headings repeated.
    Each chunk is tagged with its section number and embedded locally with `bge-base`
@@ -158,6 +160,28 @@ provisions relating to non-residents > Section 214" to each chunk's search text 
 section titles, but blurred neighbouring sections: every section in Part C "New tax regime"
 then matched "new tax regime", and the slab-rate question dropped from rank 3 to 10.
 
+**Removing amendment footnotes.** The PDF has 163 amendment footnotes, and 81 of them quote
+the old, repealed wording. For example: "Prior to its substitution, section 446 read as under:
+... a penalty of 0.5% of turnover". To test whether removing them matters, 6 trap questions
+were written ([eval/traps.jsonl](eval/traps.jsonl)). Each one is tied to a footnote whose old
+text gives a different answer from today's law. Same setup on both sides: fixed 1,000-character
+chunks, dense search only.
+
+| | Answers stating repealed law | Correct | Dev hit@5 | Held-out hit@5 |
+|---|---|---|---|---|
+| Footnotes kept | **2/6** | 3/6 | 18/26 | 7/10 |
+| Footnotes removed | **0/6** | 2/6 | 20/26 | 6/10 |
+
+- **Retrieval scores can't see the harm.** They move by a question or two either way. The
+  answers show it: with footnotes kept, the app said a missed audit costs "0.5% of turnover"
+  (repealed; today it is a fee of Rs 75,000, then Rs 1,50,000).
+- **Kept footnotes also break citations.** A footnote line like `295. Sub. by ...` looks like the
+  start of Section 295, so many chunks get the wrong section number, and the answers cite it.
+- "Correct" uses two grades corrected by hand. On the footnotes-removed side, most misses were
+  refusals: plain dense search did not find the section.
+- Six questions is small, but the two failures are clear. Full write-up:
+  [eval/experiments/footnotes](eval/experiments/footnotes/README.md).
+
 Answers, graded by a second Gemini model (first answer eval, older app setup, 18 questions):
 **15/18** correct or partly correct, and **17/18** faithful to the retrieved text.
 
@@ -193,8 +217,14 @@ uv run python eval/run_eval.py --modes dense bm25 hybrid   # retrieval metrics, 
 uv run python eval/run_eval.py --expand --neighbours        # same, with LLM query expansion
 uv run python eval/run_eval.py --modes dense --expand --neighbours --rerank   # the app's setup
 uv run python eval/run_eval.py --judge                     # answers + LLM judge
+uv run python eval/run_eval.py --judge --questions eval/traps.jsonl   # + "states old law" rate
+uv run python eval/check_questions.py --questions eval/traps.jsonl    # traps tied to old-text footnotes
 uv run python eval/compare.py diff <run> <run>             # what changed between two runs
 ```
+
+`--judge-model` and `--judge-thinking` (minimal to high) change the judge for one run.
+Results are saved per run; the key runs are listed in [eval/results](eval/results/README.md).
+Experiments that need their own explanation have a write-up in [eval/experiments](eval/experiments/).
 
 ## Tests
 

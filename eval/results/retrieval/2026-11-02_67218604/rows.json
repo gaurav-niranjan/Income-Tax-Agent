@@ -1,0 +1,2546 @@
+[
+  {
+    "id": "q01",
+    "type": "table",
+    "question": "What are the income tax rates under the new regime?",
+    "expected_sections": [
+      "202"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000849",
+        "rank": 1,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001415",
+        "rank": 2,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000844",
+        "rank": 3,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000911",
+        "rank": 4,
+        "sections": [
+          "207"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000710",
+        "rank": 5,
+        "sections": [
+          "160",
+          "161"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000845",
+        "rank": 6,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000837",
+        "rank": 7,
+        "sections": [
+          "198",
+          "199"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000896",
+        "rank": 8,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000052",
+        "rank": 9,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001384",
+        "rank": 10,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q02",
+    "type": "table",
+    "question": "What is the TDS rate when a specified person pays rent for land or a building?",
+    "expected_sections": [
+      "393"
+    ],
+    "ranks": {
+      "section": null,
+      "strict": null,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001528",
+        "rank": 1,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000003",
+        "rank": 2,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001529",
+        "rank": 3,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000810",
+        "rank": 4,
+        "sections": [
+          "193"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000844",
+        "rank": 5,
+        "sections": [
+          "201"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000849",
+        "rank": 6,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000158",
+        "rank": 7,
+        "sections": [
+          "20",
+          "21"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001535",
+        "rank": 8,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001532",
+        "rank": 9,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001537",
+        "rank": 10,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q03",
+    "type": "table",
+    "question": "At what rate is tax collected at source on the sale of scrap?",
+    "expected_sections": [
+      "394"
+    ],
+    "ranks": {
+      "section": null,
+      "strict": null,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001591",
+        "rank": 1,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000200",
+        "rank": 2,
+        "sections": [
+          "33"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000229",
+        "rank": 3,
+        "sections": [
+          "38"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001590",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000652",
+        "rank": 5,
+        "sections": [
+          "143"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001540",
+        "rank": 6,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000201",
+        "rank": 7,
+        "sections": [
+          "33"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000710",
+        "rank": 8,
+        "sections": [
+          "160",
+          "161"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001225",
+        "rank": 9,
+        "sections": [
+          "285",
+          "286"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001598",
+        "rank": 10,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q04",
+    "type": "table",
+    "question": "What is the due date for filing the income tax return of a salaried person with no business income?",
+    "expected_sections": [
+      "263"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001105",
+        "rank": 1,
+        "sections": [
+          "262",
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001115",
+        "rank": 2,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001108",
+        "rank": 3,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001417",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001123",
+        "rank": 5,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001692",
+        "rank": 6,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001706",
+        "rank": 7,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001705",
+        "rank": 8,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001799",
+        "rank": 9,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001125",
+        "rank": 10,
+        "sections": [
+          "263",
+          "264"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q05",
+    "type": "table",
+    "question": "How much standard deduction can a salaried employee claim under the new tax regime?",
+    "expected_sections": [
+      "19"
+    ],
+    "ranks": {
+      "section": null,
+      "strict": null,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000896",
+        "rank": 1,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000587",
+        "rank": 2,
+        "sections": [
+          "124"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000334",
+        "rank": 3,
+        "sections": [
+          "60"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001521",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000207",
+        "rank": 5,
+        "sections": [
+          "35"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000283",
+        "rank": 6,
+        "sections": [
+          "46"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000221",
+        "rank": 7,
+        "sections": [
+          "36"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000347",
+        "rank": 8,
+        "sections": [
+          "62"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000636",
+        "rank": 9,
+        "sections": [
+          "138",
+          "139"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002111",
+        "rank": 10,
+        "sections": [
+          "Schedule XI"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q06",
+    "type": "table",
+    "question": "What is the TCS rate on money sent abroad under the Liberalised Remittance Scheme for education?",
+    "expected_sections": [
+      "394"
+    ],
+    "ranks": {
+      "section": null,
+      "strict": null,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001626",
+        "rank": 1,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000915",
+        "rank": 2,
+        "sections": [
+          "207",
+          "208"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000834",
+        "rank": 3,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000910",
+        "rank": 4,
+        "sections": [
+          "207"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000919",
+        "rank": 5,
+        "sections": [
+          "209"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000918",
+        "rank": 6,
+        "sections": [
+          "208",
+          "209"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000810",
+        "rank": 7,
+        "sections": [
+          "193"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000922",
+        "rank": 8,
+        "sections": [
+          "209",
+          "210"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001542",
+        "rank": 9,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001625",
+        "rank": 10,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q07",
+    "type": "definition",
+    "question": "Who is included in the definition of a 'person' in the Act?",
+    "expected_sections": [
+      "2"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000054",
+        "rank": 1,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000284",
+        "rank": 2,
+        "sections": [
+          "46"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000606",
+        "rank": 3,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001881",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000528",
+        "rank": 5,
+        "sections": [
+          "99",
+          "100",
+          "101"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001868",
+        "rank": 6,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001986",
+        "rank": 7,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001643",
+        "rank": 8,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000796",
+        "rank": 9,
+        "sections": [
+          "184"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001314",
+        "rank": 10,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q08",
+    "type": "definition",
+    "question": "Who counts as a senior citizen for income tax?",
+    "expected_sections": [
+      "2"
+    ],
+    "ranks": {
+      "section": null,
+      "strict": null,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001640",
+        "rank": 1,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000609",
+        "rank": 2,
+        "sections": [
+          "128",
+          "129"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002174",
+        "rank": 3,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001535",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000597",
+        "rank": 5,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000604",
+        "rank": 6,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001584",
+        "rank": 7,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000690",
+        "rank": 8,
+        "sections": [
+          "152",
+          "153"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002176",
+        "rank": 9,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001585",
+        "rank": 10,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q09",
+    "type": "definition",
+    "question": "What does 'tax year' mean?",
+    "expected_sections": [
+      "3"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000082",
+        "rank": 1,
+        "sections": [
+          "3",
+          "4"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002170",
+        "rank": 2,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001377",
+        "rank": 3,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000303",
+        "rank": 4,
+        "sections": [
+          "52"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002051",
+        "rank": 5,
+        "sections": [
+          "Schedule VI"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002093",
+        "rank": 6,
+        "sections": [
+          "Schedule IX"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001392",
+        "rank": 7,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000656",
+        "rank": 8,
+        "sections": [
+          "143",
+          "144"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001272",
+        "rank": 9,
+        "sections": [
+          "293"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001427",
+        "rank": 10,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q10",
+    "type": "definition",
+    "question": "Who is a 'relative' of an individual under the Act?",
+    "expected_sections": [
+      "2",
+      "92"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000510",
+        "rank": 1,
+        "sections": [
+          "92",
+          "93"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000717",
+        "rank": 2,
+        "sections": [
+          "162"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001438",
+        "rank": 3,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001750",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001867",
+        "rank": 5,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000054",
+        "rank": 6,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001669",
+        "rank": 7,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001437",
+        "rank": 8,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001985",
+        "rank": 9,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000528",
+        "rank": 10,
+        "sections": [
+          "99",
+          "100",
+          "101"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q11",
+    "type": "prose",
+    "question": "How many days must an individual stay in India to be treated as a resident?",
+    "expected_sections": [
+      "6"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000086",
+        "rank": 1,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000087",
+        "rank": 2,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000090",
+        "rank": 3,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000085",
+        "rank": 4,
+        "sections": [
+          "5",
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000088",
+        "rank": 5,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001685",
+        "rank": 6,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000089",
+        "rank": 7,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001500",
+        "rank": 8,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001999",
+        "rank": 9,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001853",
+        "rank": 10,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q12",
+    "type": "prose",
+    "question": "When does the Income-tax Act, 2025 come into force?",
+    "expected_sections": [
+      "1"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000000",
+        "rank": 1,
+        "sections": [
+          "1",
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001902",
+        "rank": 2,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001913",
+        "rank": 3,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001914",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001907",
+        "rank": 5,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001888",
+        "rank": 6,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001901",
+        "rank": 7,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001916",
+        "rank": 8,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001912",
+        "rank": 9,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001915",
+        "rank": 10,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q13",
+    "type": "prose",
+    "question": "Can someone with business income opt out of the new tax regime and later switch back?",
+    "expected_sections": [
+      "202"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000852",
+        "rank": 1,
+        "sections": [
+          "202",
+          "203"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001353",
+        "rank": 2,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000843",
+        "rank": 3,
+        "sections": [
+          "200",
+          "201"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001384",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001420",
+        "rank": 5,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000848",
+        "rank": 6,
+        "sections": [
+          "201",
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001904",
+        "rank": 7,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002010",
+        "rank": 8,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001367",
+        "rank": 9,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001798",
+        "rank": 10,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q14",
+    "type": "prose",
+    "question": "What happens to the old Income-tax Act, 1961?",
+    "expected_sections": [
+      "536"
+    ],
+    "ranks": {
+      "section": null,
+      "strict": null,
+      "phrase": 4
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001901",
+        "rank": 1,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001907",
+        "rank": 2,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001908",
+        "rank": 3,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001900",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000455",
+        "rank": 5,
+        "sections": [
+          "81",
+          "82"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001421",
+        "rank": 6,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000888",
+        "rank": 7,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001916",
+        "rank": 8,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001440",
+        "rank": 9,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001910",
+        "rank": 10,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q15",
+    "type": "numeric",
+    "question": "What is the maximum deduction for health insurance premium paid for parents?",
+    "expected_sections": [
+      "126"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 3
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000594",
+        "rank": 1,
+        "sections": [
+          "125",
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002155",
+        "rank": 2,
+        "sections": [
+          "Schedule XIV",
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000597",
+        "rank": 3,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000599",
+        "rank": 4,
+        "sections": [
+          "126",
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000600",
+        "rank": 5,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000608",
+        "rank": 6,
+        "sections": [
+          "128"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000596",
+        "rank": 7,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000595",
+        "rank": 8,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000504",
+        "rank": 9,
+        "sections": [
+          "92"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000586",
+        "rank": 10,
+        "sections": [
+          "123",
+          "124"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q16",
+    "type": "numeric",
+    "question": "How much can be deducted for a preventive health check-up?",
+    "expected_sections": [
+      "126"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000596",
+        "rank": 1,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000595",
+        "rank": 2,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000598",
+        "rank": 3,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000608",
+        "rank": 4,
+        "sections": [
+          "128"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000597",
+        "rank": 5,
+        "sections": [
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000599",
+        "rank": 6,
+        "sections": [
+          "126",
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000594",
+        "rank": 7,
+        "sections": [
+          "125",
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000602",
+        "rank": 8,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000179",
+        "rank": 9,
+        "sections": [
+          "30"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000136",
+        "rank": 10,
+        "sections": [
+          "17"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q17",
+    "type": "numeric",
+    "question": "What standard deduction is allowed from rental income from a house property?",
+    "expected_sections": [
+      "22"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000161",
+        "rank": 1,
+        "sections": [
+          "21",
+          "22"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000173",
+        "rank": 2,
+        "sections": [
+          "28"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000172",
+        "rank": 3,
+        "sections": [
+          "26",
+          "27",
+          "28"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000629",
+        "rank": 4,
+        "sections": [
+          "134"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001605",
+        "rank": 5,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000650",
+        "rank": 6,
+        "sections": [
+          "141",
+          "142"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000158",
+        "rank": 7,
+        "sections": [
+          "20",
+          "21"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002103",
+        "rank": 8,
+        "sections": [
+          "Schedule X"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002023",
+        "rank": 9,
+        "sections": [
+          "Schedule V"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000636",
+        "rank": 10,
+        "sections": [
+          "138",
+          "139"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q18",
+    "type": "numeric",
+    "question": "What is the maximum rebate a resident individual can get under the new tax regime?",
+    "expected_sections": [
+      "156"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000696",
+        "rank": 1,
+        "sections": [
+          "155",
+          "156"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000695",
+        "rank": 2,
+        "sections": [
+          "154",
+          "155",
+          "156"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000052",
+        "rank": 3,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001543",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001603",
+        "rank": 5,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000779",
+        "rank": 6,
+        "sections": [
+          "176"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001541",
+        "rank": 7,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000899",
+        "rank": 8,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000896",
+        "rank": 9,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000853",
+        "rank": 10,
+        "sections": [
+          "202",
+          "203"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q19",
+    "type": "lakh",
+    "question": "What is the tax rate on income between 8 and 12 lakh under the new regime?",
+    "expected_sections": [
+      "202"
+    ],
+    "ranks": {
+      "section": 2,
+      "strict": 2,
+      "phrase": 2
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000697",
+        "rank": 1,
+        "sections": [
+          "156",
+          "157"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000849",
+        "rank": 2,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001543",
+        "rank": 3,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001885",
+        "rank": 4,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000347",
+        "rank": 5,
+        "sections": [
+          "62"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000848",
+        "rank": 6,
+        "sections": [
+          "201",
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001384",
+        "rank": 7,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000710",
+        "rank": 8,
+        "sections": [
+          "160",
+          "161"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001561",
+        "rank": 9,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001802",
+        "rank": 10,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q20",
+    "type": "lakh",
+    "question": "Is there a tax rebate if my total income is up to 5 lakh?",
+    "expected_sections": [
+      "156"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000696",
+        "rank": 1,
+        "sections": [
+          "155",
+          "156"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000697",
+        "rank": 2,
+        "sections": [
+          "156",
+          "157"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001596",
+        "rank": 3,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000350",
+        "rank": 4,
+        "sections": [
+          "63"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001541",
+        "rank": 5,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001962",
+        "rank": 6,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000325",
+        "rank": 7,
+        "sections": [
+          "58"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001141",
+        "rank": 8,
+        "sections": [
+          "267"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000897",
+        "rank": 9,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000347",
+        "rank": 10,
+        "sections": [
+          "62"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q21",
+    "type": "lakh",
+    "question": "At what rate are long-term capital gains on listed shares above 1.25 lakh taxed?",
+    "expected_sections": [
+      "198"
+    ],
+    "ranks": {
+      "section": 5,
+      "strict": 5,
+      "phrase": 6
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000924",
+        "rank": 1,
+        "sections": [
+          "210"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000468",
+        "rank": 2,
+        "sections": [
+          "85"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000933",
+        "rank": 3,
+        "sections": [
+          "214",
+          "215"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000393",
+        "rank": 4,
+        "sections": [
+          "69"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000834",
+        "rank": 5,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000833",
+        "rank": 6,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000829",
+        "rank": 7,
+        "sections": [
+          "197"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000923",
+        "rank": 8,
+        "sections": [
+          "210"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000467",
+        "rank": 9,
+        "sections": [
+          "85"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000474",
+        "rank": 10,
+        "sections": [
+          "86"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q22",
+    "type": "lakh",
+    "question": "Is the total deduction for life insurance premium and provident fund contributions capped at 1.5 lakh?",
+    "expected_sections": [
+      "123",
+      "Schedule XV"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000586",
+        "rank": 1,
+        "sections": [
+          "123",
+          "124"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002155",
+        "rank": 2,
+        "sections": [
+          "Schedule XIV",
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001936",
+        "rank": 3,
+        "sections": [
+          "Schedule II"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002163",
+        "rank": 4,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000594",
+        "rank": 5,
+        "sections": [
+          "125",
+          "126"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001935",
+        "rank": 6,
+        "sections": [
+          "Schedule II"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002153",
+        "rank": 7,
+        "sections": [
+          "Schedule XIV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000600",
+        "rank": 8,
+        "sections": [
+          "127"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000504",
+        "rank": 9,
+        "sections": [
+          "92"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001933",
+        "rank": 10,
+        "sections": [
+          "Schedule II"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q27",
+    "type": "prose",
+    "question": "What are the tax laws for non-resident Indians?",
+    "expected_sections": [
+      "212",
+      "213",
+      "214",
+      "215",
+      "216",
+      "217"
+    ],
+    "ranks": {
+      "section": 4,
+      "strict": 4,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000708",
+        "rank": 1,
+        "sections": [
+          "160"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002010",
+        "rank": 2,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000098",
+        "rank": 3,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000936",
+        "rank": 4,
+        "sections": [
+          "216",
+          "217"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000117",
+        "rank": 5,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000099",
+        "rank": 6,
+        "sections": [
+          "9"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000931",
+        "rank": 7,
+        "sections": [
+          "212",
+          "213"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000928",
+        "rank": 8,
+        "sections": [
+          "211"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001685",
+        "rank": 9,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000087",
+        "rank": 10,
+        "sections": [
+          "6"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q28",
+    "type": "table",
+    "question": "How is profit from selling cryptocurrency taxed?",
+    "expected_sections": [
+      "194"
+    ],
+    "ranks": {
+      "section": 6,
+      "strict": 6,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001751",
+        "rank": 1,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001843",
+        "rank": 2,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002013",
+        "rank": 3,
+        "sections": [
+          "Schedule IV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000870",
+        "rank": 4,
+        "sections": [
+          "206"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000379",
+        "rank": 5,
+        "sections": [
+          "67"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000823",
+        "rank": 6,
+        "sections": [
+          "194",
+          "195"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000816",
+        "rank": 7,
+        "sections": [
+          "194"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000257",
+        "rank": 8,
+        "sections": [
+          "42",
+          "43",
+          "44"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000382",
+        "rank": 9,
+        "sections": [
+          "67"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000772",
+        "rank": 10,
+        "sections": [
+          "175"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q29",
+    "type": "lakh",
+    "question": "Can I set off a loss of 3 lakh from house property against my salary?",
+    "expected_sections": [
+      "109",
+      "202"
+    ],
+    "ranks": {
+      "section": 1,
+      "strict": 1,
+      "phrase": 1
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000538",
+        "rank": 1,
+        "sections": [
+          "109",
+          "110"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000537",
+        "rank": 2,
+        "sections": [
+          "108",
+          "109"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000540",
+        "rank": 3,
+        "sections": [
+          "111",
+          "112"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000544",
+        "rank": 4,
+        "sections": [
+          "113",
+          "114"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000541",
+        "rank": 5,
+        "sections": [
+          "112"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000474",
+        "rank": 6,
+        "sections": [
+          "86"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000850",
+        "rank": 7,
+        "sections": [
+          "202"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000536",
+        "rank": 8,
+        "sections": [
+          "106",
+          "107",
+          "108"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001530",
+        "rank": 9,
+        "sections": [
+          "295"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000539",
+        "rank": 10,
+        "sections": [
+          "110",
+          "111"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  },
+  {
+    "id": "q30",
+    "type": "definition",
+    "question": "How long do I need to hold listed shares for the gain to count as long-term?",
+    "expected_sections": [
+      "2"
+    ],
+    "ranks": {
+      "section": null,
+      "strict": null,
+      "phrase": null
+    },
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:002191",
+        "rank": 1,
+        "sections": [
+          "Schedule XVI"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000469",
+        "rank": 2,
+        "sections": [
+          "85",
+          "86"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002025",
+        "rank": 3,
+        "sections": [
+          "Schedule V"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000393",
+        "rank": 4,
+        "sections": [
+          "69"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001249",
+        "rank": 5,
+        "sections": [
+          "288"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000933",
+        "rank": 6,
+        "sections": [
+          "214",
+          "215"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000468",
+        "rank": 7,
+        "sections": [
+          "85"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000833",
+        "rank": 8,
+        "sections": [
+          "198"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002172",
+        "rank": 9,
+        "sections": [
+          "Schedule XV"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000447",
+        "rank": 10,
+        "sections": [
+          "76",
+          "77"
+        ],
+        "neighbour_of": null
+      }
+    ]
+  }
+]

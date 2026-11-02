@@ -35,9 +35,16 @@
       {"step": "*Reference:* the app at the time", "dev": "2026-10-24_6e9351f7", "heldout": "2026-10-24_63c7a818"},
       {"step": "App setup on fixed chunks instead of structured", "dev": "2026-10-24_d0349a98", "heldout": "2026-10-24_6fee4b4e"},
       {"step": "App setup without query expansion", "dev": "2026-10-24_3ef3dcd7", "heldout": "2026-10-24_cf10af4d"}
+    ]},
+    {"note": "Footnotes ablation (2026-11-02), fixed 1,000-character chunks, dense search only. Kept footnotes look like section starts to the section detector, so chunks get wrong section labels and section hits are partly wrong; phrase hits are fairer. Details: [eval/experiments/footnotes](../experiments/footnotes/README.md).",
+     "steps": [
+      {"step": "*Reference:* footnotes removed (same setup as A1)", "dev": "2026-11-02_4b919220", "heldout": "2026-11-02_cb3ad3c8"},
+      {"step": "Footnotes kept in the chunks", "dev": "2026-11-02_67218604", "heldout": "2026-11-02_c432e46d"}
     ]}
   ],
   "answers": [
-    {"run": "2026-10-18_d4acdb36", "step": "First answer eval, old app setup (judge quota ran out at 18/26)"}
+    {"run": "2026-10-18_d4acdb36", "step": "First answer eval, old app setup (judge quota ran out at 18/26)"},
+    {"run": "2026-11-02_902d824c", "step": "Footnotes ablation: 6 trap questions, footnotes removed (fixed 1,000, dense; Flash-Lite answers and judges). Raw judge grades; t02 is corrected by hand in [the write-up](../experiments/footnotes/README.md)"},
+    {"run": "2026-11-02_3e97330d", "step": "Footnotes ablation: 6 trap questions, footnotes kept (same setup). Raw judge grades; t02 is corrected by hand in [the write-up](../experiments/footnotes/README.md)"}
   ]
 }

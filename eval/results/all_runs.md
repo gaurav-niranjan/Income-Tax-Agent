@@ -12,6 +12,10 @@ Rates are shown with raw counts, e.g. `0.92 (24/26)`: with this few questions, o
 
 | run | index | mode | fusion | neighbours | n | strict hit@1 | strict hit@3 | strict hit@5 | strict MRR | section hit@5 | phrase hit@5 | note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
+| [2026-11-02_cb3ad3c8](retrieval/2026-11-02_cb3ad3c8/report.md) | fixed-1000-150__bge-base | dense | - | no | 10 | 0.20 (2/10) | 0.40 (4/10) | 0.60 (6/10) | 0.36 | 0.60 (6/10) | 0.40 (4/10) | Footnotes removed (ablation pair) |
+| [2026-11-02_c432e46d](retrieval/2026-11-02_c432e46d/report.md) | fixed-1000-150__bge-base | dense | - | no | 10 | 0.40 (4/10) | 0.60 (6/10) | 0.70 (7/10) | 0.51 | 0.70 (7/10) | 0.60 (6/10) | Footnotes kept (ablation) |
+| [2026-11-02_4b919220](retrieval/2026-11-02_4b919220/report.md) | fixed-1000-150__bge-base | dense | - | no | 26 | 0.54 (14/26) | 0.65 (17/26) | 0.77 (20/26) | 0.64 | 0.77 (20/26) | 0.65 (17/26) | Footnotes removed (ablation pair) |
+| [2026-11-02_67218604](retrieval/2026-11-02_67218604/report.md) | fixed-1000-150__bge-base | dense | - | no | 26 | 0.58 (15/26) | 0.62 (16/26) | 0.69 (18/26) | 0.62 | 0.69 (18/26) | 0.65 (17/26) | Footnotes kept (ablation) |
 | [2026-10-29_63a97a31](retrieval/2026-10-29_63a97a31/report.md) | structured-1500__bge-base | hybrid +exp +rr | k=2; rerank: ms-marco-MiniLM-L-6-v2/10 | yes | 10 | 0.80 (8/10) | 0.90 (9/10) | 1.00 (10/10) | 0.88 | 1.00 (10/10) | 1.00 (10/10) | Structured: app with hybrid search |
 | [2026-10-29_ba35c7bd](retrieval/2026-10-29_ba35c7bd/report.md) | structured-1500__bge-base | dense +exp +rr | rerank: ms-marco-MiniLM-L-6-v2/10 | no | 10 | 0.90 (9/10) | 0.90 (9/10) | 1.00 (10/10) | 0.93 | 1.00 (10/10) | 1.00 (10/10) | Structured B4: + rewrite scores |
 | [2026-10-29_ca9c0749](retrieval/2026-10-29_ca9c0749/report.md) | structured-1500__bge-base | dense +exp +rr | rerank: ms-marco-MiniLM-L-6-v2/10 | no | 10 | 0.80 (8/10) | 0.90 (9/10) | 0.90 (9/10) | 0.84 | 0.90 (9/10) | 0.90 (9/10) | Structured B3: + reranker, question only |
@@ -72,6 +76,10 @@ Rates are shown with raw counts, e.g. `0.92 (24/26)`: with this few questions, o
 
 Correct and false refusals are over judged in-scope questions; faithful over all judged ones. `prompts` is a hash of the answer + judge prompts.
 
-| run | index | mode | fusion | neighbours | k | answer model | judge | prompts | unjudged | correct | correct or partial | faithful | out-of-scope refused | false refusals | note |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| [2026-10-18_d4acdb36](answers/2026-10-18_d4acdb36/report.md) | fixed-1000-150-header__bge-base | dense | - | yes | 5 | gemini-3.5-flash-lite | gemini-3.8-flash | a8348a7d | 8/26 | 0.50 (9/18) | 0.83 (15/18) | 0.94 (17/18) | - | 0.17 (3/18) | Phase 7 first run; judge quota ran out at 18/26 |
+| run | index | mode | fusion | neighbours | k | answer model | judge | prompts | unjudged | correct | correct or partial | faithful | out-of-scope refused | false refusals | old law | note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| [2026-11-02_902d824c](answers/2026-11-02_902d824c/report.md) | fixed-1000-150__bge-base | dense | - | no | 5 | gemini-3.5-flash-lite | gemini-3.5-flash-lite | 1f73c0fd | 0/6 | 0.50 (3/6) | 0.67 (4/6) | 1.00 (6/6) | - | 0.50 (3/6) | 0.00 (0/6) | Traps: footnotes removed, dense |
+| [2026-11-02_3e97330d](answers/2026-11-02_3e97330d/report.md) | fixed-1000-150__bge-base | dense | - | no | 5 | gemini-3.5-flash-lite | gemini-3.5-flash-lite | 1f73c0fd | 0/6 | 0.50 (3/6) | 0.67 (4/6) | 0.83 (5/6) | - | 0.17 (1/6) | 0.33 (2/6) | Traps: footnotes kept, dense |
+| [2026-11-02_79961ce5](answers/2026-11-02_79961ce5/report.md) | fixed-1000-150__bge-base | dense | - | no | 5 | gemini-3.5-flash-lite | gemini-3.5-flash-lite | 1f73c0fd | 0/6 | 0.50 (3/6) | 0.67 (4/6) | 1.00 (6/6) | - | 0.50 (3/6) | 0.00 (0/6) | Superseded trap set v1 (t01 asked about LRS; its footnote 89 is on the tour package row): footnotes removed |
+| [2026-11-02_c55b7408](answers/2026-11-02_c55b7408/report.md) | fixed-1000-150__bge-base | dense | - | no | 5 | gemini-3.5-flash-lite | gemini-3.5-flash-lite | 1f73c0fd | 0/6 | 0.33 (2/6) | 0.50 (3/6) | 0.83 (5/6) | - | 0.33 (2/6) | 0.33 (2/6) | Superseded trap set v1 (t01 asked about LRS; its footnote 89 is on the tour package row): footnotes kept |
+| [2026-10-18_d4acdb36](answers/2026-10-18_d4acdb36/report.md) | fixed-1000-150-header__bge-base | dense | - | yes | 5 | gemini-3.5-flash-lite | gemini-3.8-flash | a8348a7d | 8/26 | 0.50 (9/18) | 0.83 (15/18) | 0.94 (17/18) | - | 0.17 (3/18) | - | Phase 7 first run; judge quota ran out at 18/26 |

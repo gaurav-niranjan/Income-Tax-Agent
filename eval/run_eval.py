@@ -26,7 +26,15 @@ import subprocess
 import time
 from pathlib import Path
 
-from judge import JUDGE_SYSTEM, JUDGE_TEMPLATE, fmt, judge_prompt, parse_verdict, summarize_answers
+from judge import (
+    JUDGE_SYSTEM,
+    JUDGE_TEMPLATE,
+    fmt,
+    judge_prompt,
+    parse_verdict,
+    summarize_answers,
+    uses_old_law,
+)
 from metrics import (
     KS,
     RULES,
@@ -151,7 +159,7 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str) -> None:
     answer_llm = GeminiLLM(settings.gemini_model, settings.google_api_key, settings.llm_cache_dir,
                            settings.gemini_temperature, settings.gemini_thinking_level)
     judge_llm = GeminiLLM(args.judge_model or settings.gemini_judge_model, settings.google_api_key,
-                          settings.llm_cache_dir)
+                          settings.llm_cache_dir, thinking_level=args.judge_thinking)
     if judge_llm.model_name == answer_llm.model_name:
         print("WARNING: the judge is the same model as the answerer; grades may be biased.")
     exp_llm = expand_llm(settings)
@@ -187,10 +195,12 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str) -> None:
                            "neighbour_of": h.neighbour_of} for h in state["hits"]],
             "citations": state["citations"], "unsupported_citations": state["unsupported_citations"],
             "verdict": verdict, "judge_error": error,
-        } | ({"queries": state["queries"], "expand_error": state.get("expand_error")} if args.expand else {}))
+        } | ({"queries": state["queries"], "expand_error": state.get("expand_error")} if args.expand else {})
+          | ({"old_law": uses_old_law(state["answer"], q.extra["old_law"])} if "old_law" in q.extra else {}))
         v = verdict or {}
         print(f"{q.id} {q.type:<12} {v.get('correctness', 'UNJUDGED'):<9} "
-              f"faithful={v.get('faithful')} refused={v.get('refused')}")
+              f"faithful={v.get('faithful')} refused={v.get('refused')}"
+              + (f" old_law={rows[-1]['old_law']}" if "old_law" in rows[-1] else ""))
         if answer_llm.api_calls + judge_llm.api_calls + exp_llm.api_calls > calls_before:
             time.sleep(args.sleep)  # free-tier rate limits; cached questions skip this
 
@@ -208,13 +218,15 @@ def run_answer_eval(args, settings, retriever: Retriever, mode: str) -> None:
         "git_commit": git_commit(), "index_manifest": retriever.manifest,
     } | (expand_config(settings, exp_llm) if args.expand else {}) | rerank_config(settings)
       # Only when set, so earlier runs' config hashes stay comparable.
-      | ({"answer_thinking_level": answer_llm.thinking_level} if answer_llm.thinking_level else {}),
+      | ({"answer_thinking_level": answer_llm.thinking_level} if answer_llm.thinking_level else {})
+      | ({"judge_thinking_level": judge_llm.thinking_level} if judge_llm.thinking_level else {}),
       note=args.note)
     run_dir = save_run(config, summary, rows, answers_markdown(config["run_id"], config, summary, rows))
     print(f"\nRun {config['run_id']} saved to {run_dir}")
     print(f"{name}: correct {fmt(summary['correct'])}, correct or partial {fmt(summary['correct_or_partial'])}, "
           f"faithful {fmt(summary['faithful'])}, out-of-scope refused {fmt(summary['refusal_out_of_scope'])}, "
-          f"in-scope wrongly refused {fmt(summary['false_refusal_in_scope'])}, unjudged {summary['unjudged']}")
+          f"in-scope wrongly refused {fmt(summary['false_refusal_in_scope'])}, unjudged {summary['unjudged']}"
+          + (f", old law {fmt(summary['old_law'])}" if "old_law" in summary else ""))
     print(f"API calls: answer model {answer_llm.api_calls}, judge {judge_llm.api_calls}, "
           f"expansion {exp_llm.api_calls}")
 
@@ -227,7 +239,9 @@ def answers_markdown(name: str, config: dict, summary: dict, rows: list[dict]) -
              f"| faithful (all) | {fmt(summary['faithful'])} |",
              f"| refused, out of scope | {fmt(summary['refusal_out_of_scope'])} |",
              f"| refused, in scope (false refusals) | {fmt(summary['false_refusal_in_scope'])} |",
-             f"| unjudged | {summary['unjudged']} |", "",
+             f"| unjudged | {summary['unjudged']} |",
+             *([f"| states old, repealed law (traps) | {fmt(summary['old_law'])} |"] if "old_law" in summary else []),
+             "",
              "| type | correct | partial | incorrect |", "|---|---|---|---|"]
     for t, s in summary["by_type"].items():
         lines.append(f"| {t} | {fmt(s['correct'])} | {fmt(s['partial'])} | {fmt(s['incorrect'])} |")
@@ -235,7 +249,8 @@ def answers_markdown(name: str, config: dict, summary: dict, rows: list[dict]) -
     for r in rows:
         v = r["verdict"] or {}
         lines += [f"### {r['id']} ({r['type']}): {v.get('correctness', 'UNJUDGED')}, "
-                  f"faithful={v.get('faithful')}, refused={v.get('refused')}",
+                  f"faithful={v.get('faithful')}, refused={v.get('refused')}"
+                  + (f", old_law={r['old_law']}" if "old_law" in r else ""),
                   f"**Q:** {r['question']}", "", f"**Reference:** {r['reference']}", "",
                   "**Answer:**", "", r["answer"], "",
                   *([f"**Also searched for:** {' | '.join(r['queries'][1:]) or '(nothing added)'}", ""]
@@ -303,6 +318,8 @@ def main() -> None:
     )
     parser.add_argument("--judge", action="store_true", help="answer eval with an LLM judge (Phase 7)")
     parser.add_argument("--judge-model", help="override GEMINI_JUDGE_MODEL for this run")
+    parser.add_argument("--judge-thinking", choices=["minimal", "low", "medium", "high"],
+                        help="judge's thinking level (Gemini 3+); default: the model's own")
     parser.add_argument("--sleep", type=float, default=6.0,
                         help="seconds to wait after a question that called the API")
     parser.add_argument("--note", default="", help="short label shown in the results table")

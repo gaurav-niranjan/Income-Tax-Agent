@@ -1,0 +1,66 @@
+{
+  "run_id": "2026-11-02_c55b7408",
+  "kind": "answers",
+  "created": "2026-11-02T14:21:12",
+  "config_hash": "c55b7408",
+  "note": "Superseded trap set v1 (t01 asked about LRS; its footnote 89 is on the tour package row): footnotes kept",
+  "index": "fixed-1000-150__bge-base",
+  "mode": "dense",
+  "neighbours": false,
+  "k": 5,
+  "rrf_k": 2,
+  "hybrid_candidates": 50,
+  "answer_model": "gemini-3.5-flash-lite",
+  "judge_model": "gemini-3.5-flash-lite",
+  "prompts_sha": "1f73c0fd",
+  "questions_file": "traps.jsonl",
+  "questions_sha": "2db60e17",
+  "n_questions": 6,
+  "n_answered": 6,
+  "git_commit": "6b6a66c",
+  "index_manifest": {
+    "name": "fixed-1000-150__bge-base",
+    "created": "2026-11-02T08:17:38+00:00",
+    "source": {
+      "pdf": "Income-tax-Act-2025_2026_2026-08-25_10-41-45_a1d3cd_en.pdf",
+      "pages_sha256": "d040fa5f9591e338",
+      "n_pages": 674
+    },
+    "cleaning": {
+      "strip_footnotes": false
+    },
+    "chunker": {
+      "type": "fixed",
+      "size": 1000,
+      "overlap": 150
+    },
+    "embeddings": {
+      "type": "fastembed",
+      "model": "BAAI/bge-base-en-v1.5",
+      "dim": 768,
+      "query_prefix": "Represent this sentence for searching relevant passages: "
+    },
+    "vector_store": {
+      "type": "chroma",
+      "collection": "chunks",
+      "distance": "l2"
+    },
+    "stats": {
+      "n_chunks": 2193,
+      "n_chunks_multi_section": 344,
+      "chars_total": 1736634,
+      "tokens": {
+        "min": 87,
+        "p50": 204,
+        "p90": 232,
+        "p99": 266,
+        "max": 378,
+        "mean": 202.8,
+        "over_512": 0
+      },
+      "embed_seconds": 194.9
+    }
+  },
+  "answer_thinking_level": "minimal",
+  "judge_thinking_level": "high"
+}

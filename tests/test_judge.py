@@ -1,7 +1,7 @@
 """Judge parsing and answer-eval summary (no LLM calls)."""
 
 import pytest
-from judge import judge_prompt, parse_verdict, summarize_answers
+from judge import judge_prompt, parse_verdict, summarize_answers, uses_old_law
 
 
 def test_parse_verdict_accepts_fenced_json():
@@ -51,3 +51,22 @@ def test_summarize_answers():
     assert (s["refusal_out_of_scope"]["hits"], s["refusal_out_of_scope"]["n"]) == (1, 1)
     assert s["false_refusal_in_scope"]["hits"] == 1
     assert s["by_type"]["table"]["partial"]["hits"] == 1
+    assert "old_law" not in s  # only runs on trap questions report it
+
+
+def test_uses_old_law_matches_only_the_repealed_figure():
+    # Patterns from traps.jsonl t01 (old: 5% / 20%, current: 2%) and t04 (old: Rs 500 a day).
+    assert uses_old_law("TCS is 5% up to Rs 10 lakh", [r"\b5%", r"\b20%"])
+    assert not uses_old_law("TCS is 2% of the amount; 25% is not it either", [r"\b5%"])
+    rs_500 = [r"(Rs\.?|₹|INR)\s?500(?![\d,])"]
+    assert uses_old_law("a penalty of Rs. 500 for every day", rs_500)
+    assert not uses_old_law("Rs. 500000 total income, Rs 5,00,000", rs_500)
+
+
+def test_summarize_answers_counts_old_law_over_trap_rows_judged_or_not():
+    rows = [
+        {"type": "trap", "in_scope": True, "verdict": v("incorrect"), "old_law": True},
+        {"type": "trap", "in_scope": True, "verdict": None, "old_law": False},  # judge failed
+        {"type": "table", "in_scope": True, "verdict": v("correct")},  # not a trap
+    ]
+    assert summarize_answers(rows)["old_law"] == {"hits": 1, "n": 2, "rate": 0.5}

@@ -1,0 +1,390 @@
+[
+  {
+    "id": "t01",
+    "type": "trap",
+    "in_scope": true,
+    "question": "What is the rate of tax collected at source when I buy an overseas tour package for Rs 12 lakh?",
+    "reference": "2% of the amount, with no threshold (Section 394(1) Table, Sl. No. 8).",
+    "answer": "I could not find this in the Act.",
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000898",
+        "rank": 1,
+        "sections": [
+          "207",
+          "208"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001555",
+        "rank": 2,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001588",
+        "rank": 3,
+        "sections": [
+          "402"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001557",
+        "rank": 4,
+        "sections": [
+          "394"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000700",
+        "rank": 5,
+        "sections": [
+          "160",
+          "161"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "citations": [],
+    "unsupported_citations": [],
+    "verdict": {
+      "correctness": "incorrect",
+      "faithful": true,
+      "refused": true,
+      "unsupported_claims": [],
+      "explanation": "The app refused to answer, but the excerpts provided do contain the correct information regarding the 2% tax collection rate for overseas tour packages under Section 394."
+    },
+    "judge_error": null,
+    "old_law": false
+  },
+  {
+    "id": "t02",
+    "type": "trap",
+    "in_scope": true,
+    "question": "Can I deduct the interest on a loan I took to buy shares from my dividend income?",
+    "reference": "No. No deduction at all is allowed against dividend income or income from the listed mutual fund units (Section 93(2)).",
+    "answer": "I could not find this in the Act.",
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:000033",
+        "rank": 1,
+        "sections": [
+          "2"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000608",
+        "rank": 2,
+        "sections": [
+          "130",
+          "131"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000663",
+        "rank": 3,
+        "sections": [
+          "148",
+          "149"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001668",
+        "rank": 4,
+        "sections": [
+          "425",
+          "426"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001532",
+        "rank": 5,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "citations": [],
+    "unsupported_citations": [],
+    "verdict": {
+      "correctness": "correct",
+      "faithful": true,
+      "refused": true,
+      "unsupported_claims": [],
+      "explanation": "The app correctly stated it could not find the answer, as the provided excerpts do not contain Section 93(2) or the relevant rule regarding share loan interest deductions against dividend income."
+    },
+    "judge_error": null,
+    "old_law": false
+  },
+  {
+    "id": "t03",
+    "type": "trap",
+    "in_scope": true,
+    "question": "What happens if a business does not get its accounts audited when the Act requires it?",
+    "reference": "A fee under Section 428(c): Rs 75,000 for a delay of up to one month, and Rs 1,50,000 after that.",
+    "answer": "I could not find this in the Act.",
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001089",
+        "rank": 1,
+        "sections": [
+          "263"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000348",
+        "rank": 2,
+        "sections": [
+          "63"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002032",
+        "rank": 3,
+        "sections": [
+          "Schedule X"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:002020",
+        "rank": 4,
+        "sections": [
+          "Schedule IX"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001022",
+        "rank": 5,
+        "sections": [
+          "247"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "citations": [],
+    "unsupported_citations": [],
+    "verdict": {
+      "correctness": "incorrect",
+      "faithful": true,
+      "refused": true,
+      "unsupported_claims": [],
+      "explanation": "The question is in-scope and the reference answer is available, but the app incorrectly declined to answer."
+    },
+    "judge_error": null,
+    "old_law": false
+  },
+  {
+    "id": "t04",
+    "type": "trap",
+    "in_scope": true,
+    "question": "What is the fee for filing a statement of financial transaction late?",
+    "reference": "Rs 200 for every day the failure continues, up to Rs 1,00,000 (Section 427(3)). If it is still not filed after a notice, a penalty of Rs 1,000 a day, up to Rs 1,00,000 (Section 454).",
+    "answer": "The fee for failing to furnish a statement of financial transaction or reportable account within the prescribed time is Rs. 200 for every day the failure continues [Section 427].\n\nKey condition:\n* The total fee cannot exceed Rs. 100000 (1 lakh) [Section 427].",
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001712",
+        "rank": 1,
+        "sections": [
+          "455",
+          "456",
+          "457"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001672",
+        "rank": 2,
+        "sections": [
+          "428",
+          "429"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001710",
+        "rank": 3,
+        "sections": [
+          "454",
+          "455"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001709",
+        "rank": 4,
+        "sections": [
+          "453",
+          "454"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001670",
+        "rank": 5,
+        "sections": [
+          "427",
+          "428"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "citations": [
+      "427"
+    ],
+    "unsupported_citations": [],
+    "verdict": {
+      "correctness": "partial",
+      "faithful": true,
+      "refused": false,
+      "unsupported_claims": [],
+      "explanation": "The app correctly identifies the fee for late filing under Section 427, but misses the additional penalty for failure after a notice under Section 454 that was included in the reference answer."
+    },
+    "judge_error": null,
+    "old_law": false
+  },
+  {
+    "id": "t05",
+    "type": "trap",
+    "in_scope": true,
+    "question": "What is the punishment for wilfully trying to evade more than Rs 60 lakh of tax?",
+    "reference": "Simple imprisonment of up to two years, or a fine, or both, because the amount is above Rs 50 lakh (Section 478(1)(a)).",
+    "answer": "The punishment for wilfully trying to evade an amount of tax, penalty, interest, or tax on under-reported income that exceeds fifty lakh rupees is simple imprisonment for a term up to two years, or a fine, or both [Section 478]. \n\nThis punishment is without prejudice to any penalty that may be imposable under any other provision of the Act [Section 478].",
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001743",
+        "rank": 1,
+        "sections": [
+          "478"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001742",
+        "rank": 2,
+        "sections": [
+          "477",
+          "478"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001745",
+        "rank": 3,
+        "sections": [
+          "478",
+          "479"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001744",
+        "rank": 4,
+        "sections": [
+          "478",
+          "479"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001751",
+        "rank": 5,
+        "sections": [
+          "484",
+          "485",
+          "486"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "citations": [
+      "478"
+    ],
+    "unsupported_citations": [],
+    "verdict": {
+      "correctness": "correct",
+      "faithful": true,
+      "refused": false,
+      "unsupported_claims": [],
+      "explanation": "The app correctly provides the punishment for evading an amount exceeding fifty lakh rupees (which covers 60 lakh), citing Section 478 accurately from the excerpts."
+    },
+    "judge_error": null,
+    "old_law": false
+  },
+  {
+    "id": "t06",
+    "type": "trap",
+    "in_scope": true,
+    "question": "Is TDS deducted on interest paid on a Motor Accidents Claims Tribunal compensation to an individual?",
+    "reference": "No. For an individual, no TDS is deducted on this interest, whatever the amount (Section 393(4) Table, Sl. No. 7, item (iv)(A)). The amount limit applies only to persons other than individuals.",
+    "answer": "No, tax is not required to be deducted at source (TDS) on the compensation amount awarded by a Motor Accidents Claims Tribunal when it is paid to an individual [Section 393].",
+    "retrieved": [
+      {
+        "chunk_id": "fixed-1000-150:001539",
+        "rank": 1,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001916",
+        "rank": 2,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001915",
+        "rank": 3,
+        "sections": [
+          "Schedule III"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:001538",
+        "rank": 4,
+        "sections": [
+          "393"
+        ],
+        "neighbour_of": null
+      },
+      {
+        "chunk_id": "fixed-1000-150:000610",
+        "rank": 5,
+        "sections": [
+          "132"
+        ],
+        "neighbour_of": null
+      }
+    ],
+    "citations": [
+      "393"
+    ],
+    "unsupported_citations": [],
+    "verdict": {
+      "correctness": "correct",
+      "faithful": true,
+      "refused": false,
+      "unsupported_claims": [],
+      "explanation": "The app correctly answers that no TDS is required to be deducted for an individual under Section 393."
+    },
+    "judge_error": null,
+    "old_law": false
+  }
+]

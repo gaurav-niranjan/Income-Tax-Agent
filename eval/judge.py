@@ -85,6 +85,12 @@ def parse_verdict(text: str) -> dict:
     }
 
 
+def uses_old_law(answer: str, patterns: list[str]) -> bool:
+    """Trap questions (traps.jsonl): does the answer state a figure that only the repealed text has?
+    A plain regex, no LLM: the old figures were picked so the current law never contains them."""
+    return any(re.search(p, answer, re.IGNORECASE) for p in patterns)
+
+
 def _count(rows: list[dict], test) -> dict:
     hits = sum(1 for r in rows if test(r))
     return {"hits": hits, "n": len(rows), "rate": hits / len(rows) if rows else 0.0}
@@ -104,6 +110,10 @@ def summarize_answers(rows: list[dict]) -> dict:
         "false_refusal_in_scope": _count(in_scope, lambda r: r["verdict"]["refused"]),
         "by_type": {},
     }
+    # Over all answered trap rows, judged or not: the check needs no judge.
+    traps = [r for r in rows if "old_law" in r]
+    if traps:
+        summary["old_law"] = _count(traps, lambda r: r["old_law"])
     for t in dict.fromkeys(r["type"] for r in in_scope):
         group = [r for r in in_scope if r["type"] == t]
         summary["by_type"][t] = {

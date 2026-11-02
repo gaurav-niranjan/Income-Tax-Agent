@@ -152,14 +152,19 @@ def retrieval_table(runs: list[dict], results_dir: Path) -> list[str]:
     return lines
 
 
+def _answer_metrics(summary: dict, names: tuple[str, ...]) -> str:
+    # "old_law" exists only for runs on trap questions (traps.jsonl).
+    return " | ".join(fmt(summary[m]) if m in summary and summary[m]["n"] else "-" for m in names)
+
+
 def answers_table(runs: list[dict], results_dir: Path) -> list[str]:
     lines = ["| run | index | mode | fusion | neighbours | k | answer model | judge | prompts | unjudged "
-             "| correct | correct or partial | faithful | out-of-scope refused | false refusals | note |",
-             "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+             "| correct | correct or partial | faithful | out-of-scope refused | false refusals | old law | note |",
+             "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for run in runs:
         c, s = run["config"], run["summary"]
-        metrics = " | ".join(fmt(s[m]) if s[m]["n"] else "-" for m in ("correct", "correct_or_partial", "faithful",
-                                                  "refusal_out_of_scope", "false_refusal_in_scope"))
+        metrics = _answer_metrics(s, ("correct", "correct_or_partial", "faithful", "refusal_out_of_scope",
+                                      "false_refusal_in_scope", "old_law"))
         lines.append(f"| {_link(run, results_dir)} | {c['index']} | {_mode(c)} | {_fusion(c)} | {_nb(c)} | {c['k']} "
                      f"| {c['answer_model']} | {c['judge_model']} | {c['prompts_sha']} "
                      f"| {s['unjudged']}/{c['n_answered']} | {metrics} | {c.get('note', '')} |")
@@ -236,16 +241,16 @@ def key_retrieval_groups(groups: list[dict], runs: dict[str, dict], results_dir:
 
 
 def key_answers_table(keys: list[dict], runs: dict[str, dict], results_dir: Path) -> list[str]:
-    lines = ["| step | judged | correct | correct or partial | faithful | false refusals | run |",
-             "|---|---|---|---|---|---|---|"]
+    lines = ["| step | judged | correct | correct or partial | faithful | false refusals | old law | run |",
+             "|---|---|---|---|---|---|---|---|"]
     for key in keys:
         run = runs.get(key["run"])
         if run is None:
-            lines.append(f"| {key['step']} | - | - | - | - | - | {key['run']} (not found) |")
+            lines.append(f"| {key['step']} | - | - | - | - | - | - | {key['run']} (not found) |")
             continue
         c, s = run["config"], run["summary"]
-        metrics = " | ".join(fmt(s[m]) if s[m]["n"] else "-"
-                             for m in ("correct", "correct_or_partial", "faithful", "false_refusal_in_scope"))
+        metrics = _answer_metrics(s, ("correct", "correct_or_partial", "faithful", "false_refusal_in_scope",
+                                      "old_law"))
         judged = c["n_answered"] - s["unjudged"]
         lines.append(f"| {key['step']} | {judged}/{c['n_answered']} | {metrics} | {_link(run, results_dir)} |")
     return lines
@@ -294,7 +299,9 @@ def write_index(results_dir: Path = RESULTS_DIR) -> Path:
         "## Retrieval: also tried", "",
         *key_retrieval_groups(keys.get("also_tried", []), by_id, results_dir),
         "## Answers (LLM judge)", "",
-        "Correct and false refusals are over judged in-scope questions; faithful over all judged ones.", "",
+        "Correct and false refusals are over judged in-scope questions; faithful over all judged ones. "
+        "**Old law** (trap questions only, `traps.jsonl`) = answers that state a figure only the repealed "
+        "text has; a regex check, no judge.", "",
         *key_answers_table(keys.get("answers", []), by_id, results_dir), "",
     ]
     path = results_dir / "README.md"

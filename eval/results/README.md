@@ -2,7 +2,7 @@
 
 The steps that shaped the app. **hit@1** = the right section is the first result; **hit@5** = it is in the top 5; **MRR** = the mean of 1/rank of the first right result (1.00 = always first). A hit is *strict*: the section makes up at least 30% of the chunk. Dev = questions.jsonl, held-out = heldout.jsonl (written later, not used for tuning). Counts are questions: with this few, one question moves a rate by several points.
 
-Generated from `key_runs.json` by `eval/runs.py` (`uv run python eval/compare.py`). Every run (55 retrieval, 1 answer) is in [all_runs.md](all_runs.md).
+Generated from `key_runs.json` by `eval/runs.py` (`uv run python eval/compare.py`). Every run (59 retrieval, 5 answer) is in [all_runs.md](all_runs.md).
 
 ## Retrieval: how the app was built
 
@@ -54,10 +54,19 @@ Not re-run: these used the dev set of their time (22 or 23 questions), so compar
 | App setup on fixed chunks instead of structured | dense | ✓ | question + half of best rewrite | ✓ | 19/23 | 22/23 | 0.87 | 7/10 | 10/10 | 0.82 | [dev](retrieval/2026-10-24_d0349a98/report.md) · [held-out](retrieval/2026-10-24_6fee4b4e/report.md) |
 | App setup without query expansion | dense | – | question + half of best rewrite | ✓ | 21/23 | 22/23 | 0.93 | 8/10 | 9/10 | 0.83 | [dev](retrieval/2026-10-24_3ef3dcd7/report.md) · [held-out](retrieval/2026-10-24_cf10af4d/report.md) |
 
+Footnotes ablation (2026-11-02), fixed 1,000-character chunks, dense search only. Kept footnotes look like section starts to the section detector, so chunks get wrong section labels and section hits are partly wrong; phrase hits are fairer. Details: [eval/experiments/footnotes](../experiments/footnotes/README.md).
+
+| step | search | query expansion | reranker | neighbours | dev hit@1 | dev hit@5 | dev MRR | held-out hit@1 | held-out hit@5 | held-out MRR | runs |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| *Reference:* footnotes removed (same setup as A1) | dense | – | – | – | 14/26 | 20/26 | 0.64 | 2/10 | 6/10 | 0.36 | [dev](retrieval/2026-11-02_4b919220/report.md) · [held-out](retrieval/2026-11-02_cb3ad3c8/report.md) |
+| Footnotes kept in the chunks | dense | – | – | – | 15/26 | 18/26 | 0.62 | 4/10 | 7/10 | 0.51 | [dev](retrieval/2026-11-02_67218604/report.md) · [held-out](retrieval/2026-11-02_c432e46d/report.md) |
+
 ## Answers (LLM judge)
 
-Correct and false refusals are over judged in-scope questions; faithful over all judged ones.
+Correct and false refusals are over judged in-scope questions; faithful over all judged ones. **Old law** (trap questions only, `traps.jsonl`) = answers that state a figure only the repealed text has; a regex check, no judge.
 
-| step | judged | correct | correct or partial | faithful | false refusals | run |
-|---|---|---|---|---|---|---|
-| First answer eval, old app setup (judge quota ran out at 18/26) | 18/26 | 0.50 (9/18) | 0.83 (15/18) | 0.94 (17/18) | 0.17 (3/18) | [2026-10-18_d4acdb36](answers/2026-10-18_d4acdb36/report.md) |
+| step | judged | correct | correct or partial | faithful | false refusals | old law | run |
+|---|---|---|---|---|---|---|---|
+| First answer eval, old app setup (judge quota ran out at 18/26) | 18/26 | 0.50 (9/18) | 0.83 (15/18) | 0.94 (17/18) | 0.17 (3/18) | - | [2026-10-18_d4acdb36](answers/2026-10-18_d4acdb36/report.md) |
+| Footnotes ablation: 6 trap questions, footnotes removed (fixed 1,000, dense; Flash-Lite answers and judges). Raw judge grades; t02 is corrected by hand in [the write-up](../experiments/footnotes/README.md) | 6/6 | 0.50 (3/6) | 0.67 (4/6) | 1.00 (6/6) | 0.50 (3/6) | 0.00 (0/6) | [2026-11-02_902d824c](answers/2026-11-02_902d824c/report.md) |
+| Footnotes ablation: 6 trap questions, footnotes kept (same setup). Raw judge grades; t02 is corrected by hand in [the write-up](../experiments/footnotes/README.md) | 6/6 | 0.50 (3/6) | 0.67 (4/6) | 0.83 (5/6) | 0.17 (1/6) | 0.33 (2/6) | [2026-11-02_3e97330d](answers/2026-11-02_3e97330d/report.md) |
