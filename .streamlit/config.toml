@@ -2,7 +2,7 @@
 # background, table of contents, source cards, status bar) is the CSS block in app/streamlit_app.py.
 [theme]
 base = "light"
-primaryColor = "#16191c"              # ink: toggles, selected search mode
+primaryColor = "#16191c"              # ink: toggles, selected search mode, focused Sources button
 backgroundColor = "#e9ebe7"           # page behind the panels
 secondaryBackgroundColor = "#ffffff"  # inputs
 textColor = "#16191c"

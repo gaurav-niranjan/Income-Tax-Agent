@@ -1,5 +1,7 @@
 """Run the Streamlit app headless with fake models and a tiny index (no keys, no downloads)."""
 
+import threading
+from concurrent.futures import Future
 from pathlib import Path
 
 import pytest
@@ -11,6 +13,7 @@ from income_tax_agent.config import Settings, get_settings
 from income_tax_agent.embeddings import FakeEmbeddings
 from income_tax_agent.index import build_index
 from income_tax_agent.ingest.chunkers.fixed import FixedSizeChunker
+from income_tax_agent.llm import QuotaExhausted
 
 APP = str(Path(__file__).parents[1] / "app/streamlit_app.py")
 BODY = """    Short title, extent and commencement.
@@ -58,7 +61,7 @@ def test_question_gets_answer_with_sources(app):
     flow = panel(app, "flow")
     assert [s.value for s in flow.subheader] == ["health insurance premium deduction"]
     assert any("Fake answer" in m.value for m in flow.markdown)
-    assert not flow.button  # sources are in the right panel only, no button under the answer
+    assert [b.label for b in flow.button] == ["Sources"]
     assert [t.label for t in panel(app, "right").tabs] == ["Cited · 1", "Also read · 1"]
     assert any('href="#q1"' in m.value for m in panel(app, "left").markdown)  # table of contents
     # Citations show as tags, but the stored answer keeps them unchanged.
@@ -78,11 +81,58 @@ def test_focus_an_earlier_answer_but_follow_up_on_the_latest(app, monkeypatch):
     assert picker.options == ["1. health insurance premium deduction", "2. short title"]
     picker.set_value(1).run()
     assert status(app).startswith("answer **1**")
+    assert panel(app, "flow").button[0].proto.type == "primary"  # its "Sources" button shows the focus
     # A follow-up builds on the latest turn, not on the focused one.
     app.chat_input[0].set_value("and the limit?").run()
     assert any("short title and the limit?" in c.value for c in panel(app, "flow").caption)
     assert status(app).startswith("answer **3**")  # a new answer becomes the focused one
     assert panel(app, "right").get_by_key("source_pick").value == 5  # and the picker follows
+
+
+def test_sources_button_focuses_its_answer(app, monkeypatch):
+    monkeypatch.setenv("DEV_MODE", "1")  # no question cap
+    app.run()
+    app.chat_input[0].set_value("health insurance premium deduction").run()
+    app.chat_input[0].set_value("short title").run()
+    panel(app, "flow").button[0].click().run()  # "Sources" under answer 1
+    assert status(app).startswith("answer **1**")
+    assert panel(app, "right").get_by_key("source_pick").value == 1  # the picker follows (message index)
+    assert [b.proto.type for b in panel(app, "flow").button] == ["primary", "secondary"]
+
+
+def start_pending(app, question: str) -> tuple[list[dict], Future]:
+    """The state right after a question is sent: asked, with its answer still running in a worker."""
+    messages, future = [{"role": "user", "content": question}], Future()
+    app.session_state["messages"], app.session_state["thread_id"] = messages, "t"
+    app.session_state["pending"] = {"question": question, "future": future}
+    return messages, future
+
+
+def test_answer_arrives_in_a_run_started_while_it_loads(app):
+    # A click during loading starts a new run. That run must wait for the running answer and show it.
+    messages, future = start_pending(app, "short title")
+
+    def finish():  # what answer_job does, a moment after the run has started
+        messages.append({"role": "assistant", "content": "Late answer [Section 1].", "sources": []})
+        future.set_result(None)
+
+    threading.Timer(0.3, finish).start()
+    app.run()
+    assert not app.exception
+    flow = panel(app, "flow")
+    assert [s.value for s in flow.subheader] == ["short title"]  # drawn once, as a finished turn
+    assert any("Late answer" in m.value for m in flow.markdown)
+    assert "pending" not in app.session_state and not app.chat_input[0].disabled
+    assert status(app).startswith("answer **1**")  # the new answer is focused
+
+
+def test_failed_answer_shows_an_error_and_drops_the_question(app):
+    messages, future = start_pending(app, "short title")
+    future.set_exception(QuotaExhausted("429"))
+    app.run()
+    assert not app.exception
+    assert any("quota" in e.value for e in panel(app, "flow").error)
+    assert messages == [] and not panel(app, "flow").subheader
 
 
 def test_no_index_picker_with_one_index(app):

@@ -1,6 +1,6 @@
 # Tests: what they check and why
 
-There are 119 tests. They run in about 5 seconds, with no API key, no internet and no model
+There are 122 tests. They run in about 5 seconds, with no API key, no internet and no model
 download.
 
 ```bash
@@ -45,7 +45,7 @@ PDF pages ─► 1. clean ─► 2. find sections ─► 3. chunk + index ─►
 | 3. Chunking and the index | [test_chunk_index.py](test_chunk_index.py), [test_structured.py](test_structured.py) | 6 + 10 |
 | 4. Search | [test_retrieval.py](test_retrieval.py) | 22 |
 | 5. Answering | [test_graph.py](test_graph.py) | 31 |
-| 6. The app | [test_app.py](test_app.py), [test_limits.py](test_limits.py) | 12 + 3 |
+| 6. The app | [test_app.py](test_app.py), [test_limits.py](test_limits.py) | 15 + 3 |
 | 7. Eval tools | [test_metrics.py](test_metrics.py), [test_judge.py](test_judge.py), [test_runs.py](test_runs.py) | 4 + 8 + 6 |
 
 Some counts are bigger than the number of test functions. A test marked
@@ -281,11 +281,19 @@ Gemini quota.
 - `test_app_shows_disclaimer_and_privacy_note`: the "Not tax advice" and "questions go to
   Gemini" notes would disappear.
 - `test_question_gets_answer_with_sources`: asking a question would not show the answer, its
-  sources in the right panel, or citation tags like `§1`. It also checks that there is no
-  button under the answer.
+  sources in the right panel, its "Sources" button, or citation tags like `§1`.
 - `test_focus_an_earlier_answer_but_follow_up_on_the_latest`: picking an older answer in the
-  right panel would not show that answer's sources. Or a follow-up question would build on
-  the old answer instead of the latest one.
+  right panel would not show that answer's sources, or its "Sources" button would not show it
+  is the focused one. Or a follow-up question would build on the old answer instead of the
+  latest one.
+- `test_sources_button_focuses_its_answer`: clicking "Sources" under an older answer would not
+  show its sources in the right panel, or the picker there would not follow.
+- `test_answer_arrives_in_a_run_started_while_it_loads`: the answer runs in a worker thread.
+  A click while it loads (a toggle, the source picker) starts a new run of the page. That run
+  would not wait for the answer and show it, so the answer would vanish. This was a real bug.
+- `test_failed_answer_shows_an_error_and_drops_the_question`: when the worker fails (e.g. the
+  daily quota is used up), no error would show, or the unanswered question would stay in the
+  chat and in the next follow-up.
 - `test_no_index_picker_with_one_index`: the index picker would show when there is nothing to
   choose.
 - `test_index_picker_switches_index`: choosing another index would not change which index is

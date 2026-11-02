@@ -14,6 +14,7 @@ import math
 import os
 import time
 import uuid
+from concurrent.futures import ThreadPoolExecutor, wait
 from html import escape
 
 import streamlit as st
@@ -150,6 +151,13 @@ def question_limits() -> QuestionLimits:
                           settings.question_window_hours * 3600)
 
 
+@st.cache_resource
+def answer_workers() -> ThreadPoolExecutor:
+    """Answers run here, not in the script run. A click reruns the script, and Streamlit drops the
+    old run straight away (runner.fastReruns); an answer computed in that run would be lost."""
+    return ThreadPoolExecutor(max_workers=8, thread_name_prefix="answer")
+
+
 def visitor_id() -> str:
     """The visitor's IP address. Behind a proxy (Streamlit Cloud) the connection comes from the
     proxy, which puts the visitor's IP first in X-Forwarded-For. A custom client could fake that
@@ -195,12 +203,13 @@ def debug_info(state: dict, steps: list[dict], calls: list[dict]) -> dict:
     }
 
 
-def ask(graph, question: str, mode: str, neighbours: bool, expand: bool, rerank: bool, index_name: str) -> dict:
+def ask(graph, question: str, mode: str, neighbours: bool, expand: bool, rerank: bool, index_name: str,
+        thread_id: str) -> dict:
     """Run the pipeline and keep only plain data, so the chat history can be re-drawn."""
     inputs = {"question": question, "mode": mode, "k": settings.answer_k, "neighbours": neighbours,
               "expand": expand, "rerank": rerank}
     # The graph's memory keeps this visitor's earlier turns under their thread id.
-    config = {"configurable": {"thread_id": st.session_state.thread_id}}
+    config = {"configurable": {"thread_id": thread_id}}
     steps, last = [], time.perf_counter()
     with record_llm_calls() as calls:
         # "updates" yields once per finished node, so the time between yields is that node's time.
@@ -237,6 +246,28 @@ def ask(graph, question: str, mode: str, neighbours: bool, expand: bool, rerank:
         "standalone": state["standalone_question"] if state["standalone_question"] != question else None,
         "debug": debug_info(state, steps, calls) if settings.dev_mode else None,
     }
+
+
+def answer_job(messages: list[dict], limits: QuestionLimits, visitor: str | None, *ask_args) -> None:
+    """Runs in a worker thread, so no st.* calls. It saves the answer into the chat itself, so
+    saving never depends on a script run surviving."""
+    messages.append(ask(*ask_args))
+    if visitor is not None:  # count answered questions only; None in dev mode (no limit)
+        used = limits.record(visitor)
+        # For the owner (Streamlit Cloud: Manage app > Logs). A hash, not the IP: enough to see
+        # whether visitors are told apart (if every visitor shows the same hash, the IP is the proxy's).
+        print(f"[usage] {used}/{settings.max_questions_total} questions in the last "
+              f"{settings.question_window_hours:g} hours (all visitors) "
+              f"· visitor {hashlib.sha256(visitor.encode()).hexdigest()[:8]}", flush=True)
+
+
+def error_text(e: BaseException) -> str:
+    if isinstance(e, QuotaExhausted):
+        return "The free daily quota for the AI model is used up. Please try again tomorrow."
+    if isinstance(e, NotRetryable):
+        return f"The AI model rejected the request: {e}"
+    # Rate limits are retried with backoff first; if we still fail, the API is busy.
+    return "The AI service is busy right now. Please try again in a minute."
 
 
 def _tokens(calls: list[dict], key: str) -> int:
@@ -308,12 +339,16 @@ def toc_meta(msg: dict) -> tuple[str, str]:
     return text, css
 
 
+def focus(i: int) -> None:
+    st.session_state.focus = i
+
+
 def pick_sources() -> None:
     st.session_state.focus = st.session_state.source_pick
 
 
-def show_turn(n: int, question: str, msg: dict, focused: bool) -> None:
-    """One question and its answer in the middle panel."""
+def show_turn(n: int, question: str, i: int, msg: dict, focused: bool) -> None:
+    """One question and its answer in the middle panel. i is the answer's index in the messages."""
     with st.container(key=f"turn-focus-{n}" if focused else f"turn-{n}"):
         st.markdown(f'<span class="n">{n}</span>', unsafe_allow_html=True)
         st.subheader(question, anchor=f"q{n}")
@@ -329,17 +364,20 @@ def show_turn(n: int, question: str, msg: dict, focused: bool) -> None:
                 st.caption(":green[✓] citations found in the sources", width="content")
             if sources:
                 st.caption(f"{len(sources)} excerpts · {sum(s['cited'] for s in sources)} cited", width="content")
+                st.button("Sources", key=f"sources-{n}", on_click=focus, args=(i,),
+                          type="primary" if focused else "secondary",
+                          help="Show this answer's sources in the right panel.")
         if msg.get("debug"):
             show_debug(msg["debug"])
 
 
 def show_sources(focused: int, answers: list[int], messages: list[dict]) -> None:
     """The focused answer's excerpts in the right panel, split into cited and not cited.
-    A picker switches to an earlier answer."""
+    A picker switches to an earlier answer, like the "Sources" button under each answer."""
     st.divider()
     if len(answers) > 1:
         label("Sources")
-        st.session_state.source_pick = focused  # follow new answers
+        st.session_state.source_pick = focused  # follow the "Sources" buttons and new answers
         st.selectbox("Show the sources of", answers, key="source_pick", on_change=pick_sources,
                      format_func=lambda i: f"{answers.index(i) + 1}. {messages[i - 1]['content']}")
     else:
@@ -380,8 +418,18 @@ if "messages" not in st.session_state:
     st.session_state.thread_id = uuid.uuid4().hex
 
 messages = st.session_state.messages
-answers = [i for i, m in enumerate(messages) if m["role"] == "assistant"]
-# The answer whose sources the right panel shows: the one picked there, else the latest.
+# The question being answered: {"question", "future"}. Kept across reruns until its answer is in.
+pending, error = st.session_state.get("pending"), None
+if pending and pending["future"].done():
+    del st.session_state.pending
+    if e := pending["future"].exception():
+        messages.pop()  # the question that failed; the worker added no answer
+        error = error_text(e)
+    else:
+        st.session_state.focus = len(messages) - 1  # a new answer becomes the focused one
+    pending = None
+answers =[i for i, m in enumerate(messages) if m["role"] == "assistant"]
+# The answer whose sources the right panel shows: the one whose "Sources" was clicked, else the latest.
 # This is display only. A new question always follows on from the whole chat (the graph's memory).
 focused = st.session_state.get("focus")
 focused = focused if focused in answers else (answers[-1] if answers else None)
@@ -476,7 +524,7 @@ with left:
         label("Try")
         with st.container(key="examples"):
             for i, example in enumerate(EXAMPLES):
-                if st.button(example, key=f"example-{i}", disabled=bool(blocked), width="stretch"):
+                if st.button(example, key=f"example-{i}", disabled=bool(blocked or pending), width="stretch"):
                     question = example
     st.divider()
     if mine is None:
@@ -493,15 +541,17 @@ with mid:
     flow = st.container(key="flow", height=600, border=False, autoscroll=True)  # real height: the CSS
     with flow:
         for n, i in enumerate(answers, 1):
-            show_turn(n, messages[i - 1]["content"], messages[i], i == focused)
-        if not answers:
+            show_turn(n, messages[i - 1]["content"], i, messages[i], i == focused)
+        if not answers and not pending:
             st.caption("Ask a question about the Income-tax Act, 2025. The answer cites the sections it uses.")
+        if error:
+            st.error(error)
     st.caption(DISCLAIMER)
     typed = st.chat_input(
-        "Question limit reached" if blocked else "Ask a follow-up, or a new question" if answers
-        else "Ask about the Income-tax Act, 2025",
+        "Question limit reached" if blocked else "Writing the answer..." if pending
+        else "Ask a follow-up, or a new question" if answers else "Ask about the Income-tax Act, 2025",
         max_chars=500,
-        disabled=bool(blocked),
+        disabled=bool(blocked or pending),  # one question at a time
     )
     if blocked:
         st.caption(blocked)
@@ -532,39 +582,25 @@ if settings.dev_mode:
             f"API tokens: {_tokens(api, 'input'):,} in, {_tokens(api, 'output'):,} out "
             f"({_tokens(api, 'thinking'):,} thinking)"
         )
-        if st.button("New chat", help="Clear the messages and start a new memory thread."):
+        if st.button("New chat", help="Clear the messages and start a new memory thread.", disabled=bool(pending)):
             st.session_state.messages = []
             st.session_state.thread_id = uuid.uuid4().hex
             st.session_state.pop("focus", None)
             st.rerun()
 
 if question:
+    messages.append({"role": "user", "content": question})
+    future = answer_workers().submit(answer_job, messages, limits, None if settings.dev_mode else visitor,
+                                     graph, question, mode, neighbours, expand, rerank, index_name,
+                                     st.session_state.thread_id)
+    pending = st.session_state.pending = {"question": question, "future": future}
+
+if pending:
+    # Wait last, once the whole page is drawn, so every control works meanwhile. A click starts
+    # a new run; the answer carries on in its worker, and the new run waits for it here instead.
     with flow, st.container(key="turn-new"):
         st.markdown(f'<span class="n">{len(answers) + 1}</span>', unsafe_allow_html=True)
-        st.subheader(question, anchor=False)
-        messages.append({"role": "user", "content": question})
-        try:
-            with st.spinner("Searching the Act and writing an answer..."):
-                reply = ask(graph, question, mode, neighbours, expand, rerank, index_name)
-        except QuotaExhausted:
-            messages.pop()
-            st.error("The free daily quota for the AI model is used up. Please try again tomorrow.")
-            st.stop()
-        except NotRetryable as e:
-            messages.pop()
-            st.error(f"The AI model rejected the request: {e}")
-            st.stop()
-        except Exception:
-            # Rate limits are retried with backoff first; if we still fail, the API is busy.
-            messages.pop()
-            st.error("The AI service is busy right now. Please try again in a minute.")
-            st.stop()
-    messages.append(reply)
-    st.session_state.focus = len(messages) - 1  # a new answer becomes the focused one
-    if not settings.dev_mode:
-        used = limits.record(visitor)
-        # For the owner (Streamlit Cloud: Manage app > Logs). A hash, not the IP: enough to see
-        # whether visitors are told apart (if every visitor shows the same hash, the IP is the proxy's).
-        print(f"[usage] {used}/{settings.max_questions_total} questions in the last {window} (all visitors) "
-              f"· visitor {hashlib.sha256(visitor.encode()).hexdigest()[:8]}", flush=True)
+        st.subheader(pending["question"], anchor=False)
+        with st.spinner("Searching the Act and writing an answer..."):
+            wait([pending["future"]])
     st.rerun()  # Redraw: the new turn, its sources on the right, the question counter.
