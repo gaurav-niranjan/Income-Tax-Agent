@@ -308,16 +308,12 @@ def toc_meta(msg: dict) -> tuple[str, str]:
     return text, css
 
 
-def focus(i: int) -> None:
-    st.session_state.focus = i
-
-
 def pick_sources() -> None:
     st.session_state.focus = st.session_state.source_pick
 
 
-def show_turn(n: int, question: str, i: int, msg: dict, focused: bool) -> None:
-    """One question and its answer in the middle panel. i is the answer's index in the messages."""
+def show_turn(n: int, question: str, msg: dict, focused: bool) -> None:
+    """One question and its answer in the middle panel."""
     with st.container(key=f"turn-focus-{n}" if focused else f"turn-{n}"):
         st.markdown(f'<span class="n">{n}</span>', unsafe_allow_html=True)
         st.subheader(question, anchor=f"q{n}")
@@ -333,20 +329,17 @@ def show_turn(n: int, question: str, i: int, msg: dict, focused: bool) -> None:
                 st.caption(":green[✓] citations found in the sources", width="content")
             if sources:
                 st.caption(f"{len(sources)} excerpts · {sum(s['cited'] for s in sources)} cited", width="content")
-                st.button("Sources", key=f"sources-{n}", on_click=focus, args=(i,),
-                          type="primary" if focused else "secondary",
-                          help="Show this answer's sources in the right panel.")
         if msg.get("debug"):
             show_debug(msg["debug"])
 
 
 def show_sources(focused: int, answers: list[int], messages: list[dict]) -> None:
     """The focused answer's excerpts in the right panel, split into cited and not cited.
-    A picker switches to an earlier answer, like the "Sources" button under each answer."""
+    A picker switches to an earlier answer."""
     st.divider()
     if len(answers) > 1:
         label("Sources")
-        st.session_state.source_pick = focused  # follow the "Sources" buttons and new answers
+        st.session_state.source_pick = focused  # follow new answers
         st.selectbox("Show the sources of", answers, key="source_pick", on_change=pick_sources,
                      format_func=lambda i: f"{answers.index(i) + 1}. {messages[i - 1]['content']}")
     else:
@@ -388,7 +381,7 @@ if "messages" not in st.session_state:
 
 messages = st.session_state.messages
 answers = [i for i, m in enumerate(messages) if m["role"] == "assistant"]
-# The answer whose sources the right panel shows: the one whose "Sources" was clicked, else the latest.
+# The answer whose sources the right panel shows: the one picked there, else the latest.
 # This is display only. A new question always follows on from the whole chat (the graph's memory).
 focused = st.session_state.get("focus")
 focused = focused if focused in answers else (answers[-1] if answers else None)
@@ -500,7 +493,7 @@ with mid:
     flow = st.container(key="flow", height=600, border=False, autoscroll=True)  # real height: the CSS
     with flow:
         for n, i in enumerate(answers, 1):
-            show_turn(n, messages[i - 1]["content"], i, messages[i], i == focused)
+            show_turn(n, messages[i - 1]["content"], messages[i], i == focused)
         if not answers:
             st.caption("Ask a question about the Income-tax Act, 2025. The answer cites the sections it uses.")
     st.caption(DISCLAIMER)
@@ -549,29 +542,29 @@ if question:
     with flow, st.container(key="turn-new"):
         st.markdown(f'<span class="n">{len(answers) + 1}</span>', unsafe_allow_html=True)
         st.subheader(question, anchor=False)
+        messages.append({"role": "user", "content": question})
         try:
             with st.spinner("Searching the Act and writing an answer..."):
                 reply = ask(graph, question, mode, neighbours, expand, rerank, index_name)
-                # Save the turn before drawing anything else. A click while the answer loads
-                # (e.g. "Sources") makes Streamlit stop this run at its next element, here the
-                # spinner closing, and the answer would be lost though the graph's memory has it.
-                # Plain Python and session_state writes are never interrupted.
-                messages += [{"role": "user", "content": question}, reply]
-                st.session_state.focus = len(messages) - 1  # a new answer becomes the focused one
-                if not settings.dev_mode:
-                    used = limits.record(visitor)
-                    # For the owner (Streamlit Cloud: Manage app > Logs). A hash, not the IP: enough to see
-                    # whether visitors are told apart (if every visitor shows the same hash, the IP is the proxy's).
-                    print(f"[usage] {used}/{settings.max_questions_total} questions in the last {window} "
-                          f"(all visitors) · visitor {hashlib.sha256(visitor.encode()).hexdigest()[:8]}", flush=True)
         except QuotaExhausted:
+            messages.pop()
             st.error("The free daily quota for the AI model is used up. Please try again tomorrow.")
             st.stop()
         except NotRetryable as e:
+            messages.pop()
             st.error(f"The AI model rejected the request: {e}")
             st.stop()
         except Exception:
             # Rate limits are retried with backoff first; if we still fail, the API is busy.
+            messages.pop()
             st.error("The AI service is busy right now. Please try again in a minute.")
             st.stop()
+    messages.append(reply)
+    st.session_state.focus = len(messages) - 1  # a new answer becomes the focused one
+    if not settings.dev_mode:
+        used = limits.record(visitor)
+        # For the owner (Streamlit Cloud: Manage app > Logs). A hash, not the IP: enough to see
+        # whether visitors are told apart (if every visitor shows the same hash, the IP is the proxy's).
+        print(f"[usage] {used}/{settings.max_questions_total} questions in the last {window} (all visitors) "
+              f"· visitor {hashlib.sha256(visitor.encode()).hexdigest()[:8]}", flush=True)
     st.rerun()  # Redraw: the new turn, its sources on the right, the question counter.

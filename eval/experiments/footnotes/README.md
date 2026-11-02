@@ -6,8 +6,7 @@ turnover". Cleaning removes them (`STRIP_FOOTNOTES=true`, [clean.py](../../../sr
 Does that matter?
 
 **Answer.** Yes. With footnotes kept, **2 of 6** trap answers stated repealed law as if it were
-current. With footnotes removed, **0 of 6** did. Retrieval scores barely move, so only an answer eval
-shows the harm.
+current. With footnotes removed, **0 of 6** did.
 
 Run on 2026-11-02. All runs are listed in [eval/results/README.md](../../results/README.md)
 ("Footnotes ablation" rows).
@@ -26,28 +25,7 @@ Both sides are the same, except for the cleaning flag.
 | Footnotes kept | 2,193 chunks, 1.74M characters |
 | Footnotes removed | 2,120 chunks, 1.68M characters |
 
-## 1. Retrieval: no clear difference
-
-Dev = `questions.jsonl` (26 questions), held-out = `heldout.jsonl` (10).
-
-| | hit@1 | hit@5 | MRR | phrase hit@1 | phrase hit@5 | phrase MRR |
-|---|---|---|---|---|---|---|
-| Dev, footnotes removed | 14/26 | 20/26 | 0.64 | 13/26 | 17/26 | 0.56 |
-| Dev, footnotes kept | 15/26 | 18/26 | 0.62 | 14/26 | 17/26 | 0.59 |
-| Held-out, footnotes removed | 2/10 | 6/10 | 0.36 | 1/10 | 4/10 | 0.25 |
-| Held-out, footnotes kept | 4/10 | 7/10 | 0.51 | 4/10 | 6/10 | 0.53 |
-
-- On dev, the two are within one or two questions.
-- The held-out gain is most likely chance. The two questions that improved (h01, h06) matched
-  current-law text, not footnotes. Adding footnote text shifts every later chunk boundary, which alone
-  moves a question up or down. With 10 questions, one question is 10 points.
-- **Kept footnotes break section labels.** A footnote line such as `295. Sub. by the Act ...` looks like
-  the start of Section 295 to the section detector
-  ([sections.py](../../../src/income_tax_agent/ingest/sections.py)). So the Section 393 TDS table (p.460)
-  is labelled "Section 295". Chunks that span two sections fell from 575 to 344. Section hits for the
-  kept index are therefore partly wrong. Phrase hits don't use labels, so they are the fairer check here.
-
-## 2. Answers: kept footnotes give old law
+## Answers: kept footnotes give old law
 
 Six trap questions, [eval/traps.jsonl](../../traps.jsonl). **Every question is tied to one footnote
 that quotes old text and gives a different answer to that same question.** Each question lists regexes
@@ -72,12 +50,6 @@ How the link is checked:
   (`data/processed/footnotes_removed.jsonl`) and quotes old text, and that the old-law regex matches the
   footnote but not the current-law reference.
 
-**Trap set history.** The first version's t01 asked about money sent abroad under the Liberalised
-Remittance Scheme (LRS). Its footnote 89 turned out to sit on the next row of the table (the overseas
-tour package), so it was not a fair trap. t01 was rewritten to ask about the tour package. The runs on
-the first version are kept in `all_runs.md`, marked "Superseded trap set v1". They gave the same old-law
-result (2/6 kept, 0/6 removed).
-
 ### Results
 
 | | States old law | Correct | Correct or partial | Faithful | Refused |
@@ -93,14 +65,17 @@ The two old-law answers (footnotes kept):
 
 - **t03:** "the penalty is the lesser of 0.5% of the total sales, turnover, or gross receipts ... or
   Rs. 150000 [Section 295]". This is the repealed Section 446, quoted from a footnote, and it cites the
-  wrong section (the label bug above).
+  wrong section (see "Wrong citations" below).
 - **t02:** it starts with "No", then gives the old rule that interest is deductible up to 20% of the
   dividends.
 
 Other findings:
 
-- **Wrong citations.** With footnotes kept, most retrieved chunks are labelled "Section 295". Two correct
-  answers cite "Section 295": t01 (should be 394) and t06 (should be 393).
+- **Wrong citations.** Kept footnotes break section labels. A footnote line such as
+  `295. Sub. by the Act ...` looks like the start of Section 295 to the section detector
+  ([sections.py](../../../src/income_tax_agent/ingest/sections.py)). So the Section 393 TDS table (p.460)
+  is labelled "Section 295", and most retrieved chunks carry that label. Two correct answers cite
+  "Section 295": t01 (should be 394) and t06 (should be 393).
 - **The refusals (footnotes removed) are mostly retrieval misses.** Plain dense search did not find
   Sections 93 and 428 for t02 and t03. For t01 it found Section 394 twice, but the answer model still
   said "I could not find this". The app's setup (query expansion + reranker) is built for the misses.
@@ -112,14 +87,6 @@ Other findings:
   because the judge grades the answer's facts, not its citations.
 
   The old-law count does not use the judge, so these mistakes don't change it.
-
-## Limits
-
-- Six questions only. The result is two clear failures, not a precise rate.
-- t06's regex (`50,000`) can match a correct answer that mentions the limit for non-individuals.
-  Check its flag by hand.
-- The ITR-U rule (updated returns) was left out: its old rates (25%, 50%) are also in the new list,
-  so a text check cannot tell old from new. Held-out question h06 covers that topic.
 
 ## Reproduce
 
@@ -134,12 +101,6 @@ without `STRIP_FOOTNOTES=false INDEX_DIR=...` (it uses the normal index).
 # Index with footnotes kept (~3 min of local embedding)
 STRIP_FOOTNOTES=false INDEX_DIR=data/processed/index-footnotes-kept \
   uv run python -m income_tax_agent.index --chunker fixed
-
-# Retrieval, dense only: dev, then held-out
-STRIP_FOOTNOTES=false INDEX_DIR=data/processed/index-footnotes-kept \
-  uv run python eval/run_eval.py --index fixed-1000-150__bge-base --modes dense
-STRIP_FOOTNOTES=false INDEX_DIR=data/processed/index-footnotes-kept \
-  uv run python eval/run_eval.py --index fixed-1000-150__bge-base --modes dense --questions eval/heldout.jsonl
 
 # Check that every trap is tied to an old-text footnote (no API calls)
 uv run python eval/check_questions.py --index fixed-1000-150__bge-base --questions eval/traps.jsonl
